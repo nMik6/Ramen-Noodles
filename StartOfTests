@@ -1,0 +1,64 @@
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class BowlingTest {
+	
+	private ScoreSheet sheet;
+	
+	@Before
+	public void setup() {
+		sheet = new ScoreSheet();
+	}
+
+	@Test
+	public void testOneThrow() {
+		sheet.bowl(3);
+		assertEquals("Game score not equal to throw",
+				sheet.getFrame().getThrowOne(),
+				sheet.getScore());
+	}
+	
+	@Test
+	public void testTwoThrows() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testThreeThrows() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSpareCountsNextFrameScore() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testStrikemovesToNextFrame() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testStrikeCountsNextFrameScore() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSpareOnLastFrame() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testStrikeOnLastFrames() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testThrowOn11thFrame() {
+		fail("Not yet implemented");
+	}
+
+}
