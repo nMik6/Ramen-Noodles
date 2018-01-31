@@ -1,33 +1,33 @@
 
 public class Bowling {
-	private Frame[] game =  new Frame[10]; //array of frames for the game
+	private Frame[] game =  new Frame[10]; 
 	int curFrame = 0;			//current frame of game[]. first frame is at index 0, second at index 1, & so on...
-	boolean firstThrow = true;	//True if throw is first of Frame
+	boolean firstThrow = true;	
 	
 	
 	public int getScore(int frame) {
-		if(frame<1 || frame>10) throw new IllegalArgumentException("Frame out of bounds: [1,10]");
+		if(frame < 1 || frame > 10) throw new IllegalArgumentException("Frame out of bounds: [1,10]");
 		Frame f = game[frame];	//save current frame variable f
-		if(!f.hasPlayed()) throw new IllegalStateException("Frame not played yet"); //throw exception if frame has no score yet/ has not been played
+		if(!f.hasPlayed()) throw new IllegalStateException("Frame not played yet"); 
 		int score = f.getScore();
-		if(f.isStrike() && frame<game.length-2) { 	//If frame is strike check if more frames are after it in array
-			score+=game[frame+1].getScore();		//add next frame to current strike frame's score
-			if(frame<game.length-3)					//check if frame has two frames after it in array
-				score+=game[frame+1].getScore();	//add next next frame to current strike frame's score
+		if(f.isStrike() && frame < game.length-2) { 	//If frame is strike check if more frames are after it in array
+			score += game[frame+1].getScore();		
+			if(frame < game.length-3)					
+				score += game[frame+1].getScore();		
 		} 
-		else if(f.isSpare() && frame<game.length-2)	//check if spare & frame exists after spare frame
-			score+=game[frame+1].getScore();
+		else if(f.isSpare() && frame < game.length-2)	//check if spare & frame exists after spare frame
+			score += game[frame+1].getScore();
 		
 		return score;
 	}
 	
 	public void roll(int x) {
-		if(x<0 || x>10) throw new IllegalArgumentException("Number of pins out of bounds [0,10]");
+		if(x < 0 || x > 10) throw new IllegalArgumentException("Number of pins out of bounds [0,10]");
 		Frame f = game[curFrame];
-		if(firstThrow) {			//firstThrow variable used to determine which throw to set with x 
+		if(firstThrow) {			
 			f.setThrow1(x);
 			if(!f.isStrike())
-				firstThrow = false; //if is not strike stay on current frame
+				firstThrow = false; //if not strike stay on current frame
 			else 
 				++curFrame;			//increment current frame if Strike
 		}
