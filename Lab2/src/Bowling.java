@@ -1,6 +1,6 @@
 
 public class Bowling {
-	private Frame[] game =  new Frame[10]; 
+	private Frame[] game =  new Frame[12]; //extra 2 frames will not be modifiable and will always hold scores of 0... they're used by the logic in the getScore method.
 	int curFrame = 0;			//current frame of game[]. first frame is at index 0, second at index 1, & so on...
 	boolean firstThrow = true;	
 	
@@ -15,17 +15,16 @@ public class Bowling {
 	 */
 	
 	public int getScore(int frame) {
+		frame--;
 		//Is this offset from array indices by one should probably just make it identical to the indexing used in roll?
-		if(frame < 1 || frame > 10) throw new IllegalArgumentException("Frame out of bounds: [1,10]");
+		if(frame < 0 || frame > 9) throw new IllegalArgumentException("Frame out of bounds: [1,10]");
 		Frame f = game[frame];	//save current frame variable f
 		if(!f.hasPlayed()) throw new IllegalStateException("Frame not played yet"); 
 		int score = f.getScore();
-		if(f.isStrike() && frame < game.length-2) { 	//If frame is strike check if more frames are after it in array
-			score += game[frame+1].getScore();		
-			if(frame < game.length-3)					
-				score += game[frame+1].getScore();		
+		if(f.isStrike()) { 	//check if frame is strike
+			score += (game[frame+1].getScore() + game[frame+2].getScore());		
 		} 
-		else if(f.isSpare() && frame < game.length-2)	//check if spare & frame exists after spare frame
+		else if(f.isSpare())	//check if spare
 			score += game[frame+1].getScore();
 		
 		return score;
