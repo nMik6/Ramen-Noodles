@@ -1,21 +1,23 @@
 
-public class Bowling { 
+public class Bowling {
 	private Frame[] game =  new Frame[10]; 
 	int curFrame = 0;			//current frame of game[]. first frame is at index 0, second at index 1, & so on...
 	boolean firstThrow = true;	
 	
 	
-	public int getScore(int frame) {
-		if(frame < 1 || frame > 10) throw new IllegalArgumentException("Frame out of bounds: [1,10]");
+	public int getScore(int frame) { //remember, array indices start at 0, not 1, so the value of frame would actually go from 0 to 9
+		if(frame < 0 || frame > 9) throw new IllegalArgumentException("Frame out of bounds: [1,10]");
 		Frame f = game[frame];	//save current frame variable f
 		if(!f.hasPlayed()) throw new IllegalStateException("Frame not played yet"); 
 		int score = f.getScore();
 		if(f.isStrike() && frame < game.length-2) { 	//If frame is strike check if more frames are after it in array
-			score += game[frame+1].getScore();		
-			if(frame < game.length-3)					
-				score += game[frame+1].getScore();		
+			score += (game[frame+1].getScore() + game[frame+2].getScore());		
+			/*if(frame < game.length-3)					
+				score += game[frame+1].getScore();	//this logic wouldn't actually work... remember, game.length never returns a valid index */	
 		} 
-		else if(f.isSpare() && frame < game.length-2)	//check if spare & frame exists after spare frame
+		else if((!f.isStrike() //frame can still be strike here, so it needs to be checked first
+				&& f.isSpare() && frame < game.length-1)	//check if spare & frame exists after spare frame
+				||(f.isStrike() && frame == game.length-2))  //check to see if it's a strike with only one frame left (calculated the same as a spare)
 			score += game[frame+1].getScore();
 		
 		return score;
@@ -39,7 +41,7 @@ public class Bowling {
 	}
 	
 	private class Frame{
-		int throw1, throw2, score;
+		int throw1, throw2; //score; score variable not actually used
 		boolean played = false;
 		
 		public void setThrow1(int x) {
@@ -60,7 +62,7 @@ public class Bowling {
 		}
 		public boolean isSpare() {
 			if(isStrike()) throw new IllegalStateException("Frame is strike, cannot check if spare");
-			return (throw1 + throw2)==10;
+			return ((throw1 + throw2)==10);
 		}
 		int getThrow1() {
 			return throw1;
