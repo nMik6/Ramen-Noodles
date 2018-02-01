@@ -1,5 +1,5 @@
 
-public class Bowling {
+public class Bowling { 
 	private Frame[] game =  new Frame[10]; 
 	int curFrame = 0;			//current frame of game[]. first frame is at index 0, second at index 1, & so on...
 	boolean firstThrow = true;	
