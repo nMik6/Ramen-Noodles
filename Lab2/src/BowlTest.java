@@ -17,17 +17,30 @@ public class BowlTest {
 		@Test
 		public void testOneThrow() {
 			assertTrue(game.roll(3));
-			assertEquals("Game score not equal to throw", 3, game.getScore(game.getCurFrame()));
+			assertEquals("Frame score not equal to throw", 3, game.getScore(game.getFrame()));
 		}
 		
 		@Test
 		public void testTwoThrows() {
-			fail("Not yet implemented");
+			assertTrue(game.roll(3));
+			assertEquals("Frame score not equal to throw", 3, game.getScore(0));
+			assertEquals(0, game.getFrame());
+			assertTrue(game.roll(7));
+			assertEquals("Frame score not equal to throw", 10, game.getScore(0));
+			assertEquals(10, game.getTotalScore());
 		}
 
 		@Test
 		public void testThreeThrows() {
-			fail("Not yet implemented");
+			assertTrue(game.roll(3));
+			assertEquals("Frame score not equal to throw", 3, game.getScore(0));
+			assertEquals(0, game.getFrame());
+			assertTrue(game.roll(7));
+			assertEquals("Frame score not equal to throw", 10, game.getScore(0));
+			assertEquals(10, game.getTotalScore());
+			assertTrue(game.roll(10));
+			assertEquals(1, game.getFrame());
+			assertEqauls("Frame score not equal to throw", 10, game.getScore(1));
 		}
 
 		@Test

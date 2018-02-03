@@ -6,9 +6,11 @@ public class Bowling {
 	
 	/*Need methods
 	 * 
-	 * get total score - sums all played frames: m=0; for i = 0 thru curFrame m+= getScore(i);
+	 * Constructor
 	 * 
-	 * getCurFrame - returns index of active frame. I can use .curFrame, but variables should be private with get methods if we need access to them
+	 * getTotalScore - sums all played frames: m=0; for i = 0 thru curFrame m+= getScore(i);
+	 * 
+	 * getFrame - returns index of active frame. I can use .curFrame, but variables should be private with get methods if we need access to them
 	 * 
 	 * Need a  way to access score of frame with one throw  not a strike (first test case)
 	 *  -set boolean played in throw1 and set another boolean "complete" to true if strike or throw two?
