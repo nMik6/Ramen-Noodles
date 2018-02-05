@@ -1,8 +1,15 @@
 
 public class Bowling {
-	private Frame[] game =  new Frame[12]; //extra 2 frames will not be modifiable and will always hold scores of 0... they're used by the logic in the getScore method.
-	int curFrame = 0;			//current frame of game[]. first frame is at index 0, second at index 1, & so on...
-	boolean firstThrow = true;	
+	private Frame[] game; //extra 2 frames will not be modifiable and will always hold scores of 0... they're used by the logic in the getScore method.
+	private int curFrame;			//current frame of game[]. first frame is at index 0, second at index 1, & so on...
+	boolean firstThrow;
+	
+	public Bowling() {
+		curFrame = 0;
+		firstThrow = true;
+		game = new Frame[10];
+		for(int i = 0; i< 10; i++) game[i] = new Frame();
+	}
 	
 	/*Need methods
 	 * 
@@ -33,7 +40,7 @@ public class Bowling {
 		return true;
 	}
 	
-	//Frames should number 1-10, offset from indexing (0-9) by one.
+	//Frames should number 1-10
 	public int getScore(int frame) {
 		frame--;
 		if(frame < 0 || frame > 9) throw new IllegalArgumentException("Frame out of bounds: [1,10]");
@@ -63,17 +70,17 @@ public class Bowling {
 	
 	private class Frame{
 		int throw1 = 0, throw2 = 0;
-		boolean played = false;
+		//boolean played = false;
 		
 		public void setThrow1(int x) {
 			throw1 = x;
-			if(this.isStrike())	
-				played = true;		//Frame has been played fully if Strike
+			//if(this.isStrike())	
+				//played = true;		//Frame has been played fully if Strike
 		}
 		
 		public void setThrow2(int x) {
 			throw2 = x;
-			played = true;			//Frame has been played fully if proceeded to throw2
+			//played = true;			//Frame has been played fully if proceeded to throw2
 		}
 		
 		public int getScore() {
