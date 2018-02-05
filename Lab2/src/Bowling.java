@@ -1,7 +1,7 @@
 
 public class Bowling {
-	private Frame[] game; //extra 2 frames will not be modifiable and will always hold scores of 0... they're used by the logic in the getScore method.
-	private int curFrame;			//current frame of game[]. first frame is at index 0, second at index 1, & so on...
+	private Frame[] game; 
+	private int curFrame;
 	boolean firstThrow;
 	
 	public Bowling() {
@@ -11,13 +11,6 @@ public class Bowling {
 		for(int i = 0; i< 10; i++) game[i] = new Frame();
 	}
 	
-	/*Need methods
-	 * 
-	 * getCurFrame - returns index of active frame. I can use .curFrame, but variables should be private with get methods if we need access to them
-	 * 
-	 * Need a  way to access score of frame with one throw  not a strike (first test case)
-	 *  -set boolean played in throw1 and set another boolean "complete" to true if strike or throw two?
-	 */
 	
 	//I made this boolean so we can test if roll occurred (11th frame case)
 	public boolean roll(int x) {
@@ -70,22 +63,12 @@ public class Bowling {
 	
 	private class Frame{
 		int throw1 = 0, throw2 = 0;
-		//boolean played = false;
 		
-		public void setThrow1(int x) {
-			throw1 = x;
-			//if(this.isStrike())	
-				//played = true;		//Frame has been played fully if Strike
-		}
+		public void setThrow1(int x) { throw1 = x; }
 		
-		public void setThrow2(int x) {
-			throw2 = x;
-			//played = true;			//Frame has been played fully if proceeded to throw2
-		}
+		public void setThrow2(int x) { throw2 = x; }
 		
-		public int getScore() {
-			return throw1+throw2;
-		}
+		public int getScore() {	return throw1+throw2; }
 		
 		public boolean isStrike() {	return throw1 == 10;}
 		
@@ -93,14 +76,6 @@ public class Bowling {
 			if(isStrike()) throw new IllegalStateException("Frame is strike, cannot check if spare");
 			return (throw1 + throw2)==10;
 		}
-		
-		//public boolean hasPlayed() {return played;}
-		//int getThrow1() { return throw1;}
-		
-		/*int getThrow2() {
-			if(isStrike()) throw new IllegalStateException("Frame is strike, no second roll");
-			return throw2;
-		}*/
 		
 	}
 }
