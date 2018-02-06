@@ -1,80 +1,100 @@
 Template for Use Case:
 
-Use Case Name:			<insert_name>
+Use Case Name:			
+				<insert_name>
 
-Participating Actors:	Initiated by <insert_actor>
-						Communicates with <insert_actor>
-						<cont_list>...
+Participating Actors:	
+				Initiated by <insert_actor>
+				Communicates with <insert_actor>
+				<cont_list>...
 
-Flow of Events:			<list>
+Flow of Events:			
+				<list>
 
-Entry Condition:		<list>
+Entry Condition:		
+				<list>
 
-Exit Condition:			<list>
+Exit Condition:			
+				<list>
 
-Quality Requirements: 	<list> (optional)
+Quality Requirements: 	
+				<list> (optional)
 
 
 USE CASE:
- 	Name:			System Startup
+ 	Name:			
+ 				System Startup
 
- 	Actors:			Initiated by Power switch
- 					Channel start inputs
+ 	Actors:			
+				Initiated by Power switch
+				Channel start inputs
 
- 	Entry:			Power ON
+ 	Entry:			
+ 				Power ON
 
-	Event Flow:		Plug in Power
-					Power Button
-					Disable channel inputs
-					System time set to the current internal clock
+	Event Flow:		
+				Plug in Power
+				Power Button
+				Disable channel inputs
+				System time set to the current internal clock
 	
-	Exit: 			System powered on
-					All functionalities available 
+	Exit: 			
+				System powered on
+				All functionalities available 
 
 
 USE CASE:
-	Name:			Enable/Disable Channel
+	Name:			
+				Enable/Disable Channel
 
 
 USE CASE:
-	Name:			Individual timed event
+	Name:			
+				Individual timed event
 
-	Actors:			2 Open Channels
-					Racer (number)
-					Current System Time
-					Start Signal
-					End Signal
-					Racers Queue
-					Current Running Queue 
-					Log 
+	Actors:			
+				2 Open Channels
+				Racer (number)
+				Current System Time
+				Start Signal
+				End Signal
+				Racers Queue
+				Current Running Queue 
+				Log 
 
-	Entry: 			- Power on
-					- At least two channels open
-						- Channels used sent in as params or default 1 & 2 open
-					- Racers Queue not empty
-					- Current Log less than 99999
+	Entry: 			
+				- Power on
+				- At least two channels open
+					- Channels used sent in as params or default 1 & 2 open
+				- Racers Queue not empty
+				- Current Log less than 99999
 
-	Event Flow:		- Start Signal
-					- Next racer in racer queue added to Current Running Queue with associated start signal current system time
-					- Finish Signal
-					- Delta Current System Time & Current Running Dequeued Racer start time Sent to Log
+	Event Flow:		
+				- Start Signal
+				- Next racer in racer queue added to Current Running Queue with associated start signal current system time
+				- Finish Signal
+				- Delta Current System Time & Current Running Dequeued Racer start time Sent to Log
 
 
 
 USE CASE:
-	Name: 			Enable Printer
+	Name: 			
+				Enable Printer
 
-	Actors:			Screen
-					Printer Pwr Button
+	Actors:			
+				Screen
+				Printer Pwr Button
 	
-	Entry: 			Power has to be on. 
+	Entry: 			
+				Power has to be on. 
 
 
-	Exit:			Printer Pwr
+	Exit:			
+				Printer Pwr
 
 
 
 
 USE CASE:
 	Name: 
-		Log 
+				Log 
