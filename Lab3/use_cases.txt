@@ -43,6 +43,43 @@ USE CASE:
 				All functionalities available 
 
 
+Use Case Name:                    
+                           Group Events(GRP)
+
+Participating Actors:     
+                           -2 Open Channels (One on start, 2 on multiple finishes)
+                           -Racers (up to 9999 runners)
+                           -Start Signal
+                           -End Signal
+                           -Logging places of runners
+                           -Storage (holds positions)
+                           
+
+Flow of Events:                   
+                           -Power on system
+                           -At least two channels open
+                                  -By convention 1 and 2 are default choices
+                           -Number of racers < 9999
+
+Entry Condition:           
+                           
+                           -Power and enable channel 1 (start) and 2(finishes)
+                           -Turn on printer if desired
+                           -Start Race
+                           -Start timer on race start
+                           -On finish, makes list of finishers and associates the place and time with the runner
+                           -Bib numbers are added in order of finishing
+                           
+
+Exit Condition:                   
+                           -All Racers Finish
+                           -Power off
+                           -Exit (this would be bad, but possible)
+
+Quality Requirements:     
+                           If more than 9999 runners are tracked, the system fails to register any more.
+
+
 USE CASE:
 	Name:			
 				Enable/Disable Channel
