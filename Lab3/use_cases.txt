@@ -44,6 +44,7 @@ USE CASE:
 				All functionalities available 
 
 
+
 Use Case Name:                    
                            Group Events(GRP)
 
@@ -81,9 +82,56 @@ Quality Requirements:
                            If more than 9999 runners are tracked, the system fails to register any more.
 
 
+
 USE CASE:
 	Name:			
 				Enable/Disable Channel
+
+Participating Actors:	
+				Initiated by channel toggle switch
+				-Channel (respective)
+
+Flow of Events:			
+				-System is powered and on
+				-Channel toggle switch is activated
+
+Entry Condition:		
+				-System is powered and on
+
+Exit Condition:			
+				-Channel is changed from enabled to disabled or vice versa
+
+Quality Requirements: 	
+				-None (I think)
+
+
+
+Use Case Name:			
+				Trigger Channel
+
+Participating Actors:	
+				Initiated by sensor
+				Communicates with respective Channel
+				-Event
+				-Timer
+
+Flow of Events:			
+				-Event is selected
+				-Timer is started or stopped depending on channel and event
+
+Entry Condition:		
+				-Event is happening
+				-Channel is enabled
+				-Sensor is armed
+
+Exit Condition:			
+				-No current event
+				-Channel is disabled
+				-Sensor is disarmed
+
+Quality Requirements: 	
+				<list> (optional)
+
 
 
 USE CASE:
