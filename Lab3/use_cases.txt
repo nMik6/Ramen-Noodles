@@ -180,7 +180,19 @@ USE CASE:
 
 
 
-
 USE CASE:
-	Name: 
-				Log 
+	Name: 			
+				Number pad
+
+	Actors:			
+				Number, Star, and Pound Keys
+	
+	Entry: 			
+				Power has to be on. 
+				Race is selected
+				Channels selected
+				Screen
+				Input racers numbers
+
+	Exit:			
+				All racers finished
