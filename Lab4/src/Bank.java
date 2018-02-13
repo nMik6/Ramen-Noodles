@@ -4,18 +4,22 @@ import java.util.Map;
 
 public class Bank {
 	
-	private Map<Account, Integer> accountList = new HashMap<>();
+	private Map<Integer, Account> accountList = new HashMap<>();
 	
 	public Bank() {
 		
 	}
 	
 	public void addAccount(Account account) {
-		accountList.put(account, account.getAccountNumber());
+		accountList.put(account.getAccountNumber(), account);
 	}
 	
-	public static Account validate(int accountNumber) {
-		return null;
+	public Account validate(int accountNumber, int pin) {
+		Account account = accountList.get(accountNumber);
+		if(account.validate(pin))return account;
+		else throw new IllegalArgumentException();
 	}
+	
+	
 
 }
