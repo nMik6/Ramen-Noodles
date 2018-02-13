@@ -23,7 +23,7 @@ public class Account {
 	}
 	
 	public boolean validate(int pin) {
-		return pin == this.pin;
+		return this.pin == pin;
 	}
 	
 	public double getBalance() {
