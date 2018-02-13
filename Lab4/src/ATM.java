@@ -6,6 +6,8 @@ public class ATM {
 	private Account account;
 	private int accountNumber;
 	
+	private Scanner input = new Scanner(System.in);
+	
 	public ATM() {
 		
 	}
@@ -17,24 +19,40 @@ public class ATM {
 	}
 	
 	public void start() {
-		Scanner input = new Scanner(System.in);
 		System.out.println("Please enter your pin...");
 		int pin = input.nextInt();
 		
-		if (pin != account.getPin()) {
+		if (account.validate(pin)) {
 			System.out.println("You have entered an incorrect pin.");
 		} else {
-			System.out.println("What would you like to do? Withdraw = W, Deposit = D");
 			String choice = input.next();
+			do {
+				System.out.println("What would you like to do? Withdraw = W, Deposit = D");
+				
+				if (choice.equalsIgnoreCase("W"))
+					startWithdraw();
+				else if (choice.equalsIgnoreCase("D"))
+					startDeposit();
+				else
+					System.out.println("Incorrect action inputted, please try again.");
+			} while (!choice.equalsIgnoreCase("W") || !choice.equalsIgnoreCase("D"));
 		}
 		
 	}
 	
-	public void withdraw(int amount) {
+	private void startDeposit() {
+		
+	}
+
+	private void startWithdraw() {
+	
+	}
+
+	private void withdraw(int amount) {
 		
 	}
 	
-	public void deposit(int amount) {
+	private void deposit(int amount) {
 		
 	}
 }
