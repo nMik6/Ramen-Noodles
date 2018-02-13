@@ -16,6 +16,7 @@ public class Bank {
 	
 	public Account validate(int accountNumber, int pin) {
 		Account account = accountList.get(accountNumber);
+		if(account == null)throw new IllegalArgumentException();
 		if(account.validate(pin))return account;
 		else throw new IllegalArgumentException();
 	}
