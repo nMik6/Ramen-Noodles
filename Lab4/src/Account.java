@@ -38,8 +38,8 @@ public class Account {
 		return accountNumber;
 	}
 	
-	public void setPin(int newPin, int oldPin) {
+	/*public void setPin(int newPin, int oldPin) {
 		if(this.validate(oldPin))pin = newPin;
 		else throw new IllegalArgumentException();
-	}
+	}/**///Not actually necessary
 }
