@@ -1,24 +1,28 @@
 
 public class Account {
-	int accountNumber;
-	int PIN;
-	double balance;
+	private int accountNumber;
+	private int pin;
+	private double balance;
 	
 	public Account() {
 		accountNumber = 0;
-		PIN = 0;
+		pin = 0;
 		balance = 0;
 	}
 	
-	public Account(int a,int p) {
-		accountNumber = a;
-		PIN = p;
+	public Account(int accountNumber,int pin) {
+		this.accountNumber = accountNumber;
+		this.pin = pin;
 		balance = 0;
 	}
 	
-	public Account(int a,int p, double b) {
-		accountNumber = a;
-		PIN = p;
-		balance = b;
+	public Account(int accountNumber,int pin,double balance) {
+		this.accountNumber = accountNumber;
+		this.pin = pin;
+		this.balance = balance;
+	}
+	
+	public boolean validate(int pin) {
+		return pin == this.pin;
 	}
 }
