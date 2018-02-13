@@ -1,0 +1,26 @@
+Withdrawal
+
+	Actors:
+		Initiated by Customer
+		Communicates with Customer
+		Communicates with Bank
+
+	Flow of Events:
+		ATM prompts Customer for their Account #
+		Customer Enters in their Account pin
+		Bank validates the Account and pin number
+		Customer Enters in the Withdrawal option
+
+Deposit
+	Cash_deposit
+	Check_deposit
+
+Transfer_funds
+	
+Account_info
+
+Print_receipt
+
+
+
+
