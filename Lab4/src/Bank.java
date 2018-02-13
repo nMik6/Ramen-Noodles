@@ -10,6 +10,10 @@ public class Bank {
 		
 	}
 	
+	public void addAccount(Account account) {
+		accountList.put(account, account.getAccountNumber());
+	}
+	
 	public static Account validate(int accountNumber) {
 		return null;
 	}
