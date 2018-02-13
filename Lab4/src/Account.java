@@ -25,4 +25,21 @@ public class Account {
 	public boolean validate(int pin) {
 		return pin == this.pin;
 	}
+	
+	public double getBalance() {
+		return balance;
+	}
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	
+	public int getAccountNumber(){
+		return accountNumber;
+	}
+	
+	/*public void setPin(int newPin, int oldPin) {
+		if(this.validate(oldPin))pin = newPin;
+		else throw new IllegalArgumentException();
+	}/**///Not actually necessary
 }
