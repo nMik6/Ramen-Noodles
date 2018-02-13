@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class ATM {
 	
 	private Account account;
+	private Bank bank;
 	private int accountNumber;
 	
 	private Scanner input = new Scanner(System.in);
@@ -14,7 +15,7 @@ public class ATM {
 	
 	public ATM(Card card) {
 		this.accountNumber = card.getAccountNumber();
-		this.account = Bank.validate(accountNumber);
+		this.account = bank.validate(accountNumber);
 		start();
 	}
 	
@@ -42,18 +43,35 @@ public class ATM {
 	}
 	
 	private void startDeposit() {
-		
+		System.out.println("How much would you like to deposit?");
+		double amount = input.nextDouble();
+		deposit(amount);
+		System.out.println("You deposited: $" + amount);
+		System.out.println("Your new balance is: $" + account.getBalance());
 	}
 
 	private void startWithdraw() {
-	
+		System.out.println("How much would you like to withdraw?");
+		double amount = input.nextDouble();
+		
+		if (withdraw(amount)) {
+			System.out.println("You withdrew: $" + amount);
+			System.out.println("Your new balance is: $" + account.getBalance());
+		} else {
+			System.out.println("Insufficient funds");
+		}
 	}
 
-	private void withdraw(int amount) {
-		
+	private boolean withdraw(double amount) {
+		double balance = account.getBalance();
+		if (amount > balance) return false;	
+		account.setBalance(balance - amount);		
+		return true;
 	}
 	
-	private void deposit(int amount) {
-		
+	private boolean deposit(double amount) {
+		double balance = account.getBalance();
+		account.setBalance(balance + amount);
+		return true;
 	}
 }
