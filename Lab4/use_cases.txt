@@ -6,20 +6,27 @@ Withdrawal
 		Communicates with Bank
 
 	Flow of Events:
-		ATM prompts Customer for their Account #
+		ATM prompts Customer for their bank card
 		Customer Enters in their Account pin
 		Bank validates the Account and pin number
 		Customer Enters in the Withdrawal option
 
 Deposit
-	Cash_deposit
-	Check_deposit
-
-Transfer_funds
 	Actors: 
-		Initiated by Customer
-		
-			
+		Customer
+		Communicates with Customer
+		Communicates with Bank
+		Uses Account and Card
+	
+	Flow of Events:
+		User inputs card 
+		Prompts user for pin #
+		Confirms the Account # and pin match
+		User inputs money (cash or check or both)
+		ATM counts money and asks customer if amount is correct
+		If amount is correct, deposits money into the account
+		IF amount is incorrect, cancels transaction
+
 	
 Account_info
 -
