@@ -16,8 +16,13 @@ Deposit
 	Check_deposit
 
 Transfer_funds
+	Actors: 
+		Initiated by Customer
+		
+			
 	
 Account_info
+-
 
 Print_receipt
 
