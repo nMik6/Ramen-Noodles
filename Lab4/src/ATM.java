@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class ATM {
 	
 	private Account account;
-	private Bank bank;
+	private Bank bank; 	//convert to arraylist to support more than one bank?
 	private int accountNumber;
 	
 	private Scanner input = new Scanner(System.in);
@@ -13,18 +13,21 @@ public class ATM {
 		
 	}
 	
-	public ATM(Card card) {
-		this.accountNumber = card.getAccountNumber();
-		this.account = bank.validate(accountNumber);
+	public ATM(Bank bank) {
+		this.bank = bank;
 		start();
 	}
 	
 	public void start() {
-		System.out.println("Please enter your pin...");
+		System.out.println("Input Card number: ");
+		int accountNumber = input.nextInt();
+		
+		System.out.println("Please enter your pin: ");
 		int pin = input.nextInt();
 		
-		if (account.validate(pin)) {
-			System.out.println("You have entered an incorrect pin.");
+		account = bank.validate(accountNumber, pin);
+		if (account == null) {
+			System.out.println("Account does not exist for this Card Number and Pin combination");
 		} else {
 			String choice;
 			do {
@@ -62,16 +65,33 @@ public class ATM {
 		}
 	}
 
-	private boolean withdraw(double amount) {
+	protected boolean withdraw(double amount) {
 		double balance = account.getBalance();
 		if (amount > balance) return false;	
 		account.setBalance(balance - amount);		
 		return true;
 	}
 	
-	private boolean deposit(double amount) {
+	/*
+	 * Overloaded withdraw() method for atm testing purposes. 
+	 */
+	protected boolean withdraw(int accountNum, int pin, double amount) {
+		account = bank.validate(accountNum, pin);
+		return withdraw(amount);
+	}
+	
+	protected boolean deposit(double amount) {
 		double balance = account.getBalance();
 		account.setBalance(balance + amount);
 		return true;
 	}
+	
+	/*
+	 * Overloaded withdraw() method for atm testing purposes. 
+	 */
+	protected boolean deposit(int accountNum, int pin, double amount) {
+		account = bank.validate(accountNum, pin);
+		return deposit(amount);
+	}
+	
 }

@@ -8,6 +8,7 @@ public class AtmTest {
 	Bank myBank;
 	Card card1, card2;
 	Account acc1, acc2;
+	ATM atm;
 	
 	@Before
 	public void setup() {
@@ -23,17 +24,54 @@ public class AtmTest {
 		
 		card1 = new Card(acc1.getAccountNumber());
 		card2 = new Card(acc1.getAccountNumber());
+		
+		
+		atm = new ATM(myBank);
+		 
 	}
 	
+
 	@Test
-	public void testWithdrawalAcc1() {
+	public void testWithdrawal20Acc1() {
 		
 		int acc1_num = acc1.getAccountNumber();
 		
-		assertEquals("Account number for Account1 is incorrect", acc1_num, 1234);
-		assertTrue("Account pin for Account1 is incorrect", myBank.validate(acc1_num,6789).equals(acc1));
-		assertTrue("Account1 balance is incorrect", acc1.getBalance() == 80.0);
+		assertEquals("Account number for Account 1 is incorrect", acc1_num, 1234);
+		assertTrue("Account pin for Account 1 is incorrect", myBank.validate(acc1_num,6789).equals(acc1));
+		assertTrue("Account 1 initial balance is incorrect", acc1.getBalance() == 80.0);
+
+		
+		atm.withdraw(acc1_num,6789, 20);
+		assertTrue("Withdrawal of $20 failed for Account 1", acc1.getBalance() == 60);
+	}
+	
+	@Test
+	public void testWithdrawal80Acc1() {
 		
 		
+		int acc1_num = acc1.getAccountNumber();
+		
+		assertEquals("Account number for Account 1 is incorrect", acc1_num, 1234);
+		assertTrue("Account pin for Account 1 is incorrect", myBank.validate(acc1_num,6789).equals(acc1));
+		assertTrue("Account 1 initial balance is incorrect", acc1.getBalance() == 80.0);
+		
+		atm.withdraw(acc1_num,6789, 80);
+		assertTrue("Withdrawal of $80 failed for Account 1", acc1.getBalance() == 0);
+	}
+	
+	@Test
+	public void testIncorrectValidationAcc2() {
+		
+		int acc2_false = 5647;
+		assertTrue("Account number for account 2 is not"+acc2_false, acc2_false != acc2.getAccountNumber());
+		assertTrue("Account 2 should not be returned with wrong account number", myBank.validate(acc2_false, 4321) == null);
+	}
+	
+	@Test
+	public void testDeposit20Acc2() {
+		int acc2_num = acc2.getAccountNumber();
+		
+		atm.deposit(acc2_num, 4321, 20);
+		assertTrue("Deposit of $20 failed for Account 2", acc2.getBalance() == 80);
 	}
 }
