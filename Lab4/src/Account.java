@@ -38,6 +38,14 @@ public class Account {
 		return accountNumber;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Account))
+			return false;
+		Account acct = (Account) o;
+		return this.accountNumber == acct.accountNumber && this.pin == acct.pin;
+	}
+	
 	/*public void setPin(int newPin, int oldPin) {
 		if(this.validate(oldPin))pin = newPin;
 		else throw new IllegalArgumentException();
