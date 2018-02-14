@@ -64,7 +64,12 @@ public class AtmTest {
 		
 		int acc2_false = 5647;
 		assertTrue("Account number for account 2 is not"+acc2_false, acc2_false != acc2.getAccountNumber());
-		assertTrue("Account 2 should not be returned with wrong account number", myBank.validate(acc2_false, 4321) == null);
+		
+		try {
+			myBank.validate(acc2_false, 4321);
+			fail("Improper validation of Account 2 did not throw expected Exception");
+		} catch (IllegalArgumentException e) {	
+		}
 	}
 	
 	@Test

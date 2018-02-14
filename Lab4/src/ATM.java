@@ -15,7 +15,6 @@ public class ATM {
 	
 	public ATM(Bank bank) {
 		this.bank = bank;
-		start();
 	}
 	
 	public void start() {
