@@ -35,7 +35,7 @@ public class ATM {
 				choice = input.next();
 				if (!choice.equalsIgnoreCase("W") && !choice.equalsIgnoreCase("D"))
 					System.out.println("Invalid input...");
-			} while (!choice.equalsIgnoreCase("W") || !choice.equalsIgnoreCase("D"));
+			} while (choice.equalsIgnoreCase("W") || choice.equalsIgnoreCase("D"));
 			
 			if (choice.equalsIgnoreCase("W")) 
 				startWithdraw();
