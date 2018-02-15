@@ -22,6 +22,12 @@ public class Bank {
 		else throw new IllegalArgumentException();
 	}
 	
-	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Bank))
+			return false;
+		Bank bank = (Bank) o;
+		return this.accountList.equals(bank.accountList);
+	}
 
 }
