@@ -1,3 +1,4 @@
+package src.main;
 
 public class Account {
 	private int accountNumber;
@@ -36,6 +37,14 @@ public class Account {
 	
 	public int getAccountNumber(){
 		return accountNumber;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Account))
+			return false;
+		Account acct = (Account) o;
+		return this.accountNumber == acct.accountNumber && this.pin == acct.pin;
 	}
 	
 	/*public void setPin(int newPin, int oldPin) {
