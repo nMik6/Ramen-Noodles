@@ -33,7 +33,7 @@ public class ATM {
 			do {
 				System.out.println("What would you like to do? Withdraw = W, Deposit = D");
 				choice = input.next();
-				if (!choice.equalsIgnoreCase("W") || !choice.equalsIgnoreCase("D"))
+				if (!choice.equalsIgnoreCase("W") && !choice.equalsIgnoreCase("D"))
 					System.out.println("Invalid input...");
 			} while (!choice.equalsIgnoreCase("W") || !choice.equalsIgnoreCase("D"));
 			
