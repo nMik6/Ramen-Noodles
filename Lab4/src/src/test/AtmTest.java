@@ -38,7 +38,7 @@ public class AtmTest {
 	
 
 	@Test
-	public void testWithdrawal20Acc1() {
+	public void testWithdrawal() {
 		
 		int acc1_num = acc1.getAccountNumber();
 		
@@ -52,7 +52,7 @@ public class AtmTest {
 	}
 	
 	@Test
-	public void testWithdrawal80Acc1() {
+	public void testWithdrawal() {
 		
 		
 		int acc1_num = acc1.getAccountNumber();
@@ -66,20 +66,19 @@ public class AtmTest {
 	}
 	
 	@Test
-	public void testIncorrectValidationAcc2() {
+	public void testIncorrectValidation() {
 		
-		int acc2_false = 5647;
-		assertTrue("Account number for account 2 is not"+acc2_false, acc2_false != acc2.getAccountNumber());
+		int acc2_num = acc2.getAccountNumber();
 		
 		try {
-			myBank.validate(acc2_false, 4321);
+			myBank.validate(acc2_num, 4322);
 			fail("Improper validation of Account 2 did not throw expected Exception");
 		} catch (IllegalArgumentException e) {	
 		}
 	}
 	
 	@Test
-	public void testDeposit20Acc2() {
+	public void testDeposit() {
 		int acc2_num = acc2.getAccountNumber();
 		
 		myBank.deposit(acc2_num, 4321, 20);
