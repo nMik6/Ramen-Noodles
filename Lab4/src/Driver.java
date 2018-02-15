@@ -15,8 +15,8 @@ public class Driver {
 	Card firstCard = new Card(1234);
 	Card secondCard = new Card(6789);
 	
-	ATM firstATM = new ATM(firstCard);
-	ATM secondATM = new ATM(secondCard);
+	ATM firstATM = new ATM(bank);
+	ATM secondATM = new ATM(bank);
 	
 	firstATM.start();
 	
