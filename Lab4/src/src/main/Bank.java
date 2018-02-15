@@ -55,7 +55,7 @@ public class Bank {
 	public boolean equals(Object o) {
 		if(!(o instanceof Bank)) return false;
 		Bank bank = (Bank) o;
-		return this.accountList == bank.accountList;
+		return this.accountList.equals(bank.accountList);
 	}
 
 }
