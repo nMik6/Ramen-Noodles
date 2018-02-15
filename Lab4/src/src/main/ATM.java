@@ -20,7 +20,7 @@ public class ATM {
 	
 	public void start() {
 		System.out.println("Input Card number: ");
-		int accountNumber = input.nextInt();
+		this.accountNumber = input.nextInt();
 		
 		System.out.println("Please enter your pin: ");
 		int pin = input.nextInt();
@@ -48,7 +48,7 @@ public class ATM {
 	private void startDeposit() {
 		System.out.println("How much would you like to deposit?");
 		double amount = input.nextDouble();
-		deposit(amount);
+		bank.deposit(account, amount);
 		System.out.println("You deposited: $" + amount);
 		System.out.println("Your new balance is: $" + account.getBalance());
 	}
@@ -57,41 +57,12 @@ public class ATM {
 		System.out.println("How much would you like to withdraw?");
 		double amount = input.nextDouble();
 		
-		if (withdraw(amount)) {
+		if (bank.withdraw(account, amount)) {
 			System.out.println("You withdrew: $" + amount);
 			System.out.println("Your new balance is: $" + account.getBalance());
 		} else {
 			System.out.println("Insufficient funds");
 		}
-	}
-
-	protected boolean withdraw(double amount) {
-		double balance = account.getBalance();
-		if (amount > balance) return false;	
-		account.setBalance(balance - amount);		
-		return true;
-	}
-	
-	/*
-	 * Overloaded withdraw() method for atm testing purposes. 
-	 */
-	protected boolean withdraw(int accountNum, int pin, double amount) {
-		account = bank.validate(accountNum, pin);
-		return withdraw(amount);
-	}
-	
-	protected boolean deposit(double amount) {
-		double balance = account.getBalance();
-		account.setBalance(balance + amount);
-		return true;
-	}
-	
-	/*
-	 * Overloaded withdraw() method for atm testing purposes. 
-	 */
-	protected boolean deposit(int accountNum, int pin, double amount) {
-		account = bank.validate(accountNum, pin);
-		return deposit(amount);
 	}
 	
 }

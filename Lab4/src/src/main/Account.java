@@ -6,15 +6,15 @@ public class Account {
 	private double balance;
 	
 	public Account() {
-		accountNumber = 0;
-		pin = 0;
-		balance = 0;
+		this.accountNumber = 0;
+		this.pin = 0;
+		this.balance = 0;
 	}
 	
 	public Account(int accountNumber,int pin) {
 		this.accountNumber = accountNumber;
 		this.pin = pin;
-		balance = 0;
+		this.balance = 0;
 	}
 	
 	public Account(int accountNumber,int pin,double balance) {
