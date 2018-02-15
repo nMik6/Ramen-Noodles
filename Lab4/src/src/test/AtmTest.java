@@ -47,7 +47,7 @@ public class AtmTest {
 		assertTrue("Account 1 initial balance is incorrect", acc1.getBalance() == 80.0);
 
 		
-		atm.withdraw(acc1_num,6789, 20);
+		myBank.withdraw(acc1_num,6789, 20);
 		assertTrue("Withdrawal of $20 failed for Account 1", acc1.getBalance() == 60);
 	}
 	
@@ -61,7 +61,7 @@ public class AtmTest {
 		assertTrue("Account pin for Account 1 is incorrect", myBank.validate(acc1_num,6789).equals(acc1));
 		assertTrue("Account 1 initial balance is incorrect", acc1.getBalance() == 80.0);
 		
-		atm.withdraw(acc1_num,6789, 80);
+		myBank.withdraw(acc1_num,6789, 80);
 		assertTrue("Withdrawal of $80 failed for Account 1", acc1.getBalance() == 0);
 	}
 	
@@ -82,7 +82,7 @@ public class AtmTest {
 	public void testDeposit20Acc2() {
 		int acc2_num = acc2.getAccountNumber();
 		
-		atm.deposit(acc2_num, 4321, 20);
+		myBank.deposit(acc2_num, 4321, 20);
 		assertTrue("Deposit of $20 failed for Account 2", acc2.getBalance() == 80);
 	}
 }
