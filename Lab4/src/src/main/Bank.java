@@ -50,5 +50,12 @@ public class Bank {
 		Account account = validate(accountNum, pin);
 		return deposit(account, amount);
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Bank)) return false;
+		Bank bank = (Bank) o;
+		return this.accountList == bank.accountList;
+	}
 
 }
