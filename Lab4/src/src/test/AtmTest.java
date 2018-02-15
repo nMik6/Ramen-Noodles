@@ -1,7 +1,13 @@
+package src.test;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import src.main.ATM;
+import src.main.Account;
+import src.main.Bank;
+import src.main.Card;
 
 public class AtmTest {
 
