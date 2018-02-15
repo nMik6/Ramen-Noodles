@@ -38,7 +38,7 @@ public class AtmTest {
 	
 
 	@Test
-	public void testWithdrawal() {
+	public void testWithdrawal1() {
 		
 		int acc1_num = acc1.getAccountNumber();
 		
@@ -52,7 +52,7 @@ public class AtmTest {
 	}
 	
 	@Test
-	public void testWithdrawal() {
+	public void testWithdrawal2() {
 		
 		
 		int acc1_num = acc1.getAccountNumber();
