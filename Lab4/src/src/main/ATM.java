@@ -2,7 +2,7 @@ package src.main;
 import java.util.Scanner;
 
 
-/*Written by:
+/*Written by: Nathan Mikelonis
 * Edited by: Stephen Staudt
 * Verbal Input: Stephen Staudt
 */
