@@ -1,8 +1,9 @@
 package src.main;
 
 /*Written by: Nathan Mikelonis
+
 * Edited by:
-* Verbal Input:
+* Verbal Input: Skyler Keough (discussed how card should be used in the program)
 */
 
 /*

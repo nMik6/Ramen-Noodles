@@ -4,7 +4,6 @@ package src.main;
 * Edited by: 
 * Gave Input: Nathan Mikelonis
 */
-
 /*
  * Account class virtualizes accounts. 
  */
