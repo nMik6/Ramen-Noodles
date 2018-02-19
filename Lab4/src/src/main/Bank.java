@@ -3,6 +3,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/*Written by:
+* Edited by: Stephen Staudt
+* Gave Input: Stephen Staudt
+*/
 public class Bank {
 	
 	/*
