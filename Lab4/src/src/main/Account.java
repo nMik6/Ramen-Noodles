@@ -1,5 +1,10 @@
 package src.main;
 
+/*Written by:
+* Edited by: 
+* Gave Input:
+*/
+
 /*
  * Account class virtualizes accounts. 
  */
