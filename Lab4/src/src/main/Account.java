@@ -1,8 +1,8 @@
 package src.main;
 
-/*Written by:
+/*Written by: Thomas Crownover
 * Edited by: 
-* Gave Input:
+* Gave Input: Nathan Mikelonis
 */
 
 /*
