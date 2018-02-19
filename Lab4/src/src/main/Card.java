@@ -1,5 +1,10 @@
 package src.main;
 
+/*Written by:
+* Edited by:
+* Verbal Input:
+*/
+
 /*
  * Class for virtual card. Stores account number only. 
  */
