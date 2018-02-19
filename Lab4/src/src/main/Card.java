@@ -1,5 +1,13 @@
 package src.main;
 
+/*Written by: Nathan Mikelonis
+* Edited by:
+* Verbal Input:
+*/
+
+/*
+ * Class for virtual card. Stores account number only. 
+ */
 public class Card {
 	
 	private int accountNumber;

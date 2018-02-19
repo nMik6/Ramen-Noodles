@@ -3,25 +3,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/*Written by: Thomas Crownover
+* Edited by: Stephen Staudt, Nathan Mikelonis
+* Gave Input: Stephen Staudt, Nathan Mikelonis
+*/
 public class Bank {
 	
+	/*
+	 * @param accountList HashMap of accounts with account numbers as keys
+	 */
 	private Map<Integer, Account> accountList = new HashMap<>();
 	
 	public Bank() {
 		
 	}
 	
+	/*
+	 * Add account to accountList map with account number as key
+	 */
 	public void addAccount(Account account) {
 		accountList.put(account.getAccountNumber(), account);
 	}
 	
+	/*
+	 * Validates the account number and pin. 
+	 * Associated account number cannot be null. 
+	 * Calls Account class's validate method on pin. 
+	 * @return account if valid
+	 * @return null if invalid account/pin combo
+	 */
 	public Account validate(int accountNumber, int pin) {
 		Account account = accountList.get(accountNumber);
-		if (account == null) throw new IllegalArgumentException();
-		if (account.validate(pin)) return account;
-		else throw new IllegalArgumentException();
+		if (account == null || !account.validate(pin)) return null;
+		return account;
 	}
 	
+	/*
+	 * Withdraws amount from account. 
+	 * @Return true if successful withdrawal, false otherwise
+	 */
 	public boolean withdraw(Account account, double amount) {
 		double balance = account.getBalance();
 		if (amount > balance) return false;	

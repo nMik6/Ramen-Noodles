@@ -9,6 +9,11 @@ import src.main.Account;
 import src.main.Bank;
 import src.main.Card;
 
+/*
+* Written by: Hartmut Taylor Sinterhauf
+* Edited by: Stephen Staudt
+* Verbal Input: Stephen Staudt
+*/
 public class AtmTest {
 
 	Bank myBank;
@@ -38,7 +43,7 @@ public class AtmTest {
 	
 
 	@Test
-	public void testWithdrawal() {
+	public void testWithdrawal1() {
 		
 		int acc1_num = acc1.getAccountNumber();
 		
@@ -52,7 +57,7 @@ public class AtmTest {
 	}
 	
 	@Test
-	public void testWithdrawal() {
+	public void testWithdrawal2() {
 		
 		
 		int acc1_num = acc1.getAccountNumber();
@@ -69,12 +74,12 @@ public class AtmTest {
 	public void testIncorrectValidation() {
 		
 		int acc2_num = acc2.getAccountNumber();
-		
-		try {
+		assertFalse("Improper validation of Account 2", myBank.validate(acc2_num, 4322) != null);
+		/*try {
 			myBank.validate(acc2_num, 4322);
 			fail("Improper validation of Account 2 did not throw expected Exception");
 		} catch (IllegalArgumentException e) {	
-		}
+		}*/
 	}
 	
 	@Test
