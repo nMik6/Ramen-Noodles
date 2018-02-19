@@ -69,12 +69,12 @@ public class AtmTest {
 	public void testIncorrectValidation() {
 		
 		int acc2_num = acc2.getAccountNumber();
-		
-		try {
+		assertFalse("Improper validation of Account 2", myBank.validate(acc2_num, 4322) != null);
+		/*try {
 			myBank.validate(acc2_num, 4322);
 			fail("Improper validation of Account 2 did not throw expected Exception");
 		} catch (IllegalArgumentException e) {	
-		}
+		}*/
 	}
 	
 	@Test

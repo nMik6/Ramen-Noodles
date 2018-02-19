@@ -26,13 +26,12 @@ public class Bank {
 	 * Associated account number cannot be null. 
 	 * Calls Account class's validate method on pin. 
 	 * @return account if valid
-	 * @throws IllegalArgumentException if error
+	 * @return null if invalid account/pin combo
 	 */
 	public Account validate(int accountNumber, int pin) {
 		Account account = accountList.get(accountNumber);
-		if (account == null) throw new IllegalArgumentException();
-		if (account.validate(pin)) return account;
-		else throw new IllegalArgumentException();
+		if (account == null || !account.validate(pin)) return null;
+		return account;
 	}
 	
 	/*
