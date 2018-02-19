@@ -1,6 +1,6 @@
 import src.main.*;
 
-	/*Written by:
+	/*Written by: Skyler Keough
 	* Edited by: Stephen Staudt 
 	* Gave Input:
 	*/
