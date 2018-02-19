@@ -3,9 +3,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/*Written by:
-* Edited by: Stephen Staudt
-* Gave Input: Stephen Staudt
+/*Written by: Thomas Crownover
+* Edited by: Stephen Staudt, Nathan Mikelonis
+* Gave Input: Stephen Staudt, Nathan Mikelonis
 */
 public class Bank {
 	
