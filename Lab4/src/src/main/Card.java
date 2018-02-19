@@ -1,6 +1,6 @@
 package src.main;
 
-/*Written by:
+/*Written by: Nathan Mikelonis
 * Edited by:
 * Verbal Input:
 */
