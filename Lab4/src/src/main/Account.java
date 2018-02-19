@@ -1,5 +1,8 @@
 package src.main;
 
+/*
+ * Account class virtualizes accounts. 
+ */
 public class Account {
 	private int accountNumber;
 	private int pin;

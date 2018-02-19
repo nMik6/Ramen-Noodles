@@ -1,5 +1,8 @@
 package src.main;
 
+/*
+ * Class for virtual card. Stores account number only. 
+ */
 public class Card {
 	
 	private int accountNumber;

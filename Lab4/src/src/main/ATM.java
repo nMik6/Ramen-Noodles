@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ATM {
 	
 	private Account account;
-	private Bank bank; 	//convert to arraylist to support more than one bank?
+	private Bank bank; 	
 	private int accountNumber;
 	
 	private Scanner input = new Scanner(System.in);
@@ -14,10 +14,16 @@ public class ATM {
 		
 	}
 	
+	/*
+	 * Constructor takes bank from which to store and retrieve accounts
+	 */
 	public ATM(Bank bank) {
 		this.bank = bank;
 	}
 	
+	/*
+	 * User console interface with text output and input for atm operation
+	 */
 	public void start() {
 		System.out.println("Input Card number: ");
 		this.accountNumber = input.nextInt();
@@ -45,6 +51,9 @@ public class ATM {
 		
 	}
 	
+	/*
+	 * Prompt user for deposit amount and carry out operation
+	 */
 	private void startDeposit() {
 		System.out.println("How much would you like to deposit?");
 		double amount = input.nextDouble();
@@ -53,6 +62,9 @@ public class ATM {
 		System.out.println("Your new balance is: $" + account.getBalance());
 	}
 
+	/*
+	 * Prompt user for withdraw amount and carry out operation
+	 */
 	private void startWithdraw() {
 		System.out.println("How much would you like to withdraw?");
 		double amount = input.nextDouble();
