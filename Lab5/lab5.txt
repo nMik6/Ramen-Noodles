@@ -1,0 +1,72 @@
+﻿Lab5_notes_2.20.19:
+
+Reading in from file with Java:
+
+//get user option file passin or command line
+ATM a = new ATM();
+Boolean fileinput = false;
+String command;
+Do{
+    Sop(“Enter command”)
+    command = stdin.nextLine();
+}While( !(command.equalsIgnoreCase(“f”) || command.equalsIgnoreCase(“c”)));
+        
+        if(command.equalsIgnoreCase(“f”)){
+            try{
+                File file = new File(<file_name>);
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String line; 
+                Int status;
+                while( ( line = bufferedReader.readLine() ) != null) {
+                    //call the parser function 
+                    Status = parser(line);        
+                } //end while
+        
+                fileReader.close();
+        
+                } catch (IOException e) {
+                   sop(“file not found”);
+                }
+        }
+        Else{
+            //Create loop of console inputs until exit case
+            Do{
+                String cmd= stdIn.nextLine();
+                Int status = parse(cmd);
+            }while(!cmd.equalsIgnoreCase(“exit”)))
+        }
+    /*
+        * Parser function takes in a string arg and executes the comand
+        * Parser function should also 
+    */
+    Private void parse( String cmd){
+        String[] cmdArgs;
+        cmdArgs = cmd.split(“ “);
+ 
+        //check the size of args
+        Var timestamp
+        
+        if(numargs == 3)
+            atm.start(cmdArgs[0],.... )
+        if(numargs == 2)
+            atm.start(cmdArgs[0],.... )
+        Else
+            Print error 
+            Loop back to user input 
+        }
+
+/*
+NOTES:
+ATM in parser function gets variables reset when BUTTON CANCEL
+        Boolean cardreading = false;
+*/
+
+ATM{
+    start(command, value){ 
+        start(timestamp,command,value);
+    }
+    start(timestamp, command, value){
+        //validate values and execute command
+    }        
+}
