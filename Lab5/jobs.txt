@@ -1,10 +1,12 @@
 lab5_jobs
 
-Job 1 - Revise the ATM class:
+HART: JOB 1 needs overview and group input, will explain in person in Thursday meeting
+//Job 1 - Revise the ATM class:
 	No printed output 
 	Only access accounts through the bank methods - save to temp local var
 
-Job 2 - Bank/Account relationship exclusivity 
+HART: Done with JOB 2
+//Job 2 - Bank/Account relationship exclusivity 
 	Make sure that the bank is the only entity that can communicate with account. (composition relationship)
 
 Job 3 - Create brand new Junit tests to conform to new relationships
@@ -26,4 +28,4 @@ Job 9 - QA:
 	Tie up any loose ends and double check everyone's code for readablity, conciseness, and correctness. 
 	Hand in the Assignment
 
-	NOTE: everyone should thoroughly read over their own and other's code and understand the implementation. Job 9 is a community effort with the final responsibility of handing in the zipped file being delegated to an individual group member. 
+NOTE: everyone should thoroughly read over their own and other's code and understand the implementation. Job 9 is a community effort with the final responsibility of handing in the zipped file being delegated to an individual group member. 
