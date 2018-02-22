@@ -19,6 +19,7 @@ Job 5 - Create Printer Class:
 
 Job 6 - Create CashDispenser Class:
 
+NATHAN:
 Job 7 - Create Simulator Class:
 	Use the template from lab5.txt file 
 
