@@ -18,6 +18,7 @@ public class Printer {
 		
 	}
 	
+	//Returns the to-be-printed data string to the ATM class 
 	public String print() {
 		return time + " " + transactionNumber + " " + amount;
 	}
