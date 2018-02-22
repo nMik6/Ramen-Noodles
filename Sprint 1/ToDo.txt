@@ -5,13 +5,17 @@
 	Job 2: Simulator
 	Job 3: Racer & Logger
 	
-3. Testing: Prelim by Sunday 8PM
+3. Testing: Prelim by Sunday 8PM. Submittable by Monday 8PM
 	Job 4: Testing & Output
 	
-4. QA
+4. QA: Done throughout the entire process, must be on top of things!
 	Documentation
 	Testing
 	Deliverables
 	Code Quality
 	Readability
 	Correctness
+	Documented Information (Contributions/Time line): Due Tuesday rough draft 5PM, final copy Wednesday around 12PM
+	
+	
+Sprint 1 submitted on D2l by 8PM on Wednesday
