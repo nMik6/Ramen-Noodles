@@ -15,18 +15,13 @@ Job 3 - Create brand new Junit tests to conform to new relationships
 
 Job 4 - Create CardReader Class:
 
-<<<<<<< HEAD
-//Skyler
-=======
-SKYLER:
->>>>>>> branch 'master' of https://github.com/nMik6/Ramen-Noodles.git
-Job 5 - Create Printer Class:
-<<<<<<< HEAD
-//Skyler
-=======
 
 SKYLER:
->>>>>>> branch 'master' of https://github.com/nMik6/Ramen-Noodles.git
+
+Job 5 - Create Printer Class:
+
+SKYLER:
+
 Job 6 - Create CashDispenser Class:
 
 NATHAN:
