@@ -15,8 +15,10 @@ Job 3 - Create brand new Junit tests to conform to new relationships
 
 Job 4 - Create CardReader Class:
 
+SKYLER:
 Job 5 - Create Printer Class:
 
+SKYLER:
 Job 6 - Create CashDispenser Class:
 
 NATHAN:
