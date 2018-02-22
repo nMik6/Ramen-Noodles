@@ -82,5 +82,9 @@ public class Bank {
 		Bank bank = (Bank) o;
 		return this.accountList.equals(bank.accountList);
 	}
+	
+	/*
+	* Need to generate hashCode
+	*/
 
 }
