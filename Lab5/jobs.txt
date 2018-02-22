@@ -9,6 +9,7 @@ HART: Done with JOB 2
 //Job 2 - Bank/Account relationship exclusivity 
 	Make sure that the bank is the only entity that can communicate with account. (composition relationship)
 
+THOMAS
 Job 3 - Create brand new Junit tests to conform to new relationships
 	Test with given input file and capture output in file 
 
