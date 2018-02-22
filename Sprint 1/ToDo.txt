@@ -1,0 +1,17 @@
+1. UML Domain Model - Due 2/23 before 12:00pm
+
+2. Classes: Prelim all by Saturday 8PM. Testable draft by Monday 12:00PM
+	Job 1: Time & Events
+	Job 2: Simulator
+	Job 3: Racer & Logger
+	
+3. Testing: Prelim by Sunday 8PM
+	Job 4: Testing & Output
+	
+4. QA
+	Documentation
+	Testing
+	Deliverables
+	Code Quality
+	Readability
+	Correctness
