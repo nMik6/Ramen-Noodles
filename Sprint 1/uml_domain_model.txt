@@ -1,0 +1,70 @@
+TIME
+	Fields:
+		hours:Int
+		minutes:Int
+		seconds:Int
+
+	Methods:
+		Time(): Time
+		Time(String s): Time
+		diff(Time a, Time b): Time
+	
+RACE
+
+	Fields
+		lastCommand: String 
+			- keep track of last system command for context of current command
+		curRacer: Racer
+		racers: Racer Queue
+			- queue for all of the racers
+		channels: bool[]
+			- bool array for toggling state of channels, true == on
+
+	Methods
+		//all methods return status int 
+		power: Int
+			- turn system on & off but stay in simulator
+		exit: Int
+			- exit the simulator
+		reset: Int
+			- reset system to initial state
+		time(int h, int m, int s, Racer r): 
+			- parameters used to create Time object for racer
+		dnf(Racer r): Int
+			- next racer receives dnf token (-1 for time hours, mins, secs for finish time) 
+		cancel(Racer r): Int
+			- discard the current run for racer and place racer 
+		tog(Int channel): Int
+			- toggle state of channel  
+		trig(Int channel): Int
+			- trigger the channel 
+		newRun(): Int
+		start(String s, Racer r): Int
+			- create time from string s and use to set start time for racer r
+		finish(String s, Racer r): Int
+			- create time from string s and use to set finish time for racer r
+
+SIMULATOR
+	
+	Fields
+		command: String 
+		power:Boolean
+
+	Methods
+		Parser(String command): Object
+			-transform into array of lowercase arguments and perliminary validation of command line call
+
+RACER
+	
+	start: Time
+	finish: Time
+
+	start(Time t): Int
+	finish(Time t): Int
+	isRacing(): Bool
+
+LOGGER
+	
+	//collect the input and output status of commands in filestream
+
+	??
