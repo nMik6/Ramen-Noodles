@@ -27,5 +27,5 @@ Sprint 1 submitted on D2L by 8PM on Wednesday after agreement of all the group m
 
 
 
-Style Guide:
+#Style Guide:
 We will be following the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
