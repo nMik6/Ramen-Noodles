@@ -55,8 +55,9 @@ RACE
 SIMULATOR
 	
 	command: String 
-	power:Boolean
-	races: Queue<Race>
+	power:	Boolean
+	races: 	Queue<Race>
+	finishedRaces: ArrayList<Race>
 	
 	parser(String commandline): Object
 		//transform into array of lowercase arguments and perliminary validation of command line call
