@@ -3,16 +3,16 @@ Below is the current list of tasks for Sprint 1. This will be updated as we move
 
 ## Sprint 1 is due in Dropbox on Thursday 3/1/18 11:00AM deadline, our deadline is 8PM Wednesday.
 
-| Job       | To Do           | Person's  | Status |
-| ------------- |:-------------:|:-----:|-------:|
-| 1      | UML Model | Hart |90%	|
-| 2      | Timer      |   Nathan |0%	|
-| 3 | Events      |Nathan |0%	|
-| 4 | Simulator      |Hart |0%	|
-| 5 | Racer      |Skyler |0%	|
-| 6 | Logger      |Skyler |0%	|
-| 7 | Testing      |Skyler & Stephen |0%	|
-| 8 | QA      |Thomas |0%	|
+| Job       | To Do           | Person's  |Due Date| Status |
+| ------------- |:-------------:|:-----:|:-------:|-------:|
+| 1      | UML Model | Hart |2/23	|80%	|
+| 2      | Timer      |   Nathan |2/24 8PM	|0%	|
+| 3 | Events      |Nathan |2/24 8PM	|0%	|
+| 4 | Simulator      |Hart |2/24 8PM	|0%	|
+| 5 | Racer      |Skyler |2/24 8PM	|0%	|
+| 6 | Logger      |Skyler |2/24 8PM	|0%	|
+| 7 | Testing      |Skyler & Stephen |2/24 8PM	|0%	|
+| 8 | QA      |Thomas |2/27 8PM	|0%	|
 
 1. UML Domain Model - Due 2/23 before 12:00pm - Hart - TEXT DONE
 
