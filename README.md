@@ -15,6 +15,7 @@ Below is the current list of tasks for Sprint 1. This will be updated as we move
 | 8 | Testing      |Skyler & Stephen |2/25 8PM	|0%	|
 | 9 | QA Rough Draft      |Thomas |2/27 5PM	|0%	|
 | 10     | QA Final Draft| Thomas |2/28 ~12PM	|0%	|
+| 11     | Review| All |2/28 8PM	|0%	|
 
 1. UML Domain Model - Due 2/23 before 12:00pm - Hart<br />
 
