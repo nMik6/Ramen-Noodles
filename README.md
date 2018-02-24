@@ -39,7 +39,9 @@ Documented Information (Contributions/Time line): Due Tuesday rough draft 5PM, f
 	
 Sprint 1 submitted on D2L by 8PM on Wednesday after agreement of all the group members
 
-
+```diff
++ test
+```
 
 ### Style Guide:
 We will be following the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
