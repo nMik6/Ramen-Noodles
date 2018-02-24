@@ -6,11 +6,17 @@ package src.main;
 //CashDispenser object to dispense cash.
 public class CashDispenser {
 	int amount; // amount to be dispensed
+	int totalCash = 100000; // totalCash in dispenser
 	public CashDispenser(int amount) {
 		this.amount = amount;
 	}
 	
-	public boolean Dispense() { //If this is called, will always return true that cash was successfully dispensed.
+	public boolean Dispense(int val) { //If this is called, will return true if there is enough cash so that money can be withdrawn. If false, not enough money.
+		if (amount - val < 0)
+		{
+			return false;
+		}
+		amount = amount - val;  
 		return true;
 	}
 

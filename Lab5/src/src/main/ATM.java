@@ -11,17 +11,21 @@ import java.text.SimpleDateFormat;
 public class ATM {
 	
 	private boolean cur_accnt; 	
+	private CashDispenser cashDispenser;
 	private int cur_pin;
 	private Bank bank;			//all modifications to current account done through bank
 	private int accnt_num = -1;
 	private String timestamp;
 	private String curButton;
 	
+	
 	/*
 	 * Constructor takes an existing Bank object to set bank var. 
 	 */
 	public ATM(Bank b) {
 		bank = b;
+		balance = 100000; //this is the starting amount of cash in the ATM.
+		cashDispenser = new CashDispenser();
 	}
 	
 	public int start(String cmd, String val) {
@@ -85,6 +89,7 @@ public class ATM {
 			case "w":
 				if(cur_accnt) {
 					bank.withdraw(accnt_num, cur_pin, val_int);
+					
 				} else {
 					return -1;
 				}
@@ -93,6 +98,14 @@ public class ATM {
 			case "d":
 				if(cur_accnt) {
 					bank.deposit(accnt_num, cur_pin, val_int);
+					if(cashDispenser.dispense(val_int))		//if the cashDispenser has the money for the withdrawl, prints success.
+					{
+						System.out.print("Successful withdrawl!");
+					}
+					else
+					{
+						System.out.print("Out of cash! Sorry!");
+					}
 				} else {
 					return -1;
 				}
@@ -147,4 +160,5 @@ public class ATM {
 		
 		return 0;
 	}
+
 }
