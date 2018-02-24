@@ -5,14 +5,16 @@ Below is the current list of tasks for Sprint 1. This will be updated as we move
 
 | Job       | To Do           | Person's  |Due Date| Status |
 | ------------- |:-------------:|:-----:|:-------:|-------:|
-| 1      | UML Model | Hart |2/23	|80%	|
-| 2      | Timer      |   Nathan |2/24 8PM	|0%	|
-| 3 | Events      |Nathan |2/24 8PM	|0%	|
-| 4 | Simulator      |Hart |2/24 8PM	|0%	|
-| 5 | Racer      |Skyler |2/24 8PM	|0%	|
-| 6 | Logger      |Skyler |2/24 8PM	|0%	|
-| 7 | Testing      |Skyler & Stephen |2/24 8PM	|0%	|
-| 8 | QA      |Thomas |2/27 8PM	|0%	|
+| 1      | UML Model Text| Hart |2/23 12PM	|100%	|
+| 2      | UML Model Diagram| Hart |2/24 8PM	|0%	|
+| 3      | Timer      |   Nathan |2/24 8PM	|0%	|
+| 4 | Events      |Nathan |2/24 8PM	|0%	|
+| 5 | Simulator      |Hart |2/24 8PM	|0%	|
+| 6 | Racer      |Skyler |2/24 8PM	|0%	|
+| 7 | Logger      |Skyler |2/24 8PM	|0%	|
+| 8 | Testing      |Skyler & Stephen |2/25 8PM	|0%	|
+| 9 | QA Rough Draft      |Thomas |2/27 5PM	|0%	|
+| 10     | QA Final Draft| Thomas |2/28 ~12PM	|0%	|
 
 1. UML Domain Model - Due 2/23 before 12:00pm - Hart - TEXT DONE
 
