@@ -24,8 +24,8 @@ public class ATM {
 	 */
 	public ATM(Bank b) {
 		bank = b;
-		balance = 100000; //this is the starting amount of cash in the ATM.
-		cashDispenser = new CashDispenser();
+		
+		this.cashDispenser = new CashDispenser();
 	}
 	
 	public int start(String cmd, String val) {
