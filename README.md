@@ -16,7 +16,7 @@ Below is the current list of tasks for Sprint 1. This will be updated as we move
 | 9 | QA Rough Draft      |Thomas |2/27 5PM	|0%	|
 | 10     | QA Final Draft| Thomas |2/28 ~12PM	|0%	|
 
-1. UML Domain Model - Due 2/23 before 12:00pm - Hart - TEXT DONE
+1. UML Domain Model - Due 2/23 before 12:00pm - Hart
 
 2. Classes: Prelim all by Saturday 8PM. Testable draft by Monday 12:00PM
 	Job 1: Time & Events - Nathan
