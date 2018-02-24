@@ -27,7 +27,7 @@ Job 3: Racer & Logger - Skyler
 Job 4: Testing & Output - Skyler & Stephen
 	
 4. QA: Done throughout the entire process, must be on top of things! - Thomas & Stephen
-Documentation
+Documentation<br />
 Testable
 Deliverables
 Code Quality
