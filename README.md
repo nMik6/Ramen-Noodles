@@ -26,13 +26,13 @@ Job 3: Racer & Logger - Skyler
 3. Testing: Prelim by Sunday 8PM. Submittable by Monday 8PM
 Job 4: Testing & Output - Skyler & Stephen
 	
-4. QA: Done throughout the entire process, must be on top of things! - Thomas & Stephen
+4. QA: Done throughout the entire process, must be on top of things! - Thomas & Stephen<br />
 Documentation<br />
-Testable
-Deliverables
-Code Quality
-Readability
-Correctness
+Testable<br />
+Deliverables<br />
+Code Quality<br />
+Readability<br />
+Correctness<br />
 Documented Information (Contributions/Time line): Due Tuesday rough draft 5PM, final copy Wednesday around 12PM
 	
 	
