@@ -21,14 +21,6 @@ public class Time {
 		this.time = LocalTime.parse(time, format);
 	}
 	
-	public String printTime(Time one, Time two) {
-		long hour = ChronoUnit.HOURS.between(one.getTime(), two.getTime());
-		long minute = ChronoUnit.MINUTES.between(one.getTime(), two.getTime());
-		long second = ChronoUnit.SECONDS.between(one.getTime(), two.getTime());
-		long milli = ChronoUnit.MILLIS.between(one.getTime(), two.getTime());
-		return hour + ":" + minute + ":" + second + "." + milli;
-	}
-	
 	public String printTime() {
 		return time.toString();
 	}
