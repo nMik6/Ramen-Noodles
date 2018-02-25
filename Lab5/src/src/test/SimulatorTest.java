@@ -18,7 +18,19 @@ import src.main.Simulator;
  */
 public class SimulatorTest {
 
+	Account acct1, acct2, acct3, acct4;
 	ATM atm;
+	Bank bank;
 	
+	@Before
+	public void setup() {
+		acct1 = new Account(1234,5678);
+		acct2 = new Account(9876,5432,80);
+		acct3 = new Account(6789,4321,60);
+		acct4 = new Account(1234,5678,0);
+		
+		bank = new Bank();
+		atm = new ATM(bank);
+	}
 	
 }
