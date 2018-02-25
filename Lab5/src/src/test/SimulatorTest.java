@@ -18,7 +18,7 @@ import src.main.Simulator;
  */
 public class SimulatorTest {
 
-	Account acct1, acct2, acct3, acct4;
+	Account acct1, acct2, acct3, acct4, acct5, acct6;
 	ATM atm;
 	Bank bank;
 	
@@ -28,6 +28,8 @@ public class SimulatorTest {
 		acct2 = new Account(9876,5432,80);
 		acct3 = new Account(6789,4321,60);
 		acct4 = new Account(1234,5678,0);
+		acct5 = new Account(1234,5678,60);
+		acct6 = new Account(9876,5432);
 		
 		bank = new Bank();
 		atm = new ATM(bank);
