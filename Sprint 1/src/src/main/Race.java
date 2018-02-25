@@ -1,8 +1,15 @@
 package src.main;
 
 import java.time.LocalTime;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Race {
+	
+	/*
+	 * public to test, otherwise create a getter for testing purposes.
+	*/
+	public Queue<Racer> readyRacers = new LinkedList<Racer>(); 
 	
 	public int power() {
 		return -1;
