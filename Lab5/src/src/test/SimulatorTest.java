@@ -86,9 +86,4 @@ public class SimulatorTest {
 		
 	}
 	
-	@Test
-	public void testAddAccount() {
-		
-	}
-	
 }
