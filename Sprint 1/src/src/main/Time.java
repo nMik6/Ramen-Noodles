@@ -17,7 +17,7 @@ public class Time {
 	}
 	
 	public Time(String time) {
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
 		this.time = LocalTime.parse(time, format);
 	}
 	
