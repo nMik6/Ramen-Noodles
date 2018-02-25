@@ -40,12 +40,12 @@ public class Events {
 		return -1;
 	}
 	
-	public int start(LocalTime time, Racer racer) {
-		return -1;
+	public int start(Time time, Racer racer) {
+		return (racer.start(time) == 1) ? 1 : -1;
 	}
 	
-	public int finish(LocalTime time, Racer racer) {
-		return -1;
+	public int finish(Time time, Racer racer) {
+		return (racer.finish(time) == 1) ? 1 : -1;
 	}
 
 }
