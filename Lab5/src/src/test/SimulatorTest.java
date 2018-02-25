@@ -42,6 +42,30 @@ public class SimulatorTest {
 	@Test
 	public void testEquals() {
 
+		Bank bank1 = new Bank();
+		Bank bank2 = new Bank();
+		
+		assertTrue("equals() returned false on identical banks", bank1.equals(bank2));
+		assertFalse("equals() returned true on differing banks", bank.equals(bank1));
+
+		bank1.addAccount(acct1);
+		bank1.addAccount(acct2);
+		bank1.addAccount(acct3);
+		
+		assertTrue("equals() returned false on identical banks", bank.equals(bank1));
+		assertFalse("equals() returned true on differing banks", bank1.equals(bank2));
+		
+		Account testAcct1 = new Account(1234,5678);
+		Account testAcct2 = new Account(9876,5432,80);
+		Account testAcct3 = new Account(6789,4321,60);
+
+		bank2.addAccount(testAcct1);
+		bank2.addAccount(testAcct2);
+		bank2.addAccount(testAcct3);
+		
+		assertTrue("equals() returned false on identical banks", bank.equals(bank2));
+		assertTrue("equals() returned false on identical banks", bank1.equals(bank2));
+
 		assertTrue("equals() returned false on identical accounts", acct1.equals(acct4));
 		assertFalse("equals() returned true on differing accounts", acct1.equals(acct2));
 		assertFalse("equals() returned true on differing accounts", acct1.equals(acct5));
