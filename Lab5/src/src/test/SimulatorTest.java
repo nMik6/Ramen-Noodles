@@ -51,8 +51,9 @@ public class SimulatorTest {
 		bank1.addAccount(acct1);
 		bank1.addAccount(acct2);
 		bank1.addAccount(acct3);
-		
+
 		assertTrue("equals() returned false on identical banks", bank.equals(bank1));
+		assertFalse("equals() returned true on differing banks", bank.equals(bank2));
 		assertFalse("equals() returned true on differing banks", bank1.equals(bank2));
 		
 		Account testAcct1 = new Account(1234,5678);
@@ -78,6 +79,10 @@ public class SimulatorTest {
 		assertTrue("equals() returned false on identical accounts", acct1.equals(acct4));
 		assertTrue("equals() returned false on identical accounts", acct1.equals(acct5));
 		assertTrue("equals() returned false on identical accounts", acct2.equals(acct6));
+
+		assertTrue("equals() returned false on identical banks", bank.equals(bank1));
+		assertFalse("equals() returned true on differing banks", bank.equals(bank2));
+		assertFalse("equals() returned true on differing banks", bank1.equals(bank2));
 		
 	}
 	
