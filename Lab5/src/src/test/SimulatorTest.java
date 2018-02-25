@@ -39,4 +39,22 @@ public class SimulatorTest {
 		atm = new ATM(bank);
 	}
 	
+	@Test
+	public void testEquals() {
+
+		assertTrue("equals() returned false on identical accounts", acct1.equals(acct4));
+		assertFalse("equals() returned true on differing accounts", acct1.equals(acct2));
+		assertFalse("equals() returned true on differing accounts", acct1.equals(acct5));
+		assertFalse("equals() returned true on differing accounts", acct2.equals(acct6));
+		
+		acct1.setBalance(60);
+		acct2.setBalance(0);
+		acct4.setBalance(60);
+
+		assertTrue("equals() returned false on identical accounts", acct1.equals(acct4));
+		assertTrue("equals() returned false on identical accounts", acct1.equals(acct5));
+		assertTrue("equals() returned false on identical accounts", acct2.equals(acct6));
+		
+	}
+	
 }
