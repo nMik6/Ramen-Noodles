@@ -32,6 +32,10 @@ public class SimulatorTest {
 		acct6 = new Account(9876,5432);
 		
 		bank = new Bank();
+		bank.addAccount(acct1);
+		bank.addAccount(acct2);
+		bank.addAccount(acct3);
+		
 		atm = new ATM(bank);
 	}
 	
