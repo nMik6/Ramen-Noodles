@@ -2,7 +2,7 @@ package src.main;
 
 import java.time.LocalTime;
 
-public class Events {
+public class Race {
 	
 	public int power() {
 		return -1;

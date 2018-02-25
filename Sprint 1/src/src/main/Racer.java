@@ -37,7 +37,9 @@ public class Racer {
 	}
 	
 	public Time getTotal() {
-	//This will call Time.diff when it is available. 
+	//getTotal calculates the difference between start and finish, then returns it as a time.
+		total = new Time();
+		total = total.difference(start,  finish);
 		return this.total;
 	}
 
