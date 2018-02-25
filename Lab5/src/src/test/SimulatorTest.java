@@ -18,4 +18,7 @@ import src.main.Simulator;
  */
 public class SimulatorTest {
 
+	ATM atm;
+	
+	
 }
