@@ -10,7 +10,8 @@ import java.util.stream.Stream;
 public class Simulator {
 	
 	private String fileName = "transactions.txt";
-	private ATM atm;
+	private Bank simBank = new Bank();
+	private ATM simAtm = new ATM(simBank);
 	
 	private Scanner in = new Scanner(System.in);
 
@@ -20,10 +21,20 @@ public class Simulator {
 	 */
 	public void startSimulator() {
 		String input;
+		
+		Account firstAccount = new Account(1234, 6789, 80);
+		Account secondAccount = new Account(6789, 4321, 20);
+
+		simBank.addAccount(firstAccount);
+		simBank.addAccount(secondAccount);
+
+		//Card firstCard = new Card(1234);
+		//Card secondCard = new Card(6789);
+		
 		do {
 			System.out.println("Enter command: (from file 'f' , from console 'c')");
 			input = in.nextLine();
-		} while (!input.equalsIgnoreCase("f") || !input.equalsIgnoreCase("c"));
+		} while (!(input.equalsIgnoreCase("f") || input.equalsIgnoreCase("c")));
 		
 		if (input.equalsIgnoreCase("f"))
 			readFromFile();
@@ -49,8 +60,7 @@ public class Simulator {
 		
 		for (int i = 0; i < fileCommands.length; ++ i) {
 			String[] command = fileCommands[i].split(" ");
-			if (atm.start(command[0], command[1]) != 0)
-				return;
+			parse(command);
 		}
 	}
 	
@@ -61,18 +71,23 @@ public class Simulator {
 	private void readFromConsole() {
 		String input;
 		String[] cmds;
-		int response;
 		
-		do {
+		System.out.println("Enter Card");
+		do{
 			input = in.nextLine();
 			cmds = input.split(" ");
-			response = atm.start(cmds[0], cmds[1]);
-		} while(!input.equalsIgnoreCase("cancel") || response != 0);
+			if(!parse(cmds)) System.out.println("Please try again. ('cancel' to exit transaction.)");
+		}  while(!input.equalsIgnoreCase("cancel"));
 		
-		if (response == -1 && !input.equalsIgnoreCase("cancel")) {
-			System.out.println("Please try again. ('cancel' to exit transaction.)");
-			readFromConsole();
-		}
 	}
 	
+	
+	private boolean parse(String[] cmds) {
+		int length = cmds.length;
+		if(length == 2) simAtm.start(cmds[0], cmds[1]);
+		else if(length == 3) simAtm.start(cmds[0], cmds[1], cmds[2]);
+		else return false;
+		
+		return true;
+	}
 }

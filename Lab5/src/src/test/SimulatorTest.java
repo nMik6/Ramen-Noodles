@@ -7,7 +7,7 @@ import org.junit.Test;
 import src.main.Account;
 import src.main.ATM;
 import src.main.Bank;
-import src.main.Card;
+import src.main.CardReader;
 import src.main.CashDispenser;
 import src.main.Printer;
 import src.main.Simulator;

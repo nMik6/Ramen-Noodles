@@ -5,22 +5,21 @@ package src.main;
 //Returns the data in a string in the format <time> <transaction> <amount>
 public class Printer {
 	
-	private int time;
+	/*private int time;
 	private int transactionNumber;
 	private int amount;
+	*/
 	
-	
-	public Printer(int time, int transactionNumber, int amount)
-	{
-		this.time = time;
-		this.transactionNumber = transactionNumber;
-		this.amount = amount;
-		
-	}
+	public Printer(){}
 	
 	//Returns the to-be-printed data string to the ATM class 
-	public String print() {
-		return time + " " + transactionNumber + " " + amount;
+	public int print(String time, String transactionNumber, String amount) {
+		System.out.println(time + " " + transactionNumber + " " + amount);
+		return 0;
+	}
+	public int print(String str) {
+		System.out.println(str);
+		return 0;
 	}
 
 }

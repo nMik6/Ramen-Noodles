@@ -83,6 +83,10 @@ public class Bank {
 		return this.accountList.equals(bank.accountList);
 	}
 	
+	
+	public double getBalance(Account account) {
+		return account.getBalance();
+	}
 	/*
 	* Need to generate hashCode
 	*/
