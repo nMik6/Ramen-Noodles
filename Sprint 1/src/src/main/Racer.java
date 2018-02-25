@@ -37,7 +37,7 @@ public class Racer {
 	}
 	
 	public Time getTotal() {
-	//Either I will call out to Time to make the calculations between start and finish, or I will do the calculation here, but that seems incorrect.
+	//This will call Time.diff when it is available. 
 		return this.total;
 	}
 
