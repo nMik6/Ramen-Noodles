@@ -26,18 +26,36 @@ public class Account {
 		this.balance = balance;
 	}
 	
+	/**
+	 * Validates the pin number of the account.
+	 * @param pin
+	 * @return true if pin is valid
+	 * @return false if pin is invalid
+	 */
 	public boolean validate(int pin) {
 		return this.pin == pin;
 	}
 	
+	/**
+	 * Get the value of the account's balance
+	 * @return balance
+	 */
 	public double getBalance() {
 		return balance;
 	}
 	
+	/**
+	 * Changes the account's balance to the value of input
+	 * @param balance
+	 */
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 	
+	/**
+	 * Get the value of the account number
+	 * @return accountNumber
+	 */
 	public int getAccountNumber(){
 		return accountNumber;
 	}

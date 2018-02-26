@@ -89,11 +89,6 @@ public class SimulatorTest {
 		
 	}
 	
-	@Test
-	public void testSimulatorParse() {
-		
-	}
-	
 	/*
 	 * Tests public Bank class methods
 	 */
