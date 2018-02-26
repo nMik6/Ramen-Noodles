@@ -40,6 +40,7 @@ public class ATM {
 	 */
 	public int start(String tmstmp, String cmd, String val) {
 		timestamp = tmstmp; //assumes timestamp is correctly formatted
+		if(tmstmp == null || cmd == null || val == null)return -1;
 		cmd = cmd.toLowerCase();
 		
 		switch (cmd) {
@@ -89,7 +90,13 @@ public class ATM {
 	 * readNum() method takes in the cmd param toLowerCase()
 	 */
 	private int readNum(String val) {
-		int val_int = Integer.parseInt(val);
+		int val_int;
+		
+		try{
+			val_int = Integer.parseInt(val);
+		}catch(NumberFormatException e) {
+			return -1;
+		}
 
 		if(val_int < 0)
 			return -1;

@@ -173,11 +173,33 @@ public class SimulatorTest {
 	@Test
 	public void testATM() {
 
+		assertTrue("Invalid button press worked", atm.start("button", "d") == -1); //invalid inputs before doing anything
+		assertTrue("Invalid number input worked", atm.start("num", "invalid") == -1);
+		assertTrue("Invalid command worked", atm.start("invalid", "command") == -1);
+		assertTrue("null command worked", atm.start(null, null) == -1);
+		assertTrue("improperly short command worked", atm.start("num", null) == -1);
+		assertTrue("improperly short invalid command worked", atm.start("command", null) == -1);
+
+
 		assertTrue("Button press worked without active account", atm.start("button", "w") == -1);
 		assertTrue("Num command worked without active account", atm.start("num", "10") == -1);
 
+		assertTrue("Invalid button press worked", atm.start("button", "d") == -1); //invalid inputs after incorrect inputs
+		assertTrue("Invalid number input worked", atm.start("num", "invalid") == -1);
+		assertTrue("Invalid command worked", atm.start("invalid", "command") == -1);
+		assertTrue("null command worked", atm.start(null, null) == -1);
+		assertTrue("improperly short command worked", atm.start("num", null) == -1);
+		assertTrue("improperly short invalid command worked", atm.start("command", null) == -1);
+
 		assertTrue("Invalid card validated", atm.start("cardread", "0") == -1);
 		assertTrue("Card failed to validate", atm.start("cardread", "1234") == 0);
+
+		assertTrue("Invalid button press worked", atm.start("button", "d") == -1); //invalid inputs during validation
+		assertTrue("Invalid number input worked", atm.start("num", "invalid") == -1);
+		assertTrue("Invalid command worked", atm.start("invalid", "command") == -1);
+		assertTrue("null command worked", atm.start(null, null) == -1);
+		assertTrue("improperly short command worked", atm.start("num", null) == -1);
+		assertTrue("improperly short invalid command worked", atm.start("command", null) == -1);
 
 		assertTrue("Button press accepted before account validation", atm.start("button", "w") == -1);
 		assertTrue("Validation could not be canceled", atm.start("button", "cancel") == 0);
@@ -188,6 +210,14 @@ public class SimulatorTest {
 		
 		assertTrue("Invalid PIN number validated", atm.start("num", "0") == -1);
 		assertTrue("Account validation failed", atm.start("num", "5678") == 0);
+
+		assertTrue("Invalid button press worked", atm.start("button", "d") == -1); //invalid inputs after validation
+		assertTrue("Invalid number input worked", atm.start("num", "invalid") == -1);
+		assertTrue("Invalid command worked", atm.start("invalid", "command") == -1);
+		assertTrue("null command worked", atm.start(null, null) == -1);
+		assertTrue("improperly short command worked", atm.start("num", null) == -1);
+		assertTrue("improperly short invalid command worked", atm.start("command", null) == -1);
+
 
 		assertTrue("Balance incorrect", acct1.getBalance() == 0);
 		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
@@ -207,6 +237,14 @@ public class SimulatorTest {
 		assertTrue("Remaining balance incorrect", acct1.getBalance() == 90);
 
 		assertTrue("Button press failed for unknown reason", atm.start("button", "w") == 0);
+
+		assertTrue("Invalid button press worked", atm.start("button", "d") == -1); //invalid inputs during active withdrawal
+		assertTrue("Invalid number input worked", atm.start("num", "invalid") == -1);
+		assertTrue("Invalid command worked", atm.start("invalid", "command") == -1);
+		assertTrue("null command worked", atm.start(null, null) == -1);
+		assertTrue("improperly short command worked", atm.start("num", null) == -1);
+		assertTrue("improperly short invalid command worked", atm.start("command", null) == -1);
+
 		assertTrue("Button press failed for unknown reason", atm.start("button", "cancel") == 0);
 		assertTrue("Num command worked without active account", atm.start("num", "10") == -1);
 		assertTrue("Remaining balance incorrect", acct1.getBalance() == 90);
