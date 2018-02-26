@@ -90,22 +90,40 @@ public class SimulatorTest {
 	}
 	
 	@Test
-	public void simulatorParseTest() {
+	public void testSimulatorParse() {
 		
 	}
 	
 	@Test
-	public void bankTest() {
+	public void testBank() {
 		
 	}
 	
 	@Test
-	public void atmTest() {
+	public void testATM() {
 		
 	}
 	
 	@Test
-	public void accountTest() {
+	public void testAccount() {
+
+		assertTrue("PIN number failed to validate", acct1.validate(5678));
+		assertTrue("PIN number failed to validate", acct2.validate(5432));
+		assertFalse("Invalid PIN number validated", acct2.validate(5678));
+
+		assertTrue("Returned incorrect balance", acct1.getBalance() == 0);
+		assertTrue("Returned incorrect balance", acct2.getBalance() == 80);
+		assertTrue("Returned incorrect balance", acct3.getBalance() == 60);
+		assertTrue("Returned incorrect balance", acct4.getBalance() == 0);
+		assertFalse("Returned incorrect balance", acct1.getBalance() == 80);
+		assertFalse("Returned incorrect balance", acct2.getBalance() == 60);
+		assertFalse("Returned incorrect balance", acct3.getBalance() == 0);
+
+		assertTrue("Returned incorrect account number", acct1.getAccountNumber() == 1234);
+		assertTrue("Returned incorrect account number", acct2.getAccountNumber() == 9876);
+		assertTrue("Returned incorrect account number", acct3.getAccountNumber() == 6789);
+		assertTrue("Returned incorrect account number", acct5.getAccountNumber() == 1234);
+		assertTrue("Returned incorrect account number", acct6.getAccountNumber() == 9876);
 		
 	}
 	
