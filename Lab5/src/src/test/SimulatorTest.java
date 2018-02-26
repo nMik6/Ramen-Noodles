@@ -175,6 +175,14 @@ public class SimulatorTest {
 
 		assertTrue("Button press worked without active account", atm.start("button", "w") == -1);
 		assertTrue("Num command worked without active account", atm.start("num", "10") == -1);
+
+		assertTrue("Invalid card validated", atm.start("cardread", "0") == -1);
+		assertTrue("Card failed to validate", atm.start("cardread", "1234") == 0);
+
+		assertTrue("Button press accepted before account validation", atm.start("button", "w") == -1);
+
+		assertTrue("Invalid PIN number validated", atm.start("num", "0") == -1);
+		assertTrue("Account validation failed", atm.start("num", "5678") == 0);
 		
 	}
 	

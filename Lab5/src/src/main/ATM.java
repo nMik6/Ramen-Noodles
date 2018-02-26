@@ -116,7 +116,10 @@ public class ATM {
 					cur_pin = val_int;
 					System.out.println("Choose Transaction");
 				}
-				else System.out.println("Enter Pin");
+				else {
+					System.out.println("Enter Pin");
+					return -1;
+				}
 				break;
 					
 			default:
