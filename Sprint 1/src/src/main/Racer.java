@@ -36,6 +36,14 @@ public class Racer {
 		return false;
 	}
 	
+	//Stephen - added setter for dnf
+	public int dnf() {
+		
+		dnf = true;
+		return 1;
+		
+	}
+	
 	public Time getTotal() {
 	//getTotal calculates the difference between start and finish, then returns it as a time.
 		total = new Time();

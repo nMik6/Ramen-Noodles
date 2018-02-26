@@ -1,12 +1,18 @@
 package src.main;
 
 import java.time.LocalTime;
+
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.ArrayDeque;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
+
 public class Race {
 	
+
 	private String lastCommand;
 	private Queue<Racer> readyRacers;
 	private Queue<Racer> curRacers;
@@ -23,6 +29,12 @@ public class Race {
 		this.raceFinished = false;
 		
 	}
+
+	/*
+	 * public to test, otherwise create a getter for testing purposes.
+	*/
+	public Queue<Racer> readyRacers = new LinkedList<Racer>(); 
+
 	
 	public int power() {
 		return -1;
