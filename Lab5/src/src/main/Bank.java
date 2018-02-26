@@ -48,6 +48,7 @@ public class Bank {
 	 * @Return true if successful withdrawal, false otherwise
 	 */
 	public boolean withdraw(Account account, double amount) {
+		if(account == null) return false;
 		double balance = account.getBalance();
 		if (amount > balance) return false;	
 		account.setBalance(balance - amount);		
@@ -59,11 +60,11 @@ public class Bank {
 	 */
 	public boolean withdraw(int accountNum, int pin, double amount) {
 		Account account = validate(accountNum, pin);
-		if(account == null) return false;
 		return withdraw(account, amount);
 	}
 	
 	public boolean deposit(Account account, double amount) {
+		if(account == null) return false;
 		double balance = account.getBalance();
 		account.setBalance(balance + amount);
 		return true;
@@ -74,7 +75,6 @@ public class Bank {
 	 */
 	public boolean deposit(int accountNum, int pin, double amount) {
 		Account account = validate(accountNum, pin);
-		if(account == null) return false;
 		return deposit(account, amount);
 	}
 	
