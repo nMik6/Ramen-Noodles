@@ -132,11 +132,8 @@ public class SimulatorTest {
 		assertTrue("Withdraw failed for unknown reason", bank.withdraw(9876, 5432, 10));
 		assertTrue("Returned incorrect balance", bank.getBalance(acct2) == 60);
 		
-		try{
-			assertFalse("Withdraw made from nonexistant account", bank.withdraw(0, 0, 100));
-		}catch(NullPointerException e) {
-			assertTrue("",true);
-		}
+		assertFalse("Withdraw made from nonexistant account", bank.withdraw(0, 0, 100));
+		assertFalse("Withdraw made from nonexistant account", bank.withdraw(null, 100));
 		
 		assertTrue("Deposit failed for unknown reason", bank.deposit(acct1, 100));
 		assertFalse("Returned unupdated balance", bank.getBalance(acct1) == 0);
@@ -145,12 +142,9 @@ public class SimulatorTest {
 		assertTrue("Deposit failed for unknown reason", bank.deposit(1234, 5678, 100));
 		assertFalse("Returned unupdated balance", bank.getBalance(acct1) == 100);
 		assertTrue("Returned incorrec balance", bank.getBalance(acct1) == 200);
-		
-		try{
-			assertFalse("Deposit made to nonexistant account", bank.deposit(0, 0, 100));
-		}catch(NullPointerException e) {
-			assertTrue("",true);
-		}
+
+		assertFalse("Deposit made to nonexistant account", bank.deposit(0, 0, 100));
+		assertFalse("Deposit made to nonexistant account", bank.deposit(null, 100));
 
 		assertFalse("Nonexistant account validated", bank.validateAccount(0));
 		bank.addAccount(new Account());
