@@ -28,9 +28,9 @@ public class Account {
 	
 	/**
 	 * Validates the pin number of the account.
+	 * If the input pin is the pin number of the account, the account is validated, and the input pin is considered valid.
 	 * @param pin
-	 * @return true if pin is valid
-	 * @return false if pin is invalid
+	 * @return true if pin is valid, otherwise false
 	 */
 	public boolean validate(int pin) {
 		return this.pin == pin;
