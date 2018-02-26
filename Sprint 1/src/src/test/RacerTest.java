@@ -50,6 +50,6 @@ class RacerTest {
 		assertTrue(testRacer.isRacing(), "Racer should be racing");
 		assertEquals(null, testRacer.getTotal(), "Cannot get total time because Racer is still racing!");
 		assertEquals(1, testRacer.finish(testTimeFinish), "Racer has finished!");
-		assertEquals(testRacer.getTotal().getClass(), testTime.getClass(),"Get Total returned a time object");
+		assertEquals(testRacer.getTotal().getClass(), testTime.getClass(),"Get Total returned a time object!");
 
 }
