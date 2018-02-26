@@ -19,7 +19,7 @@ public class ATM {
 	private String curButton = "";
 	private String timestamp;
 	
-	/*
+	/**
 	 * Constructor takes an existing Bank object to set bank var. 
 	 */
 	public ATM(Bank b) {
@@ -33,7 +33,7 @@ public class ATM {
 		return start(timestamp, cmd, val);
 	}
 	
-	/*
+	/**
 	 * Start executes the commands by calling their respective command methods
 	 * The command methods called will return a status integer.
 	 * If a command fails start() will return a -1.
@@ -68,7 +68,7 @@ public class ATM {
 		}
 	}
 	
-	/*
+	/**
 	 * Reads in a card value and sets it to current card local variable
 	 * @return 0 if account exists for card num else -1
 	 */
@@ -85,7 +85,7 @@ public class ATM {
 		return -1;
 	}
 	
-	/*
+	/**
 	 * readNum() method takes in the cmd param toLowerCase()
 	 */
 	private int readNum(String val) {

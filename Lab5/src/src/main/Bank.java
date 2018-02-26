@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Bank {
 	
-	/*
+	/**
 	 * @param accountList HashMap of accounts with account numbers as keys
 	 */
 	private Map<Integer, Account> accountList = new HashMap<>();
@@ -14,14 +14,14 @@ public class Bank {
 		
 	}
 	
-	/*
+	/**
 	 * Add account to accountList map with account number as key
 	 */
 	public void addAccount(Account account) {
 		accountList.put(account.getAccountNumber(), account);
 	}
 	
-	/*
+	/**
 	 * Validates the account number and pin. 
 	 * Associated account number cannot be null. 
 	 * Calls Account class's validate method on pin. 
@@ -34,7 +34,7 @@ public class Bank {
 		return account;
 	}
 	
-	/*
+	/**
 	 * Method for ATM.readCard() to validate an account exist for the corresponding 
 	 * card number
 	 * @return true if account exists
@@ -43,7 +43,7 @@ public class Bank {
 		return accountList.get(accountNumber) != null;
 	}
 	
-	/*
+	/**
 	 * Withdraws amount from account. 
 	 * @Return true if successful withdrawal, false otherwise
 	 */
@@ -54,7 +54,7 @@ public class Bank {
 		return true;
 	}
 	
-	/*
+	/**
 	 * Overloaded withdraw() method for atm testing purposes. 
 	 */
 	public boolean withdraw(int accountNum, int pin, double amount) {
@@ -68,7 +68,7 @@ public class Bank {
 		return true;
 	}
 	
-	/*
+	/**
 	 * Overloaded withdraw() method for atm testing purposes. 
 	 */
 	public boolean deposit(int accountNum, int pin, double amount) {

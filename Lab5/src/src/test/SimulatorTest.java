@@ -94,13 +94,11 @@ public class SimulatorTest {
 		
 	}
 	
+	/*
+	 * Tests public Bank class methods
+	 */
 	@Test
 	public void testBank() {
-		
-	}
-	
-	@Test
-	public void testATM() {
 
 		assertTrue("Bank account failed to validate", bank.validateAccount(1234));
 		assertTrue("Bank account failed to validate", bank.validateAccount(9876));
@@ -116,9 +114,24 @@ public class SimulatorTest {
 		assertFalse("Account with invalid PIN validated", acct1.equals(bank.validate(1234, 5432)));
 		assertFalse("Account with invalid PIN validated", acct2.equals(bank.validate(9876, 4321)));
 		assertFalse("Account with invalid PIN validated", acct3.equals(bank.validate(6789, 5678)));
+
+		assertFalse("Invalid account, PIN validated", acct1.equals(bank.validate(5678, 1234)));
+		assertFalse("Invalid account, PIN validated", acct2.equals(bank.validate(5432, 9876)));
+		assertFalse("Invalid account, PIN validated", acct3.equals(bank.validate(4321, 6789)));
 		
 	}
 	
+	/*
+	 * Tests public ATM class methods
+	 */
+	@Test
+	public void testATM() {
+		
+	}
+	
+	/*
+	 * Tests Account class
+	 */
 	@Test
 	public void testAccount() {
 
