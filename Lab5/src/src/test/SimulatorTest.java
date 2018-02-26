@@ -39,6 +39,9 @@ public class SimulatorTest {
 		atm = new ATM(bank);
 	}
 	
+	/*
+	 * Tests the equals() method with Bank and Account classes.
+	 */
 	@Test
 	public void testEquals() {
 
@@ -83,6 +86,26 @@ public class SimulatorTest {
 		assertTrue("equals() returned false on identical banks", bank.equals(bank1));
 		assertFalse("equals() returned true on differing banks", bank.equals(bank2));
 		assertFalse("equals() returned true on differing banks", bank1.equals(bank2));
+		
+	}
+	
+	@Test
+	public void simulatorParseTest() {
+		
+	}
+	
+	@Test
+	public void bankTest() {
+		
+	}
+	
+	@Test
+	public void atmTest() {
+		
+	}
+	
+	@Test
+	public void accountTest() {
 		
 	}
 	
