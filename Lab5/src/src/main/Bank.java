@@ -59,6 +59,7 @@ public class Bank {
 	 */
 	public boolean withdraw(int accountNum, int pin, double amount) {
 		Account account = validate(accountNum, pin);
+		if(account == null) return false;
 		return withdraw(account, amount);
 	}
 	
@@ -73,6 +74,7 @@ public class Bank {
 	 */
 	public boolean deposit(int accountNum, int pin, double amount) {
 		Account account = validate(accountNum, pin);
+		if(account == null) return false;
 		return deposit(account, amount);
 	}
 	
