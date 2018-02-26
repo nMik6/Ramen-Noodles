@@ -180,9 +180,58 @@ public class SimulatorTest {
 		assertTrue("Card failed to validate", atm.start("cardread", "1234") == 0);
 
 		assertTrue("Button press accepted before account validation", atm.start("button", "w") == -1);
+		assertTrue("Validation could not be canceled", atm.start("button", "cancel") == 0);
 
+		assertTrue("Validation succeeded without active account", atm.start("num", "5678") == -1);
+
+		assertTrue("Card failed to validate", atm.start("cardread", "1234") == 0);
+		
 		assertTrue("Invalid PIN number validated", atm.start("num", "0") == -1);
 		assertTrue("Account validation failed", atm.start("num", "5678") == 0);
+
+		assertTrue("Balance incorrect", acct1.getBalance() == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "w") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Withdraw failed for unknown reason", atm.start("num", "100") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Remaining balance incorrect", acct1.getBalance() == 0);
+		
+		acct1.setBalance(100);
+
+		assertTrue("Balance incorrect", acct1.getBalance() == 100);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "w") == 0);
+		assertTrue("Withdraw failed for unknown reason", atm.start("num", "10") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Remaining balance incorrect", acct1.getBalance() == 90);
+
+		assertTrue("Button press failed for unknown reason", atm.start("button", "w") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cancel") == 0);
+		assertTrue("Num command worked without active account", atm.start("num", "10") == -1);
+		assertTrue("Remaining balance incorrect", acct1.getBalance() == 90);
+		
+		assertTrue("Card failed to validate", atm.start("cardread", "9876") == 0);
+		assertTrue("Invalid PIN number validated", atm.start("num", "10") == -1); //This is where it happens
+		assertTrue("Balance incorrect", acct1.getBalance() == 90);
+		assertTrue("Balance incorrect", acct2.getBalance() == 80);
+		assertTrue("Account validation failed", atm.start("num", "5432") == 0);
+		assertTrue("Num command worked without active account", atm.start("num", "10") == -1);
+		assertTrue("Balance incorrect", acct2.getBalance() == 80);
+		
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "w") == 0);
+		assertTrue("Withdraw failed for unknown reason", atm.start("num", "10") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Balance incorrect", acct2.getBalance() == 70);
+		
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "w") == 0);
+		assertTrue("Withdraw failed for unknown reason", atm.start("num", "10") == 0);
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cb") == 0);
+		assertTrue("Balance incorrect", acct2.getBalance() == 60);
+
+		assertTrue("Button press failed for unknown reason", atm.start("button", "cancel") == 0);
 		
 	}
 	

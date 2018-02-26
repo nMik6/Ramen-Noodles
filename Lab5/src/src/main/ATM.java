@@ -132,16 +132,18 @@ public class ATM {
 	
 	private int button(String val) {
 		val = val.toLowerCase();
-		if(!cur_accnt)
-			return -1;
 		
 		switch (val) {
 			case "w":
+				if(!cur_accnt)
+					return -1;
 				curButton = "w";
 				System.out.println("Amount?");
 				break;
 				
 			case "cb":
+				if(!cur_accnt)
+					return -1;
 				atmPrint.print(timestamp, "BAL", "$"+bank.getBalance(bank.validate(accnt_num, cur_pin)));
 				break;
 				
