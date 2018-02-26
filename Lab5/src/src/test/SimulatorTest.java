@@ -101,6 +101,21 @@ public class SimulatorTest {
 	
 	@Test
 	public void testATM() {
+
+		assertTrue("Bank account failed to validate", bank.validateAccount(1234));
+		assertTrue("Bank account failed to validate", bank.validateAccount(9876));
+		assertTrue("Bank account failed to validate", bank.validateAccount(6789));
+		assertFalse("Invalid bank account validated", bank.validateAccount(5678));
+		assertFalse("Invalid bank account validated", bank.validateAccount(5432));
+		assertFalse("Invalid bank account validated", bank.validateAccount(4321));
+
+		assertTrue("Account, PIN failed to validate", acct1.equals(bank.validate(1234, 5678)));
+		assertTrue("Account, PIN failed to validate", acct2.equals(bank.validate(9876, 5432)));
+		assertTrue("Account, PIN failed to validate", acct3.equals(bank.validate(6789, 4321)));
+
+		assertFalse("Account with invalid PIN validated", acct1.equals(bank.validate(1234, 5432)));
+		assertFalse("Account with invalid PIN validated", acct2.equals(bank.validate(9876, 4321)));
+		assertFalse("Account with invalid PIN validated", acct3.equals(bank.validate(6789, 5678)));
 		
 	}
 	
