@@ -118,6 +118,50 @@ public class SimulatorTest {
 		assertFalse("Invalid account, PIN validated", acct1.equals(bank.validate(5678, 1234)));
 		assertFalse("Invalid account, PIN validated", acct2.equals(bank.validate(5432, 9876)));
 		assertFalse("Invalid account, PIN validated", acct3.equals(bank.validate(4321, 6789)));
+
+		assertTrue("Returned incorrect balance", bank.getBalance(acct1) == 0);
+		assertTrue("Returned incorrect balance", bank.getBalance(acct2) == 80);
+		assertTrue("Returned incorrect balance", bank.getBalance(acct3) == 60);
+		assertFalse("Returned incorrect balance", bank.getBalance(acct4) == 40);
+
+		assertFalse("Withdrew more money than account held", bank.withdraw(acct2, 100));
+		assertTrue("Withdraw failed for unknown reason", bank.withdraw(acct2, 10));
+		assertTrue("Returned incorrect balance", bank.getBalance(acct2) == 70);
+
+		assertFalse("Withdrew more money than account held", bank.withdraw(9876, 5432, 100));
+		assertTrue("Withdraw failed for unknown reason", bank.withdraw(9876, 5432, 10));
+		assertTrue("Returned incorrect balance", bank.getBalance(acct2) == 60);
+		
+		assertFalse("Withdraw made from nonexistant account", bank.withdraw(0, 0, 100));
+		
+		assertTrue("Deposit failed for unknown reason", bank.deposit(acct1, 100));
+		assertFalse("Returned unupdated balance", bank.getBalance(acct1) == 0);
+		assertTrue("Returned incorrec balance", bank.getBalance(acct1) == 100);
+		
+		assertTrue("Deposit failed for unknown reason", bank.deposit(1234, 5678, 100));
+		assertFalse("Returned unupdated balance", bank.getBalance(acct1) == 100);
+		assertTrue("Returned incorrec balance", bank.getBalance(acct1) == 200);
+		
+		assertFalse("Deposit made to nonexistant account", bank.deposit(0, 0, 100));
+
+		assertFalse("Nonexistant account validated", bank.validateAccount(0));
+		bank.addAccount(new Account());
+		assertTrue("Newly added account failed to validate", bank.validateAccount(0));
+		
+		assertFalse("Withdrew more money than account held", bank.withdraw(0, 0, 100));
+		assertTrue("Deposit failed for unknown reason", bank.deposit(0, 0, 100));
+		assertTrue("Withdraw failed for unknown reason", bank.withdraw(0, 0, 100));
+		
+		Account tmp = bank.validate(9876, 5432);
+		
+		assertTrue("Returned incorrect balance", tmp.getBalance() == 60);
+		
+		bank.addAccount(acct6);
+		
+		tmp = bank.validate(9876, 5432);
+
+		assertFalse("Returned incorrect balance", tmp.getBalance() == 60);
+		assertTrue("Returned incorrect balance", tmp.getBalance() == 0);
 		
 	}
 	
@@ -127,10 +171,12 @@ public class SimulatorTest {
 	@Test
 	public void testATM() {
 		
+		assertTrue("Button press worked without active account", atm.start("button", "w") == -1);
+		
 	}
 	
 	/*
-	 * Tests Account class
+	 * Tests Account class methods
 	 */
 	@Test
 	public void testAccount() {
