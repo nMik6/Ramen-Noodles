@@ -1,15 +1,40 @@
 package src.main;
 
 import java.time.LocalTime;
+
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.ArrayDeque;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
+
 public class Race {
 	
+
+	private String lastCommand;
+	private Queue<Racer> readyRacers;
+	private Queue<Racer> curRacers;
+	private ArrayList<Racer> finishRacers;
+	private boolean[] channels;
+	private boolean raceFinished;
+	
+	public Race(Queue<Racer> readyRacers) {
+		this.readyRacers = readyRacers;
+		this.channels = new boolean[2];
+		this.channels[1] = this.channels[2] = false;
+		this.curRacers = new ArrayDeque<Racer>();
+		this.finishRacers = new ArrayList<Racer>();
+		this.raceFinished = false;
+		
+	}
+
 	/*
 	 * public to test, otherwise create a getter for testing purposes.
 	*/
 	public Queue<Racer> readyRacers = new LinkedList<Racer>(); 
+
 	
 	public int power() {
 		return -1;

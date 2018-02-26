@@ -44,8 +44,16 @@ public class Racer {
 		
 	}
 	
+	public boolean didNotFinish() {
+		return dnf;
+	}
+	
 	public Time getTotal() {
 	//getTotal calculates the difference between start and finish, then returns it as a time.
+		if (this.start == null || didNotFinish()) {
+			System.out.println("Racer did not start or did not finish! Cannot get total time!");
+			return null;
+		}
 		total = new Time();
 		total = total.difference(start,  finish);
 		return this.total;
