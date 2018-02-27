@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 public class Time {
 	
 	private LocalTime time;
-	private DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
+	private transient DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
 	
 	public Time() {
 		time = LocalTime.now();
