@@ -1,8 +1,18 @@
 package src.main;
 
 public class Channel {
-	boolean state;
-	String sensor;
+	private boolean state;
+	private String sensor;
+	private Racer cur;
+	
+	
+	public void setCurRacer(Racer r) {
+		cur = r;
+	}
+	
+	public void conn(String s) {
+		sensor = s;
+	}
 	
 	public void toggle() {
 		state = !state;
@@ -10,5 +20,13 @@ public class Channel {
 	
 	public boolean getState() {
 		return state;
+	}
+	
+	public void trigger() {
+		if(!cur.isRacing()) {
+			cur.start();	//create parameterless start 
+		}
+		else
+			cur.finish();	//create parameterless finish
 	}
 }

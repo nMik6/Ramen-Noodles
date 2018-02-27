@@ -14,52 +14,51 @@ public class Simulator {
 	String command;
 	Boolean power;
 	Queue<Race> races;
+	Channel[] channels;
 	ArrayList<Race> finishedRaces;
 	Time time;
 	
 	private Scanner stdin = new Scanner(System.in);
 	
 	public void start() {
-		
-		do {
-			System.out.print("Enter command: ('f' from file, 'c' from console)> ");
-			command = stdin.nextLine();
-		}while(!(command.equals("c")||command.equals("f")));
-		
-		if(command.equalsIgnoreCase("f"))
-			readFromFile();
-		else if(command.equalsIgnoreCase("c"))
-			readFromConsole();
+			power = false;
+			races = null;
+			finishedRaces = null;
+			command = null;
+			channels = new Channel[8];	//eight available channels
+			
+			do {
+				System.out.print("Enter command: ('f' from file, 'c' from console)> ");
+				command = stdin.nextLine();
+			}while(!(command.equals("c")||command.equals("f")));
+			
+			if(command.equalsIgnoreCase("f"))
+				readFromFile();
+			else if(command.equalsIgnoreCase("c"))
+				readFromConsole();
+
 	}
 	
-	private int readFromConsole() {
+	private void readFromConsole() {
 		String input;
 		String[] cmds;
-		int ret_status = 0;
 		
 		do {
 			System.out.print("Enter command: ");
 			command = stdin.nextLine();
+			parse(command);
 		}while(!(command.equals("exit")||(command.equals("reset"))));
-		
-		if(command.equals("exit"))
-			ret_status = exit();
-		else if(command.equals("reset"))
-			ret_status = reset();
-	
-		return ret_status;
 	}
 	
-	private int readFromFile() {
+	private void readFromFile() {
 		String[] fileCommands = null;
-		int ret_status = 0;
 		
 		System.out.print("Enter the filename: ");
 		String filename = stdin.nextLine();
 		
 		if(!(new File(filename).exists())) {
 			System.out.println("Missing file"+filename);
-			return -1;
+			return;
 		}
 		
 		try (Stream<String> stream = Files.lines(Paths.get(command))){
@@ -68,38 +67,51 @@ public class Simulator {
 		
 		for(int i = 0; i < fileCommands.length; ++i) {
 			String[] command = fileCommands[i].split(" ");
-			ret_status = parser(command);
+			parse(command);
 		}
-		return ret_status;
 	}
+	
+	
+	/*
+	 * overloaded parse function because I'm currently lazy 
+	 */
+	private int parse(String s) {
+		String[] arr = new String[1];
+		arr[0] = s;
+		return parse(s);
+	}
+	
 	/*
 	 * 
 	 */
-	private int parser(String[] commandLine) {
+	private int parse(String[] commandLine) {
 		int length = commandLine.length;
 		
 		switch(commandLine[0]) {
 			case "exit":
-				break;
+				exit();
+				
 			case "reset":
-				break;
+				reset();
+			
 			case "time":
-				if(length != 2) {
-					//implement log function that send out put to logger and prints to screen;
-					System.out.println("Invalid command");
-					return -1;
-				}	
+				//verifyLength(length, 2);	
 				time = new Time(commandLine[2]);
 				break;
+			
 			case "power":
 				return power();
+			
 			case "conn":
-				if(length != 3) {
-					//log
-					System.out.println("Invalid command");
-					return -1;
-				}
-				
+				//verifyLength(length, 3);
+			
+			case "tog":
+				//verifyLength(length, 2);	
+				tog(commandLine[1]);
+			
+			case "trig":
+				//verifyLength(length, 2);	
+				trig(commandLine[1]);
 		}
 
 		return 0;
@@ -108,7 +120,7 @@ public class Simulator {
 	/*
 	 * Turn the power on and off (but stay in the simulator)
 	 */
-	public int power() {
+	private int power() {
 		power = !power;
 		if(races.isEmpty())
 			return 0;
@@ -118,20 +130,57 @@ public class Simulator {
 	/*
 	 * exit the simulator, no more commands processed except for reset and power?
 	 */
-	public int exit() {
-		races = null;
-		if(!races.isEmpty()) {
-			return -1;
-		}	
-		return 0;
+	private void exit() {
+		System.exit(0);
 	}
 	
 	/*
 	 * reset the sytem to the intial state
 	 * how is this different than power
 	 */
-	public int reset() {
-		races = null;
-		return 0;
+	private void reset() {
+		if(!power) 
+			return;
+		start();
 	}
+	
+	/*
+	 * Set channel's sensor type. 
+	 */
+	private void conn(String sensor, int channel) {
+		if(!power) 
+			return;
+		channels[channel].conn(sensor);
+	}
+	
+	/*
+	 * Set current system time (I guess you can do that according to the tested input?)
+	 */
+	private void time(String t) {
+		
+	}
+	
+	/*
+	 * Verify that channel state is "true" then trigger. 
+	 */
+	private int trig(String channel) {
+		if(power) { 		
+			Channel temp = channels[Integer.parseInt(channel)];
+			
+			if(temp.getState()) {
+				temp.trigger();
+				return 0;
+			}
+		}
+		return -1;
+	}
+	
+	
+	private void tog(String channel) {
+		if(!power) 
+			return;
+		int intchan = Integer.parseInt(channel);
+		channels[intchan].toggle();
+	}
+	
 }
