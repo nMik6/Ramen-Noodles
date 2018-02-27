@@ -1,21 +1,30 @@
 package src.main;
-//Created by: Skyler
-//Cash Dispenser object to dispense the cash that the user has withdrawn from the ATM. Would map to a physical ATM dispenser if it was a real ATM
-//Our ATM has a total cash amount that cannot be exceeded.
 
-//CashDispenser object to dispense cash.
+/**
+ * CashDispenser object to dispense the cash that the user has 
+ * withdrawn from the ATM. Would map to a physical ATM dispenser 
+ * if it was a real ATM. Holds a total cash amount that 
+ * cannot be exceeded.
+ */
 public class CashDispenser {
 	
 	private int totalCash;
+	
+	/**
+	 * CashDispenser constructor assigns the amount
+	 * of cash that is in the dispenser
+	 */
 	public CashDispenser() {
-		this.totalCash = 100000;  //Total cash in the cash dispenser.
+		this.totalCash = 100000;
 	}
 	
-	public boolean dispense(int val) { //If this is called, will return true if there is enough cash so that money can be withdrawn. If false, not enough money.
-		if (totalCash - val < 0)
-		{
-			return false;
-		}
+	/**
+	 * Dispense cash from atm
+	 * @param val amount of cash
+	 * @return true if there is enough cash
+	 */
+	public boolean dispense(int val) { 
+		if (totalCash - val < 0) return false;
 		totalCash = totalCash - val;  
 		return true;
 	}

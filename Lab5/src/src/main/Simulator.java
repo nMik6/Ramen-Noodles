@@ -73,19 +73,24 @@ public class Simulator {
 		String[] cmds;
 		
 		System.out.println("Enter Card");
-		do{
+		do {
 			input = in.nextLine();
 			cmds = input.split(" ");
-			if(!parse(cmds)) System.out.println("Please try again. ('cancel' to exit transaction.)");
-		}  while(!input.equalsIgnoreCase("cancel"));
-		
+			if (!parse(cmds)) System.out.println("Please try again. ('cancel' to exit transaction.)");
+		}  while (!input.equalsIgnoreCase("cancel"));
+		System.out.println("You have canceled your transaction.");
 	}
 	
-	
+	/**
+	 * Checks that the commands are of proper length prior to sending
+	 * them to the atm
+	 * @param cmds array of commands to use the atm
+	 * @return true if the cmds has the correct bounds
+	 */
 	private boolean parse(String[] cmds) {
 		int length = cmds.length;
-		if(length == 2) simAtm.start(cmds[0], cmds[1]);
-		else if(length == 3) simAtm.start(cmds[0], cmds[1], cmds[2]);
+		if (length == 2) simAtm.start(cmds[0], cmds[1]);
+		else if (length == 3) simAtm.start(cmds[0], cmds[1], cmds[2]);
 		else return false;
 		
 		return true;

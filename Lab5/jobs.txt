@@ -4,6 +4,7 @@ HART: JOB 1 needs overview and group input, will explain in person in Thursday m
 //Job 1 - Revise the ATM class:
 	No printed output 
 	Only access accounts through the bank methods - save to temp local var
+	-also worked on by Stephen
 
 HART: Done with JOB 2
 //Job 2 - Bank/Account relationship exclusivity 
@@ -14,7 +15,7 @@ Job 3 - Create brand new Junit tests to conform to new relationships
 	Test with given input file and capture output in file 
 
 Job 4 - Create CardReader Class:
-
+Stephen/Skyler: done
 
 SKYLER:
 
@@ -26,8 +27,10 @@ Job 6 - Create CashDispenser Class:
 
 NATHAN:
 Job 7 - Create Simulator Class:
-	Use the template from lab5.txt file 
+	Use the template from lab5.txt file
+	-also worked on by Stephen (parser)
 
+Nathan
 Job 8 - Check for proper Documentation:
 	Make sure that all methods and classes have proper Javadoc documentation
 
