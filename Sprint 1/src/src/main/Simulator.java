@@ -1,6 +1,7 @@
 package src.main;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.stream.Stream;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ public class Simulator {
 	Boolean power;
 	Queue<Race> races;
 	Channel[] channels;
-	ArrayList<Race> finishedRaces;
+	List<Race> finishedRaces;
 	Time time;
 	
 	private Scanner stdin = new Scanner(System.in);
@@ -23,7 +24,7 @@ public class Simulator {
 	public void start() {
 			power = false;
 			races = null;
-			finishedRaces = null;
+			finishedRaces = new ArrayList<>();
 			command = null;
 			channels = new Channel[8];	//eight available channels
 			

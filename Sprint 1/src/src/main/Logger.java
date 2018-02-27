@@ -2,7 +2,6 @@ package src.main;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.json.JSONObject;		//Not sure how this works yet, working on it.
 import com.google.gson.*;
 import java.io.Writer;
 
