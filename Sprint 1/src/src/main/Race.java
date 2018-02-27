@@ -16,13 +16,13 @@ public class Race {
 	private Queue<Racer> readyRacers;
 	private Queue<Racer> curRacers;
 	private List<Racer> finishRacers;
-	private boolean[] channels;
+	//private Channel[] channels;
 	private boolean raceFinished;
 	
 	public Race(Queue<Racer> readyRacers) {
 		this.readyRacers = readyRacers;
-		this.channels = new boolean[2];
-		this.channels[0] = this.channels[1] = false;
+		//this.channels = new boolean[2];			?? There's more than 2 channels
+		//this.channels[0] = this.channels[1] = false;
 		this.curRacers = new ArrayDeque<Racer>();
 		this.finishRacers = new ArrayList<Racer>();
 		this.raceFinished = false;	
@@ -40,17 +40,6 @@ public class Race {
 		return finishRacers;
 	}
 	
-	public int power() {
-		return -1;
-	}
-	
-	public int exit() {
-		return -1;
-	}
-	
-	public int reset() {
-		return -1;
-	}
 	
 	public int time(Time time, Racer racer) {
 		return -1;
@@ -75,16 +64,18 @@ public class Race {
 	 * @return 1 if channel is toggled and -1 if @param is greater than
 	 * the number of channels
 	 */
+	/*
 	public int tog(int channel) {
 		if (channel > 1) return -1;
-		channels[channel] = !channels[channel];
+		//channels[channel] = !channels[channel];
+		channels[channel].toggle();
 		return 1;
 	}
 	
 	public int trig(int channel) { // Unsure of the difference between this and tog is supposed to be
 		return -1;
 	}
-	
+	*/
 	public int newRun() {
 		return -1;
 	}

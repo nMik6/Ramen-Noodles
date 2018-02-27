@@ -38,9 +38,9 @@ public class Simulator {
 		int ret_status = 0;
 		
 		do {
-		System.out.print("Enter command: ");
-		command = stdin.nextLine();
-		}while(!(command.equals("exit")||(command.endsWith("reset"))));
+			System.out.print("Enter command: ");
+			command = stdin.nextLine();
+		}while(!(command.equals("exit")||(command.equals("reset"))));
 		
 		if(command.equals("exit"))
 			ret_status = exit();
@@ -58,7 +58,7 @@ public class Simulator {
 		String filename = stdin.nextLine();
 		
 		if(!(new File(filename).exists())) {
-			System.out.println("Missing file transactions.txt");
+			System.out.println("Missing file"+filename);
 			return -1;
 		}
 		
