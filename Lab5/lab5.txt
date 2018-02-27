@@ -1,5 +1,5 @@
 ﻿Lab5_notes_2.20.19:
-
+ BY: Stephen, Hart, Thomas
 Reading in from file with Java:
 
 //get user option file passin or command line
