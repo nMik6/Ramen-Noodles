@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import com.google.gson.*;
 import java.io.Writer;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -17,8 +20,7 @@ public class Logger {
 	private BufferedWriter debugBuffWriter;
 	private Writer raceFileWriter;
 	private Writer debugFileWriter;
-	
-	private Gson gsonRace;
+	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
 	
 	public Logger(String debugFileName, String raceJsonFileName)
@@ -35,11 +37,27 @@ public class Logger {
 			e.printStackTrace();
 		}
 		
-		gsonRace = new GsonBuilder().create();
+		
 			
 	}
 	
-
+	public static void main(String[] args) {
+		List<Racer> list = new ArrayList<>();
+		Racer r = new Racer(234);
+		Racer r1 = new Racer(133);
+		Racer r2 = new Racer(174);
+		r.start(new Time(LocalTime.now()));
+		
+		list.add(r);
+		list.add(r1);
+		list.add(r2);
+		
+		try (Writer writer = new FileWriter("test.txt")) {
+			gson.toJson(list, writer);
+		} catch (IOException e) { }
 	}
+	
+
+}
 
 

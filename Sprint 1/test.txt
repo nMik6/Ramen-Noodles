@@ -1,0 +1,73 @@
+[
+  {
+    "bib": 234,
+    "start": {
+      "time": {
+        "hour": 12,
+        "minute": 25,
+        "second": 11,
+        "nano": 841000000
+      },
+      "format": {
+        "printerParser": {
+          "printerParsers": [
+            {
+              "field": "HOUR_OF_DAY",
+              "minWidth": 2,
+              "maxWidth": 2,
+              "signStyle": "NOT_NEGATIVE",
+              "subsequentWidth": 0
+            },
+            {
+              "literal": ":"
+            },
+            {
+              "field": "MINUTE_OF_HOUR",
+              "minWidth": 2,
+              "maxWidth": 2,
+              "signStyle": "NOT_NEGATIVE",
+              "subsequentWidth": 0
+            },
+            {
+              "literal": ":"
+            },
+            {
+              "field": "SECOND_OF_MINUTE",
+              "minWidth": 2,
+              "maxWidth": 2,
+              "signStyle": "NOT_NEGATIVE",
+              "subsequentWidth": 0
+            },
+            {
+              "literal": "."
+            },
+            {
+              "field": "NANO_OF_SECOND",
+              "minWidth": 3,
+              "maxWidth": 3,
+              "decimalPoint": false
+            }
+          ],
+          "optional": false
+        },
+        "locale": "en_US",
+        "decimalStyle": {
+          "zeroDigit": "0",
+          "positiveSign": "+",
+          "negativeSign": "-",
+          "decimalSeparator": "."
+        },
+        "resolverStyle": "SMART"
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 133,
+    "dnf": false
+  },
+  {
+    "bib": 174,
+    "dnf": false
+  }
+]
