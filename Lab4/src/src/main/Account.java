@@ -49,9 +49,4 @@ public class Account {
 		Account acct = (Account) o;
 		return (this.accountNumber == acct.accountNumber && this.pin == acct.pin) && this.balance == acct.balance;
 	}
-	
-	/*public void setPin(int newPin, int oldPin) {
-		if(this.validate(oldPin))pin = newPin;
-		else throw new IllegalArgumentException();
-	}/**///Not actually necessary
 }
