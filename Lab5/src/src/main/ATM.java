@@ -12,7 +12,7 @@ public class ATM {
 	private boolean cur_accnt; 	
 	private CashDispenser cashDispenser;
 	private int cur_pin;
-	private Bank bank;			//all modifications to current account done through bank
+	private Bank bank;
 	private int accnt_num = -1;
 	private Printer atmPrint = new Printer();
 	private CardReader cardRead = new CardReader();
@@ -20,7 +20,8 @@ public class ATM {
 	private String timestamp;
 	
 	/**
-	 * Constructor takes an existing Bank object to set bank var. 
+	 * ATM constructor
+	 * @param b the bank the atm will work with
 	 */
 	public ATM(Bank b) {
 		bank = b;
@@ -28,15 +29,24 @@ public class ATM {
 		this.cashDispenser = new CashDispenser();
 	}
 	
+	/**
+	 * Generates the timestamp and starts the command reading
+	 * @param cmd command to be read and executed
+	 * @param val input from user/file
+	 * @return 0 if the values are valid, -1 otherwise
+	 */
 	public int start(String cmd, String val) {
 		timestamp = new SimpleDateFormat("HH:mm:ss").format(System.currentTimeMillis());
 		return start(timestamp, cmd, val);
 	}
 	
 	/**
-	 * Start executes the commands by calling their respective command methods
-	 * The command methods called will return a status integer.
-	 * If a command fails start() will return a -1.
+	 * Executes the given command on the ATM to give the user
+	 * access to their bank account
+	 * @param tmstmp timestamp sent in by user or file
+	 * @param cmd command to be read and executed
+	 * @param val input from user/file
+	 * @return 0 if the values are valid, -1 otherwise
 	 */
 	public int start(String tmstmp, String cmd, String val) {
 		timestamp = tmstmp; //assumes timestamp is correctly formatted
@@ -71,6 +81,7 @@ public class ATM {
 	
 	/**
 	 * Reads in a card value and sets it to current card local variable
+	 * @param val the card id
 	 * @return 0 if account exists for card num else -1
 	 */
 	private int readCard(String val) {
@@ -86,8 +97,11 @@ public class ATM {
 		return -1;
 	}
 	
+
 	/**
-	 * readNum() method takes in the cmd param toLowerCase()
+	 * Reads the users pin or withdraw number
+	 * @param val the amount/pin
+	 * @return 0 if the balance/pin are valid, -1 otherwise
 	 */
 	private int readNum(String val) {
 		int val_int;
@@ -137,6 +151,12 @@ public class ATM {
 		return 0;
 	}
 	
+	/**
+	 * Takes the users choice of withdrawing money,
+	 * checking their balance, or canceling the transaction
+	 * @param val the action the user wants to perform
+	 * @return 0 if valid action, -1 otherwise
+	 */
 	private int button(String val) {
 		val = val.toLowerCase();
 		

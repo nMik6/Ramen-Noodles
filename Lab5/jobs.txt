@@ -28,6 +28,7 @@ NATHAN:
 Job 7 - Create Simulator Class:
 	Use the template from lab5.txt file 
 
+Nathan
 Job 8 - Check for proper Documentation:
 	Make sure that all methods and classes have proper Javadoc documentation
 
