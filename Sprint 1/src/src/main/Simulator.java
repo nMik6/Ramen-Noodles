@@ -46,7 +46,8 @@ public class Simulator {
 		do {
 			System.out.print("Enter command: ");
 			command = stdin.nextLine();
-			parse(command);
+			cmds = command.split(" ");
+			parse(cmds);
 		}while(!(command.equals("exit")||(command.equals("reset"))));
 	}
 	
@@ -71,19 +72,6 @@ public class Simulator {
 		}
 	}
 	
-	
-	/*
-	 * overloaded parse function because I'm currently lazy 
-	 */
-	private int parse(String s) {
-		String[] arr = new String[1];
-		arr[0] = s;
-		return parse(s);
-	}
-	
-	/*
-	 * 
-	 */
 	private int parse(String[] commandLine) {
 		int length = commandLine.length;
 		
@@ -112,14 +100,13 @@ public class Simulator {
 			case "trig":
 				//verifyLength(length, 2);	
 				trig(commandLine[1]);
+			
 		}
 
 		return 0;
 	}
 	
-	/*
-	 * Turn the power on and off (but stay in the simulator)
-	 */
+	/** Turn the power on and off (but stay in the simulator)*/
 	private int power() {
 		power = !power;
 		if(races.isEmpty())
@@ -127,55 +114,51 @@ public class Simulator {
 		return -1;
 	}
 	
-	/*
-	 * exit the simulator, no more commands processed except for reset and power?
-	 */
+	/** exit the simulator, no more commands processed */
 	private void exit() {
 		System.exit(0);
 	}
 	
-	/*
-	 * reset the sytem to the intial state
-	 * how is this different than power
-	 */
 	private void reset() {
 		if(!power) 
 			return;
 		start();
 	}
 	
-	/*
-	 * Set channel's sensor type. 
-	 */
+	/** Set channel's sensor type. */
 	private void conn(String sensor, int channel) {
 		if(!power) 
 			return;
 		channels[channel].conn(sensor);
 	}
 	
-	/*
-	 * Set current system time (I guess you can do that according to the tested input?)
-	 */
+	/** Set current system time (I guess you can do that according to the tested input?)*/
 	private void time(String t) {
 		
 	}
 	
 	/*
 	 * Verify that channel state is "true" then trigger. 
+	 * @return 0 if channel is allowed to be triggered, -1 if not
 	 */
 	private int trig(String channel) {
 		if(power) { 		
 			Channel temp = channels[Integer.parseInt(channel)];
 			
 			if(temp.getState()) {
-				temp.trigger();
+				/*
+				 * If the channel triggered state is true
+				 * create racer in new race
+				 * add race  to queue<race>
+				 * ...
+				 */
 				return 0;
 			}
 		}
 		return -1;
 	}
 	
-	
+	/** Toggle the state of the channel at string converted to integer index of channels[]*/
 	private void tog(String channel) {
 		if(!power) 
 			return;

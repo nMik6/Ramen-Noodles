@@ -58,24 +58,7 @@ public class Race {
 		return -1;
 	}
 	
-	/**
-	 * Toggles the state of the channel
-	 * @param channel index of the channel to toggle
-	 * @return 1 if channel is toggled and -1 if @param is greater than
-	 * the number of channels
-	 */
-	/*
-	public int tog(int channel) {
-		if (channel > 1) return -1;
-		//channels[channel] = !channels[channel];
-		channels[channel].toggle();
-		return 1;
-	}
-	
-	public int trig(int channel) { // Unsure of the difference between this and tog is supposed to be
-		return -1;
-	}
-	*/
+
 	public int newRun() {
 		return -1;
 	}
