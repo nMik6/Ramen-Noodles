@@ -1,9 +1,5 @@
 package src.main;
 
-/*Written by: Thomas Crownover
-* Edited by: 
-* Gave Input: Nathan Mikelonis
-*/
 /*
  * Account class virtualizes accounts. 
  */
@@ -30,18 +26,36 @@ public class Account {
 		this.balance = balance;
 	}
 	
+	/**
+	 * Validates the pin number of the account.
+	 * If the input pin is the pin number of the account, the account is validated, and the input pin is considered valid.
+	 * @param pin
+	 * @return true if pin is valid, otherwise false
+	 */
 	public boolean validate(int pin) {
 		return this.pin == pin;
 	}
 	
+	/**
+	 * Get the value of the account's balance
+	 * @return balance
+	 */
 	public double getBalance() {
 		return balance;
 	}
 	
+	/**
+	 * Changes the account's balance to the value of input
+	 * @param balance
+	 */
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 	
+	/**
+	 * Get the value of the account number
+	 * @return accountNumber
+	 */
 	public int getAccountNumber(){
 		return accountNumber;
 	}
@@ -54,3 +68,4 @@ public class Account {
 		return (this.accountNumber == acct.accountNumber && this.pin == acct.pin) && this.balance == acct.balance;
 	}
 }
+

@@ -1,0 +1,94 @@
+TIME
+	Fields:
+		hours:Int
+		minutes:Int
+		seconds:Int
+
+	Methods:
+		Time(): Time
+		Time(String s): Time
+		diff(Time a, Time b): Time
+		printTime():String //form "hh.mm.ss" 
+CHANNEL
+	Fields:
+		state:Boolean
+	Methods:
+		toggle():void
+		getState():boolean
+		trigger():void
+		
+
+RACE
+
+	lastCommand: String 
+		- keep track of last system command for context of current command
+	readyRacers: 	Queue<Racer> 
+	curRacers: 	Queue<Racer>
+	finishRacers: 	ArrayList<Racer>	
+	channels: channel[]
+		- bool array for toggling state of channels, true == on
+	raceFinished: boolean
+
+	//NOTE: all methods return status int 
+	power(): Int
+		- turn system on & off but stay in simulator
+	exit(): Int
+		- exit the simulator
+	reset(): Int
+		- reset system to initial state
+	time(int h, int m, int s, Racer r): 
+		- parameters used to create Time object for racer
+	dnf(Racer r): Int
+		- next racer receives dnf token (-1 for time hours, mins, secs for finish time) 
+	cancel(Racer r): Int
+		- discard the current run for racer and place racer 
+	tog(Int channel): Int
+		- toggle state of channel  
+	trig(Int channel): Int
+		- trigger the channel 
+	newRun(): Int
+	start(String s, Racer r): Int
+		- create time from string s and use to set start time for racer r
+	finish(String s, Racer r): Int
+		- create time from string s and use to set finish time for racer r
+
+SIMULATOR
+	
+	command: String 
+	power:	Boolean
+	races: 	Queue<Race>
+	finishedRaces: ArrayList<Race>
+	
+	parser(String commandline): Object
+		//transform into array of lowercase arguments and perliminary validation of command line call
+
+RACER
+	bib:	Int
+	start: 	Time
+	finish:	Time
+	total:	Time
+	dnf:	bool	//default false
+	
+	Racer(int bib):	void
+	start(Time t): 	Int
+	finish(Time t): Int
+	isRacing(): 	Bool
+	getTotal: Time
+
+
+LOGGER 	//I'll try to implement this later. Wont be a big deal until later in the project when we want to store race outcomes 
+	//collect the input and output status of commands in filestream for debugging
+	//collect in seperate file (json || csv) every race instance
+	//use org.json library 
+	
+	raceBuffWriter: BufferedWriter
+	debugBuffWriter: BufferedWriter
+	
+	jsonRace: Json.createObjectBuiol
+	
+	Logger(String debugFileName, String raceJsonFileName): void
+	
+	
+	
+	
+	

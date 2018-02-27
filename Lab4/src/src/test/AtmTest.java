@@ -9,6 +9,11 @@ import src.main.Account;
 import src.main.Bank;
 import src.main.Card;
 
+/*
+* Written by: Hartmut Taylor Sinterhauf
+* Edited by: Stephen Staudt
+* Verbal Input: Stephen Staudt
+*/
 public class AtmTest {
 
 	Bank myBank;

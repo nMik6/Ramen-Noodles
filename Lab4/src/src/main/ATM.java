@@ -2,6 +2,10 @@ package src.main;
 import java.util.Scanner;
 
 
+/*Written by: Nathan Mikelonis
+* Edited by: Stephen Staudt
+* Verbal Input: Stephen Staudt, Skyler Keough
+*/
 public class ATM {
 
 	private Account account;

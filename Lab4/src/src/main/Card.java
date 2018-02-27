@@ -1,5 +1,11 @@
 package src.main;
 
+/*Written by: Nathan Mikelonis
+
+* Edited by:
+* Verbal Input: Skyler Keough (discussed how card should be used in the program)
+*/
+
 /*
  * Class for virtual card. Stores account number only. 
  */
