@@ -19,21 +19,25 @@ public class Race {
 	//private Channel[] channels;
 	private boolean raceFinished;
 	private String type;
+	private int autoNum;
 	
 	
-	public Race(Queue<Racer> readyRacers) {
-		this.ready = readyRacers;
+	public Race() {
+		this.ready = new LinkedList<Racer>() ;
 		//this.channels = new boolean[2];			?? There's more than 2 channels
 		//this.channels[0] = this.channels[1] = false;
-		this.running = new ArrayDeque<Racer>();
+		this.running = new LinkedList<Racer>();
 		this.finished = new ArrayList<Racer>();
-		this.raceFinished = false;	
+		this.raceFinished = false;
+		autoNum = 0;
 	}
 	
 	public void setType(String s) {
 		this.type = s;
 	}
 	public void addReady(Racer r) {
+		if(ready.contains(r) || running.contains(r)) return;
+		//requires a racer.equals() method? TODO
 		ready.add(r);
 	}
 
@@ -77,30 +81,25 @@ public class Race {
 	 * Assigns the start time to the racer and adds them to the 
 	 * current racers.
 	 * @param time at which the racer starts
-	 * @param racer
-	 * @return 1 if successful and -1 otherwise
 	 */
-	public int start(Time time, Racer racer) {
-		if (ready.peek().equals(racer))
-			ready.poll();
-		else return -1;
-		running.add(racer);
-		return (racer.start(time) == 1) ? 1 : -1;
+	public void start(Time time) {
+		Racer starting = ready.poll();
+		if (starting == null) 
+			starting = new Racer(autoNum++);
+		starting.start(time);
+		running.add(starting);
 	}
 	
 	/**
 	 * Assigns the racers finishing time and removes them from the
 	 * current racers and adds them to finishers.
 	 * @param time that the racer finishes at
-	 * @param racer
-	 * @return 1 if successful and -1 otherwise
 	 */
-	public int finish(Time time, Racer racer) {
-		if (running.peek().equals(racer)) 
-			running.poll();
-		else return -1;		
-		finished.add(racer);
-		return (racer.finish(time) == 1) ? 1 : -1;
+	public void finish(Time time) {
+		Racer ending = running.poll();
+		if (ending == null) return;
+		ending.finish(time);
+		finished.add(ending);
 	}
 
 }

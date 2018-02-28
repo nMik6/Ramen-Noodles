@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Simulator {
@@ -43,7 +45,6 @@ public class Simulator {
 	}
 	
 	private void readFromConsole() {
-		String input;
 		String[] cmds;
 		
 		do {
@@ -51,7 +52,7 @@ public class Simulator {
 			command = stdin.nextLine();
 			cmds = command.split(" ");
 			parse(cmds);
-		}while(!(command.equals("exit")||(command.equals("reset"))));
+		}while(!(command.equals("exit")));
 	}
 	
 	private void readFromFile() {
@@ -77,7 +78,26 @@ public class Simulator {
 	
 	private int parse(String[] commandLine) {
 		int length = commandLine.length;
+		LocalTime passedTime;
 		
+		//Checks if first arg is a time. If it is, it is removed from the command line array and the commandLine array is shortened
+		if (commandLine[0] != null) {
+			final DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
+			
+			try { passedTime = LocalTime.parse(commandLine[0], format); }
+			catch (Exception e) { passedTime = null; }
+							
+			if(passedTime != null && length > 1) {
+				String[] cmdLineNew = new String[length-1];
+				
+				for(int i = 1; i< length; ++i) 
+					cmdLineNew[i-1] = commandLine[i];
+				
+				commandLine = cmdLineNew;
+				length--;
+			}
+		}
+				
 		if(length == 1) {
 			switch(commandLine[0]) {
 				case "power":
@@ -210,6 +230,7 @@ public class Simulator {
 		cur_race.setType(type);
 	}
 	
+	//TODO not sure what is happening here with dnf and finish...Is that if a race is occuring already?
 	private void newrun() {
 		if(!power)
 			return;
@@ -221,12 +242,13 @@ public class Simulator {
 		cur_race = new Race();
 	}
 	
+	//TODO may be cleaner to have this call a separate method in race that can dequeue everyone and give dnfs
 	private void endrun() {
 		if(!power)
 			return;
 		for(Racer r: cur_race.getCurrentRacers()) {
 			r.dnf();
-			cur_race.finish(null, r);
+			cur_race.finish(null);
 		}
 		finishedRaces.add(cur_race);
 	}

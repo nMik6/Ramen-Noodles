@@ -49,6 +49,10 @@ public class Time {
 		return new Time(LocalTime.parse(hour + ":" + minute + ":" + second + "." + milli, format));
 	}
 	
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+	
 	public LocalTime getTime() {
 		return time;
 	}

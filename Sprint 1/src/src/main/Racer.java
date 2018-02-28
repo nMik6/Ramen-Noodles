@@ -71,5 +71,14 @@ public class Racer {
 		total = total.difference(start,  finish);
 		return this.total;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Racer) {
+			Racer r = (Racer) o;
+			return this.bib == r.bib;
+		}
+		return false;
+	}
 
 }
