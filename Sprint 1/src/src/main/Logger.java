@@ -17,15 +17,18 @@ public class Logger {
 	
 	
 	private Gson gson;
+	private String racerFile;
+	private String debugFile;
 	
 	
-	public Logger(String debugFileName, String raceJsonFileName)
-	{
+	public Logger(String debugFile, String racerFile) {
+		this.racerFile = racerFile;
+		this.debugFile = debugFile;
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
 	public void print(ArrayList<Racer> racers) {
-		try(Writer writer = new FileWriter("test.txt")) {
+		try(Writer writer = new FileWriter(racerFile)) {
 			Type type = new TypeToken<List<Racer>>() {}.getType();
 			
 			gson.toJson(racers, writer);
