@@ -20,13 +20,14 @@ public class Simulator {
 	Race cur_race;
 	Channel[] channels;
 	List<Race> finishedRaces;
-	Time time;
+	Time setAt;
+	Time sysTime;
 	Logger log;
 	private Scanner stdin = new Scanner(System.in);
 	
 	public void start() {
 			power = false;
-			time = new Time();
+			sysTime = new Time();
 			cur_race = new Race();
 			finishedRaces = new ArrayList<>();
 			command = null;
@@ -192,7 +193,17 @@ public class Simulator {
 	
 	/** Set current system time (I guess you can do that according to the tested input?)*/
 	private void time(String t) {
+		LocalTime passedTime;
+		final DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
 		
+		try { passedTime = LocalTime.parse(t, format); }
+		catch (Exception e) { passedTime = null; }
+						
+		if(passedTime != null) {
+			sysTime = new Time(passedTime);
+			setAt = new Time();
+		}
+			
 	}
 	
 	/*
