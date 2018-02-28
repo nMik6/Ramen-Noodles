@@ -1,6 +1,7 @@
 package src.main;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.stream.Stream;
@@ -14,7 +15,7 @@ import java.nio.file.Paths;
 public class Simulator {
 	String command;
 	Boolean power;
-	Queue<Race> races;
+	Race cur_race;
 	Channel[] channels;
 	List<Race> finishedRaces;
 	Time time;
@@ -23,7 +24,8 @@ public class Simulator {
 	
 	public void start() {
 			power = false;
-			races = null;
+			time = new Time();
+			cur_race = new Race();
 			finishedRaces = new ArrayList<>();
 			command = null;
 			channels = new Channel[8];	//eight available channels
@@ -76,32 +78,59 @@ public class Simulator {
 	private int parse(String[] commandLine) {
 		int length = commandLine.length;
 		
-		switch(commandLine[0]) {
-			case "exit":
-				exit();
-				
-			case "reset":
-				reset();
-			
-			case "time":
-				//verifyLength(length, 2);	
-				time = new Time(commandLine[2]);
-				break;
-			
-			case "power":
-				return power();
-			
-			case "conn":
-				//verifyLength(length, 3);
-			
-			case "tog":
-				//verifyLength(length, 2);	
-				tog(commandLine[1]);
-			
-			case "trig":
-				//verifyLength(length, 2);	
-				trig(commandLine[1]);
-			
+		if(length == 1) {
+			switch(commandLine[0]) {
+				case "power":
+					power();
+					break;
+				case "exit":
+					exit();
+					break;
+				case "reset":
+					reset();
+					break;
+				case "print":
+					print();
+					break;
+				case "newrun":
+					newrun();
+					break;
+				case "endrun":
+					endrun();
+					break;
+				default:
+					error();
+			}
+		}
+		
+		else if(length == 2) {
+			switch(commandLine[0]) {
+				case "event":
+					event(commandLine[1]);
+					break;
+				case "num":
+					num(commandLine[1]);
+					break;
+				case "trig":
+					trig(commandLine[1]);
+					break;
+				case "time":
+					time(commandLine[1]);
+					break;
+				default:	
+					error();
+			}
+		}
+		
+		else if(length == 3) {
+			if(commandLine[0].equals("conn"))
+				conn(commandLine[1], commandLine[2]);
+			else
+				error();
+		} 
+		
+		else { 	//Error
+			error();
 		}
 
 		return 0;
@@ -110,7 +139,7 @@ public class Simulator {
 	/** Turn the power on and off (but stay in the simulator)*/
 	private int power() {
 		power = !power;
-		if(races.isEmpty())
+		if(cur_race.getCurrentRacers().isEmpty())
 			return 0;
 		return -1;
 	}
@@ -126,11 +155,19 @@ public class Simulator {
 		start();
 	}
 	
+	private void print() {
+		if(!power)
+			return;
+		for(Racer r: cur_race.getFinishedRacers()) {
+			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
+					r.getName(), r.getStart(), r.getFinish(), r.getTotal());
+		}
+	}
 	/** Set channel's sensor type. */
-	private void conn(String sensor, int channel) {
+	private void conn(String sensor, String channel) {
 		if(!power) 
 			return;
-		channels[channel].conn(sensor);
+		channels[Integer.parseInt(channel)].conn(sensor);
 	}
 	
 	/** Set current system time (I guess you can do that according to the tested input?)*/

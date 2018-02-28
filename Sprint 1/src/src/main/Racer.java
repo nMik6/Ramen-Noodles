@@ -48,6 +48,18 @@ public class Racer {
 		return dnf;
 	}
 	
+	public Time getStart() {
+		return this.start;
+	}
+	
+	public Time getFinish() {
+		return this.finish;
+	}
+	
+	public int getName() {
+		return this.bib;
+	}
+	
 	public Time getTotal() {
 	//getTotal calculates the difference between start and finish, then returns it as a time.
 		if (this.start == null || didNotFinish()) {

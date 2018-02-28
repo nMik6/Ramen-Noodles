@@ -13,31 +13,38 @@ public class Race {
 	
 
 	private String lastCommand;
-	private Queue<Racer> readyRacers;
-	private Queue<Racer> curRacers;
-	private List<Racer> finishRacers;
+	private Queue<Racer> ready;
+	private Queue<Racer> running;
+	private List<Racer> finished;
 	//private Channel[] channels;
 	private boolean raceFinished;
 	
+	
+	
 	public Race(Queue<Racer> readyRacers) {
-		this.readyRacers = readyRacers;
+		this.ready = readyRacers;
 		//this.channels = new boolean[2];			?? There's more than 2 channels
 		//this.channels[0] = this.channels[1] = false;
-		this.curRacers = new ArrayDeque<Racer>();
-		this.finishRacers = new ArrayList<Racer>();
+		this.running = new ArrayDeque<Racer>();
+		this.finished = new ArrayList<Racer>();
 		this.raceFinished = false;	
 	}
+	
+	public void addReady(Racer r) {
+		ready.add(r);
+	}
+
 
 	public Queue<Racer> getReadyRacers() {
-		return readyRacers;
+		return ready;
 	}
 	
 	public Queue<Racer> getCurrentRacers() {
-		return curRacers;
+		return running;
 	}
 	
 	public List<Racer> getFinishedRacers() {
-		return finishRacers;
+		return finished;
 	}
 	
 	
@@ -71,10 +78,10 @@ public class Race {
 	 * @return 1 if successful and -1 otherwise
 	 */
 	public int start(Time time, Racer racer) {
-		if (readyRacers.peek().equals(racer))
-			readyRacers.poll();
+		if (ready.peek().equals(racer))
+			ready.poll();
 		else return -1;
-		curRacers.add(racer);
+		running.add(racer);
 		return (racer.start(time) == 1) ? 1 : -1;
 	}
 	
@@ -86,10 +93,10 @@ public class Race {
 	 * @return 1 if successful and -1 otherwise
 	 */
 	public int finish(Time time, Racer racer) {
-		if (curRacers.peek().equals(racer)) 
-			curRacers.poll();
+		if (running.peek().equals(racer)) 
+			running.poll();
 		else return -1;		
-		finishRacers.add(racer);
+		finished.add(racer);
 		return (racer.finish(time) == 1) ? 1 : -1;
 	}
 

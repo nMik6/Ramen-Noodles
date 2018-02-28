@@ -1,0 +1,45 @@
+PRINT> 
+	from finished ArrayList
+
+ENDRUN>	
+	Move race to ArrayList of finished races
+	First moves all racers not in 'finished' to 'finished' w/DNF
+
+NEWRUN>	
+	For all racers still in racing queue set finish to DNF & add to 'finished' queue
+	Add race to finished races queue
+	Create new Race object
+
+TOG <int>
+	Set channel state to 'true'
+
+EVENT IND> 
+	Sets Race type (field of race "type")
+
+NUM <int>
+	Enqueue, check if enqueud in 'ready' or 'running'
+		if so, leave __<something>__ & ignore new command
+
+TRIG <int>
+	check if channel state is 'true'
+		if(channel 1)
+			check for racer in start of 'ready' queue
+			if 'ready' is not empty 
+				poll() 'ready' queue & assign start time to racer
+			else 
+				create new anonymous racer & assign start time
+			Add racer to 'running' queue
+		else if(channel 2)
+			check if running queue not empty
+				if so, give finish time to poll() running queue	
+				else, ignore trigger signal
+
+POWER> 
+	Set simulator power boolean to 'false'
+	Clean up all data
+
+EXIT>
+	Ends Simulation, exit jvm
+
+NOTE: Simulator can get the passed system time but needs to know when that time was passed to it!
+
