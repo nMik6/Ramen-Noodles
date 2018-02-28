@@ -3,10 +3,10 @@
     "bib": 234,
     "start": {
       "time": {
-        "hour": 20,
-        "minute": 55,
-        "second": 48,
-        "nano": 510000000
+        "hour": 16,
+        "minute": 6,
+        "second": 1,
+        "nano": 559000000
       }
     },
     "dnf": false

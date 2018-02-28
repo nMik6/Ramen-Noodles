@@ -37,6 +37,10 @@ public class Racer {
 	}
 	
 	//Stephen - added setter for dnf
+	/**
+	 * Sets the racer as having not finished the race.
+	 * @return 1
+	 */
 	public int dnf() {
 		
 		dnf = true;
@@ -44,6 +48,10 @@ public class Racer {
 		
 	}
 	
+	/**
+	 * Returns whether the racer has finished or not.
+	 * @return true if racer did not finish, else false
+	 */
 	public boolean didNotFinish() {
 		return dnf;
 	}
