@@ -44,18 +44,24 @@ public class Logger {
 	}
 	
 	public static void main(String[] args) {
-		List<Racer> list = new ArrayList<>();
+		ArrayList<Racer> list = new ArrayList<>();
 		Racer r = new Racer(234);
 		Racer r1 = new Racer(133);
 		Racer r2 = new Racer(174);
 		r.start(new Time(LocalTime.now()));
+		r.finish(new Time(LocalTime.now()));
+		r.getTotal();
 		
 		list.add(r);
 		list.add(r1);
 		list.add(r2);
 		
+
 		try (Writer writer = new FileWriter("test.txt")) {
 			Type type = new TypeToken<List<Racer>>() {}.getType();
+
+		try (Writer writer = new FileWriter("test.json")) {
+
 			gson.toJson(list, writer);
 			String json = gson.toJson(list, type);
 			System.out.println(json);
