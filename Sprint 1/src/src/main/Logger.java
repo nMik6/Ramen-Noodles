@@ -3,6 +3,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.io.Writer;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -53,8 +55,12 @@ public class Logger {
 		list.add(r2);
 		
 		try (Writer writer = new FileWriter("test.txt")) {
+			Type type = new TypeToken<List<Racer>>() {}.getType();
 			gson.toJson(list, writer);
-		} catch (IOException e) { }
+			String json = gson.toJson(list, type);
+			System.out.println(json);
+			
+		} catch (IOException e) {e.printStackTrace(); }
 	}
 	
 
