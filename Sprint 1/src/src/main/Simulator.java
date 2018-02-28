@@ -21,6 +21,8 @@ public class Simulator {
 	Channel[] channels;
 	List<Race> finishedRaces;
 	Time setAt;
+	int bib_count;
+	List<Integer> used_bibs;
 	Time sysTime;
 	Logger log;
 	private Scanner stdin = new Scanner(System.in);
@@ -31,6 +33,8 @@ public class Simulator {
 			cur_race = new Race();
 			finishedRaces = new ArrayList<>();
 			command = null;
+			bib_count = 100;
+			used_bibs = new ArrayList<>();
 			channels = new Channel[8];	//eight available channels
 			
 			do {
@@ -211,8 +215,9 @@ public class Simulator {
 	 * @return 0 if channel is allowed to be triggered, -1 if not
 	 */
 	private int trig(String channel) {
-		if(power) { 		
-			Channel temp = channels[Integer.parseInt(channel)];
+		if(power) { 	
+			int channelInt = Integer.parseInt(channel);
+			Channel temp = channels[channelInt];
 			
 			if(temp.getState()) {
 				/*
@@ -221,7 +226,33 @@ public class Simulator {
 				 * add race  to queue<race>
 				 * ...
 				 */
-				return 0;
+				
+				if(channelInt % 2 != 0) { //odd channel are start channels
+					
+					if(cur_race.getReadyRacers().isEmpty()) {
+						//generate bib number between [100, 999] not already in use
+						boolean in_use = true;
+						
+						do {
+							bib_count = ++bib_count;
+							if(!used_bibs.contains(bib_count))
+								in_use = false;
+						}while(in_use);
+						
+						Racer r = new Racer(bib_count);
+						cur_race.addReady(r);
+					}
+					
+					cur_race.start();	//what time do I use? passed in val or currentsys?
+					return 0;
+				} else { //even channels are finish channels
+					if(!cur_race.getCurrentRacers().isEmpty()) {
+						cur_race.finish();	//same as start above what time do I give for finish?
+					}
+					return 0;
+				}
+				
+
 			}
 		}
 		return -1;
