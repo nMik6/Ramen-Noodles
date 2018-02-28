@@ -38,15 +38,20 @@ public class Time {
 		return new Time(this.time.plusHours(amount));
 	}
 	
-	public Time difference(Time one, Time two) {
-		String hour = Long.toString(ChronoUnit.HOURS.between(one.getTime(), two.getTime()));
-		String minute = Long.toString(ChronoUnit.MINUTES.between(one.getTime(), two.getTime()));
-		String second = Long.toString(ChronoUnit.SECONDS.between(one.getTime(), two.getTime()));
-		String milli = Long.toString(ChronoUnit.MILLIS.between(one.getTime(), two.getTime()));
-		if (hour.length() < 2) hour = "0" + hour;
-		if (minute.length() < 2) minute = "0" + minute;
-		milli = milli.substring(0, 1);
-		return new Time(LocalTime.parse(hour + ":" + minute + ":" + second + "." + milli, format));
+	public static void main(String[] args) {
+		Time t1 = new Time(LocalTime.now());
+		Time t2 = new Time("12:03:24.1");
+		System.out.println(t1.difference(t2).getTime());
+	}
+	
+	public Time difference(Time in) {
+		LocalTime ret;
+		ret = this.getTime().minusHours(in.getTime().getHour())
+				.minusMinutes(in.getTime().getMinute())
+				.minusSeconds(in.getTime().getSecond())
+				.minusNanos(in.getTime().getNano());
+		
+		return new Time(ret);	
 	}
 	
 	public void setTime(LocalTime time) {
