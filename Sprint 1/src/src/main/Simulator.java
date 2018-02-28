@@ -20,21 +20,21 @@ public class Simulator {
 	Race cur_race;
 	Channel[] channels;
 	List<Race> finishedRaces;
-	Time setAt;
-	int bib_count;
-	List<Integer> used_bibs;
-	Time sysTime;
+	//int bib_count;
+	//List<Integer> used_bibs;
+	Time timeOffset;
+	boolean offsetPos;
 	Logger log;
 	private Scanner stdin = new Scanner(System.in);
 	
 	public void start() {
 			power = false;
-			sysTime = new Time();
+			timeOffset = new Time();
 			cur_race = new Race();
 			finishedRaces = new ArrayList<>();
 			command = null;
-			bib_count = 100;
-			used_bibs = new ArrayList<>();
+			//bib_count = 100;
+			//used_bibs = new ArrayList<>();
 			channels = new Channel[8];	//eight available channels
 			
 			do {
@@ -83,17 +83,19 @@ public class Simulator {
 	
 	private int parse(String[] commandLine) {
 		int length = commandLine.length;
-		LocalTime passedTime;
+		Time passedTime;
+		LocalTime toCheck;
 		
 		//Checks if first arg is a time. If it is, it is removed from the command line array and the commandLine array is shortened
 		if (commandLine[0] != null) {
 			final DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
 			
-			try { passedTime = LocalTime.parse(commandLine[0], format); }
-			catch (Exception e) { passedTime = null; }
+			try { toCheck = LocalTime.parse(commandLine[0], format); }
+			catch (Exception e) { toCheck = null; }
 							
-			if(passedTime != null && length > 1) {
+			if(toCheck != null && length > 1) {
 				String[] cmdLineNew = new String[length-1];
+				passedTime = new Time(toCheck);
 				
 				for(int i = 1; i< length; ++i) 
 					cmdLineNew[i-1] = commandLine[i];
@@ -137,7 +139,8 @@ public class Simulator {
 					num(commandLine[1]);
 					break;
 				case "trig":
-					trig(commandLine[1]);
+					if(passedTime != null) trig(commandLine[1], passedTime);
+					else trig(commandLine[1], );
 					break;
 				case "time":
 					time(commandLine[1]);
@@ -162,11 +165,11 @@ public class Simulator {
 	}
 	
 	/** Turn the power on and off (but stay in the simulator)*/
-	private int power() {
+	private void power() {
 		power = !power;
-		if(cur_race.getCurrentRacers().isEmpty())
-			return 0;
-		return -1;
+		cur_race = null;
+		timeOffset = null;
+		finishedRaces = null;
 	}
 	
 	/** exit the simulator, no more commands processed */
@@ -195,68 +198,37 @@ public class Simulator {
 		channels[Integer.parseInt(channel)].conn(sensor);
 	}
 	
-	/** Set current system time (I guess you can do that according to the tested input?)*/
+	/** Set timeOffset*/
 	private void time(String t) {
-		LocalTime passedTime;
-		final DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
-		
-		try { passedTime = LocalTime.parse(t, format); }
-		catch (Exception e) { passedTime = null; }
-						
-		if(passedTime != null) {
-			sysTime = new Time(passedTime);
-			setAt = new Time();
-		}
+//		LocalTime passedTime;
+//		final DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
+//		
+//		try { passedTime = LocalTime.parse(t, format); }
+//		catch (Exception e) { passedTime = null; }
+//						
+//		if(passedTime != null) {
+//			sysTime = new Time(passedTime);
+//			setAt = new Time();
+//		}
 			
 	}
 	
 	/*
 	 * Verify that channel state is "true" then trigger. 
-	 * @return 0 if channel is allowed to be triggered, -1 if not
+	 * @return nothing
 	 */
-	private int trig(String channel) {
-		if(power) { 	
-			int channelInt = Integer.parseInt(channel);
-			Channel temp = channels[channelInt];
-			
-			if(temp.getState()) {
-				/*
-				 * If the channel triggered state is true
-				 * create racer in new race
-				 * add race  to queue<race>
-				 * ...
-				 */
-				
-				if(channelInt % 2 != 0) { //odd channel are start channels
-					
-					if(cur_race.getReadyRacers().isEmpty()) {
-						//generate bib number between [100, 999] not already in use
-						boolean in_use = true;
-						
-						do {
-							bib_count = ++bib_count;
-							if(!used_bibs.contains(bib_count))
-								in_use = false;
-						}while(in_use);
-						
-						Racer r = new Racer(bib_count);
-						cur_race.addReady(r);
-					}
-					
-					cur_race.start();	//what time do I use? passed in val or currentsys?
-					return 0;
-				} else { //even channels are finish channels
-					if(!cur_race.getCurrentRacers().isEmpty()) {
-						cur_race.finish();	//same as start above what time do I give for finish?
-					}
-					return 0;
-				}
-				
+	private void trig(String channel, Time t) {
+		if(!power) return; 	
+		int channelInt = Integer.parseInt(channel);
+		Channel temp = channels[channelInt];
 
-			}
+		if(temp.getState()) {
+			if(cur_race == null) cur_race = new Race();
+			if(channelInt % 2 != 0) cur_race.start(t);
+			else cur_race.finish(t);
 		}
-		return -1;
 	}
+
 	
 	/** Toggle the state of the channel at string converted to integer index of channels[]*/
 	private void tog(String channel) {
