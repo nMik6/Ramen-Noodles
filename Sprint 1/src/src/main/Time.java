@@ -25,6 +25,29 @@ public class Time {
 		return time.toString();
 	}
 	
+	public Time addSeconds(int amount) {
+		return new Time(this.time.plusSeconds(amount));
+	}
+	
+	public Time addMinutes(int amount) {
+		return new Time(this.time.plusMinutes(amount));
+	}
+	
+	public Time addHours(int amount) {
+		return new Time(this.time.plusHours(amount));
+	}
+	
+	public static void main(String[] args) {
+		Time time = new Time(LocalTime.now());
+		System.out.println(time.getTime());
+		time = time.addSeconds(15);
+		System.out.println(time.getTime());
+		time = time.addMinutes(63);
+		System.out.println(time.getTime());
+		time = time.addHours(5);
+		System.out.println(time.getTime());
+	}
+	
 	public Time difference(Time one, Time two) {
 		long hour = ChronoUnit.HOURS.between(one.getTime(), two.getTime());
 		long minute = ChronoUnit.MINUTES.between(one.getTime(), two.getTime());
