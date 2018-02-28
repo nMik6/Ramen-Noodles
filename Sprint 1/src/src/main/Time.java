@@ -38,11 +38,11 @@ public class Time {
 		return new Time(this.time.plusHours(amount));
 	}
 	
-	public Time difference(Time one, Time two) {
-		String hour = Long.toString(ChronoUnit.HOURS.between(one.getTime(), two.getTime()));
-		String minute = Long.toString(ChronoUnit.MINUTES.between(one.getTime(), two.getTime()));
-		String second = Long.toString(ChronoUnit.SECONDS.between(one.getTime(), two.getTime()));
-		String milli = Long.toString(ChronoUnit.MILLIS.between(one.getTime(), two.getTime()));
+	public Time difference(Time two) {
+		String hour = Long.toString(ChronoUnit.HOURS.between(this.getTime(), two.getTime()));
+		String minute = Long.toString(ChronoUnit.MINUTES.between(this.getTime(), two.getTime()));
+		String second = Long.toString(ChronoUnit.SECONDS.between(this.getTime(), two.getTime()));
+		String milli = Long.toString(ChronoUnit.MILLIS.between(this.getTime(), two.getTime()));
 		if (hour.length() < 2) hour = "0" + hour;
 		if (minute.length() < 2) minute = "0" + minute;
 		milli = milli.substring(0, 1);
