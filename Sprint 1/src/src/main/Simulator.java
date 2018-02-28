@@ -19,7 +19,7 @@ public class Simulator {
 	Channel[] channels;
 	List<Race> finishedRaces;
 	Time time;
-	
+	Logger log;
 	private Scanner stdin = new Scanner(System.in);
 	
 	public void start() {
@@ -204,4 +204,37 @@ public class Simulator {
 		channels[intchan].toggle();
 	}
 	
+	private void event(String type) {
+		if(!power)
+			return;
+		cur_race.setType(type);
+	}
+	
+	private void newrun() {
+		if(!power)
+			return;
+		for(Racer r: cur_race.getCurrentRacers()) {
+			r.dnf();
+			cur_race.finish(null, r);
+		}
+		finishedRaces.add(cur_race);
+		cur_race = new Race();
+	}
+	
+	private void endrun() {
+		if(!power)
+			return;
+		for(Racer r: cur_race.getCurrentRacers()) {
+			r.dnf();
+			cur_race.finish(null, r);
+		}
+		finishedRaces.add(cur_race);
+	}
+	
+	private void error() {
+		if(!power)
+			return;
+		System.out.println("Invalid command");	//Logger should be able to handle string input
+		
+	}
 }

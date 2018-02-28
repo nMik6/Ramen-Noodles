@@ -18,7 +18,7 @@ public class Race {
 	private List<Racer> finished;
 	//private Channel[] channels;
 	private boolean raceFinished;
-	
+	private String type;
 	
 	
 	public Race(Queue<Racer> readyRacers) {
@@ -30,6 +30,9 @@ public class Race {
 		this.raceFinished = false;	
 	}
 	
+	public void setType(String s) {
+		this.type = s;
+	}
 	public void addReady(Racer r) {
 		ready.add(r);
 	}
