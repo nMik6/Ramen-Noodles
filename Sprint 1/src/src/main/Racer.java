@@ -56,14 +56,26 @@ public class Racer {
 		return dnf;
 	}
 	
+	/**
+	 * Retruns when the racer started their race.
+	 * @return the time at which the racer started the race, null if the racer has not yet started their race.
+	 */
 	public Time getStart() {
 		return this.start;
 	}
-	
+
+	/**
+	 * Retruns when the racer finished their race.
+	 * @return the time at which the racer finished the race, null if the racer has not yet finished their race.
+	 */
 	public Time getFinish() {
 		return this.finish;
 	}
 	
+	/**
+	 * Returns the bib number used to identify the racer.
+	 * @return bib number
+	 */
 	public int getName() {
 		return this.bib;
 	}
