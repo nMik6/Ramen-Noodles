@@ -14,35 +14,25 @@ import java.util.List;
 
 
 public class Logger {	
-	//BufferedWriter's take a writer of some sort as a parameter, so I chose the FileWriter. We can change that if people would like.
-	//Still need to implement how exactly the gson will be written, but I'm not sure if this is done in this class or the race class -- Skyler
 	
 	
-	private BufferedWriter raceBuffWriter;
-	private BufferedWriter debugBuffWriter;
-	private Writer raceFileWriter;
-	private Writer debugFileWriter;
-	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	private Gson gson;
 	
 	
 	public Logger(String debugFileName, String raceJsonFileName)
 	{
-		try {	//Not sure if this is necessary or the best way to do this but It's probably necessary.
-			debugFileWriter = new FileWriter(debugFileName);
-			raceFileWriter = new FileWriter(raceJsonFileName);
-			
-			debugBuffWriter = new BufferedWriter(debugFileWriter);
-			raceBuffWriter = new BufferedWriter(raceBuffWriter);
-			
-		} catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-		
-		
-			
+		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
+	public void print(ArrayList<Racer> racers) {
+		try(Writer writer = new FileWriter("test.txt")) {
+			Type type = new TypeToken<List<Racer>>() {}.getType();
+			
+			gson.toJson(racers, writer);
+			
+		} catch(IOException e) {e.printStackTrace();}
+	}
+	/*
 	public static void main(String[] args) {
 		ArrayList<Racer> list = new ArrayList<>();
 		Racer r = new Racer(234);
@@ -67,7 +57,8 @@ public class Logger {
 			System.out.println(json);
 			
 		} catch (IOException e) {e.printStackTrace(); }
-	}
+	} 
+	*/
 	
 
 }
