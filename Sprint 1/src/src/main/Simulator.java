@@ -214,18 +214,12 @@ public class Simulator {
 	 * Verify that channel state is "true" then trigger. 
 	 * @return 0 if channel is allowed to be triggered, -1 if not
 	 */
-	private int trig(String channel) {
+	private int trig(String channel, Time t) {
 		if(power) { 	
 			int channelInt = Integer.parseInt(channel);
 			Channel temp = channels[channelInt];
 			
 			if(temp.getState()) {
-				/*
-				 * If the channel triggered state is true
-				 * create racer in new race
-				 * add race  to queue<race>
-				 * ...
-				 */
 				
 				if(channelInt % 2 != 0) { //odd channel are start channels
 					
@@ -278,7 +272,7 @@ public class Simulator {
 			return;
 		for(Racer r: cur_race.getCurrentRacers()) {
 			r.dnf();
-			cur_race.finish(null, r);
+			cur_race.finish(null);
 		}
 		finishedRaces.add(cur_race);
 		cur_race = new Race();
@@ -288,11 +282,14 @@ public class Simulator {
 	private void endrun() {
 		if(!power)
 			return;
+		
 		for(Racer r: cur_race.getCurrentRacers()) {
 			r.dnf();
 			cur_race.finish(null);
 		}
+		
 		finishedRaces.add(cur_race);
+		cur_race = null;
 	}
 	
 	private void error() {
@@ -300,5 +297,11 @@ public class Simulator {
 			return;
 		System.out.println("Invalid command");	//Logger should be able to handle string input
 		
+	}
+	
+	private void num(int bib) {
+		if(!power || cur_race == null)
+			return;
+		cur_race.addReady(new Racer(bib));
 	}
 }
