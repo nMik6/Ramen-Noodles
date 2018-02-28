@@ -9,7 +9,6 @@ public class Time {
 	private LocalTime time;
 	private transient static DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
 
-	
 	public Time() {
 		time = LocalTime.now();
 	}
@@ -17,7 +16,7 @@ public class Time {
 	public Time(LocalTime time) {
 		this.time = time;
 	}
-	
+
 	public Time(String time) {
 		this.time = LocalTime.parse(time, format);
 	}
@@ -45,6 +44,7 @@ public class Time {
 		String milli = Long.toString(ChronoUnit.MILLIS.between(one.getTime(), two.getTime()));
 		if (hour.length() < 2) hour = "0" + hour;
 		if (minute.length() < 2) minute = "0" + minute;
+		if (second.length() < 2) second = "0" + second;
 		milli = milli.substring(0, 1);
 		return new Time(LocalTime.parse(hour + ":" + minute + ":" + second + "." + milli, format));
 	}
