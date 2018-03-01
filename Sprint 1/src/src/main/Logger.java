@@ -12,7 +12,11 @@ import java.util.List;
 
 
 
-
+/**
+ * 
+ * @author swkeough<br>
+ * Takes a list of racers and writes their data members to a file for logging purposes. 
+ */
 public class Logger {	
 	
 	
@@ -27,6 +31,11 @@ public class Logger {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
+	/**
+	 * Prints the race data of each of the racers in the passed-in list.
+	 * @param racers
+	 * 
+	 */
 	public void print(ArrayList<Racer> racers) {
 		try(Writer writer = new FileWriter(racerFile)) {
 			Type type = new TypeToken<List<Racer>>() {}.getType();

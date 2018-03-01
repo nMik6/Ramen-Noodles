@@ -20,19 +20,11 @@ import src.main.Time;
 
 class LoggerTest {
 
-	@Before
-	public void setup() {		
 		
-	}
 		
-	
-	
 	@Test
 	void test() {
-		BufferedWriter raceBuffWriter;
-		BufferedWriter debugBuffWriter;
-		Writer raceFileWriter;
-		Writer debugFileWriter;
+
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		List<Racer> list = new ArrayList<>();
 		Racer r = new Racer(234);

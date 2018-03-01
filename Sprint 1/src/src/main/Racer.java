@@ -90,9 +90,12 @@ public class Racer {
 	public int getName() {
 		return this.bib;
 	}
-	
+	/**
+	 * Calculates and returns the total time it took the racer to finish their race.
+	 * @return a Time object which is the amount of time it took to finish the race.
+	 */
 	public Time getTotal() {
-	//getTotal calculates the difference between start and finish, then returns it as a time.
+	
 		if (this.start == null || this.finish == null || didNotFinish()) {
 			System.out.println("Racer did not start or did not finish! Cannot get total time!");
 			return null;
