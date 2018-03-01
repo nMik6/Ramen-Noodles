@@ -2,42 +2,75 @@ package src.main;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 public class Time {
 	
 	private LocalTime time;
 	private transient static DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
 
-	
+	/**
+	 * Default constructor with time set at the time initialized
+	 */
 	public Time() {
 		time = LocalTime.now();
 	}
 	
+	/**
+	 * Time set with a given LocalTime object
+	 * @param time to set the time at
+	 */
 	public Time(LocalTime time) {
 		this.time = time;
 	}
 	
+	/**
+	 * Time set with a given string
+	 * @param time to set the time at
+	 */
 	public Time(String time) {
 		this.time = LocalTime.parse(time, format);
 	}
 	
+	/**
+	 * Prints the time
+	 * @return the time
+	 */
 	public String printTime() {
 		return time.toString();
 	}
 	
+	/**
+	 * Adds an amount of seconds to the time
+	 * @param amount to add
+	 * @return the new time
+	 */
 	public Time addSeconds(int amount) {
 		return new Time(this.time.plusSeconds(amount));
 	}
 	
+	/**
+	 * Adds an amount of minutes to the time
+	 * @param amount to add
+	 * @return the new time
+	 */
 	public Time addMinutes(int amount) {
 		return new Time(this.time.plusMinutes(amount));
 	}
 	
+	/**
+	 * Adds an amount of hours to the time
+	 * @param amount to add
+	 * @return the new time
+	 */
 	public Time addHours(int amount) {
 		return new Time(this.time.plusHours(amount));
 	}
 	
+	/**
+	 * Adds time to an exsisting time
+	 * @param t time to add
+	 * @return the new time
+	 */
 	public Time add(Time t) {
 		LocalTime ret;
 		LocalTime toAdd = t.getTime();
@@ -55,6 +88,11 @@ public class Time {
 		System.out.println(t1.difference(t2).getTime());
 	}
 	
+	/**
+	 * Gets the difference between two different times
+	 * @param in the time to get the difference with
+	 * @return the difference in time
+	 */
 	public Time difference(Time in) {
 		LocalTime ret;
 		LocalTime late = time;
@@ -73,15 +111,28 @@ public class Time {
 		return new Time(ret);	
 	}
 	
+	/**
+	 * Checks if a time is before another time
+	 * @param in time to check with current
+	 * @return true if the current time is before
+	 */
 	public boolean isBefore(Time in) {
 		if(this.getTime().isBefore(in.getTime())) return true;
 		return false;
 	}
 	
+	/**
+	 * Sets the time to a new LocalTime object
+	 * @param time to set to the time
+	 */
 	public void setTime(LocalTime time) {
 		this.time = time;
 	}
 	
+	/**
+	 * Gets the time in a LocalTime object
+	 * @return the time
+	 */
 	public LocalTime getTime() {
 		return time;
 	}
