@@ -217,45 +217,10 @@ public class Simulator {
 	 * Verify that channel state is "true" then trigger. 
 	 * @return nothing
 	 */
-<<<<<<< HEAD
 	private void trig(String channel, Time t) {
 		if(!power) return; 	
 		int channelInt = Integer.parseInt(channel);
 		Channel temp = channels[channelInt];
-=======
-	private int trig(String channel, Time t) {
-		if(power) { 	
-			int channelInt = Integer.parseInt(channel);
-			Channel temp = channels[channelInt];
-			
-			if(temp.getState()) {
-				
-				if(channelInt % 2 != 0) { //odd channel are start channels
-					
-					if(cur_race.getReadyRacers().isEmpty()) {
-						//generate bib number between [100, 999] not already in use
-						boolean in_use = true;
-						
-						do {
-							bib_count = ++bib_count;
-							if(!used_bibs.contains(bib_count))
-								in_use = false;
-						}while(in_use);
-						
-						Racer r = new Racer(bib_count);
-						cur_race.addReady(r);
-					}
-					
-					cur_race.start();	//what time do I use? passed in val or currentsys?
-					return 0;
-				} else { //even channels are finish channels
-					if(!cur_race.getCurrentRacers().isEmpty()) {
-						cur_race.finish();	//same as start above what time do I give for finish?
-					}
-					return 0;
-				}
-				
->>>>>>> branch 'master' of https://github.com/nMik6/Ramen-Noodles.git
 
 		if(temp.getState()) {
 			if(cur_race == null) cur_race = new Race();
@@ -285,7 +250,7 @@ public class Simulator {
 			return;
 		for(Racer r: cur_race.getCurrentRacers()) {
 			r.dnf();
-			cur_race.finish(null);
+			cur_race.finish(null, r);
 		}
 		finishedRaces.add(cur_race);
 		cur_race = new Race();
@@ -295,14 +260,11 @@ public class Simulator {
 	private void endrun() {
 		if(!power)
 			return;
-		
 		for(Racer r: cur_race.getCurrentRacers()) {
 			r.dnf();
 			cur_race.finish(null);
 		}
-		
 		finishedRaces.add(cur_race);
-		cur_race = null;
 	}
 	
 	private void error() {
@@ -310,11 +272,5 @@ public class Simulator {
 			return;
 		System.out.println("Invalid command");	//Logger should be able to handle string input
 		
-	}
-	
-	private void num(int bib) {
-		if(!power || cur_race == null)
-			return;
-		cur_race.addReady(new Racer(bib));
 	}
 }
