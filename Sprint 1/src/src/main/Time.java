@@ -40,33 +40,6 @@ public class Time {
 	}
 	
 	/**
-	 * Adds an amount of seconds to the time
-	 * @param amount to add
-	 * @return the new time
-	 */
-	public Time addSeconds(int amount) {
-		return new Time(this.time.plusSeconds(amount));
-	}
-	
-	/**
-	 * Adds an amount of minutes to the time
-	 * @param amount to add
-	 * @return the new time
-	 */
-	public Time addMinutes(int amount) {
-		return new Time(this.time.plusMinutes(amount));
-	}
-	
-	/**
-	 * Adds an amount of hours to the time
-	 * @param amount to add
-	 * @return the new time
-	 */
-	public Time addHours(int amount) {
-		return new Time(this.time.plusHours(amount));
-	}
-	
-	/**
 	 * Adds time to an exsisting time
 	 * @param t time to add
 	 * @return the new time
@@ -122,14 +95,6 @@ public class Time {
 	}
 	
 	/**
-	 * Sets the time to a new LocalTime object
-	 * @param time to set to the time
-	 */
-	public void setTime(LocalTime time) {
-		this.time = time;
-	}
-	
-	/**
 	 * Gets the time in a LocalTime object
 	 * @return the time
 	 */
@@ -141,8 +106,10 @@ public class Time {
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Time)) return false;
 		Time other = (Time) obj;
-		return this.getTime().getHour() == other.getTime().getHour() && this.getTime().getMinute() == other.getTime().getMinute()
-				&& this.getTime().getSecond() == other.getTime().getSecond() && this.getTime().getNano() == other.getTime().getNano();
+		return this.getTime().getHour() == other.getTime().getHour() 
+				&& this.getTime().getMinute() == other.getTime().getMinute()
+				&& this.getTime().getSecond() == other.getTime().getSecond() 
+				&& this.getTime().getNano() == other.getTime().getNano();
 	}
 
 }
