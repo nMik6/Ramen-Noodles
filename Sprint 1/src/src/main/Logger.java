@@ -27,7 +27,7 @@ public class Logger {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
-	public void print(ArrayList<Racer> racers) {
+	public void print(List<Racer> racers) {
 		try(Writer writer = new FileWriter(racerFile)) {
 			Type type = new TypeToken<List<Racer>>() {}.getType();
 			
