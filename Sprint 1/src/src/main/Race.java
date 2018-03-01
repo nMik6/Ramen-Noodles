@@ -35,21 +35,37 @@ public class Race {
 	public void setType(String s) {
 		this.type = s;
 	}
-	public void addReady(Racer r) {
-		if(ready.contains(r) || running.contains(r)) return;
+	
+	/**
+	 * Adds Racer r to the queue of ready racers
+	 * @param r
+	 */
+	public boolean addReady(Racer r) {
+		if(ready.contains(r) || running.contains(r)) return false;
 		//requires a racer.equals() method? TODO
-		ready.add(r);
+		return ready.add(r);
 	}
 
-
+	/**
+	 * Returns a queue containing all racers that are ready to begin a race.
+	 * @return queue of ready racers
+	 */
 	public Queue<Racer> getReadyRacers() {
 		return ready;
 	}
 	
+	/**
+	 * Returns a queue containing all racers who are currently running a race.
+	 * @return queue of current racers
+	 */
 	public Queue<Racer> getCurrentRacers() {
 		return running;
 	}
 	
+	/**
+	 * Returns a list of all racers who have finished a race.
+	 * @return list of finished racer
+	 */
 	public List<Racer> getFinishedRacers() {
 		return finished;
 	}
