@@ -56,7 +56,6 @@ public class Time {
 		
 		ret = late.minusHours(early.getHour()).minusMinutes(early.getMinute())
 				.minusSeconds(early.getSecond()).minusNanos(early.getNano());
-		
 		return new Time(ret);	
 	}
 	
