@@ -148,6 +148,7 @@ public class Simulator {
 					break;
 				default:	
 					error();
+					
 			}
 		}
 		

@@ -46,7 +46,6 @@ public class Time {
 				  .plusMinutes(toAdd.getMinute())
 				  .plusSeconds(toAdd.getSecond())
 				  .plusNanos(toAdd.getNano());
-		
 		return new Time(ret);
 	}
 	
