@@ -137,4 +137,12 @@ public class Time {
 		return time;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Time)) return false;
+		Time other = (Time) obj;
+		return this.getTime().getHour() == other.getTime().getHour() && this.getTime().getMinute() == other.getTime().getMinute()
+				&& this.getTime().getSecond() == other.getTime().getSecond() && this.getTime().getNano() == other.getTime().getNano();
+	}
+
 }
