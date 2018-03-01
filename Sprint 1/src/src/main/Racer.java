@@ -14,12 +14,23 @@ public class Racer {
 		dnf = false;
 	}
 	
+	/**
+	 * Sets the start time of the racer to input Time t.
+	 * @param t
+	 * @return 1
+	 */
 	public int start(Time t) {	//Is 1 what we should return if correct?
 	
 		start = t;
 		return 1;
 	}
+
 	
+	/**
+	 * Sets the finish time of the racer to input Time t.
+	 * @param t
+	 * @return 1
+	 */
 	public int finish(Time t) {
 	
 		finish = t;
@@ -27,13 +38,13 @@ public class Racer {
 		
 	}
 	
+	/**
+	 * Returns whether the racer is currently running a race.
+	 * @return true if racer is racinf, else false
+	 */
 	public boolean isRacing() {
 	
-		if (this.start != null && this.finish == null && !dnf) //If the race has started, but hasn't finished and wasn't DQ'd, then they must be racing.
-		{
-			return true;
-		}
-		return false;
+		return this.start != null && this.finish == null && !dnf; //If the race has started, but hasn't finished and wasn't DQ'd, then they must be racing.
 	}
 	
 	//Stephen - added setter for dnf
