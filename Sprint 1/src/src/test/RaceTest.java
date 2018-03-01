@@ -3,6 +3,7 @@ package src.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import src.main.Race;
@@ -16,7 +17,7 @@ class RaceTest {
 	Racer testRacer1,testRacer2,testRacer3,testRacer4;
 	Time testTime;
 	
-	@Before
+	@BeforeEach
 	public void setup() {
 		testRace = new Race();
 		testRacer1 = new Racer(1);
