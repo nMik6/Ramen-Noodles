@@ -29,7 +29,8 @@ public class Simulator {
 	
 	public void start() {
 			power = false;
-			timeOffset = new Time();
+			timeOffset = new Time("00:00:00.0");
+			offsetPos = true;
 			cur_race = new Race();
 			finishedRaces = new ArrayList<>();
 			command = null;
@@ -140,7 +141,7 @@ public class Simulator {
 					break;
 				case "trig":
 					if(passedTime != null) trig(commandLine[1], passedTime);
-					else trig(commandLine[1], );
+					else trig(commandLine[1], new Time().add(timeOffset));
 					break;
 				case "time":
 					time(commandLine[1]);
@@ -200,17 +201,22 @@ public class Simulator {
 	
 	/** Set timeOffset*/
 	private void time(String t) {
-//		LocalTime passedTime;
-//		final DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
-//		
-//		try { passedTime = LocalTime.parse(t, format); }
-//		catch (Exception e) { passedTime = null; }
-//						
-//		if(passedTime != null) {
-//			sysTime = new Time(passedTime);
-//			setAt = new Time();
-//		}
+		Time sysTime = new Time();
+		Time passedTime;
+		LocalTime toCheck;
+		
+		final DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.S");
 			
+		try { toCheck = LocalTime.parse(t, format); }
+		catch (Exception e) { toCheck = null; } 
+		//For now, if an invalid time is passed it defaults to the system time. will change later
+		
+		if(toCheck!= null) {
+			passedTime = new Time(toCheck);
+			//the passed time is after the current system time
+			offsetPos = sysTime.isBefore(passedTime);
+			timeOffset = passedTime.difference(sysTime);
+		}
 	}
 	
 	/*

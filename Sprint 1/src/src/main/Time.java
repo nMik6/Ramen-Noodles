@@ -38,6 +38,18 @@ public class Time {
 		return new Time(this.time.plusHours(amount));
 	}
 	
+	public Time add(Time t) {
+		LocalTime ret;
+		LocalTime toAdd = t.getTime();
+		
+		ret = time.plusHours(toAdd.getHour())
+				  .plusMinutes(toAdd.getMinute())
+				  .plusSeconds(toAdd.getSecond())
+				  .plusNanos(toAdd.getNano());
+		
+		return new Time(ret);
+	}
+	
 	public static void main(String[] args) {
 		Time t1 = new Time(LocalTime.now());
 		Time t2 = new Time("12:03:24.1");
@@ -54,8 +66,10 @@ public class Time {
 			early=time;	
 		}
 		
-		ret = late.minusHours(early.getHour()).minusMinutes(early.getMinute())
-				.minusSeconds(early.getSecond()).minusNanos(early.getNano());
+		ret = late.minusHours(early.getHour())
+				.minusMinutes(early.getMinute())
+				.minusSeconds(early.getSecond())
+				.minusNanos(early.getNano());
 		
 		return new Time(ret);	
 	}
