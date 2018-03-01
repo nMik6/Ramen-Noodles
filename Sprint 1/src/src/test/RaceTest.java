@@ -52,6 +52,7 @@ class RaceTest {
 		assertTrue(testRace.addReady(testRacer4));
 
 		//TODO fix this code
+		testRace.start(testTime);
 		//assertEquals(1,testRace.start(testTime, testRace.readyRacers.poll()));
 		assertEquals(true,testRacer1.isRacing());
 		assertEquals(1,testRacer1.dnf());
