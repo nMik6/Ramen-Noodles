@@ -88,7 +88,7 @@ public class Racer {
 		}
 		total = new Time();
 		
-		total = total.difference(start,  finish);
+		total = start.difference(finish);
 		return this.total;
 	}
 	
