@@ -39,6 +39,7 @@ public class Race {
 	/**
 	 * Adds Racer r to the queue of ready racers
 	 * @param r
+	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
 		if(ready.contains(r) || running.contains(r)) return false;
