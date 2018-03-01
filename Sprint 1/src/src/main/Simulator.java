@@ -66,7 +66,7 @@ public class Simulator {
 			return;
 		}
 		
-		try (Stream<String> stream = Files.lines(Paths.get(command))){
+		try (Stream<String> stream = Files.lines(Paths.get(filename))){
 			fileCommands = stream.toArray(size -> new String[size]);
 		} catch (IOException e) { e.printStackTrace();}
 		
