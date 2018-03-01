@@ -2,23 +2,17 @@ package src.main;
 
 import java.util.ArrayList;
 import java.util.Queue;
-import java.util.ArrayDeque;
-
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 
 public class Race {
 	
-
-	private String lastCommand;
 	private Queue<Racer> ready;
 	private Queue<Racer> running;
 	private List<Racer> finished;
 	//private Channel[] channels;
-	private boolean raceFinished;
-	private String type;
+	private String type;//for use when more than one race type being handled later
 	private int autoNum;
 	
 	
@@ -28,12 +22,11 @@ public class Race {
 		//this.channels[0] = this.channels[1] = false;
 		this.running = new LinkedList<Racer>();
 		this.finished = new ArrayList<Racer>();
-		this.raceFinished = false;
 		autoNum = 0;
 	}
 	
 	public void setType(String s) {
-		this.type = s;
+		type = s;
 	}
 	
 	/**
@@ -43,7 +36,6 @@ public class Race {
 	 */
 	public boolean addReady(Racer r) {
 		if(ready.contains(r) || running.contains(r)) return false;
-		//requires a racer.equals() method? TODO
 		return ready.add(r);
 	}
 
@@ -72,10 +64,6 @@ public class Race {
 	}
 	
 	
-	public int time(Time time, Racer racer) {
-		return -1;
-	}
-	
 	/**
 	 * Assigns the DNF flag to the racer
 	 * @param racer
@@ -85,13 +73,14 @@ public class Race {
 		return racer.dnf() == 1 ? 1 : -1;
 	}
 	
-	public int cancel(Racer racer) {
-		return -1;
-	}
-	
-
-	public int newRun() {
-		return -1;
+	//inefficient. using linked list so we can (possibly) move around pointers at head?
+	public void cancel(Racer racer) {
+		Queue<Racer> newReady = new LinkedList<Racer>();
+		newReady.add(racer);
+		while(!ready.isEmpty()) {
+			newReady.add(ready.poll());
+		}
+		ready = newReady;
 	}
 	
 	/**
@@ -117,6 +106,18 @@ public class Race {
 		if (ending == null) return;
 		ending.finish(time);
 		finished.add(ending);
+	}
+	
+	/**
+	 * removes all running racers, marking them dnf and moving them to the finished list.
+	 * @param time that the racer finishes at
+	 */
+	public void end() {
+		while(!running.isEmpty()) {
+			Racer temp = running.poll();
+			temp.dnf();
+			finished.add(temp);
+		}
 	}
 
 }
