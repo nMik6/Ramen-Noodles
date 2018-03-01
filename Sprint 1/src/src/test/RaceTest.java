@@ -28,7 +28,9 @@ class RaceTest {
 	}
 
 	@Test
-	void testCanceledRacer() {
+	public void testCanceledRacer() {
+		assertFalse(testRace == null);
+		
 		assertTrue(testRace.addReady(testRacer1));
 		assertTrue(testRace.addReady(testRacer2));
 		assertTrue(testRace.addReady(testRacer3));
@@ -41,7 +43,9 @@ class RaceTest {
 	}
 	
 	@Test
-	void testDnfRacer() {
+	public void testDnfRacer() {
+		assertFalse(testRace == null);
+		
 		assertTrue(testRace.addReady(testRacer1));
 		assertTrue(testRace.addReady(testRacer2));
 		assertTrue(testRace.addReady(testRacer3));
@@ -56,7 +60,9 @@ class RaceTest {
 	
 	//Can't start another race if finished (is this the expected behavior?)
 	@Test
-	void testSecondRun() {
+	public void testSecondRun() {
+		assertFalse(testRace == null);
+		
 		assertTrue(testRace.addReady(testRacer1));
 		assertTrue(testRace.addReady(testRacer2));
 		assertTrue(testRace.addReady(testRacer3));
