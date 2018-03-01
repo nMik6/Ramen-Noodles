@@ -40,10 +40,10 @@ public class Race {
 	 * Adds Racer r to the queue of ready racers
 	 * @param r
 	 */
-	public void addReady(Racer r) {
-		if(ready.contains(r) || running.contains(r)) return;
+	public boolean addReady(Racer r) {
+		if(ready.contains(r) || running.contains(r)) return false;
 		//requires a racer.equals() method? TODO
-		ready.add(r);
+		return ready.add(r);
 	}
 
 	/**

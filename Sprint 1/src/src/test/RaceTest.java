@@ -29,10 +29,10 @@ class RaceTest {
 
 	@Test
 	void testCanceledRacer() {
-		assertTrue(testRace.readyRacers.add(testRacer1));
-		assertTrue(testRace.readyRacers.add(testRacer2));
-		assertTrue(testRace.readyRacers.add(testRacer3));
-		assertTrue(testRace.readyRacers.add(testRacer4));
+		assertTrue(testRace.addReady(testRacer1));
+		assertTrue(testRace.addReady(testRacer2));
+		assertTrue(testRace.addReady(testRacer3));
+		assertTrue(testRace.addReady(testRacer4));
 		
 		assertEquals(1,testRace.start(testTime, testRace.readyRacers.poll()));
 		assertEquals(1,testRace.cancel(testRacer1));
@@ -41,10 +41,10 @@ class RaceTest {
 	
 	@Test
 	void testDnfRacer() {
-		assertTrue(testRace.readyRacers.add(testRacer1));
-		assertTrue(testRace.readyRacers.add(testRacer2));
-		assertTrue(testRace.readyRacers.add(testRacer3));
-		assertTrue(testRace.readyRacers.add(testRacer4));
+		assertTrue(testRace.addReady(testRacer1));
+		assertTrue(testRace.addReady(testRacer2));
+		assertTrue(testRace.addReady(testRacer3));
+		assertTrue(testRace.addReady(testRacer4));
 		
 		assertEquals(1,testRace.start(testTime, testRace.readyRacers.poll()));
 		assertEquals(true,testRacer1.isRacing());
@@ -55,10 +55,10 @@ class RaceTest {
 	//Can't start another race if finished (is this the expected behavior?)
 	@Test
 	void testSecondRun() {
-		assertTrue(testRace.readyRacers.add(testRacer1));
-		assertTrue(testRace.readyRacers.add(testRacer2));
-		assertTrue(testRace.readyRacers.add(testRacer3));
-		assertTrue(testRace.readyRacers.add(testRacer4));
+		assertTrue(testRace.addReady(testRacer1));
+		assertTrue(testRace.addReady(testRacer2));
+		assertTrue(testRace.addReady(testRacer3));
+		assertTrue(testRace.addReady(testRacer4));
 		
 		assertEquals(1,testRace.start(testTime, testRace.readyRacers.poll()));
 		assertEquals(1,testRace.finish(testTime, testRace.readyRacers.poll()));
