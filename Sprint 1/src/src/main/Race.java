@@ -35,6 +35,11 @@ public class Race {
 	public void setType(String s) {
 		this.type = s;
 	}
+	
+	/**
+	 * Adds Racer r to the queue of ready racers
+	 * @param r
+	 */
 	public void addReady(Racer r) {
 		if(ready.contains(r) || running.contains(r)) return;
 		//requires a racer.equals() method? TODO
