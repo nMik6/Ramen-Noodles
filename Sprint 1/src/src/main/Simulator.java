@@ -71,7 +71,7 @@ public class Simulator {
 		} catch (IOException e) { e.printStackTrace();}
 		
 		for(int i = 0; i < fileCommands.length; ++i) {
-			String[] command = fileCommands[i].split(" ");
+			String[] command = fileCommands[i].split("\\s+");
 			parse(command);
 		}
 	}
