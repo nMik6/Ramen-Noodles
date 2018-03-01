@@ -46,12 +46,23 @@ public class Time {
 	
 	public Time difference(Time in) {
 		LocalTime ret;
-		ret = this.getTime().minusHours(in.getTime().getHour())
-				.minusMinutes(in.getTime().getMinute())
-				.minusSeconds(in.getTime().getSecond())
-				.minusNanos(in.getTime().getNano());
+		LocalTime late = time;
+		LocalTime early = in.getTime();
+		//handles improper input order.
+		if(late.isBefore(early)) {
+			late = early;
+			early=time;	
+		}
+		
+		ret = late.minusHours(early.getHour()).minusMinutes(early.getMinute())
+				.minusSeconds(early.getSecond()).minusNanos(early.getNano());
 		
 		return new Time(ret);	
+	}
+	
+	public boolean isBefore(Time in) {
+		if(this.getTime().isBefore(in.getTime())) return true;
+		return false;
 	}
 	
 	public void setTime(LocalTime time) {
