@@ -4,6 +4,9 @@ public class Channel {
 	private boolean state;
 	private String sensor;
 	
+	public Channel() {
+		state = false;
+	}
 	
 	public void conn(String s) {
 		sensor = s;

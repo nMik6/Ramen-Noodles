@@ -17,7 +17,7 @@ public class Simulator {
 	Boolean power;
 	Race cur_race;
 	Channel[] channels;
-	List<Race> finishedRaces;
+	private List<Race> finished;
 	Time timeOffset;
 	boolean offsetPos;
 	Logger log;
@@ -25,14 +25,12 @@ public class Simulator {
 	
 	public void start() {
 			power = false;
-			timeOffset = new Time("00:00:00.0");
-			offsetPos = true;
 			cur_race = new Race();
-			finishedRaces = new ArrayList<>();
+			finished = new ArrayList<Race>();
 			command = null;
-			//bib_count = 100;
-			//used_bibs = new ArrayList<>();
+			offsetPos = false;
 			channels = new Channel[8];	//eight available channels
+			for(int i = 0; i<8; i++) channels[i] = new Channel();
 			
 			do {
 				System.out.print("Enter command: ('f' from file, 'c' from console)> ");
@@ -138,7 +136,8 @@ public class Simulator {
 				case "trig":
 					if(passedTime != null) trig(commandLine[1], passedTime);
 					else {
-						if(offsetPos)trig(commandLine[1], new Time().add(timeOffset));
+						if(timeOffset == null)trig(commandLine[1], new Time());
+						else if(offsetPos)trig(commandLine[1], new Time().add(timeOffset));
 						else trig(commandLine[1], new Time().difference(timeOffset));
 					}
 					break;
@@ -171,9 +170,13 @@ public class Simulator {
 	/** Turn the power on and off (but stay in the simulator)*/
 	private void power() {
 		power = !power;
-		cur_race = null;
-		timeOffset = null;
-		finishedRaces = null;
+		if(!power) {
+			cur_race = new Race();
+			finished = new ArrayList<Race>();
+			offsetPos = false;
+			channels = new Channel[8];	//eight available channels
+			for(int i = 0; i<8; i++) channels[i] = new Channel();
+		}
 	}
 	
 	/** exit the simulator, no more commands processed */
@@ -257,10 +260,11 @@ public class Simulator {
 	private void event(String type) {
 		if(!power)
 			return;
+		System.out.println(type);
+		if(cur_race == null) cur_race = new Race();
 		cur_race.setType(type);
 	}
 	
-	//TODO not sure what is happening here with dnf and finish...Is that if a race is occuring already?
 	private void newrun() {
 		if(!power)
 			return;
@@ -269,12 +273,11 @@ public class Simulator {
 		
 	}
 	
-	//TODO may be cleaner to have this call a separate method in race that can dequeue everyone and give dnfs
 	private void endrun() {
 		if(!power)
 			return;
 		cur_race.end();
-		finishedRaces.add(cur_race);
+		finished.add(cur_race);
 		cur_race = null;
 	}
 	
