@@ -192,7 +192,7 @@ public class Simulator {
 			return;
 		for(Racer r: cur_race.getFinishedRacers()) {
 			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
-					r.getName(), r.getStart(), r.getFinish(), r.getTotal());
+					r.getName(), r.getStart().getTime(), r.getFinish().getTime(), r.getTotal().getTime());
 		}
 	}
 	/** Set channel's sensor type. */
