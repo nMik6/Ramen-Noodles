@@ -41,15 +41,26 @@ public class Race {
 		ready.add(r);
 	}
 
-
+	/**
+	 * Returns a queue containing all racers that are ready to begin a race.
+	 * @return queue of ready racers
+	 */
 	public Queue<Racer> getReadyRacers() {
 		return ready;
 	}
 	
+	/**
+	 * Returns a queue containing all racers who are currently running a race.
+	 * @return queue of current racers
+	 */
 	public Queue<Racer> getCurrentRacers() {
 		return running;
 	}
 	
+	/**
+	 * Returns a list of all racers who have finished a race.
+	 * @return list of finished racer
+	 */
 	public List<Racer> getFinishedRacers() {
 		return finished;
 	}
