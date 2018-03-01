@@ -31,12 +31,16 @@ public class Logger {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * Prints the race data of each of the racers in the passed-in list.
 	 * @param racers
 	 * 
 	 */
 	public void print(ArrayList<Racer> racers) {
+=======
+	public void print(List<Racer> racers) {
+>>>>>>> branch 'master' of https://github.com/nMik6/Ramen-Noodles.git
 		try(Writer writer = new FileWriter(racerFile)) {
 			Type type = new TypeToken<List<Racer>>() {}.getType();
 			

@@ -1,9 +1,7 @@
 package src.main;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.stream.Stream;
 import java.util.Scanner;
 import java.io.File;
@@ -20,8 +18,6 @@ public class Simulator {
 	Race cur_race;
 	Channel[] channels;
 	List<Race> finishedRaces;
-	//int bib_count;
-	//List<Integer> used_bibs;
 	Time timeOffset;
 	boolean offsetPos;
 	Logger log;
@@ -84,7 +80,7 @@ public class Simulator {
 	
 	private int parse(String[] commandLine) {
 		int length = commandLine.length;
-		Time passedTime;
+		Time passedTime = null;
 		LocalTime toCheck;
 		
 		//Checks if first arg is a time. If it is, it is removed from the command line array and the commandLine array is shortened
@@ -107,7 +103,7 @@ public class Simulator {
 		}
 				
 		if(length == 1) {
-			switch(commandLine[0]) {
+			switch(commandLine[0].toLowerCase()) {
 				case "power":
 					power();
 					break;
@@ -132,7 +128,7 @@ public class Simulator {
 		}
 		
 		else if(length == 2) {
-			switch(commandLine[0]) {
+			switch(commandLine[0].toLowerCase()) {
 				case "event":
 					event(commandLine[1]);
 					break;
@@ -141,10 +137,16 @@ public class Simulator {
 					break;
 				case "trig":
 					if(passedTime != null) trig(commandLine[1], passedTime);
-					else trig(commandLine[1], new Time().add(timeOffset));
+					else {
+						if(offsetPos)trig(commandLine[1], new Time().add(timeOffset));
+						else trig(commandLine[1], new Time().difference(timeOffset));
+					}
 					break;
 				case "time":
 					time(commandLine[1]);
+					break;
+				case "tog":
+					tog(commandLine[1]);
 					break;
 				default:	
 					error();
@@ -153,7 +155,7 @@ public class Simulator {
 		}
 		
 		else if(length == 3) {
-			if(commandLine[0].equals("conn"))
+			if(commandLine[0].equalsIgnoreCase("conn"))
 				conn(commandLine[1], commandLine[2]);
 			else
 				error();
@@ -198,6 +200,13 @@ public class Simulator {
 		if(!power) 
 			return;
 		channels[Integer.parseInt(channel)].conn(sensor);
+	}
+	
+	/** Set channel's sensor type. */
+	private void num(String bib) {
+		if(!power) 
+			return;
+		cur_race.addReady(new Racer(Integer.parseInt(bib)));
 	}
 	
 	/** Set timeOffset*/
@@ -255,23 +264,18 @@ public class Simulator {
 	private void newrun() {
 		if(!power)
 			return;
-		for(Racer r: cur_race.getCurrentRacers()) {
-			r.dnf();
-			cur_race.finish(null, r);
-		}
-		finishedRaces.add(cur_race);
+		if(cur_race != null) return;
 		cur_race = new Race();
+		
 	}
 	
 	//TODO may be cleaner to have this call a separate method in race that can dequeue everyone and give dnfs
 	private void endrun() {
 		if(!power)
 			return;
-		for(Racer r: cur_race.getCurrentRacers()) {
-			r.dnf();
-			cur_race.finish(null);
-		}
+		cur_race.end();
 		finishedRaces.add(cur_race);
+		cur_race = null;
 	}
 	
 	private void error() {
