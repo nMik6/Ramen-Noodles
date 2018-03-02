@@ -10,49 +10,58 @@ import src.main.Time;
 
 
 class TimeTest {
-	
 
-	
+
+
 	@Test
 	void badTime() {
+		Time badTime;
 		try {
-		Time badTime = new Time("99:99:99.9");
+			badTime = new Time("99:99:99.9");
 		} catch(DateTimeParseException ex) {
 			//ex.printStackTrace();	
+			badTime = null;
 			System.out.println("Exception threw successfully");
 		}
-	
+		assertTrue(badTime == null);
 	}
 	@Test	
 	void goodTime() {
+		Time noon=null;
 		try {
-			Time noon = new Time("12:00:00.0");
-			} catch(DateTimeParseException ex) {
-				ex.printStackTrace();
-				fail("This shouldn't have triggered");
-			}
-	}
-	
-	@Test void testRanges() {
-		try {
-			Time midnight = new Time("00:00:00.0");
-			Time justBeforeMidnight = new Time("23:59:59.9");
+			noon = new Time("12:00:00.0");
 		} catch(DateTimeParseException ex) {
-	
-			fail("Ranges failed");
-			
+			ex.printStackTrace();
+			fail("This shouldn't have triggered");
 		}
+		assertFalse(noon == null);
+		System.out.println(noon.printTime());
+		assertEquals("12:00:00.0", noon.printTime());
 	}
-	
+
+	@Test void testRanges() {
+		Time midnight=null;
+		Time preMidnight=null;
+		Time justOver = null;
+		try {midnight = new Time("00:00:00.0");} catch(DateTimeParseException ex) {	midnight = null;}
+		try {preMidnight = new Time("23:59:59.9");} catch(DateTimeParseException ex) {	preMidnight = null;}
+		try {justOver = new Time("24:60:60.9");} catch(DateTimeParseException ex) {	justOver = null;}
+		assertFalse(midnight == null);
+		assertFalse(preMidnight == null);
+		assertTrue(justOver == null);
+		assertEquals("00:00:00.0", midnight.printTime());
+		assertEquals("23:59:59.9", preMidnight.printTime());
+	}
+
 	@Test
 	void testBefore() {
 		Time first = new Time("10:00:00.0");
 		Time after = new Time("10:00:00.1");
-		
+
 		assertTrue(first.isBefore(after));
 		assertFalse(after.isBefore(first));
 	}
-	
+
 	@Test
 	void testDifference1() {
 		Time noon = new Time("12:00:00.0");
@@ -63,11 +72,11 @@ class TimeTest {
 		String twoAMTestString = twoAMTest.printTime();
 		assertTrue(twoAMString.equals(twoAMTestString));
 	}
-	
-	
-		
-		
-		
-	
+
+
+
+
+
+
 
 }

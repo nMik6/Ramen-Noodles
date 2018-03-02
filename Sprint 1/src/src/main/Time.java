@@ -36,7 +36,7 @@ public class Time {
 	 * @return the time
 	 */
 	public String printTime() {
-		return time.toString();
+		return time.format(format);
 	}
 	
 	/**
