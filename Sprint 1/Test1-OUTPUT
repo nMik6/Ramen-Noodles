@@ -1,0 +1,8 @@
+Enter command: ('f' from file, 'c' from console)> f
+Enter the filename: test.txt
+Racer: 0,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+Racer: 1,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+Racer: 2,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+Racer: 0,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+Racer: 1,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+Racer: 2,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
