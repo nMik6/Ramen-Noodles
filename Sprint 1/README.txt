@@ -24,15 +24,15 @@ Sprint 1 Backlog:
 	2.	Create Simulator test class. Test non-trivial methods. - This will roll over to sprint2. manual testing of inputs conducted and offset confirmed to work as expected.
 	Worked on by: Stephen
 	3.	Create Race class and populate fields and methods.
-	Worked on by: Nathan
+	Worked on by: Nathan (major contributor), Thomas (documentation, bugfixing)
 	4.	Create Race test class. Test non-trivial methods.
-	Worked on by:
+	Worked on by: Thomas
 	5.	Create Racer class and populate fields and methods.
-	Worked on by:Stephen
+	Worked on by: Stephen (major contributor), Thomas (documentation, bugfixing)
 	6.	Create Racer test class. Test non-trivial methods.
-	Worked on by: 
+	Worked on by: Thomas
 	7.	Create Time class and populate fields and methods.
-	Worked on by:Nathan(major contributor), Stephen
+	Worked on by: Nathan (major contributor), Stephen
 	8.	Create Time test class. Test non-trivial methods.
 	Worked on by:
 	
