@@ -106,6 +106,8 @@ public class Race {
 		if (ending == null) return;
 		ending.finish(time);
 		finished.add(ending);
+		System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
+				ending.getName(), ending.getStart().printTime(), ending.getFinish().printTime(), ending.getTotal().printTime());
 	}
 	
 	/**
@@ -116,6 +118,8 @@ public class Race {
 		while(!running.isEmpty()) {
 			Racer temp = running.poll();
 			temp.dnf();
+			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
+					temp.getName(), temp.getStart().printTime(), temp.getFinish().printTime(), temp.getTotal().printTime());
 			finished.add(temp);
 		}
 	}
