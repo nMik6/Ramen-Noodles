@@ -9,6 +9,8 @@ What is accomplished:
 	
 	The simulator accepts inputs in the style given by the two text files made available to us for testing. 
 	Both of those appear to pass with expected values. 
+	
+	The given test files from dropbox are labled as test.txt and test2.txt
 
 Still to do:
 	SimultorTest file should be more comprehensive in its junit testing. This will possibly involve refactoring many of the simulator methods.
@@ -22,15 +24,15 @@ Sprint 1 Backlog:
 	2.	Create Simulator test class. Test non-trivial methods. - This will roll over to sprint2. manual testing of inputs conducted and offset confirmed to work as expected.
 	Worked on by: Stephen
 	3.	Create Race class and populate fields and methods.
-	Worked on by:
+	Worked on by: Nathan
 	4.	Create Race test class. Test non-trivial methods.
 	Worked on by:
 	5.	Create Racer class and populate fields and methods.
 	Worked on by:Stephen
 	6.	Create Racer test class. Test non-trivial methods.
-	Worked on by:
+	Worked on by: 
 	7.	Create Time class and populate fields and methods.
-	Worked on by:Stephen
+	Worked on by:Nathan(major contributor), Stephen
 	8.	Create Time test class. Test non-trivial methods.
 	Worked on by:
 	
