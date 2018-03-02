@@ -30,11 +30,11 @@ Sprint 1 Backlog:
 	4.	Create Race test class. Test non-trivial methods.
 	Worked on by: Thomas, Skyler
 	5.	Create Racer class and populate fields and methods.
-	Worked on by: Stephen (major contributor), Skyler(Creater, first draft) Thomas (documentation, bugfixing)
+	Worked on by: Stephen (major contributor), Skyler (Creater, first draft), Thomas (documentation, bugfixing)
 	6.	Create Racer test class. Test non-trivial methods.
 	Worked on by: Thomas, Skyler
 	7.	Create Time class and populate fields and methods.
 	Worked on by: Nathan (major contributor), Stephen
 	8.	Create Time test class. Test non-trivial methods.
-	Worked on by:Skyler
+	Worked on by: Skyler
 	
