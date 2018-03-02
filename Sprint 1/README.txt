@@ -10,7 +10,7 @@ What is accomplished:
 	The simulator accepts inputs in the style given by the two text files made available to us for testing. 
 	Both of those appear to pass with expected values. 
 	
-	The given test files from dropbox are labled as test.txt and test2.txt
+	The given test files CTS1RUN2 and CTS2RUN1 have their outputs in their respectively labeled OUTPUT files.
 
 Still to do:
 	SimultorTest file should be more comprehensive in its junit testing. This will possibly involve refactoring many of the simulator methods.
