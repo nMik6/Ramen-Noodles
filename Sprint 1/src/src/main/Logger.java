@@ -37,8 +37,6 @@ public class Logger {
 	 * @param racers
 	 * 
 	 */
-
-
 	public void print(List<Racer> racers) {
 
 		try(Writer writer = new FileWriter(racerFile)) {

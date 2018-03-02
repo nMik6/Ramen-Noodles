@@ -33,6 +33,10 @@ public class Simulator {
 		for(int i = 0; i<8; i++) channels[i] = new Channel();
 	}
 	
+	/**
+	 * Starts the simulator prompting the user to input
+	 * information or read from a file
+	 */
 	public void start() {
 			do {
 				System.out.print("Enter command: ('f' from file, 'c' from console)> ");
@@ -46,6 +50,9 @@ public class Simulator {
 
 	}
 	
+	/**
+	 * Reads input from the user
+	 */
 	private void readFromConsole() {
 		String[] cmds;
 		
@@ -57,6 +64,9 @@ public class Simulator {
 		}while(!(command.equals("exit")));
 	}
 	
+	/**
+	 * Grabs commands from a file and executes them
+	 */
 	private void readFromFile() {
 		String[] fileCommands = null;
 		
@@ -78,6 +88,10 @@ public class Simulator {
 		}
 	}
 	
+	/**
+	 * Parses the commands that are entered and executes them
+	 * @param commandLine the commands entered
+	 */
 	public void parse(String[] commandLine) {
 		int length = commandLine.length;
 		Time passedTime = null;
@@ -184,12 +198,18 @@ public class Simulator {
 		System.exit(0);
 	}
 	
+	/**
+	 * Resets the simulator
+	 */
 	public void reset() {
 		if(!power) 
 			return;
 		start();
 	}
 	
+	/**
+	 * Prints the racers data, name, starttime, finishtime, and total time
+	 */
 	public void print() {
 		if(!power)
 			return;
@@ -257,6 +277,10 @@ public class Simulator {
 		channels[intchan].toggle();
 	}
 	
+	/**
+	 * Sets the type of event running
+	 * @param type of the event
+	 */
 	public void event(String type) {
 		if(!power)
 			return;
@@ -265,6 +289,9 @@ public class Simulator {
 		cur_race.setType(type);
 	}
 	
+	/**
+	 * Starts a new run
+	 */
 	public void newrun() {
 		if(!power)
 			return;
@@ -273,6 +300,9 @@ public class Simulator {
 		
 	}
 	
+	/**
+	 * Ends the current run happening
+	 */
 	public void endrun() {
 		if(!power)
 			return;
@@ -281,6 +311,9 @@ public class Simulator {
 		cur_race = null;
 	}
 	
+	/**
+	 * Reports that an invalid command was attempted
+	 */
 	public void error() {
 		if(!power)
 			return;
