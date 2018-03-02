@@ -17,7 +17,7 @@ Still to do:
 	A more comprehensive logger is in the works. Skyler spent a good portion of his time trying to understand and write a dedicated logger, but decided upon not including it in this sprint as our current logging system fills requirements.
 	
 Sprint 1 Backlog:
-	See toDo.txt for initial division of tasks. This was partially followed but we found it easir to be more flexible in who worked on what.
+	See toDo.txt for initial division of tasks. This was partially followed but we found it easier to be more flexible in who worked on what.
 	Refer to Sprint1_Domain_Model_UML (written by Hart) within the Sprint1 java project for a detailed UML. 
 	
 	
