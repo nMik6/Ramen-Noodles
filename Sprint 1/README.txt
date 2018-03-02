@@ -20,7 +20,7 @@ Sprint 1 Backlog:
 	Refer to Sprint1_Domain_Model_UML (written by Hart) within the Sprint1 java project for a detailed UML. 
 	
 	1.	Create Simulator class and populate fields and methods.
-	Worked on by: Hart(major contributor), Stephen
+	Worked on by: Hart (major contributor), Stephen
 	2.	Create Simulator test class. Test non-trivial methods. - This will roll over to sprint2. manual testing of inputs conducted and offset confirmed to work as expected.
 	Worked on by: Stephen
 	3.	Create Race class and populate fields and methods.
