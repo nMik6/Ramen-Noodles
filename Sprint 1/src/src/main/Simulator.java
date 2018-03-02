@@ -23,15 +23,17 @@ public class Simulator {
 	Logger log;
 	private Scanner stdin = new Scanner(System.in);
 	
+	public Simulator() {
+		power = false;
+		cur_race = new Race();
+		finished = new ArrayList<Race>();
+		command = null;
+		offsetPos = false;
+		channels = new Channel[8];	//eight available channels
+		for(int i = 0; i<8; i++) channels[i] = new Channel();
+	}
+	
 	public void start() {
-			power = false;
-			cur_race = new Race();
-			finished = new ArrayList<Race>();
-			command = null;
-			offsetPos = false;
-			channels = new Channel[8];	//eight available channels
-			for(int i = 0; i<8; i++) channels[i] = new Channel();
-			
 			do {
 				System.out.print("Enter command: ('f' from file, 'c' from console)> ");
 				command = stdin.nextLine();
@@ -76,7 +78,7 @@ public class Simulator {
 		}
 	}
 	
-	private int parse(String[] commandLine) {
+	public void parse(String[] commandLine) {
 		int length = commandLine.length;
 		Time passedTime = null;
 		LocalTime toCheck;
@@ -163,12 +165,10 @@ public class Simulator {
 		else { 	//Error
 			error();
 		}
-
-		return 0;
 	}
 	
 	/** Turn the power on and off (but stay in the simulator)*/
-	private void power() {
+	public void power() {
 		power = !power;
 		if(!power) {
 			cur_race = new Race();
@@ -180,40 +180,40 @@ public class Simulator {
 	}
 	
 	/** exit the simulator, no more commands processed */
-	private void exit() {
+	public void exit() {
 		System.exit(0);
 	}
 	
-	private void reset() {
+	public void reset() {
 		if(!power) 
 			return;
 		start();
 	}
 	
-	private void print() {
+	public void print() {
 		if(!power)
 			return;
 		for(Racer r: cur_race.getFinishedRacers()) {
 			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
-					r.getName(), r.getStart().getTime(), r.getFinish().getTime(), r.getTotal().getTime());
+					r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
 		}
 	}
 	/** Set channel's sensor type. */
-	private void conn(String sensor, String channel) {
+	public void conn(String sensor, String channel) {
 		if(!power) 
 			return;
 		channels[Integer.parseInt(channel)].conn(sensor);
 	}
 	
 	/** Set channel's sensor type. */
-	private void num(String bib) {
+	public void num(String bib) {
 		if(!power) 
 			return;
 		cur_race.addReady(new Racer(Integer.parseInt(bib)));
 	}
 	
 	/** Set timeOffset*/
-	private void time(String t) {
+	public void time(String t) {
 		Time sysTime = new Time();
 		Time passedTime;
 		LocalTime toCheck;
@@ -236,7 +236,7 @@ public class Simulator {
 	 * Verify that channel state is "true" then trigger. 
 	 * @return nothing
 	 */
-	private void trig(String channel, Time t) {
+	public void trig(String channel, Time t) {
 		if(!power) return; 	
 		int channelInt = Integer.parseInt(channel);
 		Channel temp = channels[channelInt];
@@ -250,14 +250,14 @@ public class Simulator {
 
 	
 	/** Toggle the state of the channel at string converted to integer index of channels[]*/
-	private void tog(String channel) {
+	public void tog(String channel) {
 		if(!power) 
 			return;
 		int intchan = Integer.parseInt(channel);
 		channels[intchan].toggle();
 	}
 	
-	private void event(String type) {
+	public void event(String type) {
 		if(!power)
 			return;
 		System.out.println(type);
@@ -265,7 +265,7 @@ public class Simulator {
 		cur_race.setType(type);
 	}
 	
-	private void newrun() {
+	public void newrun() {
 		if(!power)
 			return;
 		if(cur_race != null) return;
@@ -273,7 +273,7 @@ public class Simulator {
 		
 	}
 	
-	private void endrun() {
+	public void endrun() {
 		if(!power)
 			return;
 		cur_race.end();
@@ -281,10 +281,20 @@ public class Simulator {
 		cur_race = null;
 	}
 	
-	private void error() {
+	public void error() {
 		if(!power)
 			return;
 		System.out.println("Invalid command");	//Logger should be able to handle string input
 		
 	}
+	
+	//for testing purposes only
+	public String getCommand() { return command;}
+	public boolean getPower() {return power;}
+	public Race getRace() {return cur_race;}
+	public Channel[] getChannels() {return channels;}
+	public List<Race> getFinished() {return finished;}
+	public Time getOffset() {return timeOffset;}
+	//log not currently being used
+	
 }
