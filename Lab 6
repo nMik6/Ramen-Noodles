@@ -110,4 +110,22 @@ Retrospective:
     What didn't work: We didn't plan out our classes and methods a thoroughly as we should have initially.
     What we should start doing: Create more detailed documents going logically from small tasks to large system functions outlining inputs and outputs of methods and which classes should handle which responsibilities.
     
-    
+  Thomas:
+    What worked: Compartmentalization. We were able to assemble a working program without everyone needing to know how everything worked, which made our work relatively easier.
+    What didn't work: Order of job completion. A lot of people started by writing methods without documentation, which made making test cases and other classes more difficult, as well as efforts to fix methods with errors in them.
+    What we should start doing: Better planning, early stage documentation (people should write JavaDocs explaining what a method is supposed to do BEFORE writing up the method). Also, we should get started earlier on the next sprint.
+
+  Hart:
+    Worked: Having an in person meeting with access to full whiteboards for modeling and idea drafting immediately visible to all members present.
+    Didn't Work: Some tasks were delegated to individuals based solely on their categorization and not on the amount of work or time it would take. Starting late in our Sprint led to a haphazardly organized work flow with estimates on what needed to be accomplished that didn't have a chance to be revised formally.
+    Change: A definitive backlog should be created and a greater prioritization of modeling and documentation should be enforced prior to implementing structures. Processes and designs that are dependent on other processes and designs should thoroughly critique those implementations before they build off of them, collaboratively working through the work of those that came before them. Maybe tasks should be assigned to pairs team members so that ideas can be more readily bounced off each other during the creation/design process rather than after. Test-driven and deliverable-driven development should be our focus for the next sprint so our work flow can be as lean as possible.
+
+  Skyler:
+    What worked: Our initial breakdown of the roles was effective for our first draft. It allowed us to each work on something immediately to get the project moving.
+    What didn't work: This same procedure led to some people getting dumped with an insane amount of work at the end. Also, it seemed that some people (myself included) didn't know how some parts of the application worked. For example, while I (Skyler) know in general how a parser works, I'm not entirely certain of how our parser works in our application because I didn't work on it. While this compartmentalization may work for these earlier sprints, if I ever need to write something that interfaces with the parser at a later date for whatever reason, I may be unprepared. This will be something I need to address for myself at later group meetings.
+    Change: Start earlier, immediately during the first week of the sprint we should have the group meeting being about UML modeling all of the additions and changes necessary for the program. If we spend the group meeting on it, and then start doing initial development of it, I believe this will allow for earlier detection of design mistakes. Testing should be given longer than 48 hours, and everyone should be involved. Those who are assigned testing only should be in charge of the testing, but everyone who wrote a class should write the basic tests at least. I believe that having more people involved in testing is a worthwhile experience for all of us.
+
+  Nathan:
+    What worked? Spreading information out with the use of whiteboards to fully disect what the objectives were. Input from a majority/all parties on how a specific task could be executed.
+    What didn't work? Assinging people a specific class to work on without building a UML diagram before hand. This left people with a workload that scaled exponentially compared to others.
+    What should we change? During our meeting on Thursdays, we should design the basic UML diagram as a group such that we can split the workload evenly at the beginning.
