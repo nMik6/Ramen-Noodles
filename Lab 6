@@ -1,4 +1,4 @@
-README:
+Sprint Review:
 
 Sprint 1:
 What is accomplished: 
@@ -38,6 +38,71 @@ Sprint 1 Backlog:
 	8.	Create Time test class. Test non-trivial methods.
 	Worked on by: Skyler
 	
+Acceptance Test Outputs:
+
+Enter command: ('f' from file, 'c' from console)> f
+Enter the filename: test1.txt
+(log) Time set to 12:00:01.0
+(log) Power is on
+(log) Sensor connected Type: GATE Num: 1
+(log) Sensor connected Type: EYE Num: 2
+(log) Sensor connected Type: GATE Num: 3
+(log) Sensor connected Type: EYE Num: 4
+(log) Channel #1 toggled
+(log) Channel #2 toggled
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 0,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+(log) Trigger on channel #1
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 1,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+(log) Trigger on channel #2
+Racer: 2,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+(log) print called
+Racer: 0,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+Racer: 1,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+Racer: 2,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+(log) Power is off
+(log) system exit
+
+Enter command: ('f' from file, 'c' from console)> f
+Enter the filename: test2.txt
+(log) Power is on
+(log) Power is off
+(log) Power is on
+(log) Race type set to: IND
+(log) Channel #1 toggled
+(log) Channel #2 toggled
+(log) Racer #234 added to race
+(log) Racer #315 added to race
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 234,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+(log) print called
+Racer: 234,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+(log) Race ended
+(log) New race created
+(log) Race type set to: IND
+(log) Racer #167 added to race
+(log) Racer #166 added to race
+(log) Racer #200 added to race
+(log) Racer #201 added to race
+(log) Trigger on channel #1
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 167,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+(log) Trigger on channel #2
+Racer: 166,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+(log) print called
+Racer: 167,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+Racer: 166,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+(log) Power is off
+(log) Power is on
+(log) Power is off
+(log) system exit
+
+
 Retrospective:
 
   Stephen:
