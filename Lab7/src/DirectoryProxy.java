@@ -7,7 +7,7 @@ public class DirectoryProxy implements Directory {
 	public DirectoryProxy(MainDirectory main) {
 		this.main = main;
 	}
-	
+
 	@Override
 	public void add(String emps) {
 		main.add(emps);

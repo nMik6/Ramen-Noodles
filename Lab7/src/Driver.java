@@ -6,14 +6,13 @@ public class Driver {
 	
 	private static boolean empParsing = false;
 	private static String list = "";
-	private static DirectoryProxy proxy;
+	private static DirectoryProxy proxy = new DirectoryProxy(new MainDirectory());
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		String cmd = "";
-		
+		System.out.println("Please enter a command: (exit to leave)");
 		while (!(cmd.equalsIgnoreCase("exit"))) {
-			System.out.println("Please enter a command: ");
 			cmd = in.nextLine();
 			if (!parser(cmd)) System.out.println("invalid command");
 		}
