@@ -4,6 +4,10 @@ public class DirectoryProxy implements Directory {
 
 	private MainDirectory main;
 	
+	public DirectoryProxy(MainDirectory main) {
+		this.main = main;
+	}
+	
 	@Override
 	public void add(String emps) {
 		// TODO Auto-generated method stub
