@@ -13,6 +13,7 @@ public class Driver {
 		String cmd = "";
 		
 		while (!(cmd.equalsIgnoreCase("exit"))) {
+			System.out.println("Please enter a command: ");
 			cmd = in.nextLine();
 			if (!parser(cmd)) System.out.println("invalid command");
 		}
