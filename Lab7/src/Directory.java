@@ -1,28 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
 
-public class Directory implements DirectoryType {
+public interface Directory {
 	
-	private List<Employee> list = new ArrayList<Employee>();
+	public void add(String str);
+	public void clear();
+	public void print();
 
-	@Override
-	public void add(List<String> list) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void print() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
 }

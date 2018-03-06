@@ -1,9 +1,9 @@
 import java.util.List;
 
-public class MainDirectory implements DirectoryType {
+public class MainDirectory implements Directory {
 
 	@Override
-	public void add(List<String> list) {
+	public void add(String str) {
 		// TODO Auto-generated method stub
 		
 	}

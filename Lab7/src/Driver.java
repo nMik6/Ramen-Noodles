@@ -6,6 +6,16 @@ public class Driver {
 		Scanner in = new Scanner(System.in);
 		String cmd = "";
 		
+		while (!(cmd.equalsIgnoreCase("exit"))) {
+			cmd = in.nextLine();
+			if (parser(cmd));
+		}
+		
+	}
+	
+	public boolean parser(String cmd) {
+		
+		return false;
 	}
 
 }
