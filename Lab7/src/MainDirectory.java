@@ -12,13 +12,14 @@ public class MainDirectory implements Directory {
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		dir = "";
 		
 	}
 
 	@Override
 	public void print() {
 		// TODO Auto-generated method stub
+		System.out.println(dir);
 		
 	}
 	
