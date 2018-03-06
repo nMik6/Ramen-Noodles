@@ -13,13 +13,13 @@ public class DirectoryProxy implements DirectoryType {
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-		
+		main.clear();
 	}
 
 	@Override
 	public void print() {
 		// TODO Auto-generated method stub
-		
+		main.print();
 	}
 	
 }
