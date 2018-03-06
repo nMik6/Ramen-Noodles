@@ -11,7 +11,10 @@ public class MainDirectory implements Directory {
 	@Override
 	public void add(String emps) {
 		// TODO Auto-generated method stub
-		
+		if(dir.equals(""))dir = emps;
+		else {
+			
+		}
 	}
 
 	@Override
