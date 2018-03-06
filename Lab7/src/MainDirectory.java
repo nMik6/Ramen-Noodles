@@ -2,8 +2,10 @@ import java.util.List;
 
 public class MainDirectory implements Directory {
 
+	private String dir;
+	
 	@Override
-	public void add(String str) {
+	public void add(String emps) {
 		// TODO Auto-generated method stub
 		
 	}
