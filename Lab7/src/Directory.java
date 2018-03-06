@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Directory {
+public class Directory implements DirectoryType {
 	
 	private List<Employee> list = new ArrayList<Employee>();
 
@@ -14,6 +14,12 @@ public class Directory {
 	}
 	
 	public void clear() {
+		
+	}
+
+	@Override
+	public void add() {
+		// TODO Auto-generated method stub
 		
 	}
 	

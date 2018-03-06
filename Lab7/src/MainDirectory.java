@@ -1,5 +1,5 @@
 
-public class MainDirectory {
+public class MainDirectory implements DirectoryType {
 
 	public void add() {
 		

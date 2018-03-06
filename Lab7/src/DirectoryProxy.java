@@ -1,5 +1,5 @@
 
-public class DirectoryProxy {
+public class DirectoryProxy implements DirectoryType {
 	
 	public void add() {
 		
