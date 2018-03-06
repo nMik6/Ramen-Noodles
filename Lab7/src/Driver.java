@@ -16,7 +16,7 @@ public class Driver {
 			cmd = in.nextLine();
 			if (!parser(cmd)) System.out.println("invalid command");
 		}
-		
+		in.close();
 	}
 	
 	public static boolean parser(String cmd) {
