@@ -3,7 +3,7 @@ import java.util.List;
 public class DirectoryProxy implements DirectoryType {
 
 	@Override
-	public void add(List<Employee> list) {
+	public void add(List<String> list) {
 		// TODO Auto-generated method stub
 		
 	}

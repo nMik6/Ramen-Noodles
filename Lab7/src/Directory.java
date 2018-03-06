@@ -6,7 +6,7 @@ public class Directory implements DirectoryType {
 	private List<Employee> list = new ArrayList<Employee>();
 
 	@Override
-	public void add(List<Employee> list) {
+	public void add(List<String> list) {
 		// TODO Auto-generated method stub
 		
 	}
