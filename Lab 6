@@ -1,0 +1,131 @@
+Sprint Review:
+
+Sprint 1:
+What is accomplished: 
+	Simulator: Simulator can parse a textfile or take commands from console input to run a timer system.
+	If file input is being used, lines that are incorrectly formatted will be ignored, including lines where the command time is incorrectly formatted. 
+	The parser runs then executes the command by calling the relevant methods. 
+	Those methods take power of the the simulated system into account and then execute if power is on (true)
+	
+	The simulator accepts inputs in the style given by the two text files made available to us for testing. 
+	Both of those appear to pass with expected values. 
+	
+	The given test files CTS1RUN2 and CTS2RUN1 have their outputs in their respectively labeled OUTPUT files.
+
+Still to do:
+	SimultorTest file should be more comprehensive in its junit testing. This will possibly involve refactoring many of the simulator methods.
+	A more comprehensive logger is in the works. Skyler spent a good portion of his time trying to understand and write a dedicated logger, but decided upon not including it in this sprint as our current logging system fills requirements.
+	
+Sprint 1 Backlog:
+	See toDo.txt for initial division of tasks. This was partially followed but we found it easier to be more flexible in who worked on what.
+	Refer to Sprint1_Domain_Model_UML (written by Hart) within the Sprint1 java project for a detailed UML. 
+	
+	
+	1.	Create Simulator class and populate fields and methods.
+	Worked on by: Hart (major contributor), Stephen
+	2.	Create Simulator test class. Test non-trivial methods. - This will roll over to sprint2. manual testing of inputs conducted and offset confirmed to work as expected.
+	Worked on by: Stephen
+	3.	Create Race class and populate fields and methods.
+	Worked on by: Nathan (major contributor), Thomas (documentation, bugfixing)
+	4.	Create Race test class. Test non-trivial methods.
+	Worked on by: Thomas, Skyler
+	5.	Create Racer class and populate fields and methods.
+	Worked on by: Stephen (major contributor), Skyler (Creater, first draft), Thomas (documentation, bugfixing)
+	6.	Create Racer test class. Test non-trivial methods.
+	Worked on by: Thomas, Skyler
+	7.	Create Time class and populate fields and methods.
+	Worked on by: Nathan (major contributor), Stephen
+	8.	Create Time test class. Test non-trivial methods.
+	Worked on by: Skyler
+	
+Acceptance Test Outputs:
+
+Enter command: ('f' from file, 'c' from console)> f
+Enter the filename: test1.txt
+(log) Time set to 12:00:01.0
+(log) Power is on
+(log) Sensor connected Type: GATE Num: 1
+(log) Sensor connected Type: EYE Num: 2
+(log) Sensor connected Type: GATE Num: 3
+(log) Sensor connected Type: EYE Num: 4
+(log) Channel #1 toggled
+(log) Channel #2 toggled
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 0,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+(log) Trigger on channel #1
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 1,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+(log) Trigger on channel #2
+Racer: 2,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+(log) print called
+Racer: 0,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+Racer: 1,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+Racer: 2,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+(log) Power is off
+(log) system exit
+
+Enter command: ('f' from file, 'c' from console)> f
+Enter the filename: test2.txt
+(log) Power is on
+(log) Power is off
+(log) Power is on
+(log) Race type set to: IND
+(log) Channel #1 toggled
+(log) Channel #2 toggled
+(log) Racer #234 added to race
+(log) Racer #315 added to race
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 234,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+(log) print called
+Racer: 234,	Start: 12:02:50.0,	Finish: 12:03:35.0,	Total: 00:00:45.0
+(log) Race ended
+(log) New race created
+(log) Race type set to: IND
+(log) Racer #167 added to race
+(log) Racer #166 added to race
+(log) Racer #200 added to race
+(log) Racer #201 added to race
+(log) Trigger on channel #1
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 167,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+(log) Trigger on channel #2
+Racer: 166,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+(log) print called
+Racer: 167,	Start: 13:04:30.0,	Finish: 13:05:02.0,	Total: 00:00:32.0
+Racer: 166,	Start: 13:05:00.0,	Finish: 13:05:15.0,	Total: 00:00:15.0
+(log) Power is off
+(log) Power is on
+(log) Power is off
+(log) system exit
+
+
+Retrospective:
+
+  Stephen:
+    What worked: Floating responsibilty for tasks - This allowed more flexibility in when things were accomplished.
+    What didn't work: We didn't plan out our classes and methods a thoroughly as we should have initially.
+    Start doing: Create more detailed documents going logically from small tasks to large system functions outlining inputs and outputs of methods and which classes should handle which responsibilities.
+    
+  Thomas:
+    What worked: Compartmentalization. We were able to assemble a working program without everyone needing to know how everything worked, which made our work relatively easier.
+    What didn't work: Order of job completion. A lot of people started by writing methods without documentation, which made making test cases and other classes more difficult, as well as efforts to fix methods with errors in them.
+    Start doing: Better planning, early stage documentation (people should write JavaDocs explaining what a method is supposed to do BEFORE writing up the method). Also, we should get started earlier on the next sprint.
+
+  Hart:
+    Worked: Having an in person meeting with access to full whiteboards for modeling and idea drafting immediately visible to all members present.
+    Didn't Work: Some tasks were delegated to individuals based solely on their categorization and not on the amount of work or time it would take. Starting late in our Sprint led to a haphazardly organized work flow with estimates on what needed to be accomplished that didn't have a chance to be revised formally.
+    Start doing: A definitive backlog should be created and a greater prioritization of modeling and documentation should be enforced prior to implementing structures. Processes and designs that are dependent on other processes and designs should thoroughly critique those implementations before they build off of them, collaboratively working through the work of those that came before them. Maybe tasks should be assigned to pairs team members so that ideas can be more readily bounced off each other during the creation/design process rather than after. Test-driven and deliverable-driven development should be our focus for the next sprint so our work flow can be as lean as possible.
+
+  Skyler:
+    What worked: Our initial breakdown of the roles was effective for our first draft. It allowed us to each work on something immediately to get the project moving.
+    What didn't work: This same procedure led to some people getting dumped with an insane amount of work at the end. Also, it seemed that some people (myself included) didn't know how some parts of the application worked. For example, while I (Skyler) know in general how a parser works, I'm not entirely certain of how our parser works in our application because I didn't work on it. While this compartmentalization may work for these earlier sprints, if I ever need to write something that interfaces with the parser at a later date for whatever reason, I may be unprepared. This will be something I need to address for myself at later group meetings.
+    Start doing: Start earlier, immediately during the first week of the sprint we should have the group meeting being about UML modeling all of the additions and changes necessary for the program. If we spend the group meeting on it, and then start doing initial development of it, I believe this will allow for earlier detection of design mistakes. Testing should be given longer than 48 hours, and everyone should be involved. Those who are assigned testing only should be in charge of the testing, but everyone who wrote a class should write the basic tests at least. I believe that having more people involved in testing is a worthwhile experience for all of us.
+
+  Nathan:
+    What worked: Spreading information out with the use of whiteboards to fully disect what the objectives were. Input from a majority/all parties on how a specific task could be executed.
+    What didn't work: Assinging people a specific class to work on without building a UML diagram before hand. This left people with a workload that scaled exponentially compared to others.
+    Start doing: During our meeting on Thursdays, we should design the basic UML diagram as a group such that we can split the workload evenly at the beginning.

@@ -25,6 +25,10 @@ public class Race {
 		autoNum = 0;
 	}
 	
+	/**
+	 * Sets the type of race
+	 * @param s the race type
+	 */
 	public void setType(String s) {
 		type = s;
 	}
@@ -73,7 +77,10 @@ public class Race {
 		return racer.dnf() == 1 ? 1 : -1;
 	}
 	
-	//inefficient. using linked list so we can (possibly) move around pointers at head?
+	/**
+	 * Removes a racer from the ready position
+	 * @param racer to remove
+	 */
 	public void cancel(Racer racer) {
 		Queue<Racer> newReady = new LinkedList<Racer>();
 		newReady.add(racer);
@@ -106,6 +113,8 @@ public class Race {
 		if (ending == null) return;
 		ending.finish(time);
 		finished.add(ending);
+		System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
+				ending.getName(), ending.getStart().printTime(), ending.getFinish().printTime(), ending.getTotal().printTime());
 	}
 	
 	/**
@@ -116,6 +125,8 @@ public class Race {
 		while(!running.isEmpty()) {
 			Racer temp = running.poll();
 			temp.dnf();
+			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
+					temp.getName(), temp.getStart().printTime(), temp.getFinish().printTime(), temp.getTotal().printTime());
 			finished.add(temp);
 		}
 	}
