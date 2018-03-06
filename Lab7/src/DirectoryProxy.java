@@ -5,9 +5,9 @@ public class DirectoryProxy implements Directory {
 	private MainDirectory main;
 	
 	@Override
-	public void add(String str) {
+	public void add(String emps) {
 		// TODO Auto-generated method stub
-		main.add(list);
+		main.add(emps);
 	}
 
 	@Override
