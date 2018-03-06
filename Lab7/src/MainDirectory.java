@@ -1,15 +1,22 @@
+import java.util.List;
 
 public class MainDirectory implements DirectoryType {
 
-	public void add() {
+	@Override
+	public void add(List<Employee> list) {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	public void print() {
-		
-	}
-	
+
+	@Override
 	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
 		
 	}
 	

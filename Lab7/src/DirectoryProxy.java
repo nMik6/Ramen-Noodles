@@ -1,16 +1,23 @@
+import java.util.List;
 
 public class DirectoryProxy implements DirectoryType {
-	
-	public void add() {
-		
-	}
-	
-	public void print() {
-		
-	}
-	
-	public void clear() {
+
+	@Override
+	public void add(List<Employee> list) {
+		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
