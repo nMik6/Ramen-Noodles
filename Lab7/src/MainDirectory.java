@@ -7,9 +7,9 @@ import java.util.Collection;
 import java.util.ArrayList;
 
 public class MainDirectory implements Directory {
+	
+	private ArrayList<Employee> employees = new ArrayList<Employee>();
 
-
-private List<Employee> employees = new ArrayList<Employee>();
 	@Override
 	public void add(String str) {
 		// TODO Auto-generated method stub
@@ -21,30 +21,9 @@ private List<Employee> employees = new ArrayList<Employee>();
 		String phoneNumber = "";
 		String department = "";
 		
+		System.out.println(str);
+		
 		//Parses data based on index of array. Since this is guaranteed by proxy, this should be okay.
-		for (int i = 0; i < employeeData.length; ++i)
-		{
-			if (i % 4 == 0 || i == 0)
-			{
-				first = employeeData[i];
-			}
-			else if (i % 4 == 1 || i == 1) 
-			{
-				last = employeeData[i];
-				
-			}
-			else if (i % 4 == 2 || i == 2)
-			{
-				phoneNumber = employeeData[i];
-			}
-			
-			else if (i % 4 == 3 || i ==3)
-			{
-				//All other fields will be full by now, can create the object and add it to the list.
-				department = employeeData[i];
-				employees.add(new Employee(first, last, phoneNumber, department));
-			}
-		}
 		
 		Gson g = new Gson();
 		

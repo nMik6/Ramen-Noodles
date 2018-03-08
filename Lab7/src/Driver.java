@@ -1,12 +1,16 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.google.gson.Gson;
 
 public class Driver {
 	
 	private static boolean empParsing = false;
 	private static String list = "";
 	private static DirectoryProxy proxy = new DirectoryProxy(new MainDirectory());
+	private static ArrayList<Employee> emp = new ArrayList<Employee>();
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -50,13 +54,13 @@ public class Driver {
 			return true;
 		default:
 			return false;
+			
 		}
 	}
 	
 	public static boolean empParse(String[] emp) {
 		Pattern numP = Pattern.compile("([0-9])");
 		Pattern letP = Pattern.compile(("[a-zA-Z]+"));
-
 		Matcher m;
 		
 		for (int i = 0; i < emp.length; ++ i) {
@@ -68,8 +72,11 @@ public class Driver {
 				if (m.find()) return false;
 			}
 		}
+		Employee e = new Employee(emp[0], emp[1], emp[2], emp[3]);
+		Gson g = new Gson();
 		
-		list += emp[0] + " " + emp[1] + " " + emp[2] + " " + emp[3] + " ";
+		list += g.toJson(e);
+		//list += emp[0] + " " + emp[1] + " " + emp[2] + " " + emp[3] + " ";
 		
 		return true;
 	}
