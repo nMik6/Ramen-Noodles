@@ -10,7 +10,8 @@ public class Driver {
 	private static boolean empParsing = false;
 	private static String list = "";
 	private static DirectoryProxy proxy = new DirectoryProxy(new MainDirectory());
-	private static ArrayList<Employee> emp = new ArrayList<Employee>();
+	private static ArrayList<Employee> empList = new ArrayList<Employee>();
+	private static Gson g = new Gson();
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -47,6 +48,7 @@ public class Driver {
 			proxy.print();
 			return true;
 		case "end":
+			list = g.toJson(empList);
 			proxy.add(list);
 			empParsing = false;
 			return true;
@@ -73,10 +75,7 @@ public class Driver {
 			}
 		}
 		Employee e = new Employee(emp[0], emp[1], emp[2], emp[3]);
-		Gson g = new Gson();
-		
-		list += g.toJson(e);
-		//list += emp[0] + " " + emp[1] + " " + emp[2] + " " + emp[3] + " ";
+		empList.add(e);
 		
 		return true;
 	}
