@@ -1,0 +1,23 @@
+Sprint 2 todo
+	Update the UML - 
+		Create Documentation on the public methods earlier on
+
+	Add Parrellel Individual race to Race.java 
+	
+	Split the Simulator into driver which parses the commmands and also Chronotimer.java class 
+
+	Create/polish the Logger.java class (see lab7)
+
+	Write Test Cases for testing multiple races
+
+	Timeline:
+		Stephen- UML, (split simulator)
+			Done around Saturday 
+
+		Hart- Logger
+			Done by Saturday
+
+		Thomas - testing
+			Working by Monday
+
+		Sprint2 done by Tuesday
