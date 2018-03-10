@@ -10,6 +10,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -23,9 +25,18 @@ public class Logger {
 	private Gson gson;
 	private String racerFile;
 	private String debugFile;
-	
+	private File racerf;
+	private File debugf;
 	
 	public Logger(String debugFile, String racerFile) {
+		
+		this.racerf = new File(racerFile);
+		try {
+			this.racerf.createNewFile();
+		} catch(IOException e) {e.printStackTrace();};
+		
+		this.debugf = new File(debugFile);
+		
 		this.racerFile = racerFile;
 		this.debugFile = debugFile;
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
@@ -39,38 +50,51 @@ public class Logger {
 	 */
 	public void print(List<Racer> racers) {
 
-		try(Writer writer = new FileWriter(racerFile)) {
+		try(Writer writer = new FileWriter(racerf)) {
 			Type type = new TypeToken<List<Racer>>() {}.getType();
 			
 			gson.toJson(racers, writer);
 			
 		} catch(IOException e) {e.printStackTrace();}
 	}
-	
-	public static void main(String[] args) {
+	/*
+	 * for testing purposes 
+	 */
+	public static void main(String[] args) throws IOException{
 		ArrayList<Racer> list = new ArrayList<>();
+		
 		Racer r = new Racer(234);
 		Racer r1 = new Racer(133);
 		Racer r2 = new Racer(174);
+		
 		r.start(new Time(LocalTime.now()));
+		r1.start(new Time(LocalTime.now()));
+		r2.start(new Time(LocalTime.now()));
+		
+		try{
+			TimeUnit.SECONDS.sleep(3);
+		}catch(Exception e) { e.printStackTrace(); };
+		
 		r.finish(new Time(LocalTime.now()));
+		r1.start(new Time(LocalTime.now()));
+		r2.start(new Time(LocalTime.now()));
 		r.getTotal();
 		
 		list.add(r);
 		list.add(r1);
 		list.add(r2);
 		
-
-		try (Writer writer = new FileWriter("test.txt")) {
-			Type type = new TypeToken<List<Racer>>() {}.getType();
-
-		try (Writer writerjs = new FileWriter("test.json")) {
-
-			gson.toJson(list, writerjs);
-			String json = gson.toJson(list, type);
-			System.out.println(json);
-			
-		} catch (IOException e) {e.printStackTrace(); }
+		Logger log = new Logger("/home/enigmaticmustard/Documents/debug.txt", "/home/enigmaticmustard/Documents/racer.txt");
+		log.print(list);
+		System.out.print("Logger Done");
+//		
+//		try (Writer writerjs = new FileWriter("test.json")) {
+//			log = new Logger("debug.txt", "racer.txt");
+//			gson.toJson(list, writerjs);
+//			String json = gson.toJson(list, type);
+//			System.out.println(json);
+//			log.print(list);
+//		} catch (IOException e) {e.printStackTrace(); }
 	} 
 	
 	
