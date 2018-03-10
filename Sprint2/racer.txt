@@ -1,0 +1,38 @@
+[
+  {
+    "bib": 234,
+    "start": {
+      "time": {
+        "hour": 15,
+        "minute": 39,
+        "second": 25,
+        "nano": 615000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 15,
+        "minute": 39,
+        "second": 28,
+        "nano": 619000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 3,
+        "nano": 4000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 133,
+    "dnf": false
+  },
+  {
+    "bib": 174,
+    "dnf": false
+  }
+]
