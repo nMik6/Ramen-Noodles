@@ -46,7 +46,7 @@ public class Logger {
 			
 		} catch(IOException e) {e.printStackTrace();}
 	}
-	/*
+	
 	public static void main(String[] args) {
 		ArrayList<Racer> list = new ArrayList<>();
 		Racer r = new Racer(234);
@@ -64,15 +64,15 @@ public class Logger {
 		try (Writer writer = new FileWriter("test.txt")) {
 			Type type = new TypeToken<List<Racer>>() {}.getType();
 
-		try (Writer writer = new FileWriter("test.json")) {
+		try (Writer writerjs = new FileWriter("test.json")) {
 
-			gson.toJson(list, writer);
+			gson.toJson(list, writerjs);
 			String json = gson.toJson(list, type);
 			System.out.println(json);
 			
 		} catch (IOException e) {e.printStackTrace(); }
 	} 
-	*/
+	
 	
 
 }
