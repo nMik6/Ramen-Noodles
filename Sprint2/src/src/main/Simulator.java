@@ -22,7 +22,10 @@ public class Simulator {
 	boolean offsetPos;
 	Logger log;
 	private Scanner stdin = new Scanner(System.in);
-
+	String debugfile = "debugfile.txt";
+	String racerfile = "racerfile.txt";
+	
+	
 	public Simulator() {
 		power = false;
 		cur_race = new Race();
@@ -31,6 +34,7 @@ public class Simulator {
 		offsetPos = false;
 		channels = new Channel[8];	//eight available channels
 		for(int i = 0; i<8; i++) channels[i] = new Channel();
+		log = new Logger(debugfile, racerfile);
 	}
 
 	/**
@@ -143,6 +147,11 @@ public class Simulator {
 
 		else if(length == 2) {
 			switch(commandLine[0].toLowerCase()) {
+			case "usb":
+				int chan = tog(commandLine[1]);	//toggle the channel and save channel returned int
+				if(chan != -1)
+					channels[chan].conn("usb");		//set channel type to usb
+				break;
 			case "event":
 				event(commandLine[1]);
 				break;
@@ -288,15 +297,19 @@ public class Simulator {
 	}
 
 
-	/** Toggle the state of the channel at string converted to integer index of channels[]*/
-	public void tog(String channel) {
-		if(!power) 
-			return;
-		try{
-			int intchan = Integer.parseInt(channel);
-			channels[intchan].toggle();
-			System.out.println("(log) Channel #" + channel + " toggled");
-		}catch(Exception e) {}
+	/*
+	 * * Toggle the state of the channel at string converted to integer index of channels[]
+	 * @return channel toggled as integer
+	 * */
+	public int tog(String channel) {
+		if(power) 	
+			try{
+				int intchan = Integer.parseInt(channel);
+				channels[intchan].toggle();
+				System.out.println("(log) Channel #" + channel + " toggled");
+				return intchan;
+			}catch(Exception e) {}
+		return -1;
 	}
 	
 	/**
@@ -342,6 +355,20 @@ public class Simulator {
 			return;
 		System.out.println("Invalid command");	//Logger should be able to handle string input
 
+	}
+	
+	/*
+	 * @return the channel number of an active usb or -1 if none 
+	 */
+	public int usbActiv() {
+		int i = 0;
+		for(Channel c: channels) {
+			if(c.getSensor() != null && c.getSensor().equals("usb")) {
+				return i; 
+			}
+			i++;
+		}
+		return -1;
 	}
 
 	//for testing purposes only

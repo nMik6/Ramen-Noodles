@@ -29,4 +29,8 @@ public class Channel {
 		return state;
 	}
 	
+	public String getSensor() {
+		return sensor; 
+	}
+	
 }
