@@ -68,10 +68,16 @@ public class Driver {
 		for (int i = 0; i < emp.length; ++ i) {
 			if (i != 2) {
 				m = numP.matcher(emp[i]);
-				if (m.find()) return false;
+				if (m.find()) {
+					System.out.println("Numbers are not allowed here.");
+					return false;
+				}
 			} else {
 				m = letP.matcher(emp[i]);
-				if (m.find()) return false;
+				if (m.find()) {
+					System.out.println("Letters are not allowed here.");
+					return false;
+				}
 			}
 		}
 		Employee e = new Employee(emp[0], emp[1], emp[2], emp[3]);
