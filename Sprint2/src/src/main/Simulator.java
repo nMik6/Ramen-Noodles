@@ -290,8 +290,8 @@ public class Simulator {
 			if(temp.getState()) {
 				System.out.println("(log) Trigger on channel #" + channel);
 				if(cur_race == null) cur_race = new Race();
-				if(channelInt % 2 != 0) cur_race.start(t);
-				else cur_race.finish(t);
+				if(channelInt % 2 != 0) cur_race.start(channelInt, t);
+				else cur_race.finish(channelInt, t);
 			}
 		}catch(Exception e) {}
 	}

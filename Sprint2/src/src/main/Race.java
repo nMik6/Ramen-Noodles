@@ -10,9 +10,10 @@ public class Race {
 	
 	private Queue<Racer> ready;
 	private Queue<Racer> running;
+	private Queue<Racer> alsoRunning;
 	private List<Racer> finished;
 	//private Channel[] channels;
-	private String type;//for use when more than one race type being handled later
+	private boolean paraInd;//for use when more than one race type being handled later
 	private int autoNum;
 	
 	
@@ -22,6 +23,7 @@ public class Race {
 		//this.channels[0] = this.channels[1] = false;
 		this.running = new LinkedList<Racer>();
 		this.finished = new ArrayList<Racer>();
+		paraInd = false;
 		autoNum = 0;
 	}
 	
@@ -30,7 +32,10 @@ public class Race {
 	 * @param s the race type
 	 */
 	public void setType(String s) {
-		type = s;
+		if (s.equals("PARIND")) {
+			alsoRunning = new LinkedList<Racer>();
+			paraInd = true;
+		}
 	}
 	
 	/**
@@ -95,12 +100,13 @@ public class Race {
 	 * current racers.
 	 * @param time at which the racer starts
 	 */
-	public void start(Time time) {
+	public void start(int channel, Time time) {
 		Racer starting = ready.poll();
 		if (starting == null) 
 			starting = new Racer(autoNum++);
 		starting.start(time);
-		running.add(starting);
+		if(paraInd && channel == 3) alsoRunning.add(starting);
+		else running.add(starting);
 	}
 	
 	/**
@@ -108,8 +114,11 @@ public class Race {
 	 * current racers and adds them to finishers.
 	 * @param time that the racer finishes at
 	 */
-	public void finish(Time time) {
-		Racer ending = running.poll();
+	public void finish(int channel, Time time) {
+		Racer ending;
+		if(paraInd && channel == 4) ending = alsoRunning.poll();
+		else ending = running.poll();
+		
 		if (ending == null) return;
 		ending.finish(time);
 		finished.add(ending);
@@ -128,6 +137,15 @@ public class Race {
 			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
 					temp.getName(), temp.getStart().printTime(), temp.getFinish().printTime(), temp.getTotal().printTime());
 			finished.add(temp);
+		}
+		if(paraInd) {
+			while(!alsoRunning.isEmpty()) {
+				Racer temp = running.poll();
+				temp.dnf();
+				System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
+						temp.getName(), temp.getStart().printTime(), temp.getFinish().printTime(), temp.getTotal().printTime());
+				finished.add(temp);
+			}
 		}
 	}
 
