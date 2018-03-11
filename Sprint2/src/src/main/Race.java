@@ -36,6 +36,7 @@ public class Race {
 			alsoRunning = new LinkedList<Racer>();
 			paraInd = true;
 		}
+		else paraInd = false;
 	}
 	
 	/**
