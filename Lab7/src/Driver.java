@@ -24,6 +24,11 @@ public class Driver {
 		in.close();
 	}
 	
+	/**
+	 * Parses the users input to the correct commands
+	 * @param cmd the command the user has entered
+	 * @return true if the command is real and executed properly
+	 */
 	public static boolean parser(String cmd) {
 		String[] set = cmd.split(" ");
 		if (set.length < 1) return false;
@@ -36,6 +41,11 @@ public class Driver {
 		return false;
 	}
 	
+	/**
+	 * Handles the parsing for commands that are entered
+	 * @param cmd the command
+	 * @return true if the command is valid and executed properly
+	 */
 	public static boolean cmdParse(String cmd) {
 		switch (cmd.toLowerCase()) {
 		case "add":
@@ -60,6 +70,11 @@ public class Driver {
 		}
 	}
 	
+	/**
+	 * Parser for an employee's information
+	 * @param emp the employee to add
+	 * @return true if the employee information is entered correctly
+	 */
 	public static boolean empParse(String[] emp) {
 		Pattern numP = Pattern.compile("([0-9])");
 		Pattern letP = Pattern.compile(("[a-zA-Z]+"));
