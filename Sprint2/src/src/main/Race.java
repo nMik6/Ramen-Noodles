@@ -70,7 +70,10 @@ public class Race {
 	 * @return queue of current racers
 	 */
 	public Queue<Racer> getCurrentRacers() {
-		return running;
+		Queue<Racer> out = new LinkedList<Racer>();
+		out.addAll(running);
+		out.addAll(alsoRunning);
+		return out;
 	}
 	
 	/**
