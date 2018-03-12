@@ -1,0 +1,22 @@
+[
+  {
+    "bib": 234,
+    "start": {
+      "time": {
+        "hour": 10,
+        "minute": 29,
+        "second": 57,
+        "nano": 163000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 133,
+    "dnf": false
+  },
+  {
+    "bib": 174,
+    "dnf": false
+  }
+]
