@@ -72,7 +72,7 @@ public class Race {
 	public Queue<Racer> getCurrentRacers() {
 		Queue<Racer> out = new LinkedList<Racer>();
 		out.addAll(running);
-		out.addAll(alsoRunning);
+		if(paraInd)out.addAll(alsoRunning);
 		return out;
 	}
 	
@@ -97,14 +97,20 @@ public class Race {
 	/**
 	 * Removes a racer from the ready position
 	 * @param racer to remove
+	 * @return true if racer was removed from ready position, else false
 	 */
-	public void cancel(Racer racer) {
+	public boolean cancel(Racer racer) {
 		Queue<Racer> newReady = new LinkedList<Racer>();
-		newReady.add(racer);
+		//newReady.add(racer);
+		boolean canceled = false;
 		while(!ready.isEmpty()) {
-			newReady.add(ready.poll());
+			Racer tmp = ready.poll();
+			if(!tmp.equals(racer)) {
+				newReady.add(tmp);
+			}else canceled = true;
 		}
 		ready = newReady;
+		return canceled;
 	}
 	
 	/**

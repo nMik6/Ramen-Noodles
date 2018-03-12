@@ -36,10 +36,52 @@ class RaceTest {
 		assertTrue(testRace.addReady(testRacer3));
 		assertTrue(testRace.addReady(testRacer4));
 		
-		//TODO fix this code
 		//assertEquals(1,testRace.start(testTime, testRace.readyRacers.poll()));
 		//assertEquals(1,testRace.cancel(testRacer1));
 		//assertEquals(1,testRace.start(testTime, testRace.readyRacers.poll()));
+		
+		assertTrue(testRace.getReadyRacers().size() == 4);
+		assertTrue(testRace.getCurrentRacers().size() == 0);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
+		
+		assertTrue(testRace.getReadyRacers().peek().getName() == 1);
+		
+		testRace.start(1, testTime);
+		
+		assertTrue(testRace.getReadyRacers().size() == 3);
+		assertTrue(testRace.getCurrentRacers().size() == 1);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
+		
+		assertTrue(testRace.getReadyRacers().peek().getName() == 2);
+		assertTrue(testRace.getCurrentRacers().peek().getName() == 1);
+		
+		assertFalse(testRace.cancel(testRacer1));
+		
+		assertTrue(testRace.getReadyRacers().size() == 3);
+		assertTrue(testRace.getCurrentRacers().size() == 1);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
+		
+		assertTrue(testRace.getReadyRacers().peek().getName() == 2);
+		assertTrue(testRace.getCurrentRacers().peek().getName() == 1);
+		
+		assertTrue(testRace.cancel(testRacer2));
+		
+		assertTrue(testRace.getReadyRacers().size() == 2);
+		assertTrue(testRace.getCurrentRacers().size() == 1);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
+		
+		assertTrue(testRace.getReadyRacers().peek().getName() == 3);
+		assertTrue(testRace.getCurrentRacers().peek().getName() == 1);
+		
+		/*testRace.start(1, testTime);
+		
+		assertTrue(testRace.getReadyRacers().size() == 3);
+		assertTrue(testRace.getCurrentRacers().size() == 1);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
+		
+		assertTrue(testRace.getReadyRacers().peek().getName() == 3);
+		assertTrue(testRace.getCurrentRacers().peek().getName() == 2);/**/
+		
 	}
 	
 	@Test
@@ -84,7 +126,6 @@ class RaceTest {
 		assertTrue(testRace.getCurrentRacers().size() == 0);
 		assertTrue(testRace.getFinishedRacers().size() == 0);
 		
-
 		assertTrue(testRace.addReady(testRacer1));
 		assertTrue(testRace.addReady(testRacer2));
 		assertTrue(testRace.addReady(testRacer3));
