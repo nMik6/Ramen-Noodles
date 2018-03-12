@@ -53,7 +53,7 @@ public class Race {
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if(ready.contains(r) || running.contains(r)) return false;
+		if( r == null || ready.contains(r) || running.contains(r) || (paraInd && alsoRunning.contains(r)) ) return false;
 		return ready.add(r);
 	}
 
