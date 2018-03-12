@@ -242,6 +242,10 @@ class RaceTest {
 		assertFalse(testRace.finish(4, testTime));
 		
 		testRace.start(3, testTime);
+		
+		assertTrue(testRace.getReadyRacers().size() == 2);
+		assertTrue(testRace.getCurrentRacers().size() == 2);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
 	}
 
 }
