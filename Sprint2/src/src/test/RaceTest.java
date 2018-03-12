@@ -213,7 +213,14 @@ class RaceTest {
 		assertFalse(testRace.getType());
 		testRace.setType("PARIND");
 		assertTrue(testRace.getType());
-		
+
+		assertFalse(testRace.addReady(null));
+		assertTrue(testRace.addReady(testRacer1));
+		assertFalse(testRace.addReady(testRacer1));
+		assertTrue(testRace.addReady(testRacer2));
+		assertTrue(testRace.addReady(testRacer3));
+		assertTrue(testRace.addReady(testRacer4));
+		assertFalse(testRace.addReady(testRacer4));
 	}
 
 }
