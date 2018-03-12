@@ -23,35 +23,48 @@ public class Logger {
 	
 	
 	private Gson gson;
-	private String racerFile;
-	private String debugFile;
+//	private String racerFile;
+//	private String debugFile;
 	private File racerf;
-	private File debugf;
+//	private File debugf;
 	
-	public Logger(String debugFile, String racerFile) {
-		
-		this.racerf = new File(racerFile);
-		try {
-			this.racerf.createNewFile();
-		} catch(IOException e) {e.printStackTrace();};
-		
-		this.debugf = new File(debugFile);
-		
-		this.racerFile = racerFile;
-		this.debugFile = debugFile;
+	public Logger() {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
-
+//	public Logger(String debugFile, String racerFile) {
+//		
+//		this.racerf = new File(racerFile);
+//		try {
+//			this.racerf.createNewFile();
+//		} catch(IOException e) {e.printStackTrace();};
+//		
+//		this.debugf = new File(debugFile);
+//		
+//		this.racerFile = racerFile;
+//		this.debugFile = debugFile;
+//		this.gson = new GsonBuilder().setPrettyPrinting().create();
+//	}
+	
+	
 	/**
 	 * Prints the race data of each of the racers in the passed-in list.
 	 * @param racers
 	 * 
 	 */
-	public void print(List<Racer> racers) {
-
-		try(Writer writer = new FileWriter(racerf)) {
-			Type type = new TypeToken<List<Racer>>() {}.getType();
+	public void print(List<Racer> racers, int raceNum) {
+		String currentUsersHomeDir = System.getProperty("user.home");
+		System.out.println("Hello world");
+		String raceFile = currentUsersHomeDir + File.separator + "RUN" + raceNum + ".txt";
+		System.out.println(raceFile);
+		File file = new File(raceFile);
+		
+		try {
+			file.createNewFile();
+		} catch(IOException e) {e.printStackTrace();};
+		
+		try(Writer writer = new FileWriter(file)) {
+	//		Type type = new TypeToken<List<Racer>>() {}.getType();
 			
 			gson.toJson(racers, writer);
 			
@@ -60,7 +73,7 @@ public class Logger {
 	/*
 	 * for testing purposes 
 	 */
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args){
 		ArrayList<Racer> list = new ArrayList<>();
 		
 		Racer r = new Racer(234);
@@ -72,7 +85,7 @@ public class Logger {
 		r2.start(new Time(LocalTime.now()));
 		
 		try{
-			TimeUnit.SECONDS.sleep(3);
+			TimeUnit.SECONDS.sleep(1);
 		}catch(Exception e) { e.printStackTrace(); };
 		
 		r.finish(new Time(LocalTime.now()));
@@ -84,9 +97,11 @@ public class Logger {
 		list.add(r1);
 		list.add(r2);
 		
-		Logger log = new Logger("/home/enigmaticmustard/Documents/debug.txt", "/home/enigmaticmustard/Documents/racer.txt");
-		log.print(list);
-		System.out.print("Logger Done");
+		System.out.println(list);
+		
+		Logger log = new Logger();
+		log.print(list, 45);
+		System.out.println("Logger Done");
 //		
 //		try (Writer writerjs = new FileWriter("test.json")) {
 //			log = new Logger("debug.txt", "racer.txt");

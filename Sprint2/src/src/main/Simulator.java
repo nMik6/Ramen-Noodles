@@ -24,7 +24,7 @@ public class Simulator {
 	private Scanner stdin = new Scanner(System.in);
 	String debugfile = "debugfile.txt";
 	String racerfile = "racerfile.txt";
-	
+	int raceNum;
 	
 	public Simulator() {
 		power = false;
@@ -34,7 +34,8 @@ public class Simulator {
 		offsetPos = false;
 		channels = new Channel[8];	//eight available channels
 		for(int i = 0; i<8; i++) channels[i] = new Channel();
-		log = new Logger(debugfile, racerfile);
+		log = new Logger();
+		raceNum = 0;
 	}
 
 	/**
@@ -147,11 +148,7 @@ public class Simulator {
 
 		else if(length == 2) {
 			switch(commandLine[0].toLowerCase()) {
-			case "usb":
-				int chan = tog(commandLine[1]);	//toggle the channel and save channel returned int
-				if(chan != -1)
-					channels[chan].conn("usb");		//set channel type to usb
-				break;
+			
 			case "event":
 				event(commandLine[1]);
 				break;
@@ -332,6 +329,7 @@ public class Simulator {
 			return;
 		if(cur_race != null) return;
 		cur_race = new Race();
+		raceNum++;
 		System.out.println("(log) New race created");
 	}
 
@@ -341,6 +339,7 @@ public class Simulator {
 	public void endrun() {
 		if(!power)
 			return;
+		log.print(cur_race.getFinishedRacers(), raceNum);
 		cur_race.end();
 		finished.add(cur_race);
 		cur_race = null;
@@ -357,19 +356,7 @@ public class Simulator {
 
 	}
 	
-	/*
-	 * @return the channel number of an active usb or -1 if none 
-	 */
-	public int usbActiv() {
-		int i = 0;
-		for(Channel c: channels) {
-			if(c.getSensor() != null && c.getSensor().equals("usb")) {
-				return i; 
-			}
-			i++;
-		}
-		return -1;
-	}
+
 
 	//for testing purposes only
 	public String getCommand() { return command;}
