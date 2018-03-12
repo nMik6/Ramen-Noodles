@@ -95,7 +95,7 @@ public class Driver {
 				}
 			}
 		}
-		Employee e = new Employee(emp[0], emp[1], emp[2], emp[3]);
+		Employee e = new Employee(emp[0], emp[1], emp[3], emp[2]);
 		empList.add(e);
 		
 		return true;
