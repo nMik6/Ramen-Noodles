@@ -160,5 +160,19 @@ class RaceTest {
 		assertTrue(testRace.getFinishedRacers().get(2).getName() == 3);
 		assertTrue(testRace.getFinishedRacers().get(3).getName() == 4);
 	}
+	
+	@Test
+	public void indParInvalidTest() {
+		assertFalse(testRace.getType());
+		testRace.setType("INVALID");
+		assertFalse(testRace.getType());
+		testRace.setType("PARIND");
+		assertTrue(testRace.getType());
+		testRace.setType("INVALID");
+		assertFalse(testRace.getType());
+		testRace.setType("PARIND");
+		assertTrue(testRace.getType());
+		
+	}
 
 }
