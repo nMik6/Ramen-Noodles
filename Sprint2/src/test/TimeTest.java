@@ -1,4 +1,4 @@
-package src.test;
+package test;
 //Not sure how to test this, will ask group.
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
-import src.main.Time;
+import main.Time;
 
 
 class TimeTest {

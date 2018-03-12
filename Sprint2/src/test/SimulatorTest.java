@@ -1,12 +1,12 @@
-package src.test;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import src.main.Simulator;
-import src.main.Time;
+import main.Simulator;
+import main.Time;
 
 class SimulatorTest {
 	

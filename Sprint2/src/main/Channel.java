@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 public class Channel {
 	private boolean state;

@@ -1,4 +1,4 @@
-package src.test;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.*;
 
-import src.main.Racer;
-import src.main.Time;
+import main.Racer;
+import main.Time;
 
 class LoggerTest {
 

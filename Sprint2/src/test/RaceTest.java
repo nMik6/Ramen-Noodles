@@ -1,13 +1,13 @@
-package src.test;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import src.main.Race;
-import src.main.Racer;
-import src.main.Time;
+import main.Race;
+import main.Racer;
+import main.Time;
 
 class RaceTest {
 

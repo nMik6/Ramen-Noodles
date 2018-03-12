@@ -5,4 +5,4 @@
  * @author enigmaticmustard
  *
  */
-package src.main;
+package main;
