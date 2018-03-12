@@ -136,16 +136,18 @@ public class Race {
 	 * current racers and adds them to finishers.
 	 * @param time that the racer finishes at
 	 */
-	public void finish(int channel, Time time) {
+	public boolean finish(int channel, Time time) {
 		Racer ending;
 		if(paraInd && channel == 4) ending = alsoRunning.poll();
 		else ending = running.poll();
 		
-		if (ending == null) return;
+		if (ending == null) return false;
 		ending.finish(time);
 		finished.add(ending);
 		System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
 				ending.getName(), ending.getStart().printTime(), ending.getFinish().printTime(), ending.getTotal().printTime());
+		
+		return true;
 	}
 	
 	/**

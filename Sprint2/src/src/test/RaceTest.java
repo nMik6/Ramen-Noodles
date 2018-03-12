@@ -213,6 +213,10 @@ class RaceTest {
 		assertFalse(testRace.getType());
 		testRace.setType("PARIND");
 		assertTrue(testRace.getType());
+		
+		assertTrue(testRace.getReadyRacers().size() == 0);
+		assertTrue(testRace.getCurrentRacers().size() == 0);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
 
 		assertFalse(testRace.addReady(null));
 		assertTrue(testRace.addReady(testRacer1));
@@ -221,6 +225,23 @@ class RaceTest {
 		assertTrue(testRace.addReady(testRacer3));
 		assertTrue(testRace.addReady(testRacer4));
 		assertFalse(testRace.addReady(testRacer4));
+		
+		assertTrue(testRace.getReadyRacers().size() == 4);
+		assertTrue(testRace.getCurrentRacers().size() == 0);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
+
+		testRace.start(1, testTime);
+		
+		assertTrue(testRace.getReadyRacers().size() == 3);
+		assertTrue(testRace.getCurrentRacers().size() == 1);
+		assertTrue(testRace.getFinishedRacers().size() == 0);
+
+		assertTrue(testRace.getCurrentRacers().peek().getName() == 1);
+		assertFalse(testRace.addReady(testRacer1));
+		assertTrue(testRace.getReadyRacers().size() == 3);
+		assertFalse(testRace.finish(4, testTime));
+		
+		testRace.start(3, testTime);
 	}
 
 }
