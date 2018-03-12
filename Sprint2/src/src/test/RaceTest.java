@@ -79,6 +79,28 @@ class RaceTest {
 		assertFalse(testRace.getType());
 		testRace.setType("PARIND");
 		assertTrue(testRace.getType());
+		
+		assertTrue(testRace.getReadyRacers().size() == 0);
+		
+
+		assertTrue(testRace.addReady(testRacer1));
+		assertTrue(testRace.addReady(testRacer2));
+		assertTrue(testRace.addReady(testRacer3));
+		assertTrue(testRace.addReady(testRacer4));
+		
+		assertTrue(testRace.getReadyRacers().size() == 4);
+
+		testRace.start(1, testTime);
+
+		assertTrue(testRace.getReadyRacers().size() == 3);
+		assertTrue(testRace.getCurrentRacers().size() == 1);
+		
+		testRace.start(3, testTime);
+		
+		assertTrue(testRace.getReadyRacers().size() == 2);
+		assertTrue(testRace.getCurrentRacers().size() == 2);
+		
+		
 	}
 
 }
