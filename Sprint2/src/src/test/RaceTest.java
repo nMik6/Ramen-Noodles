@@ -125,6 +125,40 @@ class RaceTest {
 
 		assertTrue(testRace.getFinishedRacers().get(0).getName() == 2);
 		assertTrue(testRace.getFinishedRacers().get(1).getName() == 1);
+
+		testRace.start(1, testTime);
+		
+		assertTrue(testRace.getReadyRacers().size() == 1);
+		assertTrue(testRace.getCurrentRacers().size() == 1);
+		assertTrue(testRace.getFinishedRacers().size() == 2);
+		
+		assertTrue(testRace.getCurrentRacers().peek().getName() == 3);
+
+		testRace.start(3, testTime);
+		
+		assertTrue(testRace.getReadyRacers().size() == 0);
+		assertTrue(testRace.getCurrentRacers().size() == 2);
+		assertTrue(testRace.getFinishedRacers().size() == 2);
+		
+		assertTrue(testRace.getCurrentRacers().peek().getName() == 3);
+		
+		testRace.finish(2, new Time("16:00:00.0"));
+		
+		assertTrue(testRace.getReadyRacers().size() == 0);
+		assertTrue(testRace.getCurrentRacers().size() == 1);
+		assertTrue(testRace.getFinishedRacers().size() == 3);
+
+		assertTrue(testRace.getCurrentRacers().peek().getName() == 4);
+		assertTrue(testRace.getFinishedRacers().get(2).getName() == 3);
+		
+		testRace.finish(4, new Time("18:00:00.0"));
+		
+		assertTrue(testRace.getReadyRacers().size() == 0);
+		assertTrue(testRace.getCurrentRacers().size() == 0);
+		assertTrue(testRace.getFinishedRacers().size() == 4);
+
+		assertTrue(testRace.getFinishedRacers().get(2).getName() == 3);
+		assertTrue(testRace.getFinishedRacers().get(3).getName() == 4);
 	}
 
 }
