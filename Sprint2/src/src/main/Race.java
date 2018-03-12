@@ -40,6 +40,14 @@ public class Race {
 	}
 	
 	/**
+	 * Returns the race type of Race
+	 * @return true is type is parallel individual, false otherwise
+	 */
+	public boolean getType() {
+		return paraInd;
+	}
+	
+	/**
 	 * Adds Racer r to the queue of ready racers
 	 * @param r
 	 * @return true if successfully added, else false

@@ -51,8 +51,7 @@ class RaceTest {
 		assertTrue(testRace.addReady(testRacer3));
 		assertTrue(testRace.addReady(testRacer4));
 
-		//TODO fix this code
-		testRace.start(testTime);
+		testRace.start(1, testTime);
 		//assertEquals(1,testRace.start(testTime, testRace.readyRacers.poll()));
 		assertEquals(true,testRacer1.isRacing());
 		assertEquals(1,testRacer1.dnf());
@@ -73,6 +72,13 @@ class RaceTest {
 		//assertEquals(1,testRace.start(testTime, testRace.readyRacers.poll()));
 		//assertEquals(1,testRace.finish(testTime, testRace.readyRacers.poll()));
 		//assertEquals(0,testRace.finish(testTime, testRace.readyRacers.poll()));
+	}
+	
+	@Test
+	public void indParTest() {
+		assertFalse(testRace.getType());
+		testRace.setType("PARIND");
+		assertTrue(testRace.getType());
 	}
 
 }
