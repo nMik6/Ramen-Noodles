@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.Racer;
@@ -55,7 +56,7 @@ class LoggerTest {
 		assertTrue(fileFound(raceNum) != null);
 	}
 	
-	
+	@Test
 	public void testOverWriteExistingLog() {
 		
 		r1.finish(new Time(LocalTime.now()));
