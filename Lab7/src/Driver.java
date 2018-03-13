@@ -81,7 +81,7 @@ public class Driver {
 		Matcher m;
 		
 		for (int i = 0; i < emp.length; ++ i) {
-			if (i != 2) {
+			if (i != 3) {
 				m = numP.matcher(emp[i]);
 				if (m.find()) {
 					System.out.println("Numbers are not allowed here.");
@@ -95,7 +95,7 @@ public class Driver {
 				}
 			}
 		}
-		Employee e = new Employee(emp[0], emp[1], emp[2], emp[3]);
+		Employee e = new Employee(emp[0], emp[1], emp[3], emp[2]);
 		empList.add(e);
 		
 		return true;
