@@ -76,6 +76,9 @@ public class Logger {
 		r1.finish(new Time(LocalTime.now()));
 		r2.finish(new Time(LocalTime.now()));
 		
+		list.add(r1);
+		list.add(r2);
+		
 		log.print(list);
 		log.export(list, 111);
 	}
