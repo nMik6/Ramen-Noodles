@@ -36,7 +36,7 @@ public class Logger {
 	 */
 	public void print(List<Racer> racers) {
 		for(Racer r: racers) {
-			System.out.printf("Name: %d\tStart: %s, Finish: %s, Total: %s", r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
+			System.out.printf("Name: %d\tStart: %s, Finish: %s, Total: %s\n", r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
 		}
 	}
 	
