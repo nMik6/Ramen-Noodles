@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "bib": 123,
+    "start": {
+      "time": {
+        "hour": 12,
+        "minute": 12,
+        "second": 44,
+        "nano": 25000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 12,
+        "minute": 12,
+        "second": 44,
+        "nano": 29000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 0,
+        "nano": 4000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 124,
+    "start": {
+      "time": {
+        "hour": 12,
+        "minute": 12,
+        "second": 44,
+        "nano": 29000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 12,
+        "minute": 12,
+        "second": 44,
+        "nano": 29000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      }
+    },
+    "dnf": false
+  }
+]
