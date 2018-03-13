@@ -51,8 +51,9 @@ class LoggerTest {
 		list.add(r2);
 		list.add(r3);
 		
-		log.export(list, ++raceNum);
+		log.export(list, raceNum);
 		
+		System.out.println("raceNum = " + raceNum);
 		assertTrue(fileFound(raceNum) != null);
 	}
 	
@@ -67,30 +68,34 @@ class LoggerTest {
 		list.add(r2);
 		list.add(r3);
 		
+		System.out.println("raceNum = " + raceNum);
 		File f1 = fileFound(raceNum);
 		assertTrue(f1 != null);
 		
+		System.out.println("raceNum = " + raceNum);
 		log.export(list, raceNum);
 		File f2 = fileFound(raceNum);
 		assertTrue(!f2.equals(f1));
 	}
 	
 	/*
-	 * helper method iterates through home dir to find file named: "RUN<raceNum>.txt"
-	 * returns true if found, false if not.  
+	 * helper method iterates through current working directory to find file named: "RUN<raceNum>.txt"
+	 * returns File object if found, null if not.  
 	 */
 	private File fileFound(int raceNum) {
-		String curUsersHomeDir = System.getProperty("user.home");
-		String filename = curUsersHomeDir + File.separator + "RUN" + raceNum + ".txt";
+		String curUserDir = System.getProperty("user.dir");
+		String filename = curUserDir + File.separator + "RUN" + raceNum + ".txt";
 		
 		
-		File[] files = new File(curUsersHomeDir).listFiles();
+		File[] files = new File(curUserDir).listFiles();
 		
 		for(File file: files) {
-			if(file.isFile())	//check if full path name
-				if(file.getName().equals(filename))
-				// if(file.getAbsolutePath().equals(filename))
+			if(file.isFile()) {	
+				if(file.getAbsolutePath().equals(filename)) {
 					return file;
+				}
+				System.out.println(file.getAbsolutePath() + "  " + filename);
+			}
 		}
 		
 		return null;
