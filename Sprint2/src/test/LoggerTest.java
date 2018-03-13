@@ -22,7 +22,7 @@ class LoggerTest {
 	ArrayList<Racer> list;
 	int raceNum;
 	
-	@Before
+	@BeforeEach
 	public void setup() {
 		log = new Logger();
 		list = new ArrayList<>();
