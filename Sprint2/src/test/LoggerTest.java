@@ -88,6 +88,7 @@ class LoggerTest {
 		for(File file: files) {
 			if(file.isFile())	//check if full path name
 				if(file.getName().equals(filename))
+				// if(file.getAbsolutePath().equals(filename))
 					return file;
 		}
 		
