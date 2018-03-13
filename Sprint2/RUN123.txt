@@ -3,18 +3,18 @@
     "bib": 123,
     "start": {
       "time": {
-        "hour": 12,
-        "minute": 36,
-        "second": 26,
-        "nano": 180000000
+        "hour": 13,
+        "minute": 12,
+        "second": 53,
+        "nano": 669000000
       }
     },
     "finish": {
       "time": {
-        "hour": 12,
-        "minute": 36,
-        "second": 26,
-        "nano": 181000000
+        "hour": 13,
+        "minute": 12,
+        "second": 53,
+        "nano": 672000000
       }
     },
     "dnf": false
@@ -23,18 +23,18 @@
     "bib": 133,
     "start": {
       "time": {
-        "hour": 12,
-        "minute": 36,
-        "second": 26,
-        "nano": 180000000
+        "hour": 13,
+        "minute": 12,
+        "second": 53,
+        "nano": 670000000
       }
     },
     "finish": {
       "time": {
-        "hour": 12,
-        "minute": 36,
-        "second": 26,
-        "nano": 181000000
+        "hour": 13,
+        "minute": 12,
+        "second": 53,
+        "nano": 672000000
       }
     },
     "dnf": false
@@ -43,18 +43,18 @@
     "bib": 143,
     "start": {
       "time": {
-        "hour": 12,
-        "minute": 36,
-        "second": 26,
-        "nano": 180000000
+        "hour": 13,
+        "minute": 12,
+        "second": 53,
+        "nano": 670000000
       }
     },
     "finish": {
       "time": {
-        "hour": 12,
-        "minute": 36,
-        "second": 26,
-        "nano": 181000000
+        "hour": 13,
+        "minute": 12,
+        "second": 53,
+        "nano": 672000000
       }
     },
     "dnf": false

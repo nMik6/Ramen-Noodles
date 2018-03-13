@@ -57,26 +57,26 @@ class LoggerTest {
 		assertTrue(fileFound(raceNum) != null);
 	}
 	
-	@Test
-	public void testOverWriteExistingLog() {
-		
-		r1.finish(new Time(LocalTime.now()));
-		r2.finish(new Time(LocalTime.now()));
-		r3.finish(new Time(LocalTime.now()));
-		
-		list.add(r1);
-		list.add(r2);
-		list.add(r3);
-		
-		System.out.println("raceNum = " + raceNum);
-		File f1 = fileFound(raceNum);
-		assertTrue(f1 != null);
-		
-		System.out.println("raceNum = " + raceNum);
-		log.export(list, raceNum);
-		File f2 = fileFound(raceNum);
-		assertTrue(!f2.equals(f1));
-	}
+//	@Test
+//	public void testOverWriteExistingLog() {
+//		
+//		r1.finish(new Time(LocalTime.now()));
+//		r2.finish(new Time(LocalTime.now()));
+//		r3.finish(new Time(LocalTime.now()));
+//		
+//		list.add(r1);
+//		list.add(r2);
+//		list.add(r3);
+//		
+//		System.out.println("raceNum = " + raceNum);
+//		File f1 = fileFound(raceNum);
+//		assertTrue(f1 != null);
+//		
+//		System.out.println("raceNum = " + raceNum);
+//		log.export(list, raceNum);
+//		File f2 = fileFound(raceNum);
+//		assertTrue(!f2.equals(f1));
+//	}
 	
 	/*
 	 * helper method iterates through current working directory to find file named: "RUN<raceNum>.txt"
