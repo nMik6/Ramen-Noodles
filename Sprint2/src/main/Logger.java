@@ -31,10 +31,13 @@ public class Logger {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
-	
-
-	public void print() {
-		stdout
+	/*
+	 * Print to console the racers finished from a list of racers
+	 */
+	public void print(List<Racer> racers) {
+		for(Racer r: racers) {
+			System.out.printf("Name: %d\tStart: %s, Finish: %s, Total: %s", r.getName(), r.getStart(), r.getFinish(), r.getTotal());
+		}
 	}
 	
 	/**
@@ -44,7 +47,7 @@ public class Logger {
 	 * 
 	 */
 	public void export(List<Racer> racers, int raceNum) {
-		String currentUsersHomeDir = System.getProperty("user.home");
+		String currentUsersHomeDir = System.getProperty("user.dir");
 		String raceFile = currentUsersHomeDir + File.separator + "RUN" + raceNum + ".txt";
 		//System.out.println(raceFile);
 		File file = new File(raceFile);
@@ -61,6 +64,21 @@ public class Logger {
 		} catch(IOException e) {e.printStackTrace();}
 	}
 
+	public static void main(String[] args) {
+		ArrayList<Racer> list = new ArrayList<>();
+		Racer r1 = new Racer(123);
+		Racer r2 = new Racer(124);
+		Logger log = new Logger();
+		
+		r1.start(new Time(LocalTime.now()));
+		r2.start(new Time(LocalTime.now()));
+		
+		r1.finish(new Time(LocalTime.now()));
+		r2.finish(new Time(LocalTime.now()));
+		
+		log.print(list);
+		log.export(list, 111);
+	}
 }
 
 
