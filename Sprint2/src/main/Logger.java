@@ -24,29 +24,18 @@ public class Logger {
 	
 	
 	private Gson gson;
-//	private String racerFile;
-//	private String debugFile;
 	private File racerf;
-//	private File debugf;
+
 	
 	public Logger() {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
-//	public Logger(String debugFile, String racerFile) {
-//		
-//		this.racerf = new File(racerFile);
-//		try {
-//			this.racerf.createNewFile();
-//		} catch(IOException e) {e.printStackTrace();};
-//		
-//		this.debugf = new File(debugFile);
-//		
-//		this.racerFile = racerFile;
-//		this.debugFile = debugFile;
-//		this.gson = new GsonBuilder().setPrettyPrinting().create();
-//	}
 	
+
+	public void print() {
+		stdout
+	}
 	
 	/**
 	 * Prints the race data of each of the racers in the passed-in list to a file
@@ -54,7 +43,7 @@ public class Logger {
 	 * @param racers
 	 * 
 	 */
-	public void print(List<Racer> racers, int raceNum) {
+	public void export(List<Racer> racers, int raceNum) {
 		String currentUsersHomeDir = System.getProperty("user.home");
 		String raceFile = currentUsersHomeDir + File.separator + "RUN" + raceNum + ".txt";
 		//System.out.println(raceFile);
@@ -65,46 +54,12 @@ public class Logger {
 		} catch(IOException e) {e.printStackTrace();};
 		
 		try(Writer writer = new FileWriter(file)) {
-	//		Type type = new TypeToken<List<Racer>>() {}.getType();
+			//Type type = new TypeToken<List<Racer>>() {}.getType();
 			
 			gson.toJson(racers, writer);
 			
 		} catch(IOException e) {e.printStackTrace();}
 	}
-	/*
-	 * for testing purposes 
-	 */
-	public static void main(String[] args){
-		ArrayList<Racer> list = new ArrayList<>();
-		
-		Racer r = new Racer(123);
-		Racer r1 = new Racer(133);
-		Racer r2 = new Racer(143);
-		
-		r.start(new Time(LocalTime.now()));
-		r1.start(new Time(LocalTime.now()));
-		r2.start(new Time(LocalTime.now()));
-		
-		try{
-			TimeUnit.SECONDS.sleep(1);
-		}catch(Exception e) { e.printStackTrace(); };
-		
-		r.finish(new Time(LocalTime.now()));
-		r1.start(new Time(LocalTime.now()));
-		r2.start(new Time(LocalTime.now()));
-		r.getTotal();
-		
-		list.add(r);
-		list.add(r1);
-		list.add(r2);
-		
-		Logger log = new Logger();
-		log.print(list, 89);
-		System.out.println("Logger Done");
-
-	} 
-	
-	
 
 }
 

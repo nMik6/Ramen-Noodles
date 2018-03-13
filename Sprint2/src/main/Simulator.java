@@ -339,7 +339,7 @@ public class Simulator {
 	public void endrun() {
 		if(!power)
 			return;
-		log.print(cur_race.getFinishedRacers(), raceNum);
+		log.export(cur_race.getFinishedRacers(), raceNum);
 		cur_race.end();
 		finished.add(cur_race);
 		cur_race = null;

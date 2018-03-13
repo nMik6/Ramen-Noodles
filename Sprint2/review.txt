@@ -1,0 +1,12 @@
+3/13/18
+
+Sprint Review
+
+Still left to complete:
+	Create "export()" in Logger.java, use current print() body 
+	Logger.java print() reverted back to orginial function
+	Fix LoggerTest.java
+
+	Create UML in draw.io
+
+	

@@ -50,7 +50,7 @@ class LoggerTest {
 		list.add(r2);
 		list.add(r3);
 		
-		log.print(list, ++raceNum);
+		log.export(list, ++raceNum);
 		
 		assertTrue(fileFound(raceNum) != null);
 	}
@@ -69,7 +69,7 @@ class LoggerTest {
 		File f1 = fileFound(raceNum);
 		assertTrue(f1 != null);
 		
-		log.print(list, raceNum);
+		log.export(list, raceNum);
 		File f2 = fileFound(raceNum);
 		assertTrue(!f2.equals(f1));
 	}
