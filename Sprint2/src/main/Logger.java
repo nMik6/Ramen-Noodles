@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 
+
 /**
  * 
  * @author swkeough<br>
@@ -56,7 +57,7 @@ public class Logger {
 	public void print(List<Racer> racers, int raceNum) {
 		String currentUsersHomeDir = System.getProperty("user.home");
 		String raceFile = currentUsersHomeDir + File.separator + "RUN" + raceNum + ".txt";
-		System.out.println(raceFile);
+		//System.out.println(raceFile);
 		File file = new File(raceFile);
 		
 		try {
