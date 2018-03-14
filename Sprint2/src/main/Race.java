@@ -9,6 +9,7 @@ import java.util.List;
 public class Race {
 	
 	private Queue<Racer> ready;
+	private Queue<Racer> alsoReady;
 	private Queue<Racer> running;
 	private Queue<Racer> alsoRunning;
 	private List<Racer> finished;
@@ -33,8 +34,9 @@ public class Race {
 	 */
 	public void setType(String s) {
 		if (s.equals("PARIND")) {
-			alsoRunning = new LinkedList<Racer>();
-			paraInd = true;
+			this.alsoRunning = new LinkedList<Racer>();
+			this.alsoReady = new LinkedList<Racer>();
+			this.paraInd = true;
 		}
 		else paraInd = false;
 	}
@@ -53,8 +55,15 @@ public class Race {
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if( r == null || ready.contains(r) || running.contains(r) || (paraInd && alsoRunning.contains(r)) ) return false;
-		return ready.add(r);
+		if( r == null || ready.contains(r) || running.contains(r) || (paraInd && alsoRunning.contains(r)) || (paraInd && alsoReady.contains(r))) return false;
+		if (paraInd) {
+			if (ready.size() > alsoReady.size()) {
+				alsoReady.add(r);
+				return true;
+			}
+		}
+		ready.add(r);
+		return true;
 	}
 
 	/**
@@ -120,10 +129,20 @@ public class Race {
 	/**
 	 * Assigns the start time to the racer and adds them to the 
 	 * current racers.
+	 * If paraInd, will check the size of the queue before picking which queue to pull the starting racer from.
 	 * @param time at which the racer starts
 	 */
 	public void start(int channel, Time time) {
-		Racer starting = ready.poll();
+		Racer starting;
+		if (paraInd && (ready.size() <= alsoReady.size())) {
+			 starting = alsoReady.poll();
+			
+		}
+		else
+		{
+			 starting = ready.poll();
+		}
+		
 		if (starting == null) 
 			starting = new Racer(autoNum++);
 		starting.start(time);
