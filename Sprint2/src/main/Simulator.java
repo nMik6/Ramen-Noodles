@@ -26,14 +26,18 @@ public class Simulator {
 	String racerfile = "racerfile.txt";
 	int raceNum;
 	
+	/**
+	 * Constructor for Simulator
+	 */
 	public Simulator() {
 		power = false;
 		cur_race = new Race();
 		finished = new ArrayList<Race>();
 		command = null;
 		offsetPos = false;
-		channels = new Channel[8];	//eight available channels
-		for(int i = 0; i<8; i++) channels[i] = new Channel();
+		channels = new Channel[8];
+		for (int i = 0; i<8; i++)
+			channels[i] = new Channel();
 		log = new Logger();
 		raceNum = 0;
 	}
@@ -46,11 +50,11 @@ public class Simulator {
 		do {
 			System.out.print("Enter command: ('f' from file, 'c' from console)> ");
 			command = stdin.nextLine();
-		}while(!(command.equals("c")||command.equals("f")));
+		} while (!(command.equals("c")||command.equals("f")));
 
-		if(command.equalsIgnoreCase("f"))
+		if (command.equalsIgnoreCase("f"))
 			readFromFile();
-		else if(command.equalsIgnoreCase("c"))
+		else if (command.equalsIgnoreCase("c"))
 			readFromConsole();
 
 	}
@@ -66,7 +70,7 @@ public class Simulator {
 			command = stdin.nextLine();
 			cmds = command.split(" ");
 			parse(cmds);
-		}while(!(command.equals("exit")));
+		} while (!(command.equals("exit")));
 	}
 
 	/**
@@ -78,16 +82,16 @@ public class Simulator {
 		System.out.print("Enter the filename: ");
 		String filename = stdin.nextLine();
 
-		if(!(new File(filename).exists())) {
+		if (!(new File(filename).exists())) {
 			System.out.println("Missing file"+filename);
 			return;
 		}
 
-		try (Stream<String> stream = Files.lines(Paths.get(filename))){
+		try (Stream<String> stream = Files.lines(Paths.get(filename))) {
 			fileCommands = stream.toArray(size -> new String[size]);
 		} catch (IOException e) { e.printStackTrace();}
 
-		for(int i = 0; i < fileCommands.length; ++i) {
+		for (int i = 0; i < fileCommands.length; ++i) {
 			String[] command = fileCommands[i].split("\\s+");
 			parse(command);
 		}
@@ -109,11 +113,11 @@ public class Simulator {
 			try { toCheck = LocalTime.parse(commandLine[0], format); }
 			catch (Exception e) { toCheck = null; }
 
-			if(toCheck != null && length > 1) {
+			if (toCheck != null && length > 1) {
 				String[] cmdLineNew = new String[length-1];
 				passedTime = new Time(toCheck);
 
-				for(int i = 1; i< length; ++i) 
+				for (int i = 1; i< length; ++i) 
 					cmdLineNew[i-1] = commandLine[i];
 
 				commandLine = cmdLineNew;
@@ -121,8 +125,8 @@ public class Simulator {
 			}
 		}
 
-		if(length == 1) {
-			switch(commandLine[0].toLowerCase()) {
+		if (length == 1) {
+			switch (commandLine[0].toLowerCase()) {
 			case "power":
 				power();
 				break;
@@ -146,8 +150,8 @@ public class Simulator {
 			}
 		}
 
-		else if(length == 2) {
-			switch(commandLine[0].toLowerCase()) {
+		else if (length == 2) {
+			switch (commandLine[0].toLowerCase()) {
 			
 			case "event":
 				event(commandLine[1]);
@@ -156,10 +160,10 @@ public class Simulator {
 				num(commandLine[1]);
 				break;
 			case "trig":
-				if(passedTime != null) trig(commandLine[1], passedTime);
+				if (passedTime != null) trig(commandLine[1], passedTime);
 				else {
-					if(timeOffset == null)trig(commandLine[1], new Time());
-					else if(offsetPos)trig(commandLine[1], new Time().add(timeOffset));
+					if (timeOffset == null)trig(commandLine[1], new Time());
+					else if (offsetPos)trig(commandLine[1], new Time().add(timeOffset));
 					else trig(commandLine[1], new Time().difference(timeOffset));
 				}
 				break;
@@ -172,7 +176,7 @@ public class Simulator {
 			//If endrun is called prior to export, an automatic export will have occurred and the race will have been cleared
 			case "export":
 				System.out.println("(log) Export called");
-				if(cur_race != null) {
+				if (cur_race != null) {
 					log.export(cur_race.getFinishedRacers(), raceNum);
 					System.out.println("(log) Exported to USB");
 				}
@@ -183,8 +187,8 @@ public class Simulator {
 			}
 		}
 
-		else if(length == 3) {
-			if(commandLine[0].equalsIgnoreCase("conn"))
+		else if (length == 3) {
+			if (commandLine[0].equalsIgnoreCase("conn"))
 				conn(commandLine[1], commandLine[2]);
 			else
 				error();
@@ -198,12 +202,12 @@ public class Simulator {
 	/** Turn the power on and off (but stay in the simulator)*/
 	public void power() {
 		power = !power;
-		if(!power) {
+		if (!power) {
 			cur_race = new Race();
 			finished = new ArrayList<Race>();
 			offsetPos = false;
 			channels = new Channel[8];	//eight available channels
-			for(int i = 0; i<8; i++) channels[i] = new Channel();
+			for (int i = 0; i<8; i++) channels[i] = new Channel();
 		}
 		String log = "(log) Power is ";
 		if(power) log += "on";
@@ -211,7 +215,9 @@ public class Simulator {
 		System.out.println(log);
 	}
 
-	/** exit the simulator, no more commands processed */
+	/** 
+	 * exit the simulator, no more commands processed
+	 */
 	public void exit() {
 		System.out.println("(log) system exit");
 		System.exit(0);
@@ -221,43 +227,46 @@ public class Simulator {
     * Resets the simulator
 	*/
 	public void reset() {
-		if(!power) 
-			return;
+		if (!power) return;
 
 		System.out.println("(log) system reset");
 		power = true;
 		cur_race = new Race();
 		command = null;
 		offsetPos = false;
-		for(int i = 0; i<8; i++) channels[i] = new Channel();
+		for (int i = 0; i<8; i++) channels[i] = new Channel();
 	}
 
 	/**
 	* Prints the finished racers data, name, start time, finish time, and total time
 	*/
 	public void print() {
-		if(!power || cur_race == null)
-			return;
+		if (!power || cur_race == null)	return;
 		System.out.println("(log) print called");
-		for(Racer r: cur_race.getFinishedRacers()) {
+		for (Racer r: cur_race.getFinishedRacers()) {
 			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
 					r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
 		}
 	}
 	
-	/** Set channel's sensor type. */
+	/**
+	 * Sets the sensor type of the channel
+	 * @param sensor
+	 * @param channel
+	 */
 	public void conn(String sensor, String channel) {
-		if(!power) 
-			return;
+		if (!power) return;
 		channels[Integer.parseInt(channel)].conn(sensor);
 		System.out.println("(log) Sensor connected Type: " + sensor +" Num: " + channel);
 
 	}
 
-	/** Set channel's sensor type. */
+	/**
+	 * Assigns a new racer to the race
+	 * @param bib the number assigned to the racer
+	 */
 	public void num(String bib) {
-		if(!power) 
-			return;
+		if (!power) return;
 		try {
 			cur_race.addReady(new Racer(Integer.parseInt(bib)));
 			System.out.println("(log) Racer #" + bib + " added to race");
@@ -265,7 +274,10 @@ public class Simulator {
 
 	}
 
-	/** Set timeOffset*/
+	/**
+	 * Creates a new time 
+	 * @param t the time
+	 */
 	public void time(String t) {
 		Time sysTime = new Time();
 		Time passedTime;
@@ -277,7 +289,7 @@ public class Simulator {
 		catch (Exception e) { toCheck = null; } 
 		//For now, if an invalid time is passed it defaults to the system time. will change later
 
-		if(toCheck!= null) {
+		if (toCheck!= null) {
 			passedTime = new Time(toCheck);
 			System.out.println("(log) Time set to " + passedTime.printTime());
 			//the passed time is after the current system time
@@ -286,38 +298,40 @@ public class Simulator {
 		}
 	}
 
-	/*
-	 * Verify that channel state is "true" then trigger. 
-	 * @return nothing
+	/**
+	 * Verifies a channels state and triggers is
+	 * @param channel the channel to check
+	 * @param t the time
 	 */
 	public void trig(String channel, Time t) {
-		if(!power) return; 	
-		try{
+		if (!power) return; 	
+		try {
 			int channelInt = Integer.parseInt(channel);
 			Channel temp = channels[channelInt];
 
-			if(temp.getState()) {
+			if (temp.getState()) {
 				System.out.println("(log) Trigger on channel #" + channel);
-				if(cur_race == null) cur_race = new Race();
-				if(channelInt % 2 != 0) cur_race.start(channelInt, t);
+				if (cur_race == null) cur_race = new Race();
+				if (channelInt % 2 != 0) cur_race.start(channelInt, t);
 				else cur_race.finish(channelInt, t);
 			}
 		}catch(Exception e) {}
 	}
 
 
-	/*
-	 * * Toggle the state of the channel at string converted to integer index of channels[]
-	 * @return channel toggled as integer
-	 * */
+	/**
+	 * Toggle the state of the channel at string converted to integer index of channels[]
+	 * @param channel
+	 * @return the channel triggered, -1 if power is off
+	 */
 	public int tog(String channel) {
-		if(power) 	
-			try{
+		if (power) 	
+			try {
 				int intchan = Integer.parseInt(channel);
 				channels[intchan].toggle();
 				System.out.println("(log) Channel #" + channel + " toggled");
 				return intchan;
-			}catch(Exception e) {}
+			} catch(Exception e) {}
 		return -1;
 	}
 	
@@ -326,9 +340,8 @@ public class Simulator {
 	* @param type of the event
 	*/
 	public void event(String type) {
-		if(!power)
-			return;
-		if(cur_race == null) cur_race = new Race();
+		if (!power) return;
+		if (cur_race == null) cur_race = new Race();
 		cur_race.setType(type);
 		System.out.println("(log) Race type set to: " + type);
 	}
@@ -337,9 +350,8 @@ public class Simulator {
 	* Starts a new race event
 	*/
 	public void newrun() {
-		if(!power)
-			return;
-		if(cur_race != null) return;
+		if (!power)	return;
+		if (cur_race != null) return;
 		cur_race = new Race();
 		raceNum++;
 		System.out.println("(log) New race created");
@@ -349,8 +361,7 @@ public class Simulator {
 	* Ends the current race event and moves it to the list of finished races
 	*/
 	public void endrun() {
-		if(!power)
-			return;
+		if (!power) return;
 		cur_race.end();
 		log.export(cur_race.getFinishedRacers(), raceNum);
 		finished.add(cur_race);
@@ -362,10 +373,7 @@ public class Simulator {
 	* Reports that an invalid command was attempted in the console
 	*/
 	public void error() {
-		if(!power)
-			return;
-		System.out.println("Invalid command");	//Logger should be able to handle string input
-
+		if (power) System.out.println("Invalid command");
 	}
 	
 

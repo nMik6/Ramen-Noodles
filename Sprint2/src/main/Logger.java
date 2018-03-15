@@ -26,25 +26,30 @@ public class Logger {
 	private Gson gson;
 	private File racerf;
 
-	
+	/**
+	 * Logger constructor, sets gson
+	 */
 	public Logger() {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
-	/*
-	 * Print to console the racers finished from a list of racers
+	/**
+	 * Prints a list of racers to the console
+	 * @param racers to print
 	 */
 	public void print(List<Racer> racers) {
 		for(Racer r: racers) {
-			System.out.printf("Name: %d\tStart: %s, Finish: %s, Total: %s\n", r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
+			System.out.printf("Name: %d\tStart: %s, Finish: %s, Total: %s\n",
+					r.getName(), r.getStart().printTime(),
+					r.getFinish().printTime(), r.getTotal().printTime());
 		}
 	}
 	
 	/**
 	 * Prints the race data of each of the racers in the passed-in list to a file
 	 * titled "RUN<raceNum>.txt" in the current users home directory 
-	 * @param racers
-	 * 
+	 * @param racers 
+	 * @param num the race number
 	 */
 	public void export(List<Racer> racers, int raceNum) {
 		String currentUsersHomeDir = System.getProperty("user.dir");
