@@ -11,7 +11,7 @@ Sprint 2 Backlog:
 	See todo.txt for initial division of tasks. This was partially followed but we found it easier to be more flexible in who worked on what.
 	
 	1. Update Race class to support parallel individual races.
-	Worked on by: Thomas (bugfising)
+	Worked on by: Thomas (bugfixing)
 	2. Update Simulator class.
 	Worked on by: 
 	3. Create Logger class.
