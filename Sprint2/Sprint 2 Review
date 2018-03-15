@@ -6,7 +6,8 @@ Added functionality to support 2nd type of race (parallel individual)
 Added logger triggered by "EXPORT #" command that creates a file of racers and their times
 
 Still to do:
-
+Seek clarification on the export method. Currently ENDRUN causes an export and cleares the previously active race.
+Therefore when exporting after an ENDRUN command, there is nothing to be exported. Should ENDRUN be exporting all finished races?
 
 Sprint 2 Backlog:
 	See todo.txt for initial division of tasks. This was partially followed but we found it easier to be more flexible in who worked on what.
