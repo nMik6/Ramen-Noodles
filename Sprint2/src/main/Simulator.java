@@ -169,6 +169,7 @@ public class Simulator {
 			case "tog":
 				tog(commandLine[1]);
 				break;
+			//If endrun is called prior to export, an automatic export will have occurred and the race will have been cleared
 			case "export":
 				System.out.println("(log) Export called");
 				if(cur_race != null) {
