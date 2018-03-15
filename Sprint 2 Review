@@ -15,12 +15,13 @@ Sprint 2 Backlog:
 	2. Update Simulator class.
 	Worked on by: 
 	3. Create Logger class.
-	Worked on by: 
+	Worked on by: Hart (added Export function, refactored existing code)
 	4. Update Race class test cases.
 	Worked on by: Thomas (major contributor)
 	5. Update Simulator class test cases.
-	Worked on by: 
+	Worked on by: Hart (added logger.export() to ENDRUN)
 	6. Write Logger class test cases.
+	Worked on by: Hart
 	
 Acceptance Test Outputs:
 
@@ -43,9 +44,9 @@ Retrospective:
     Start doing: Soft deadlines, starting the next sprint the first week it is available. Create teams for the tougher or longer tasks.
     
   Hart:
-    What worked: 
-    What didn't work: 
-    Start doing: 
+    What worked: The nature of the work was split up into very specific tasks allowing those assigned to work on fully comprehending their portion of the sprint and fulfilling specific functional requirements.
+    What didn't work: Individuals worked on segregated tasks creating a myopic understanding of how objects were integrated and cofunctioned. 
+    Start doing: A document created at the start of the sprint should be shared stating the objectives and deliverables in our own words might help everyone understand fully the nature of the Sprint. Constant discord check-ins or small group teams for tasks can help us stay on track to completing the sprint comfortably.  
     
   Nathan:
     What worked: 
