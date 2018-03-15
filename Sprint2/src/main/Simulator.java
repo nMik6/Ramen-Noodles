@@ -351,8 +351,8 @@ public class Simulator {
 	public void endrun() {
 		if(!power)
 			return;
-		log.export(cur_race.getFinishedRacers(), raceNum);
 		cur_race.end();
+		log.export(cur_race.getFinishedRacers(), raceNum);
 		finished.add(cur_race);
 		cur_race = null;
 		System.out.println("(log) Race ended");
