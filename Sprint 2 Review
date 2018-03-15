@@ -1,10 +1,8 @@
 Sprint Review:
 
-Sprint 2:
+Sprint 1:
 What is accomplished: 
-Added functionality to handle 2nd type of race (parallel individual). 
-Expanded Simulator to pass this on to Race, and Race to handle the new type of race.
-Added Logger called by the "EXPORT #" command that creates a file with the racer data (numbers/times)
+
 
 Still to do:
 
@@ -13,12 +11,12 @@ Sprint 2 Backlog:
 	See todo.txt for initial division of tasks. This was partially followed but we found it easier to be more flexible in who worked on what.
 	
 	1. Update Race class to support parallel individual races.
-	Worked on by: Stephen, Thomas (bugfixing)
+	Worked on by: Thomas (bugfixing) Skyler (Second ready queue and relevant changes)
 	2. Update Simulator class.
-	Worked on by: Stephen,
+	Worked on by: 
 	3. Create Logger class.
 	Worked on by: 
-	4. Upate Race class test cases.
+	4. Update Race class test cases.
 	Worked on by: Thomas (major contributor)
 	5. Update Simulator class test cases.
 	Worked on by: 
@@ -40,9 +38,9 @@ Retrospective:
     Start doing: We should set more soft deadlines to try andmanage our sprint better across the weeks (hard to do for 1 week sprint)
     
   Skyler:
-    What worked: 
-    What didn't work: 
-    Start doing: 
+    What worked: Planning sessions were fruitful and efficient. Distributed nature of the project allows for quick work on separate objects. Switching up who worked on what topics allowed for understanding the entire system.
+    What didn't work: It felt like it took too long before much of the development work was completed. Soft deadlines are a must for Sprint 3. Also, teams for larger parts of the development will be important for Sprint 3. Once again it felt like some people were assigned a far greater amount of work then other, so teams would be nice to fix that.
+    Start doing: Soft deadlines, starting the next sprint the first week it is available. Create teams for the tougher or longer tasks.
     
   Hart:
     What worked: 
