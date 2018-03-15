@@ -58,7 +58,7 @@ Racer: 111,	Start: 12:01:58.0,	Finish: 12:02:32.0,	Total: 00:00:34.0
 Racer: 272,	Start: 12:01:54.0,	Finish: 12:02:33.0,	Total: 00:00:39.0
 Racer: 711,	Start: 12:01:56.0,	Finish: 12:02:41.0,	Total: 00:00:45.0
 (log) Race ended
-Invalid command
+(log) Export called
 (log) Time set to 12:01:30.0
 (log) New race created
 (log) Racer #272 added to race
@@ -83,6 +83,31 @@ Racer: 111,	Start: 12:01:56.0,	Finish: 12:02:33.0,	Total: 00:00:37.0
 Racer: 0,	Start: 12:01:58.0,	Finish: 12:02:41.0,	Total: 00:00:43.0
 (log) Race ended
 (log) system reset
+(log) Time set to 12:01:30.0
+(log) Race type set to: PARIND
+(log) Channel #1 toggled
+(log) Channel #2 toggled
+(log) Channel #3 toggled
+(log) Channel #4 toggled
+(log) Racer #272 added to race
+(log) Racer #123 added to race
+(log) Trigger on channel #1
+(log) Trigger on channel #3
+(log) Trigger on channel #3
+(log) Trigger on channel #1
+(log) Trigger on channel #2
+Racer: 123,	Start: 12:01:52.0,	Finish: 12:02:25.0,	Total: 00:00:33.0
+(log) Trigger on channel #2
+Racer: 1,	Start: 12:01:58.0,	Finish: 12:02:32.0,	Total: 00:00:34.0
+(log) Trigger on channel #4
+Racer: 272,	Start: 12:01:54.0,	Finish: 12:02:33.0,	Total: 00:00:39.0
+(log) Trigger on channel #4
+Racer: 0,	Start: 12:01:56.0,	Finish: 12:02:41.0,	Total: 00:00:45.0
+(log) Race ended
+(log) Export called
+(log) Export called
+(log) Power is off
+(log) system exit
 
 Retrospective:
 
