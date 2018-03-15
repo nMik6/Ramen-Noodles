@@ -1,8 +1,10 @@
 Sprint Review:
 
-Sprint 1:
+Sprint 2:
 What is accomplished: 
-
+Added functionality to handle 2nd type of race (parallel individual). 
+Expanded Simulator to pass this on to Race, and Race to handle the new type of race.
+Added Logger called by the "EXPORT #" command that creates a file with the racer data (numbers/times)
 
 Still to do:
 
@@ -11,9 +13,9 @@ Sprint 2 Backlog:
 	See todo.txt for initial division of tasks. This was partially followed but we found it easier to be more flexible in who worked on what.
 	
 	1. Update Race class to support parallel individual races.
-	Worked on by: Thomas (bugfixing)
+	Worked on by: Stephen, Thomas (bugfixing)
 	2. Update Simulator class.
-	Worked on by: 
+	Worked on by: Stephen,
 	3. Create Logger class.
 	Worked on by: 
 	4. Upate Race class test cases.
