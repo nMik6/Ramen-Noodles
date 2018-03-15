@@ -169,6 +169,13 @@ public class Simulator {
 			case "tog":
 				tog(commandLine[1]);
 				break;
+			case "export":
+				System.out.println("(log) Export called");
+				if(cur_race != null) {
+					log.export(cur_race.getFinishedRacers(), raceNum);
+					System.out.println("(log) Exported to USB");
+				}
+				break;
 			default:	
 				error();
 
@@ -217,14 +224,18 @@ public class Simulator {
 			return;
 
 		System.out.println("(log) system reset");
-		start();
+		power = true;
+		cur_race = new Race();
+		command = null;
+		offsetPos = false;
+		for(int i = 0; i<8; i++) channels[i] = new Channel();
 	}
 
 	/**
 	* Prints the finished racers data, name, start time, finish time, and total time
 	*/
 	public void print() {
-		if(!power)
+		if(!power || cur_race == null)
 			return;
 		System.out.println("(log) print called");
 		for(Racer r: cur_race.getFinishedRacers()) {
