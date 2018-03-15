@@ -9,7 +9,6 @@ public class Driver {
 	
 	private static boolean empParsing = false;
 	private static String list = "";
-	private static DirectoryProxy proxy = new DirectoryProxy(new MainDirectory());
 	private static ArrayList<Employee> empList = new ArrayList<Employee>();
 	private static Gson g = new Gson();
 	
@@ -52,14 +51,14 @@ public class Driver {
 			empParsing = true;
 			return true;
 		case "clr":
-			proxy.clear();
+			//proxy.clear();
 			return true;
 		case "print":
-			proxy.print();
+			//proxy.print();
 			return true;
 		case "end":
 			list = g.toJson(empList);
-			proxy.add(list);
+			//proxy.add(list);
 			empParsing = false;
 			return true;
 		case "exit":
