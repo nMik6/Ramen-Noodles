@@ -1,0 +1,114 @@
+[
+  {
+    "bib": 123,
+    "start": {
+      "time": {
+        "hour": 12,
+        "minute": 1,
+        "second": 52,
+        "nano": 0
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 12,
+        "minute": 2,
+        "second": 25,
+        "nano": 0
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 33,
+        "nano": 0
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 111,
+    "start": {
+      "time": {
+        "hour": 12,
+        "minute": 1,
+        "second": 58,
+        "nano": 0
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 12,
+        "minute": 2,
+        "second": 32,
+        "nano": 0
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 34,
+        "nano": 0
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 272,
+    "start": {
+      "time": {
+        "hour": 12,
+        "minute": 1,
+        "second": 54,
+        "nano": 0
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 12,
+        "minute": 2,
+        "second": 33,
+        "nano": 0
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 39,
+        "nano": 0
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 711,
+    "start": {
+      "time": {
+        "hour": 12,
+        "minute": 1,
+        "second": 56,
+        "nano": 0
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 12,
+        "minute": 2,
+        "second": 41,
+        "nano": 0
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 45,
+        "nano": 0
+      }
+    },
+    "dnf": false
+  }
+]

@@ -17,7 +17,7 @@ public class Simulator {
 	Boolean power;
 	Race cur_race;
 	Channel[] channels;
-	private List<Race> finished;
+	private ArrayList<Race> finished;
 	Time timeOffset;
 	boolean offsetPos;
 	Logger log;
@@ -25,7 +25,7 @@ public class Simulator {
 	String debugfile = "debugfile.txt";
 	String racerfile = "racerfile.txt";
 	int raceNum;
-	
+
 	/**
 	 * Constructor for Simulator
 	 */
@@ -60,8 +60,8 @@ public class Simulator {
 	}
 
 	/**
-	* Reads input from the user
-	*/
+	 * Reads input from the user
+	 */
 	private void readFromConsole() {
 		String[] cmds;
 
@@ -74,8 +74,8 @@ public class Simulator {
 	}
 
 	/**
-	* Grabs commands from a file and executes them
-	*/
+	 * Grabs commands from a file and executes them
+	 */
 	private void readFromFile() {
 		String[] fileCommands = null;
 
@@ -98,9 +98,9 @@ public class Simulator {
 	}
 
 	/**
-	* Parses the commands that are entered and executes them
-	* @param commandLine the commands entered
-	*/
+	 * Parses the commands that are entered and executes them
+	 * @param commandLine the commands entered
+	 */
 	public void parse(String[] commandLine) {
 		int length = commandLine.length;
 		Time passedTime = null;
@@ -152,7 +152,7 @@ public class Simulator {
 
 		else if (length == 2) {
 			switch (commandLine[0].toLowerCase()) {
-			
+
 			case "event":
 				event(commandLine[1]);
 				break;
@@ -173,13 +173,11 @@ public class Simulator {
 			case "tog":
 				tog(commandLine[1]);
 				break;
-			//If endrun is called prior to export, an automatic export will have occurred and the race will have been cleared
+				//If endrun is called prior to export, an automatic export will have occurred and the race will have been cleared
 			case "export":
-				System.out.println("(log) Export called");
-				if (cur_race != null) {
-					log.export(cur_race.getFinishedRacers(), raceNum);
-					System.out.println("(log) Exported to USB");
-				}
+				try {
+					export(Integer.parseInt(commandLine[1]));
+				}catch(Exception e) {error();}
 				break;
 			default:	
 				error();
@@ -224,8 +222,8 @@ public class Simulator {
 	}
 
 	/**
-    * Resets the simulator
-	*/
+	 * Resets the simulator
+	 */
 	public void reset() {
 		if (!power) return;
 
@@ -238,8 +236,8 @@ public class Simulator {
 	}
 
 	/**
-	* Prints the finished racers data, name, start time, finish time, and total time
-	*/
+	 * Prints the finished racers data, name, start time, finish time, and total time
+	 */
 	public void print() {
 		if (!power || cur_race == null)	return;
 		System.out.println("(log) print called");
@@ -248,7 +246,7 @@ public class Simulator {
 					r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
 		}
 	}
-	
+
 	/**
 	 * Sets the sensor type of the channel
 	 * @param sensor
@@ -334,11 +332,11 @@ public class Simulator {
 			} catch(Exception e) {}
 		return -1;
 	}
-	
+
 	/**
-	* Sets the type of event running
-	* @param type of the event
-	*/
+	 * Sets the type of event running
+	 * @param type of the event
+	 */
 	public void event(String type) {
 		if (!power) return;
 		if (cur_race == null) cur_race = new Race();
@@ -347,8 +345,8 @@ public class Simulator {
 	}
 
 	/**
-	* Starts a new race event
-	*/
+	 * Starts a new race event
+	 */
 	public void newrun() {
 		if (!power)	return;
 		if (cur_race != null) return;
@@ -358,8 +356,8 @@ public class Simulator {
 	}
 
 	/**
-	* Ends the current race event and moves it to the list of finished races
-	*/
+	 * Ends the current race event and moves it to the list of finished races
+	 */
 	public void endrun() {
 		if (!power) return;
 		cur_race.end();
@@ -370,12 +368,32 @@ public class Simulator {
 	}
 
 	/**
-	* Reports that an invalid command was attempted in the console
-	*/
+	 * Ends the current race event and moves it to the list of finished races
+	 */
+	public void export(int num) {
+		if (!power) return;
+
+		if (cur_race != null) {
+			log.export(cur_race.getFinishedRacers(), num);
+			System.out.println("(log) Export Occurred");
+		}
+
+		else {
+			Race ret = finished.get(raceNum);
+			if (ret != null) {
+				log.export(ret.getFinishedRacers(), num);
+				System.out.println("(log) Export Occurred");
+			}
+		}
+	}
+
+	/**
+	 * Reports that an invalid command was attempted in the console
+	 */
 	public void error() {
 		if (power) System.out.println("Invalid command");
 	}
-	
+
 
 
 	//for testing purposes only
