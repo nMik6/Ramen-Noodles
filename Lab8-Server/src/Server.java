@@ -17,7 +17,8 @@
 	import com.sun.net.httpserver.HttpExchange;
 	import com.sun.net.httpserver.HttpHandler;
 	import com.sun.net.httpserver.HttpServer;
-public class Server {
+
+	public class Server {
 	
 	/**
 	 * Simple HTTP handler for testing ChronoTimer
@@ -110,24 +111,25 @@ public class Server {
 	            Gson g = new Gson();
             	ArrayList<Employee> employees = new ArrayList<Employee>();
             	
-	            // respond to the POST with ROGER
+	            
 	            if (sharedResponse.contains("ADD"))
 	            {
-	            	
 	            	employees = g.fromJson(sharedResponse,  new TypeToken<Collection<Employee>>() {}.getType());
-	            	
 	            }
+	            
 	            else if (sharedResponse.contains("PRINT"))
 	            {
 	            	for (Employee emp: employees)
 	            	{
-	            		System.out.println(emp);
+	            		System.out.println(emp.toString());
 	            	}
 	            }
+	            
 	            else if (sharedResponse.contains("CLEAR"))
 	            {
 	            	employees.clear();
 	            }
+	            
 	            String postResponse = "ROGER JSON RECEIVED";
 
 	            System.out.println("response: " + sharedResponse);
