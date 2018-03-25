@@ -178,6 +178,8 @@ public class ClientPanel extends JFrame implements ActionListener {
 			ret += titleList.getSelectedItem();
 			System.out.println(ret);
 			
+			//TODO send to server
+			
 			//clears fields after submission
 			fNameTxt.setText("");
 			lNameTxt.setText("");
