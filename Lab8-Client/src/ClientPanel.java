@@ -3,6 +3,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.awt.BorderLayout;
 import javax.swing.*;
 
@@ -178,7 +181,16 @@ public class ClientPanel extends JFrame implements ActionListener {
 			ret += titleList.getSelectedItem();
 			System.out.println(ret);
 			
-			//TODO send to server
+			//TODO add in json and url to make this section of code work, then uncomment it
+			/*
+			URL site = new URL(url);
+			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+			
+			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+			
+			out.writeBytes(json);
+			out.flush();
+			out.close();/**/
 			
 			//clears fields after submission
 			fNameTxt.setText("");
