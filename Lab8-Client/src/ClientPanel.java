@@ -73,6 +73,11 @@ public class ClientPanel extends JFrame implements ActionListener {
 	protected JButton submitButton;
 	
 	/**
+	 * Button to handle adding an employee
+	 */
+	protected JButton addEmp;
+	
+	/**
 	 * Male button to handle persons sex
 	 */
 	protected JRadioButton maleButton;
@@ -86,6 +91,16 @@ public class ClientPanel extends JFrame implements ActionListener {
 	 * Button Group
 	 */
 	protected ButtonGroup group;
+	
+	/**
+	 * Employee Information
+	 */
+	private String first;
+	private String last;
+	private String depart;
+	private String number;
+	private String sex = "Male";
+	private String title = "Mr.";
 	
 	
 	/**
@@ -127,11 +142,19 @@ public class ClientPanel extends JFrame implements ActionListener {
 		coord.gridy = 2;
 		sub.add(lNameTxt, coord);
 		coord.gridy = 3;
-		sub.add(deptTxt,coord);
+		sub.add(deptTxt, coord);
 		coord.gridy = 4;
 		sub.add(phoneTxt, coord);
 		coord.gridy = 5;
+		coord.gridx = 1;
 		sub.add(retMsg, coord);
+		
+		coord.gridx = 0;		
+		addEmp = new JButton("Add Employee");
+		addEmp.setEnabled(true);
+		addEmp.setActionCommand("addempl");
+		addEmp.addActionListener(this);
+		sub.add(addEmp, coord);
 		
 		coord.gridx = 0;
 		coord.gridy = 6;
@@ -142,8 +165,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setPreferredSize(new Dimension(200,100));
 		coord.gridx = 1;
-		//coord.insets = new Insets(1,1,1,1);
-		//coord.gridy = 4;
+		coord.gridy = 6;
 		sub.add(scroll,coord);
 		
 		submitButton = new JButton("Submit");
@@ -194,32 +216,40 @@ public class ClientPanel extends JFrame implements ActionListener {
 			textArea.append(text + "\n");
 			cmdTxt.setText("");
 			break;
-		case "submit":
-			//prompts if fields aren't filled
+		case "title":
+			title = titleList.getSelectedItem().toString();
+			break;
+		case "male":
+			sex = "Male";
+			break;
+		case "female":
+			sex = "Female";
+			break;
+		case "addempl":
 			if(fNameTxt.getText().isEmpty() || lNameTxt.getText().isEmpty() 
 					|| deptTxt.getText().isEmpty() || phoneTxt.getText().isEmpty()) {
-				retMsg.setText("Fill all fields");
+				retMsg.setText(" Please fill all the fields first.");
 				sub.repaint();
 				break;
 			}
-			//TODO currently just proves all fields grabbed. Convert to employee? (thought that was a server thing)  
-			//generate the JSON or send to correct place (may need reordering)??
-			String ret = "";
-			ret += fNameTxt.getText() + " ";
-			ret += lNameTxt.getText() + " ";
-			ret += deptTxt.getText() + " ";
-			ret += phoneTxt.getText() + " ";
-			ret += group.getSelection().getActionCommand() + " ";
-			ret += titleList.getSelectedItem();
-			System.out.println(ret);
-			
+			first = fNameTxt.getText();
+			last = lNameTxt.getText();
+			depart = deptTxt.getText();
+			number = phoneTxt.getText();
+			textArea.append(first + " " + last + " " + depart + " " + number + " " + sex + " " + title + "\n");
+			fNameTxt.setText("");
+			lNameTxt.setText("");
+			deptTxt.setText("");
+			phoneTxt.setText("");
+			break;
+		case "submit":
 			Gson g = new Gson();
 			
-			String json = (g.toJson(list));
+			//String json = (g.toJson(list));
 			
 			//TODO add in json and url to make this section of code work, then uncomment it
 			
-			URL site = new URL("http://localhost:8000/sendresults");
+			/*URL site = new URL("http://localhost:8000/sendresults");
 			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
 			
 			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
@@ -229,12 +259,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 			out.close();/**/
 			
 			//clears fields after submission
-			fNameTxt.setText("");
-			lNameTxt.setText("");
-			deptTxt.setText("");
-			phoneTxt.setText("");
-			retMsg.setText("Submission Successful");
-			sub.repaint();
+			textArea.append("Submission succesful \n");
 			break;
 		}
 	}
