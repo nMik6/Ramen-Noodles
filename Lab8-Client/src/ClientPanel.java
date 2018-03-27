@@ -181,9 +181,13 @@ public class ClientPanel extends JFrame implements ActionListener {
 			ret += titleList.getSelectedItem();
 			System.out.println(ret);
 			
+			Gson g = new Gson();
+			
+			employees = (g.fromJson(ret,  new TypeToken<Collection<Employee>>() {}.getType()));
+			
 			//TODO add in json and url to make this section of code work, then uncomment it
-			/*
-			URL site = new URL(url);
+			
+			URL site = new URL("http://localhost:8000/sendresults");
 			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
 			
 			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
