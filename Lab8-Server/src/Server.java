@@ -112,9 +112,10 @@ public class Server {
             	
 	            // respond to the POST with ROGER
 	            if (sharedResponse.contains("ADD"))
-	            {
+	            {	            	
+	            	String[] splitString = sharedResponse.split("Add");
 	            	
-	            	employees = g.fromJson(sharedResponse,  new TypeToken<Collection<Employee>>() {}.getType());
+	            	employees = g.fromJson(splitString[1],  new TypeToken<Collection<Employee>>() {}.getType());
 	            	
 	            }
 	            else if (sharedResponse.contains("PRINT"))
