@@ -6,8 +6,12 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collection;
 import java.awt.BorderLayout;
 import javax.swing.*;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * GUI for the client to use to enter employee information and commands
