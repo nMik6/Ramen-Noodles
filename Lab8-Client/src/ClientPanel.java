@@ -176,11 +176,11 @@ public class ClientPanel extends JFrame implements ActionListener {
 		frame.add(submitButton, BorderLayout.SOUTH);
 		
 		maleButton = new JRadioButton("Male");
-		//maleButton.addActionListener(this);
+		maleButton.addActionListener(this);
 		maleButton.setActionCommand("male");
 		
 		femaleButton = new JRadioButton("Female");
-		//femaleButton.addActionListener(this);
+		femaleButton.addActionListener(this);
 		femaleButton.setActionCommand("female");
 		
 		group.add(maleButton);
