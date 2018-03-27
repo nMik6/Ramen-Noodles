@@ -187,7 +187,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 			
 			Gson g = new Gson();
 			
-			employees = (g.fromJson(ret,  new TypeToken<Collection<Employee>>() {}.getType()));
+			String json = (g.toJson(list));
 			
 			//TODO add in json and url to make this section of code work, then uncomment it
 			
