@@ -28,6 +28,7 @@
 	    // a shared area where we get the POST data and then use it in the other handler
 	    static String sharedResponse = "";
 	    static boolean gotMessageFlag = false;
+	    static ArrayList<Employee> master = new ArrayList<>();
 
 	    public static void main(String[] args) throws Exception {
 
@@ -119,11 +120,12 @@
 	            	
 	            	employees = g.fromJson(splitString[1],  new TypeToken<Collection<Employee>>() {}.getType());
 	            	
+	            	master.addAll(employees);
 	            }
 	            
 	            else if (sharedResponse.contains("PRINT"))
 	            {
-	            	for (Employee emp: employees)
+	            	for (Employee emp: master)
 	            	{
 	            		System.out.println(emp.toString());
 	            	}
@@ -131,13 +133,16 @@
 	            
 	            else if (sharedResponse.contains("CLEAR"))
 	            {
-	            	employees.clear();
+	            	master.clear();
 	            }
 	            
 	            System.out.println("response: " + sharedResponse);
 
 	            //Desktop dt = Desktop.getDesktop();
 	            //dt.open(new File("raceresults.html"));
+
+	            // respond to the POST with ROGER
+          		String postResponse = "ROGER JSON RECEIVED";
 
 	            // assume that stuff works all the time
 	            transmission.sendResponseHeaders(300, postResponse.length());
