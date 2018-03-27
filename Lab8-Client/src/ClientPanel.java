@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.awt.BorderLayout;
 import javax.swing.*;
@@ -101,7 +102,12 @@ public class ClientPanel extends JFrame implements ActionListener {
 	private String number;
 	private String sex = "Male";
 	private String title = "Mr.";
+	private boolean isFemale;
 	
+	/**
+	 * Employee List
+	 */
+	private ArrayList<Employee> list;
 	
 	/**
 	 * Creates the GUI and positions everything correctly inside.
@@ -223,9 +229,11 @@ public class ClientPanel extends JFrame implements ActionListener {
 			break;
 		case "male":
 			sex = "Male";
+			isFemale = false;
 			break;
 		case "female":
 			sex = "Female";
+			isFemale = true;
 			break;
 		case "addempl":
 			//TODO - Still need to turn all this information into on employee object and
@@ -240,6 +248,10 @@ public class ClientPanel extends JFrame implements ActionListener {
 			last = lNameTxt.getText();
 			depart = deptTxt.getText();
 			number = phoneTxt.getText();
+			
+			if(list == null)list = new ArrayList<Employee>();
+			list.add(new Employee(first,last,depart,number,title,isFemale));
+			
 			textArea.append(first + " " + last + " " + depart + " " + number + " " + sex + " " + title + "\n");
 			fNameTxt.setText("");
 			lNameTxt.setText("");
@@ -247,14 +259,13 @@ public class ClientPanel extends JFrame implements ActionListener {
 			phoneTxt.setText("");
 			break;
 		case "submit":
-			//TODO - take the employee list convert it to json and send to server
 			Gson g = new Gson();
 			
-			//String json = (g.toJson(list));
+			String json = (g.toJson(list));
 			
-			//TODO add in json and url to make this section of code work, then uncomment it
+			//TODO fix the URL error
 			
-			/*URL site = new URL("http://localhost:8000/sendresults");
+			URL site = new URL("http://localhost:8000/sendresults");
 			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
 			
 			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
@@ -262,6 +273,8 @@ public class ClientPanel extends JFrame implements ActionListener {
 			out.writeBytes(json);
 			out.flush();
 			out.close();/**/
+			
+			list.clear();
 			
 			//clears fields after submission
 			textArea.append("Submission succesful \n");
