@@ -3,7 +3,18 @@ Tenative Backlog:
 	Add GRP (group) race type
 
 	Create GUI
-		Event handlers for GUI 
+		-Event handlers for GUI 
+		-Power button
+		-Channel Buttons and trigger functionality
+			-Channels are binary on / off. Toggle command changes them
+		-Swap function
+			-Only works during IND races
+		-Drop down list for sensors, disconnect as well
+		-Keypad
+		-Printer and print results
+		-Displays
+			-Running
+			-Racers
 
 	Work in Pairs 
 
