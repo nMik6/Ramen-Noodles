@@ -264,20 +264,22 @@ public class ClientPanel extends JFrame implements ActionListener {
 			String json = (g.toJson(list));
 			
 			//TODO fix the URL error
-			
-			URL site = new URL("http://localhost:8000/sendresults");
-			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
-			
-			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-			
-			out.writeBytes(json);
-			out.flush();
-			out.close();/**/
-			
-			list.clear();
-			
-			//clears fields after submission
-			textArea.append("Submission succesful \n");
+			try {
+				URL site = new URL("http://localhost:8000/sendresults");
+				HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+				
+				DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+				
+				out.writeBytes(json);
+				out.flush();
+				out.close();
+				textArea.append("Submission succesful \n");
+			} catch (Exception excpt) {
+				System.out.println(excpt.getMessage());
+				textArea.append("Submission unsuccesful \n");
+			} finally {
+				list.clear();
+			}
 			break;
 		}
 	}
