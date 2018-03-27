@@ -113,8 +113,12 @@
             	
 	            
 	            if (sharedResponse.contains("ADD"))
-	            {
-	            	employees = g.fromJson(sharedResponse,  new TypeToken<Collection<Employee>>() {}.getType());
+
+	            {	            	
+	            	String[] splitString = sharedResponse.split("Add");
+	            	
+	            	employees = g.fromJson(splitString[1],  new TypeToken<Collection<Employee>>() {}.getType());
+	            	
 	            }
 	            
 	            else if (sharedResponse.contains("PRINT"))
@@ -130,8 +134,6 @@
 	            	employees.clear();
 	            }
 	            
-	            String postResponse = "ROGER JSON RECEIVED";
-
 	            System.out.println("response: " + sharedResponse);
 
 	            //Desktop dt = Desktop.getDesktop();

@@ -7,8 +7,12 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collection;
 import java.awt.BorderLayout;
 import javax.swing.*;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * GUI for the client to use to enter employee information and commands
@@ -209,9 +213,13 @@ public class ClientPanel extends JFrame implements ActionListener {
 			ret += titleList.getSelectedItem();
 			System.out.println(ret);
 			
+			Gson g = new Gson();
+			
+			String json = (g.toJson(list));
+			
 			//TODO add in json and url to make this section of code work, then uncomment it
-			/*
-			URL site = new URL(url);
+			
+			URL site = new URL("http://localhost:8000/sendresults");
 			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
 			
 			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
