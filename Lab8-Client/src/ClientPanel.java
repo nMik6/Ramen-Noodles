@@ -226,6 +226,8 @@ public class ClientPanel extends JFrame implements ActionListener {
 			sex = "Female";
 			break;
 		case "addempl":
+			//TODO - Still need to turn all this information into on employee object and
+			// add them to a list to convert to JSON
 			if(fNameTxt.getText().isEmpty() || lNameTxt.getText().isEmpty() 
 					|| deptTxt.getText().isEmpty() || phoneTxt.getText().isEmpty()) {
 				retMsg.setText(" Please fill all the fields first.");
@@ -243,6 +245,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 			phoneTxt.setText("");
 			break;
 		case "submit":
+			//TODO - take the employee list convert it to json and send to server
 			Gson g = new Gson();
 			
 			//String json = (g.toJson(list));
