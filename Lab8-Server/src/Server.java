@@ -130,8 +130,6 @@
 	            	employees.clear();
 	            }
 	            
-	            String postResponse = "ROGER JSON RECEIVED";
-
 	            System.out.println("response: " + sharedResponse);
 
 	            //Desktop dt = Desktop.getDesktop();
