@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
@@ -38,6 +39,8 @@ public class ClientPanel extends JFrame implements ActionListener {
 	/**
 	 * Set of text field labels
 	 */
+	protected JLabel cmd = new JLabel("  Command: ");
+	protected JLabel info = new JLabel("  Log: ");
 	protected JLabel fName = new JLabel("  First Name: ");
 	protected JLabel lName = new JLabel("  Last Name: ");
 	protected JLabel dept = new JLabel("  Department: ");
@@ -47,6 +50,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 	/**
 	 * The text field for the client to enter information
 	 */
+	protected JTextField cmdTxt = new JTextField(10);
 	protected JTextField fNameTxt = new JTextField(10);
 	protected JTextField lNameTxt = new JTextField(10);
 	protected JTextField deptTxt = new JTextField(10);
@@ -99,25 +103,44 @@ public class ClientPanel extends JFrame implements ActionListener {
 		
 		coord.gridx = 0;
 		coord.gridy = 0;
-		sub.add(fName, coord);
+		sub.add(cmd, coord);
 		coord.gridy = 1;
-		sub.add(lName, coord);
+		sub.add(fName, coord);
 		coord.gridy = 2;
-		sub.add(dept,coord);
+		sub.add(lName, coord);
 		coord.gridy = 3;
+		sub.add(dept,coord);
+		coord.gridy = 4;
 		sub.add(phone, coord);
 		
 		coord.gridx = 1;
 		coord.gridy = 0;
-		sub.add(fNameTxt, coord);
+		sub.add(cmdTxt, coord);
+		cmdTxt.setActionCommand("cmdenter");
+		cmdTxt.addActionListener(this);
 		coord.gridy = 1;
-		sub.add(lNameTxt, coord);
+		sub.add(fNameTxt, coord);
 		coord.gridy = 2;
-		sub.add(deptTxt,coord);
+		sub.add(lNameTxt, coord);
 		coord.gridy = 3;
-		sub.add(phoneTxt, coord);
+		sub.add(deptTxt,coord);
 		coord.gridy = 4;
+		sub.add(phoneTxt, coord);
+		coord.gridy = 5;
 		sub.add(retMsg, coord);
+		
+		coord.gridx = 0;
+		coord.gridy = 6;
+		sub.add(info, coord);
+		
+		textArea = new JTextArea();
+		textArea.setEditable(false);
+		JScrollPane scroll = new JScrollPane(textArea);
+		scroll.setPreferredSize(new Dimension(200,100));
+		coord.gridx = 1;
+		//coord.insets = new Insets(1,1,1,1);
+		//coord.gridy = 4;
+		sub.add(scroll,coord);
 		
 		submitButton = new JButton("Submit");
 		submitButton.setVerticalTextPosition(AbstractButton.CENTER);
@@ -138,12 +161,12 @@ public class ClientPanel extends JFrame implements ActionListener {
 		group.add(femaleButton);
 		maleButton.setSelected(true);
 		
-		coord.gridx = 3;
-		coord.gridy = 0;
-		sub.add(titleList, coord);
+		coord.gridx = 2;
 		coord.gridy = 1;
-		sub.add(maleButton, coord);
+		sub.add(titleList, coord);
 		coord.gridy = 2;
+		sub.add(maleButton, coord);
+		coord.gridy = 3;
 		sub.add(femaleButton, coord);
 		
 		
@@ -162,10 +185,15 @@ public class ClientPanel extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		
+		case "cmdenter":
+			String text = cmdTxt.getText();
+			textArea.append(text + "\n");
+			cmdTxt.setText("");
+			break;
 		case "submit":
 			//prompts if fields aren't filled
-			if(fNameTxt.getText().isEmpty() || lNameTxt.getText().isEmpty() || deptTxt.getText().isEmpty() || phoneTxt.getText().isEmpty()) {
+			if(fNameTxt.getText().isEmpty() || lNameTxt.getText().isEmpty() 
+					|| deptTxt.getText().isEmpty() || phoneTxt.getText().isEmpty()) {
 				retMsg.setText("Fill all fields");
 				sub.repaint();
 				break;
