@@ -118,6 +118,8 @@ public class ClientPanel extends JFrame implements ActionListener {
 		titleList.setActionCommand("title");
 		titleList.addActionListener(this);
 		
+		cmdTxt.setText("Enter to submit");
+		
 		coord.anchor = GridBagConstraints.WEST;
 		
 		coord.gridx = 0;
