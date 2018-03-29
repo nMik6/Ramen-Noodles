@@ -33,7 +33,7 @@ public class Employee implements Comparable<Object>{
 	/**
 	 * Converts a string into a boolean value representing a gender
 	 * @param str (valid forms: "true","false","female","male","f","m")
-	 * @return boolean value representing gender
+	 * @return true when female, false when male
 	 * @throws IllegalArgumentException when str is invalid (valid forms: "true","false","female","male","f","m")
 	 */
 	public static boolean toIsFemale(String str) {
