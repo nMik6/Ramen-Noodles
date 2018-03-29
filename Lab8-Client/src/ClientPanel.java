@@ -227,7 +227,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 		switch (e.getActionCommand()) {
 		case "cmdenter":
 			text = cmdTxt.getText();
-			textArea.append(text + "\n");
+			textArea.append(sendToServer(text.toUpperCase()));
 			cmdTxt.setText("");
 			break;
 		case "title":
@@ -264,50 +264,44 @@ public class ClientPanel extends JFrame implements ActionListener {
 			break;
 		case "submit":
 			Gson g = new Gson();
-			String json = "";
-			if(text.length()!=0) json += g.toJson(text);
-			else json += "ADD" +(g.toJson(list));
-			
-			System.out.println(json);
-			try {
-				URL site = new URL("http://localhost:8000/sendresults");
-				HttpURLConnection conn = (HttpURLConnection) site.openConnection();
-				
-				conn.setRequestMethod("POST");
-				conn.setDoOutput(true);
-				conn.setDoInput(true);
-				DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-				
-				System.out.println(json);
-				out.writeBytes(json);
-				out.flush();
-				out.close();
-				
-
-				InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
-
-				// string to hold the result of reading in the response
-				StringBuilder sb = new StringBuilder();
-
-				// read the characters from the request byte by byte and build up
-				// the Response
-				int nextChar;
-				while ((nextChar = inputStr.read()) > -1) {
-					sb = sb.append((char) nextChar);
-				}
-				textArea.append("Submission successful \n");
-				System.out.println("Done sent to server");
-				System.out.println("Return String: " + sb);
-
-				list.clear();
-			} catch (Exception excpt) {
-				System.out.println(excpt.getMessage());
-				textArea.append("Submission unsuccessful \n");
-			}
-			break;
+			textArea.append(sendToServer( "ADD" +(g.toJson(list))));
 		}
 	}
 	
+	public String sendToServer(String s) {
+		try {
+			URL site = new URL("http://localhost:8000/sendresults");
+			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+			
+			conn.setRequestMethod("POST");
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+			
+			out.writeBytes(s);
+			out.flush();
+			out.close();
+			
+
+			InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
+
+			// string to hold the result of reading in the response
+			StringBuilder sb = new StringBuilder();
+
+			// read the characters from the request byte by byte and build up
+			// the Response
+			int nextChar;
+			while ((nextChar = inputStr.read()) > -1) {
+				sb = sb.append((char) nextChar);
+			}
+			list.clear();
+			return ("Submission successful \n");
+	
+		} catch (Exception excpt) {
+			System.out.println(excpt.getMessage());
+			return ("Submission unsuccessful \n");
+		}
+	}
 	public static void main(String[] args) {
 		/* Use an appropriate Look and Feel */
         try {
