@@ -1,12 +1,12 @@
-Primary: 
+Primary: (Feedback changes needed from Sprint 1 and 2)
 - Start and Finish both need to be implemented
 - Endrun currently gets a nullpointer if there is at least one person in progress of a race
-- Multiple racers can have the same bib number in the same run
-- UML, Use case diagram, use case scenarios, product backlog, sprint planning
+- Multiple racers can have the same bib number in the same run: Thomas
+- UML, Use case diagram, use case scenarios, product backlog, sprint planning: Hart & Nathan
 
 Secondary:
 - Re-structure Simulator class
-- UML Diagram
+- UML Diagram: Hart & Nathan
 - Use case diagram & scenarios
 - Product backlog
 - Sprint planning
