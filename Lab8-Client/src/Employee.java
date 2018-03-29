@@ -29,5 +29,21 @@ public class Employee implements Comparable<Object>{
 		}
 		return 0;
 	}
+	
+	/**
+	 * Converts a string into a boolean value representing a gender
+	 * @param str (valid forms: "true","false","female","male","f","m")
+	 * @return boolean value representing gender
+	 * @throws IllegalArgumentException when str is invalid (valid forms: "true","false","female","male","f","m")
+	 */
+	public static boolean toIsFemale(String str) {
+		if( str.equalsIgnoreCase("true") || str.equalsIgnoreCase("female") || str.equalsIgnoreCase("f") ) {
+			return true;
+		}else if( str.equalsIgnoreCase("false") || str.equalsIgnoreCase("male") || str.equalsIgnoreCase("m") ) {
+			return false;
+		}else{
+			throw new IllegalArgumentException();
+		}
+	}
 
 }
