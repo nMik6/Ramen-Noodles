@@ -227,7 +227,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 		switch (e.getActionCommand()) {
 		case "cmdenter":
 			text = cmdTxt.getText();
-			textArea.append(sendToServer(text.toUpperCase()));
+			textArea.append(text + "\n" + sendToServer(text.toUpperCase()));
 			cmdTxt.setText("");
 			break;
 		case "title":
