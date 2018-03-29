@@ -5,7 +5,7 @@ Primary: (Feedback changes needed from Sprint 1 and 2) - Due by 4/2/2018 afterno
 - UML, Use case diagram, use case scenarios, product backlog, sprint planning: Hart & Nathan
 
 Secondary: (Sprint 3) - The primary work must be done prior to working on this
-- Tentative diagram for Sprint 3: ALL
+- Tentative diagram/implementation for Sprint 3: ALL
 - Re-structure Simulator class: Nathan
 - UML Diagram: Hart & Nathan
 - Use case diagram & scenarios: Hart & Nathan
