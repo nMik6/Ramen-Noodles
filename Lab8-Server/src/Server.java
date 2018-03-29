@@ -55,6 +55,7 @@
 				// set up the header
 	            System.out.println(response);
 				try {
+					System.out.println(response);
 					if (!sharedResponse.isEmpty()) {
 						System.out.println(response);
 						ArrayList<Employee> fromJson = g.fromJson(sharedResponse,
