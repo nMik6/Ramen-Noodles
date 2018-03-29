@@ -111,6 +111,11 @@ public class ClientPanel extends JFrame implements ActionListener {
 	private ArrayList<Employee> list;
 	
 	/**
+	 * Command
+	 */
+	private String text = "";
+	
+	/**
 	 * Creates the GUI and positions everything correctly inside.
 	 */
 	public ClientPanel() {
@@ -221,7 +226,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "cmdenter":
-			String text = cmdTxt.getText();
+			text += cmdTxt.getText();
 			textArea.append(text + "\n");
 			cmdTxt.setText("");
 			break;
@@ -259,8 +264,9 @@ public class ClientPanel extends JFrame implements ActionListener {
 			break;
 		case "submit":
 			Gson g = new Gson();
-			
-			String json = (g.toJson(list));
+			String json = "";
+			if(text.length()!=0) json += g.toJson(text);
+			json += (g.toJson(list));
 			
 			try {
 				URL site = new URL("http://localhost:8000/sendresults");
