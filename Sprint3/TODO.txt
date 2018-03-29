@@ -4,7 +4,7 @@ Primary: (Feedback changes needed from Sprint 1 and 2)
 - Multiple racers can have the same bib number in the same run: Thomas
 - UML, Use case diagram, use case scenarios, product backlog, sprint planning: Hart & Nathan
 
-Secondary:
+Secondary: (Sprint 3)
 - Re-structure Simulator class
 - UML Diagram: Hart & Nathan
 - Use case diagram & scenarios
