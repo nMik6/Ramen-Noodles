@@ -55,9 +55,8 @@
 				// set up the header
 	            System.out.println(response);
 				try {
-					System.out.println(response);
+					System.out.println("disp");
 					if (!sharedResponse.isEmpty()) {
-						System.out.println(response);
 						ArrayList<Employee> fromJson = g.fromJson(sharedResponse,
 								new TypeToken<Collection<Employee>>() {
 								}.getType());
@@ -116,25 +115,27 @@
 	            
 	            if (sharedResponse.contains("ADD"))
 
-	            {	            	
-	            	String[] splitString = sharedResponse.split("Add");
-	            	
+	            {	
+	            	System.out.println("here add");
+	            	String[] splitString = sharedResponse.split("ADD");
+	            	System.out.println(splitString[1].toString());
 	            	employees = g.fromJson(splitString[1],  new TypeToken<Collection<Employee>>() {}.getType());
 	            	
 	            	master.addAll(employees);
+	            	sharedResponse = splitString[1];
 	            }
 	            
 	            else if (sharedResponse.contains("PRINT"))
 	            {
-	            	for (Employee emp: master)
-	            	{
-	            		System.out.println(emp.toString());
-	            	}
+	            	sharedResponse = g.toJson(master);
+	            	
 	            }
 	            
 	            else if (sharedResponse.contains("CLEAR"))
 	            {
 	            	master.clear();
+	            	System.out.println(master.toString());
+	            	sharedResponse = "";
 	            }
 	            
 	            System.out.println("response: " + sharedResponse);

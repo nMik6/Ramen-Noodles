@@ -226,7 +226,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "cmdenter":
-			text += cmdTxt.getText();
+			text = cmdTxt.getText();
 			textArea.append(text + "\n");
 			cmdTxt.setText("");
 			break;
@@ -266,8 +266,9 @@ public class ClientPanel extends JFrame implements ActionListener {
 			Gson g = new Gson();
 			String json = "";
 			if(text.length()!=0) json += g.toJson(text);
-			json += (g.toJson(list));
+			else json += "ADD" +(g.toJson(list));
 			
+			System.out.println(json);
 			try {
 				URL site = new URL("http://localhost:8000/sendresults");
 				HttpURLConnection conn = (HttpURLConnection) site.openConnection();
@@ -281,9 +282,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 				out.writeBytes(json);
 				out.flush();
 				out.close();
-				textArea.append("Submission successful \n");
 				
-				System.out.println("Done sent to server");
 
 				InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
 
@@ -296,6 +295,8 @@ public class ClientPanel extends JFrame implements ActionListener {
 				while ((nextChar = inputStr.read()) > -1) {
 					sb = sb.append((char) nextChar);
 				}
+				textArea.append("Submission successful \n");
+				System.out.println("Done sent to server");
 				System.out.println("Return String: " + sb);
 
 				list.clear();
