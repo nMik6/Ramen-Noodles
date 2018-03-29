@@ -270,12 +270,12 @@ public class ClientPanel extends JFrame implements ActionListener {
 				out.writeBytes(json);
 				out.flush();
 				out.close();
-				textArea.append("Submission succesful \n");
+				textArea.append("Submission successful \n");
 
 				list.clear();
 			} catch (Exception excpt) {
 				System.out.println(excpt.getMessage());
-				textArea.append("Submission unsuccesful \n");
+				textArea.append("Submission unsuccessful \n");
 			}
 			break;
 		}
