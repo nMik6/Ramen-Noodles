@@ -236,8 +236,6 @@ public class ClientPanel extends JFrame implements ActionListener {
 			isFemale = true;
 			break;
 		case "addempl":
-			//TODO - Still need to turn all this information into on employee object and
-			// add them to a list to convert to JSON
 			if(fNameTxt.getText().isEmpty() || lNameTxt.getText().isEmpty() 
 					|| deptTxt.getText().isEmpty() || phoneTxt.getText().isEmpty()) {
 				retMsg.setText(" Please fill all the fields first.");
@@ -263,7 +261,6 @@ public class ClientPanel extends JFrame implements ActionListener {
 			
 			String json = (g.toJson(list));
 			
-			//TODO fix the URL error
 			try {
 				URL site = new URL("http://localhost:8000/sendresults");
 				HttpURLConnection conn = (HttpURLConnection) site.openConnection();
