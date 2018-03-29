@@ -4,7 +4,7 @@ Primary: (Feedback changes needed from Sprint 1 and 2) - Due by 4/2/2018 afterno
 - Multiple racers can have the same bib number in the same run: Thomas
 - UML, Use case diagram, use case scenarios, product backlog, sprint planning: Hart & Nathan
 
-Secondary: (Sprint 3) - The primary work must be done prior to working on this
+Secondary: (Sprint 3) - The primary work must be done prior to working on this. Will be discussed more in Lab
 - Tentative diagram/implementation for Sprint 3: ALL
 - Re-structure Simulator class: Nathan
 - UML Diagram: Hart & Nathan
