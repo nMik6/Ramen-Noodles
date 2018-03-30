@@ -27,3 +27,10 @@ Tenative Backlog:
 		Create comprehensive UML modeling for Previous sprints to catch up on scope of componenents
 
 	Partition the work for Sprint3
+
+
+	Previous Sprints Issues: 
+
+		Change Racer class dnf() to setDnf() to indicate it as a setter
+
+		Race class should have an enum type with a final field indicating the type of the race as it is not reset ever. 
