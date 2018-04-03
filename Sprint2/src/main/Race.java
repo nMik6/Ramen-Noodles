@@ -56,7 +56,7 @@ public class Race {
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if( this.containsBib(r.getName()) || r == null || ready.contains(r) || running.contains(r) || (paraInd && alsoRunning.contains(r)) || (paraInd && alsoReady.contains(r))) return false;
+		if( r == null || this.containsBib(r.getName()) || ready.contains(r) || running.contains(r) || (paraInd && alsoRunning.contains(r)) || (paraInd && alsoReady.contains(r))) return false;
 		if (paraInd) {
 			if (ready.size() > alsoReady.size()) {
 				alsoReady.add(r);
@@ -200,7 +200,7 @@ public class Race {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
-		for(it = alsoReady.iterator();it.hasNext();) {
+		if(alsoReady != null)for(it = alsoReady.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
@@ -208,7 +208,7 @@ public class Race {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
-		for(it = alsoRunning.iterator();it.hasNext();) {
+		if(alsoRunning != null)for(it = alsoRunning.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
