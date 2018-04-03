@@ -229,7 +229,9 @@ public class Simulator {
 
 		System.out.println("(log) system reset");
 		power = true;
+		System.out.println("Reseting System!");
 		cur_race = new Race();
+		System.out.println("After new race created!");
 		command = null;
 		offsetPos = false;
 		for (int i = 0; i<8; i++) channels[i] = new Channel();
@@ -242,8 +244,14 @@ public class Simulator {
 		if (!power || cur_race == null)	return;
 		System.out.println("(log) print called");
 		for (Racer r: cur_race.getFinishedRacers()) {
+			if (!r.didNotFinish()) {
 			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
 					r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
+			}
+			else {
+				System.out.printf("Racer: %d,\tStart: %s, \tDid not finish!", 
+						r.getName(), r.getStart().printTime());
+			}
 		}
 	}
 

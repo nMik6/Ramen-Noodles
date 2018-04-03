@@ -177,16 +177,16 @@ public class Race {
 		while(!running.isEmpty()) {
 			Racer temp = running.poll();
 			temp.dnf();
-			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
-					temp.getName(), temp.getStart().printTime(), temp.getFinish().printTime(), temp.getTotal().printTime());
+			System.out.printf("Racer: %d,\tStart: %s,\tDid not finish! ",
+					temp.getName(), temp.getStart().printTime());
 			finished.add(temp);
 		}
 		if(paraInd) {
 			while(!alsoRunning.isEmpty()) {
 				Racer temp = running.poll();
 				temp.dnf();
-				System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
-						temp.getName(), temp.getStart().printTime(), temp.getFinish().printTime(), temp.getTotal().printTime());
+				System.out.printf("Racer: %d,\tStart: %s \tDid not finish!", 
+						temp.getName(), temp.getStart().printTime() );
 				finished.add(temp);
 			}
 		}
