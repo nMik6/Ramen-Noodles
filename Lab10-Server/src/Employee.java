@@ -16,6 +16,31 @@ public class Employee implements Comparable<Object>{
 		this.isFemale = isFemale;
 	}
 	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public boolean isFemale() {
+		return isFemale;
+	}
+
+	
 	@Override
 	public String toString() {
 		return title + " " + firstName + " " + lastName + " (" + (isFemale?"f":"m") + ") \tin " + department + " \thas phone number of " + phoneNumber;

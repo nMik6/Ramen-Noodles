@@ -51,6 +51,27 @@
 	        System.out.println("Starting Server...");
 	        server.start();
 	    }
+	    
+	    private String buildHtml() {
+	    		StringBuilder sb = new StringBuilder();
+	    		sb.append("<th>Title</th>");
+	    		sb.append("<th>First Name</th>");
+	    		sb.append("<th>Last Name</th>");
+	    		sb.append("<th>Department</th>");
+	    		sb.append("<th>Phone</th>");
+	    		sb.append("<th>Gender</th>");
+	    		for (Employee e : master) {
+	    			sb.append("<tr>");
+	    			sb.append("<td>" + e.getTitle() + "</td>");
+	    			sb.append("<td>" + e.getFirstName() + "</td>");
+	    			sb.append("<td>" + e.getLastName() + "</td>");
+	    			sb.append("<td>" + e.getDepartment() + "</td>");
+	    			sb.append("<td>" + e.getPhoneNumber() + "</td>");
+	    			sb.append("<td>" + e.isFemale() + "</td>");
+	    			sb.append("</tr>");
+	    		}
+	    		return sb.toString();
+	    }
 
 	    static class HtmlHandler implements HttpHandler {
 	    	public void handle(HttpExchange t) throws IOException {
