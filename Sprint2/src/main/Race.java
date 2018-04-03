@@ -56,14 +56,12 @@ public class Race {
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if( r == null || this.containsBib(r.getName()) || ready.contains(r) || running.contains(r) || (paraInd && alsoRunning.contains(r)) || (paraInd && alsoReady.contains(r))) return false;
+		if( r == null || this.containsBib(r.getName())) return false;
 		if (paraInd) {
 			if (ready.size() > alsoReady.size()) {
 				alsoReady.add(r);
-				return true;
-			}
-		}
-		ready.add(r);
+			}else ready.add(r);
+		}else ready.add(r);
 		return true;
 	}
 
