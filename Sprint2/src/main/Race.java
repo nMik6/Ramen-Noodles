@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class Race {
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if( r == null || ready.contains(r) || running.contains(r) || (paraInd && alsoRunning.contains(r)) || (paraInd && alsoReady.contains(r))) return false;
+		if( this.containsBib(r.getName()) || r == null || ready.contains(r) || running.contains(r) || (paraInd && alsoRunning.contains(r)) || (paraInd && alsoReady.contains(r))) return false;
 		if (paraInd) {
 			if (ready.size() > alsoReady.size()) {
 				alsoReady.add(r);
@@ -190,6 +191,32 @@ public class Race {
 				finished.add(temp);
 			}
 		}
+	}
+	
+	private boolean containsBib(int bib) {
+		Iterator<Racer> it;
+		Racer r;
+		for(it = ready.iterator();it.hasNext();) {
+			r = it.next();
+			if(r.getName() == bib)return true;
+		}
+		for(it = alsoReady.iterator();it.hasNext();) {
+			r = it.next();
+			if(r.getName() == bib)return true;
+		}
+		for(it = running.iterator();it.hasNext();) {
+			r = it.next();
+			if(r.getName() == bib)return true;
+		}
+		for(it = alsoRunning.iterator();it.hasNext();) {
+			r = it.next();
+			if(r.getName() == bib)return true;
+		}
+		for(it = finished.iterator();it.hasNext();) {
+			r = it.next();
+			if(r.getName() == bib)return true;
+		}
+		return false;
 	}
 
 }
