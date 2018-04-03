@@ -35,18 +35,30 @@
 	        // set up a simple HTTP server on our local host
 	        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
+	        // create a context to get the request to display the results in HTML format
+	        server.createContext("/displayresults/directory", new HtmlHandler());
+	        
 	        // create a context to get the request to display the results
 	        server.createContext("/displayresults", new DisplayHandler());
 
 	        // create a context to get the request for the POST
 	        server.createContext("/sendresults",new PostHandler());
 	        server.setExecutor(null); // creates a default executor
+	        
+	        
 
 	        // get it going
 	        System.out.println("Starting Server...");
 	        server.start();
 	    }
 
+	    static class HtmlHandler implements HttpHandler {
+	    	public void handle(HttpExchange t) throws IOException {
+	    		
+	    	}
+	    	
+	    }
+	    
 	    static class DisplayHandler implements HttpHandler {
 	        public void handle(HttpExchange t) throws IOException {
 
