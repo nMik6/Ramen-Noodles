@@ -138,7 +138,7 @@ public class Race {
 	 */
 	public void start(int channel, Time time) {
 		Racer starting;
-		if (paraInd && (ready.size() <= alsoReady.size())) {
+		if (paraInd && (ready.size() < alsoReady.size())) {
 			 starting = alsoReady.poll();
 			
 		}

@@ -235,7 +235,7 @@ class RaceTest {
 		assertTrue(testRace.getReadyRacers().size() == 3);
 		assertTrue(testRace.getCurrentRacers().size() == 1);
 		assertTrue(testRace.getFinishedRacers().size() == 0);
-
+		
 		assertTrue(testRace.getCurrentRacers().peek().getName() == 1);
 		assertFalse(testRace.addReady(testRacer1));
 		assertTrue(testRace.getReadyRacers().size() == 3);
