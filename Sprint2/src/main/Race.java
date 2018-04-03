@@ -72,7 +72,12 @@ public class Race {
 	 * @return queue of ready racers
 	 */
 	public Queue<Racer> getReadyRacers() {
-		return ready;
+		if(paraInd) {
+			Queue<Racer> out = new LinkedList<Racer>();
+			out.addAll(ready);
+			out.addAll(alsoReady);
+			return out;
+		}else return ready;
 	}
 	
 	/**
