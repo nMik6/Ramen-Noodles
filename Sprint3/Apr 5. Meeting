@@ -6,4 +6,5 @@ Events removed from Simulator and into its own class
 EventHandler to check for valid commands from Simulator prior to being sent to Events
 EventHandler passes checked/valid commands to Events
 
-
+More unit testing on Simulator
+New unit tests for events
