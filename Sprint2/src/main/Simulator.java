@@ -139,6 +139,22 @@ public class Simulator {
 			case "print":
 				print();
 				break;
+			case "start":
+				if (passedTime != null) trig("1", passedTime);
+				else {
+					if (timeOffset == null)trig("1", new Time());
+					else if (offsetPos)trig("1", new Time().add(timeOffset));
+					else trig("1", new Time().difference(timeOffset));
+				}
+				break;
+			case "end":
+				if (passedTime != null) trig("2", passedTime);
+				else {
+					if (timeOffset == null)trig("2", new Time());
+					else if (offsetPos)trig("2", new Time().add(timeOffset));
+					else trig("2", new Time().difference(timeOffset));
+				}
+				break;
 			case "newrun":
 				newrun();
 				break;
