@@ -1,5 +1,9 @@
 Change Race to a Abstract class
 Each race type will be its own implementation of Race
+Individual
+Parallel Individual
+Group
+Parallel Group
 
 (Nested)
 Events removed from Simulator and into its own class
