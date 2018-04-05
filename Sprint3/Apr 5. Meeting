@@ -14,6 +14,12 @@ More unit testing on Simulator
 New unit tests for events
 
 Jobs:
+
+Lab10-
+buildHTML: add the body and head tags and the header
+htmlhandler: calls buildHtml, and send response headers
+
+Sprint3-
 GUI: Stephen & Nathan
 Race Classes: Hart & Thomas
 Adding Group: Hart
