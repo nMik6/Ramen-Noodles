@@ -1,0 +1,26 @@
+Change Race to a Abstract class
+Each race type will be its own implementation of Race
+Individual
+Parallel Individual
+Group
+Parallel Group
+
+(Nested)
+Events removed from Simulator and into its own class
+EventHandler to check for valid commands from Simulator prior to being sent to Events
+EventHandler passes checked/valid commands to Events
+
+More unit testing on Simulator
+New unit tests for events
+
+Jobs:
+
+Lab10-
+buildHTML: add the body and head tags and the header
+htmlhandler: calls buildHtml, and send response headers
+
+Sprint3-
+GUI: Stephen & Nathan
+Race Classes: Hart & Thomas
+Adding Group: Hart
+Simulator/Event/EventHandler: Skyler & Nathan
