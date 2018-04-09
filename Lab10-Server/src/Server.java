@@ -80,8 +80,19 @@
 	    }
 
 	    static class HtmlHandler implements HttpHandler {
-	    	public void handle(HttpExchange t) throws IOException {
+	    	public void handle(HttpExchange transmission) throws IOException {
+	    		String response = buildHtml();
 	    		
+	    		// assume that stuff works all the time
+	            transmission.sendResponseHeaders(300, postResponse.length());
+
+	            // set up a stream to write out the body of the response
+	            OutputStream outputStream = transmission.getResponseBody();
+
+	            // write it and return it
+	            outputStream.write(response.getBytes());
+
+	            outputStream.close();
 	    	}
 	    	
 	    }
