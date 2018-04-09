@@ -53,6 +53,7 @@ public class ParallelIndividual implements Race {
 		Queue<Racer> out = new LinkedList<Racer>();
 		out.addAll(running1);
 		out.addAll(running3);
+		return out;
 	}
 	
 	/**
