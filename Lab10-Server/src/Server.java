@@ -54,6 +54,10 @@
 	    
 	    private String buildHtml() {
 	    		StringBuilder sb = new StringBuilder();
+	    		sb.append("<!DOCTYPE html>")
+	    		sb.append("<html>")
+	    		sb.append("<head></head>")
+	    		sb.append("<body>")
 	    		sb.append("<th>Title</th>");
 	    		sb.append("<th>First Name</th>");
 	    		sb.append("<th>Last Name</th>");
@@ -70,6 +74,8 @@
 	    			sb.append("<td>" + e.isFemale() + "</td>");
 	    			sb.append("</tr>");
 	    		}
+	    		sb.append("</body>")
+	    		sb.append("</html>")
 	    		return sb.toString();
 	    }
 
