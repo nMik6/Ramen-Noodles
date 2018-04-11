@@ -6,19 +6,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class ParallelIndividual implements Race {
-	private Queue<Racer> ready1;
+public class ParallelIndividual extends Race {
+	//use Race.ready as first channel lane ready queue
 	private Queue<Racer> ready3;
-	private Queue<Racer> running1;
+	//use Race.running as first channel lane running queue
 	private Queue<Racer> running3;
-	private List<Racer> finished;
+	
 	
 	public ParallelIndividual() {
-		this.ready1 = new LinkedList<Racer>();
-		this.running1 = new LinkedList<Racer>();
+		init();
 		this.ready3 = new LinkedList<Racer>();
 		this.running3 = new LinkedList<Racer>();
-		this.finished = new ArrayList<Racer>();
 	}
 	
 	/**
@@ -28,9 +26,9 @@ public class ParallelIndividual implements Race {
 	 */
 	public boolean addReady(Racer r) {
 		if( r == null || this.containsBib(r.getName())) return false;
-		if (ready1.size() > ready3.size()) {
+		if (ready.size() > ready3.size()) {
 			ready3.add(r);
-		}else ready1.add(r);
+		}else ready.add(r);
 		return true;
 	}
 
@@ -40,7 +38,7 @@ public class ParallelIndividual implements Race {
 	 */
 	public Queue<Racer> getReadyRacers() {
 		Queue<Racer> out = new LinkedList<Racer>();
-		out.addAll(ready1);
+		out.addAll(ready);
 		out.addAll(ready3);
 		return out;
 	}
@@ -51,7 +49,7 @@ public class ParallelIndividual implements Race {
 	 */
 	public Queue<Racer> getCurrentRacers() {
 		Queue<Racer> out = new LinkedList<Racer>();
-		out.addAll(running1);
+		out.addAll(running);
 		out.addAll(running3);
 		return out;
 	}
@@ -92,6 +90,7 @@ public class ParallelIndividual implements Race {
 		return racer.dnf() == 1 ? 1 : -1;
 	}
 	
+	@Override
 	/**
 	 * Assigns the start time to the racer and adds them to the 
 	 * current racers.
@@ -99,14 +98,24 @@ public class ParallelIndividual implements Race {
 	 * @param time at which the racer starts
 	 * @return true if race successfully started, else false
 	 */
-	public boolean start(int channel, Time time) {
+	public void start(int channel, Time time) {
 		Racer starting;
-		starting = ready.poll();
+		if(ready.size() < ready3.size()) {
+			starting = ready3.poll();
+		} else {
+			starting = ready.poll();
+		}
 		
-		if (starting == null) return false;
+		if (starting == null)
+			starting = new Racer(autoNum++);
+		
 		starting.start(time);
-		running.add(starting);
-		return true;
+		
+		if(channel == 3) {
+			running3.add(starting);
+		} else {
+			running.add(starting);	
+		}		
 	}
 	
 	/**

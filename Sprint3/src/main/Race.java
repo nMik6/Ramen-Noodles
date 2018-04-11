@@ -7,49 +7,25 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class Race {
+public abstract class Race {
 	
-	private Queue<Racer> ready;
-	private Queue<Racer> alsoReady;
-	private Queue<Racer> running;
-	private Queue<Racer> alsoRunning;
-	private List<Racer> finished;
-	//private Channel[] channels;
-	private boolean paraInd;//for use when more than one race type being handled later
-	private int autoNum;
+	protected Queue<Racer> ready;
+	//private Queue<Racer> alsoReady;
+	protected Queue<Racer> running;
+	//private Queue<Racer> alsoRunning;
+	protected List<Racer> finished;
+	protected int autoNum;
 	
 	
-	public Race() {
+	public void init() {
 		this.ready = new LinkedList<Racer>() ;
-		//this.channels = new boolean[2];			?? There's more than 2 channels
-		//this.channels[0] = this.channels[1] = false;
 		this.running = new LinkedList<Racer>();
 		this.finished = new ArrayList<Racer>();
-		paraInd = false;
 		autoNum = 0;
 	}
 	
-	/**
-	 * Sets the type of race
-	 * @param s the race type
-	 */
-	public void setType(String s) {
-		if (s.equals("PARIND")) {
-			this.alsoRunning = new LinkedList<Racer>();
-			this.alsoReady = new LinkedList<Racer>();
-			this.paraInd = true;
-		}
-		else paraInd = false;
-	}
-	
-	/**
-	 * Returns the race type of Race
-	 * @return true is type is parallel individual, false otherwise
-	 */
-	public boolean getType() {
-		return paraInd;
-	}
-	
+
+	//OVERRIDE FOR PARAIND
 	/**
 	 * Adds Racer r to the queue of ready racers
 	 * @param r
@@ -57,40 +33,27 @@ public class Race {
 	 */
 	public boolean addReady(Racer r) {
 		if( r == null || this.containsBib(r.getName())) return false;
-		if (paraInd) {
-			if (ready.size() > alsoReady.size()) {
-				alsoReady.add(r);
-			}else ready.add(r);
-		}else ready.add(r);
+		ready.add(r);
 		return true;
 	}
-
+	
+	
+	//OVERRIDE FOR PARAINDIVIDUAL
 	/**
 	 * Returns a queue containing all racers that are ready to begin a race.
 	 * @return queue of ready racers
 	 */
 	public Queue<Racer> getReadyRacers() {
-		if(paraInd) {
-			Queue<Racer> out = new LinkedList<Racer>();
-			out.addAll(ready);
-			out.addAll(alsoReady);
-			return out;
-		}else return ready;
+		return ready;
 	}
 	
+	//OVERRIDE FOR PARAIND
 	/**
 	 * Returns a queue containing all racers who are currently running a race.
 	 * @return queue of current racers
 	 */
 	public Queue<Racer> getCurrentRacers() {
-		if(paraInd){
-			Queue<Racer> out = new LinkedList<Racer>();
-			out.addAll(running);
-			out.addAll(alsoRunning);
-			return out;
-		}else {
-			return running;
-		}
+		return running;
 	}
 	
 	/**
@@ -137,21 +100,14 @@ public class Race {
 	 * @param time at which the racer starts
 	 */
 	public void start(int channel, Time time) {
-		Racer starting;
-		if (paraInd && (ready.size() < alsoReady.size())) {
-			 starting = alsoReady.poll();
-			
-		}
-		else
-		{
-			 starting = ready.poll();
-		}
+		Racer starting = ready.poll();
 		
-		if (starting == null) 
+		if (starting == null)
 			starting = new Racer(autoNum++);
+		
 		starting.start(time);
-		if(paraInd && channel == 3) alsoRunning.add(starting);
-		else running.add(starting);
+
+		running.add(starting);
 	}
 	
 	/**
@@ -160,9 +116,7 @@ public class Race {
 	 * @param time that the racer finishes at
 	 */
 	public boolean finish(int channel, Time time) {
-		Racer ending;
-		if(paraInd && channel == 4) ending = alsoRunning.poll();
-		else ending = running.poll();
+		Racer ending = running.poll();
 		
 		if (ending == null) return false;
 		ending.finish(time);
@@ -185,15 +139,6 @@ public class Race {
 					temp.getName(), temp.getStart().printTime());
 			finished.add(temp);
 		}
-		if(paraInd) {
-			while(!alsoRunning.isEmpty()) {
-				Racer temp = running.poll();
-				temp.dnf();
-				System.out.printf("Racer: %d,\tStart: %s \tDid not finish!", 
-						temp.getName(), temp.getStart().printTime() );
-				finished.add(temp);
-			}
-		}
 	}
 	
 	private boolean containsBib(int bib) {
@@ -203,18 +148,12 @@ public class Race {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
-		if(alsoReady != null)for(it = alsoReady.iterator();it.hasNext();) {
-			r = it.next();
-			if(r.getName() == bib)return true;
-		}
+
 		for(it = running.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
-		if(alsoRunning != null)for(it = alsoRunning.iterator();it.hasNext();) {
-			r = it.next();
-			if(r.getName() == bib)return true;
-		}
+
 		for(it = finished.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
