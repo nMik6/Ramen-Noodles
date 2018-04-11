@@ -69,15 +69,29 @@ public class ParallelIndividual extends Race {
 	 */
 	public boolean cancel(Racer racer) {
 		Queue<Racer> newReady = new LinkedList<Racer>();
-		//newReady.add(racer);
+		
 		boolean canceled = false;
-		while(!ready.isEmpty()) {
-			Racer tmp = ready.poll();
-			if(!tmp.equals(racer)) {
-				newReady.add(tmp);
-			}else canceled = true;
+		
+		//check both ready queues
+		if(ready.contains(racer)) { 
+			while(!ready.isEmpty()) {
+				Racer tmp = ready.poll();
+				if(!tmp.equals(racer)) {
+					newReady.add(tmp);
+				} else canceled = true;
+			}
+			ready = newReady;
+		} else if(ready3.contains(racer)) {
+			while(!ready3.isEmpty()) {
+				Racer tmp = ready3.poll();
+				if(!tmp.equals(racer)) {
+					newReady.add(tmp);
+				} else canceled = true;
+			}
+			ready3 = newReady;
 		}
-		ready = newReady;
+
+		
 		return canceled;
 	}
 	
@@ -125,9 +139,17 @@ public class ParallelIndividual extends Race {
 	 */
 	public boolean finish(int channel, Time time) {
 		Racer ending;
-		ending = running.poll();
 		
-		if (ending == null) return false;
+		if(channel == 4) {
+			ending = running3.poll();
+		} else {
+			ending = running.poll();
+		}
+		
+		if (ending == null) {
+			return false;
+		}
+
 		ending.finish(time);
 		finished.add(ending);
 		System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
@@ -148,6 +170,14 @@ public class ParallelIndividual extends Race {
 					temp.getName(), temp.getStart().printTime());
 			finished.add(temp);
 		}
+		
+		while(!running3.isEmpty()) {
+			Racer temp = running3.poll();
+			temp.dnf();
+			System.out.printf("Racer: %d,\tStart: %s,\tDid not finish! ",
+					temp.getName(), temp.getStart().printTime());
+			finished.add(temp);
+		}
 	}
 	
 	private boolean containsBib(int bib) {
@@ -157,14 +187,27 @@ public class ParallelIndividual extends Race {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
+		
+		for(it = ready3.iterator();it.hasNext();) {
+			r = it.next();
+			if(r.getName() == bib)return true;
+		}
+		
 		for(it = running.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
+		
+		for(it = running3.iterator();it.hasNext();) {
+			r = it.next();
+			if(r.getName() == bib)return true;
+		}
+		
 		for(it = finished.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
+		
 		return false;
 	}
 }
