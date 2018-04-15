@@ -6,17 +6,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class ParallelIndividual extends Race {
-	//use Race.ready as first channel lane ready queue
+public class ParallelIndividual implements Race {
+	private Queue<Racer> ready1;	
 	private Queue<Racer> ready3;
-	//use Race.running as first channel lane running queue
+	private Queue<Racer> running1;
 	private Queue<Racer> running3;
+	private List<Racer> finished;
+	private int autoNum;
 	
 	
 	public ParallelIndividual() {
-		init();
+		this.ready1 = new LinkedList<Racer>() ;
+		this.running1 = new LinkedList<Racer>();
 		this.ready3 = new LinkedList<Racer>();
 		this.running3 = new LinkedList<Racer>();
+		this.finished = new ArrayList<Racer>();
+		autoNum = 0;
 	}
 	
 	/**
@@ -26,9 +31,9 @@ public class ParallelIndividual extends Race {
 	 */
 	public boolean addReady(Racer r) {
 		if( r == null || this.containsBib(r.getName())) return false;
-		if (ready.size() > ready3.size()) {
+		if (ready1.size() > ready3.size()) {
 			ready3.add(r);
-		}else ready.add(r);
+		}else ready1.add(r);
 		return true;
 	}
 
@@ -38,7 +43,7 @@ public class ParallelIndividual extends Race {
 	 */
 	public Queue<Racer> getReadyRacers() {
 		Queue<Racer> out = new LinkedList<Racer>();
-		out.addAll(ready);
+		out.addAll(ready1);
 		out.addAll(ready3);
 		return out;
 	}
@@ -49,7 +54,7 @@ public class ParallelIndividual extends Race {
 	 */
 	public Queue<Racer> getCurrentRacers() {
 		Queue<Racer> out = new LinkedList<Racer>();
-		out.addAll(running);
+		out.addAll(running1);
 		out.addAll(running3);
 		return out;
 	}
@@ -73,14 +78,14 @@ public class ParallelIndividual extends Race {
 		boolean canceled = false;
 		
 		//check both ready queues
-		if(ready.contains(racer)) { 
-			while(!ready.isEmpty()) {
-				Racer tmp = ready.poll();
+		if(ready1.contains(racer)) { 
+			while(!ready1.isEmpty()) {
+				Racer tmp = ready1.poll();
 				if(!tmp.equals(racer)) {
 					newReady.add(tmp);
 				} else canceled = true;
 			}
-			ready = newReady;
+			ready1 = newReady;
 		} else if(ready3.contains(racer)) {
 			while(!ready3.isEmpty()) {
 				Racer tmp = ready3.poll();
@@ -114,10 +119,10 @@ public class ParallelIndividual extends Race {
 	 */
 	public void start(int channel, Time time) {
 		Racer starting;
-		if(ready.size() < ready3.size()) {
+		if(ready1.size() < ready3.size()) {
 			starting = ready3.poll();
 		} else {
-			starting = ready.poll();
+			starting = ready1.poll();
 		}
 		
 		if (starting == null)
@@ -128,7 +133,7 @@ public class ParallelIndividual extends Race {
 		if(channel == 3) {
 			running3.add(starting);
 		} else {
-			running.add(starting);	
+			running1.add(starting);	
 		}		
 	}
 	
@@ -143,7 +148,7 @@ public class ParallelIndividual extends Race {
 		if(channel == 4) {
 			ending = running3.poll();
 		} else {
-			ending = running.poll();
+			ending = running1.poll();
 		}
 		
 		if (ending == null) {
@@ -163,8 +168,8 @@ public class ParallelIndividual extends Race {
 	 * @param time that the racer finishes at
 	 */
 	public void end() {
-		while(!running.isEmpty()) {
-			Racer temp = running.poll();
+		while(!running1.isEmpty()) {
+			Racer temp = running1.poll();
 			temp.dnf();
 			System.out.printf("Racer: %d,\tStart: %s,\tDid not finish! ",
 					temp.getName(), temp.getStart().printTime());
@@ -180,10 +185,10 @@ public class ParallelIndividual extends Race {
 		}
 	}
 	
-	private boolean containsBib(int bib) {
+	public boolean containsBib(int bib) {
 		Iterator<Racer> it;
 		Racer r;
-		for(it = ready.iterator();it.hasNext();) {
+		for(it = ready1.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
@@ -193,7 +198,7 @@ public class ParallelIndividual extends Race {
 			if(r.getName() == bib)return true;
 		}
 		
-		for(it = running.iterator();it.hasNext();) {
+		for(it = running1.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}

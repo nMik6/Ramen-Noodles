@@ -1,6 +1,6 @@
 package main;
 
-public class Racer {
+public class Racer implements Comparable<Racer>{
 	
 	private int bib;
 	private Time start;
@@ -114,5 +114,10 @@ public class Racer {
 		}
 		return false;
 	}
-
+	
+	public int compareTo(Racer r) {
+		if(this.getTotal().isBefore(r.getTotal())) return -1;
+		else if(!this.getTotal().isBefore(r.getTotal())) return 1;
+		else return 0;
+	}
 }
