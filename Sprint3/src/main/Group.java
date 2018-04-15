@@ -4,18 +4,19 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Set;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class Group implements Race{
 	private Time groupStart;
 	private Queue<Racer> ready;
-	private Queue<Racer> running;
+	private HashMap<Integer, Racer> running; //Map bib number to racer object
 	private List<Racer> finished;
 	private int autoNum;
 	
 	public Group() {
 		this.ready = new LinkedList<Racer>();
-		this.running = new LinkedList<Racer>();
+		this.running = new HashMap<Integer,Racer>();
 		this.finished = new LinkedList<Racer>();
 		autoNum = 0;
 	}
@@ -47,7 +48,14 @@ public class Group implements Race{
 	 * @return queue of current racers
 	 */
 	public Queue<Racer> getCurrentRacers() {
-		return running;
+		Queue<Racer> runningQueue = new LinkedList<Racer>();
+		Collection<Racer> run_set = running.values();
+		
+		for(Racer r: run_set) {
+			runningQueue.add(r);
+		}
+		
+		return runningQueue;
 	}
 	
 	/**
@@ -102,27 +110,23 @@ public class Group implements Race{
 	 */
 	public void start(int channel, Time time) {
 		groupStart = time;
-		running.addAll(ready);
-	}
-	
-	
-	/**
-	 * Overloaded finish method adds bib number parameter for racer specificity
-	 */
-	public boolean finish(int bib) {
-		Racer ending = running.
 		
-		return true;
+		for(Racer r: ready) {
+			running.put(r.getName(), r);
+		}
 	}
+	
+
 	/**
 	 * Assigns the racers finishing time and removes them from the
 	 * current racers and adds them to finishers.
 	 * @param time that the racer finishes at
 	 */
-	public boolean finish(int channel, Time time) {
-		Racer ending = running.poll();
+	public boolean finish(int bib, Time time) {
+		Racer ending = running.get(bib);
 		
 		if (ending == null) return false;
+		ending.start(groupStart);
 		ending.finish(time);
 		finished.add(ending);
 		System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
@@ -136,12 +140,13 @@ public class Group implements Race{
 	 * @param time that the racer finishes at
 	 */
 	public void end() {
-		while(!running.isEmpty()) {
-			Racer temp = running.poll();
-			temp.dnf();
+		Collection<Racer> run_set = running.values();
+		
+		for(Racer r: run_set) {
+			r.dnf();
 			System.out.printf("Racer: %d,\tStart: %s,\tDid not finish! ",
-					temp.getName(), temp.getStart().printTime());
-			finished.add(temp);
+					r.getName(), r.getStart().printTime());
+			finished.add(r);
 		}
 	}
 	
@@ -152,8 +157,10 @@ public class Group implements Race{
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
-
-		for(it = running.iterator();it.hasNext();) {
+		
+		Collection<Racer> run_set = running.values();
+		 
+		for(it = run_set.iterator();it.hasNext();) {
 			r = it.next();
 			if(r.getName() == bib)return true;
 		}
