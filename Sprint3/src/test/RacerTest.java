@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-import main.Racer;
 import main.Time;
+import main.racing.Racer;
 
 class RacerTest {
 

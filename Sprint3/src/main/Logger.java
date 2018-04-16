@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+
+import main.racing.Racer;
+
 import java.lang.reflect.Type;
 import java.io.Writer;
 import java.time.LocalTime;

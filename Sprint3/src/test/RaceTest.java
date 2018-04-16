@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.Race;
-import main.Racer;
 import main.Time;
+import main.racing.Race;
+import main.racing.Racer;
 
 class RaceTest {
 

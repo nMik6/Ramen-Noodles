@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.Racer;
 import main.Time;
-import main.Group;
+import main.racing.Group;
+import main.racing.Racer;
 
 
 public class GroupTest {

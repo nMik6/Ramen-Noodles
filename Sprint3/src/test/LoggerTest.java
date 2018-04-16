@@ -11,8 +11,8 @@ import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.Racer;
 import main.Time;
+import main.racing.Racer;
 import main.Logger;
 import java.io.File;
 import java.time.LocalTime;

@@ -1,8 +1,11 @@
-package main;
+package main.racing;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Queue;
+
+import main.Time;
+
 import java.util.LinkedList;
 import java.util.List;
 

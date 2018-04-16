@@ -1,24 +1,23 @@
-package main;
+package main.events;
 
 import java.time.format.DateTimeFormatter;
+import main.RaceData;
+import main.racing.Racer;
+
 import java.time.LocalTime;
 import java.time.format.FormatStyle;
 
+import main.Time;
+
 public class Event {
 	
-	private LocalTime time;
+	private Time time;
 	private DateTimeFormatter format;
 	private FormatStyle SHORT;
 	
 	
-	public Event() {
-		time = LocalTime.now();
-		format = ofLocalizedtime(FormatStyle SHORT);
-		
-	}
-	
 	public void power() {
-		
+		RaceData.switchPower();
 	}
 	
 	public void exit() {
@@ -30,7 +29,8 @@ public class Event {
 	}
 	
 	public void num(String str) {
-		
+		if (!RaceData.getCurrentRace().containsBib(Integer.parseInt(str)))
+			RaceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
 	}
 	
 	public void trig(String str, Time time)

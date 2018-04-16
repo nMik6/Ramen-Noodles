@@ -3,6 +3,10 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import main.racing.Race;
+import main.racing.Racer;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;

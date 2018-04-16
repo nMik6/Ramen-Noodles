@@ -1,4 +1,6 @@
-package main;
+package main.racing;
+
+import main.Time;
 
 public class Racer implements Comparable<Racer>{
 	
