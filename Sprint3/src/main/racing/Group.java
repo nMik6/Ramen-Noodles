@@ -1,4 +1,4 @@
-package main.racing;
+	package main.racing;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -175,5 +175,6 @@ public class Group implements Race{
 		return false;
 	}
 	
+	//Using HashMap, MUST HAVE EQUALS AND HASHCODE METHOD
 	
 }
