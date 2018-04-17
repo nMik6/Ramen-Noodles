@@ -1,4 +1,6 @@
 package main;
+import main.racing.*;
+import main.events.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,7 @@ public class Simulator {
 	 */
 	public Simulator() {
 		power = false;
-		cur_race = new Race();
+		cur_race = null;
 		finished = new ArrayList<Race>();
 		command = null;
 		offsetPos = false;
@@ -221,7 +223,7 @@ public class Simulator {
 	public void power() {
 		power = !power;
 		if (!power) {
-			cur_race = new Race();
+			cur_race = null;
 			finished = new ArrayList<Race>();
 			offsetPos = false;
 			channels = new Channel[8];	//eight available channels
@@ -250,7 +252,7 @@ public class Simulator {
 		System.out.println("(log) system reset");
 		power = true;
 		System.out.println("Reseting System!");
-		cur_race = new Race();
+		cur_race = null;
 		System.out.println("After new race created!");
 		command = null;
 		offsetPos = false;
@@ -337,11 +339,12 @@ public class Simulator {
 
 			if (temp.getState()) {
 				System.out.println("(log) Trigger on channel #" + channel);
-				if (cur_race == null) cur_race = new Race();
 				if (channelInt % 2 != 0) cur_race.start(channelInt, t);
 				else cur_race.finish(channelInt, t);
 			}
-		}catch(Exception e) {}
+		}catch(Exception e) {
+			System.out.println("No Current race! Cannot trigger a start!");
+		}
 	}
 
 
@@ -367,8 +370,22 @@ public class Simulator {
 	 */
 	public void event(String type) {
 		if (!power) return;
-		if (cur_race == null) cur_race = new Race();
-		cur_race.setType(type);
+		if (type.equals("IND"))
+		{
+			cur_race = new Individual();
+		}
+		else if (type.equals("PARA")) 
+		{
+			cur_race = new ParallelIndividual();
+		}
+		else if (type.equals("GRP"))
+		{
+			cur_race = new Group();
+		}
+		else
+		{
+			System.out.println("Event type not found!");
+		}
 		System.out.println("(log) Race type set to: " + type);
 	}
 
@@ -378,7 +395,6 @@ public class Simulator {
 	public void newrun() {
 		if (!power)	return;
 		if (cur_race != null) return;
-		cur_race = new Race();
 		raceNum++;
 		System.out.println("(log) New race created");
 	}
