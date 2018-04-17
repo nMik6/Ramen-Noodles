@@ -12,3 +12,10 @@ Secondary: (Sprint 3) - The primary work must be done prior to working on this. 
 - Product backlog
 - Sprint planning
 
+Ternary: (Sprint 3 final week) 
+ - complete the event class
+ - complege the GUI and actionlisteners
+ - Refactor Tests for all classes and use cases (javadoc the use cases in the tests) 
+ - Create State diagram
+ - Create change log - what's different from the past sprints
+ - EventHandler implement command parser
