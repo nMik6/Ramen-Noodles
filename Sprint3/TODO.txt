@@ -19,3 +19,5 @@ Ternary: (Sprint 3 final week)
  - Create State diagram
  - Create change log - what's different from the past sprints
  - EventHandler implement command parser
+ - Create contribution log (classes worked on, amount of time, etc ..)
+ 
