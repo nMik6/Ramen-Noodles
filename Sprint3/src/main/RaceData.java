@@ -79,6 +79,8 @@ public class RaceData {
 	public static Race getCurrentRace() {
 		return currentRace;
 	}
+	
+
 
 	public static Channel[] getChannels() {
 		return channels;
