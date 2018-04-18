@@ -9,24 +9,18 @@ import main.Time;
 public class EventHandler {
 	
 	private Time time;
-	private String[] command;
 	private Event event;
-	Time timeOffset;
-	boolean offsetPos;
 	private RaceData raceData;
 	
-	public EventHandler(RaceData race, Time time, String[] command) {
+	public EventHandler(RaceData race, Time time) {
 		this.time = time;
-		this.command = command;
 		this.event = new Event(race);
-		offsetPos =  false;
 		raceData = race;
 		
 	}
 	
-	public void handle() {
-		
-		parse(this.command);
+	public void handle(String[] command) {		
+		parse(command);
 	}
 	
 	
@@ -75,17 +69,17 @@ public class EventHandler {
 			case "start":
 				if (passedTime != null) event.trig("1", passedTime);
 				else {
-					if (timeOffset == null)event.trig("1", new Time());
-					else if (offsetPos)event.trig("1", new Time().add(timeOffset));
-					else event.trig("1", new Time().difference(timeOffset));
+					if (raceData.getTimeOffset() == null)event.trig("1", new Time());
+					else if (raceData.isOffsetPos())event.trig("1", new Time().add(raceData.getTimeOffset()));
+					else event.trig("1", new Time().difference(raceData.getTimeOffset()));
 				}
 				break;
 			case "end":
 				if (passedTime != null) event.trig("2", passedTime);
 				else {
-					if (timeOffset == null)event.trig("2", new Time());
-					else if (offsetPos)event.trig("2", new Time().add(timeOffset));
-					else event.trig("2", new Time().difference(timeOffset));
+					if (raceData.getTimeOffset() == null)event.trig("2", new Time());
+					else if (raceData.isOffsetPos())event.trig("2", new Time().add(raceData.getTimeOffset()));
+					else event.trig("2", new Time().difference(raceData.getTimeOffset()));
 				}
 				break;
 			case "newrun":
@@ -111,9 +105,9 @@ public class EventHandler {
 			case "trig":
 				if (passedTime != null) event.trig(commandLine[1], passedTime);
 				else {
-					if (timeOffset == null)event.trig(commandLine[1], new Time());
-					else if (offsetPos)event.trig(commandLine[1], new Time().add(timeOffset));
-					else event.trig(commandLine[1], new Time().difference(timeOffset));
+					if (raceData.getTimeOffset() == null)event.trig(commandLine[1], new Time());
+					else if (raceData.isOffsetPos())event.trig(commandLine[1], new Time().add(raceData.getTimeOffset()));
+					else event.trig(commandLine[1], new Time().difference(raceData.getTimeOffset()));
 				}
 				break;
 			case "time":

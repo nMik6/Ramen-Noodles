@@ -41,9 +41,8 @@ public class Event {
 	public void power() {
 		raceData.switchPower();
 		if (raceData.isPower())
-			for (int i = 0; i < 7; i++) {
+			for (int i = 0; i < 8; i++)
 				raceData.setChannel(i, new Channel());
-			}
 	}
 	
 	public void exit() {

@@ -19,35 +19,16 @@ import java.time.format.DateTimeFormatter;
 
 
 public class Simulator {
-	String command;
-	Boolean power;
-	Race cur_race;
-	Channel[] channels;
-	private ArrayList<Race> finished;
-	Time timeOffset;
-	boolean offsetPos;
-	Logger log;
 	private Scanner stdin = new Scanner(System.in);
-	String debugfile = "debugfile.txt";
-	String racerfile = "racerfile.txt";
-	int raceNum;
 	private EventHandler eventHandler;
+	private RaceData raceData = new RaceData();
+	private String command;
 
 	/**
 	 * Constructor for Simulator
 	 */
 	public Simulator() {
-		power = false;
-		cur_race = null;
-		finished = new ArrayList<Race>();
-		command = null;
-		offsetPos = false;
-		channels = new Channel[8];
-		for (int i = 0; i<8; i++)
-			channels[i] = new Channel();
-		log = new Logger();
-		raceNum = 0;
-		
+		eventHandler = new EventHandler(raceData, new Time());
 	}
 
 	/**
@@ -77,7 +58,7 @@ public class Simulator {
 			System.out.print("Enter command: ");
 			command = stdin.nextLine();
 			cmds = command.split(" ");
-			
+			eventHandler.handle(cmds);
 		} while (!(command.equals("exit")));
 	}
 
@@ -101,14 +82,14 @@ public class Simulator {
 
 		for (int i = 0; i < fileCommands.length; ++i) {
 			String[] command = fileCommands[i].split("\\s+");
-			parse(command);
+			eventHandler.handle(command);
 		}
 	}
 
 	/**
 	 * Parses the commands that are entered and executes them
 	 * @param commandLine the commands entered
-	 */
+	 *//*
 	public void parse(String[] commandLine) {
 		int length = commandLine.length;
 		Time passedTime = null;
@@ -150,17 +131,17 @@ public class Simulator {
 			case "start":
 				if (passedTime != null) trig("1", passedTime);
 				else {
-					if (timeOffset == null)trig("1", new Time());
-					else if (offsetPos)trig("1", new Time().add(timeOffset));
-					else trig("1", new Time().difference(timeOffset));
+					if (raceData.getTimeOffset() == null)trig("1", new Time());
+					else if (raceData.isOffsetPos())trig("1", new Time().add(raceData.getTimeOffset()));
+					else trig("1", new Time().difference(raceData.getTimeOffset()));
 				}
 				break;
 			case "end":
 				if (passedTime != null) trig("2", passedTime);
 				else {
-					if (timeOffset == null)trig("2", new Time());
-					else if (offsetPos)trig("2", new Time().add(timeOffset));
-					else trig("2", new Time().difference(timeOffset));
+					if (raceData.getTimeOffset() == null)trig("2", new Time());
+					else if (raceData.isOffsetPos())trig("2", new Time().add(raceData.getTimeOffset()));
+					else trig("2", new Time().difference(raceData.getTimeOffset()));
 				}
 				break;
 			case "newrun":
@@ -186,9 +167,9 @@ public class Simulator {
 			case "trig":
 				if (passedTime != null) trig(commandLine[1], passedTime);
 				else {
-					if (timeOffset == null)trig(commandLine[1], new Time());
-					else if (offsetPos)trig(commandLine[1], new Time().add(timeOffset));
-					else trig(commandLine[1], new Time().difference(timeOffset));
+					if (raceData.getTimeOffset() == null)trig(commandLine[1], new Time());
+					else if (raceData.isOffsetPos())trig(commandLine[1], new Time().add(raceData.getTimeOffset()));
+					else trig(commandLine[1], new Time().difference(raceData.getTimeOffset()));
 				}
 				break;
 			case "time":
@@ -221,7 +202,7 @@ public class Simulator {
 		}
 	}
 
-	/** Turn the power on and off (but stay in the simulator)*/
+	*//** Turn the power on and off (but stay in the simulator)*//*
 	public void power() {
 		power = !power;
 		if (!power) {
@@ -237,17 +218,17 @@ public class Simulator {
 		System.out.println(log);
 	}
 
-	/** 
+	*//** 
 	 * exit the simulator, no more commands processed
-	 */
+	 *//*
 	public void exit() {
 		System.out.println("(log) system exit");
 		System.exit(0);
 	}
 
-	/**
+	*//**
 	 * Resets the simulator
-	 */
+	 *//*
 	public void reset() {
 		if (!power) return;
 
@@ -261,9 +242,9 @@ public class Simulator {
 		for (int i = 0; i<8; i++) channels[i] = new Channel();
 	}
 
-	/**
+	*//**
 	 * Prints the finished racers data, name, start time, finish time, and total time
-	 */
+	 *//*
 	public void print() {
 		if (!power || cur_race == null)	return;
 		System.out.println("(log) print called");
@@ -279,11 +260,11 @@ public class Simulator {
 		}
 	}
 
-	/**
+	*//**
 	 * Sets the sensor type of the channel
 	 * @param sensor
 	 * @param channel
-	 */
+	 *//*
 	public void conn(String sensor, String channel) {
 		if (!power) return;
 		channels[Integer.parseInt(channel)].conn(sensor);
@@ -291,10 +272,10 @@ public class Simulator {
 
 	}
 
-	/**
+	*//**
 	 * Assigns a new racer to the race
 	 * @param bib the number assigned to the racer
-	 */
+	 *//*
 	public void num(String bib) {
 		if (!power) return;
 		try {
@@ -304,10 +285,10 @@ public class Simulator {
 
 	}
 
-	/**
+	*//**
 	 * Creates a new time 
 	 * @param t the time
-	 */
+	 *//*
 	public void time(String t) {
 		Time sysTime = new Time();
 		Time passedTime;
@@ -328,11 +309,11 @@ public class Simulator {
 		}
 	}
 
-	/**
+	*//**
 	 * Verifies a channels state and triggers is
 	 * @param channel the channel to check
 	 * @param t the time
-	 */
+	 *//*
 	public void trig(String channel, Time t) {
 		if (!power) return; 	
 		try {
@@ -350,11 +331,11 @@ public class Simulator {
 	}
 
 
-	/**
+	*//**
 	 * Toggle the state of the channel at string converted to integer index of channels[]
 	 * @param channel
 	 * @return the channel triggered, -1 if power is off
-	 */
+	 *//*
 	public int tog(String channel) {
 		if (power) 	
 			try {
@@ -366,10 +347,10 @@ public class Simulator {
 		return -1;
 	}
 
-	/**
+	*//**
 	 * Sets the type of event running
 	 * @param type of the event
-	 */
+	 *//*
 	public void event(String type) {
 		if (!power) return;
 		if (type.equals("IND"))
@@ -391,9 +372,9 @@ public class Simulator {
 		System.out.println("(log) Race type set to: " + type);
 	}
 
-	/**
+	*//**
 	 * Starts a new race event
-	 */
+	 *//*
 	public void newrun() {
 		if (!power)	return;
 		if (cur_race != null) return;
@@ -401,9 +382,9 @@ public class Simulator {
 		System.out.println("(log) New race created");
 	}
 
-	/**
+	*//**
 	 * Ends the current race event and moves it to the list of finished races
-	 */
+	 *//*
 	public void endrun() {
 		if (!power) return;
 		cur_race.end();
@@ -413,9 +394,9 @@ public class Simulator {
 		System.out.println("(log) Race ended");
 	}
 
-	/**
+	*//**
 	 * Ends the current race event and moves it to the list of finished races
-	 */
+	 *//*
 	public void export(int num) {
 		if (!power) return;
 
@@ -433,9 +414,9 @@ public class Simulator {
 		}
 	}
 
-	/**
+	*//**
 	 * Reports that an invalid command was attempted in the console
-	 */
+	 *//*
 	public void error() {
 		if (power) System.out.println("Invalid command");
 	}
@@ -450,5 +431,5 @@ public class Simulator {
 	public List<Race> getFinished() {return finished;}
 	public Time getOffset() {return timeOffset;}
 	//log not currently being used
-
+*/
 }
