@@ -26,21 +26,23 @@ public class Event {
 	Logger log;
 	Time timeOffset;
 	boolean offsetPos;
+	private RaceData raceData;
 	
-	public Event() {
+	public Event(RaceData data) {
 		time = new Time();
 		log = new Logger();
 		timeOffset = new Time();
 		offsetPos = false;
+		raceData = data;
 		
 	}
 	
 	
 	public void power() {
-		RaceData.switchPower();
-		if (RaceData.isPower())
+		raceData.switchPower();
+		if (raceData.isPower())
 			for (int i = 0; i < 7; i++) {
-				RaceData.setChannel(i, new Channel());
+				raceData.setChannel(i, new Channel());
 			}
 	}
 	
@@ -51,21 +53,21 @@ public class Event {
 	}
 	
 	public void reset() {
-		if (!RaceData.isPower()) return;
-		RaceData.switchPower();
-		RaceData.setCurrentRace(null);
-		RaceData.setCommand("none");
-		RaceData.setOffset(false);
+		if (!raceData.isPower()) return;
+		raceData.switchPower();
+		raceData.setCurrentRace(null);
+		raceData.setCommand("none");
+		raceData.setOffset(false);
 		for (int i = 0; i < 7; i++) {
-			RaceData.setChannel(i, new Channel());
+			raceData.setChannel(i, new Channel());
 		}
 	}
 	
 	public void print() {
-		if (!RaceData.isPower() || RaceData.getCurrentRace() == null)
+		if (!raceData.isPower() || raceData.getCurrentRace() == null)
 			return;
 		
-		for (Racer r: RaceData.getCurrentRace().getFinishedRacers()) {
+		for (Racer r: raceData.getCurrentRace().getFinishedRacers()) {
 			if (!r.didNotFinish()) {
 			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
 					r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
@@ -78,13 +80,13 @@ public class Event {
 	}
 	
 	public void conn (String one, String two) {
-		if (!RaceData.isPower()) return;
+		if (!raceData.isPower()) return;
 		
 	}
 	
 	public void num(String str) {
-		if (!RaceData.getCurrentRace().containsBib(Integer.parseInt(str)))
-			RaceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
+		if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str)))
+			raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
 	}
 	
 	/**
@@ -93,14 +95,14 @@ public class Event {
 	 * @param t the time
 	 */
 	public void trig(String channel, Time t) {
-		if (!RaceData.isPower()) return; 	
+		if (!raceData.isPower()) return; 	
 		try {
 			int channelInt = Integer.parseInt(channel);
-			Channel[] temp = RaceData.getChannels();
+			Channel[] temp = raceData.getChannels();
 
 			if (temp[channelInt].getState()) {
 				System.out.println("(log) Trigger on channel #" + channel);
-				Race cur_race = RaceData.getCurrentRace();
+				Race cur_race = raceData.getCurrentRace();
 				if (channelInt % 2 != 0) cur_race.start(channelInt, t);
 				else cur_race.finish(channelInt, t);
 			}
@@ -114,7 +116,7 @@ public class Event {
 	 * @param type of the event
 	 */
 	public void event(String type) {
-		if (!RaceData.isPower()) return;
+		if (!raceData.isPower()) return;
 		Race cur_race;
 		if (type.equals("IND"))
 		{
@@ -133,7 +135,7 @@ public class Event {
 			System.out.println("Event type not found!");
 			return;
 		}
-		RaceData.setCurrentRace(cur_race);
+		raceData.setCurrentRace(cur_race);
 		System.out.println("(log) Race type set to: " + type);
 	}
 	
@@ -143,10 +145,10 @@ public class Event {
 	 * @return the channel triggered, -1 if power is off
 	 */
 	public int tog(String channel) {
-		if (RaceData.isPower()) 	
+		if (raceData.isPower()) 	
 			try {
 				int intchan = Integer.parseInt(channel);
-				Channel[] channels = RaceData.getChannels();
+				Channel[] channels = raceData.getChannels();
 				channels[intchan].toggle();
 				System.out.println("(log) Channel #" + channel + " toggled");
 				return intchan;
@@ -158,9 +160,9 @@ public class Event {
 	 * Starts a new race event
 	 */
 	public void newrun() {
-		if (!RaceData.isPower())	return;
-		if (RaceData.getCurrentRace() == null) return;
-		RaceData.setRaceNum(RaceData.getRaceNum() + 1);
+		if (!raceData.isPower())	return;
+		if (raceData.getCurrentRace() == null) return;
+		raceData.setRaceNum(raceData.getRaceNum() + 1);
 		System.out.println("(log) New race created");
 	}
 	
@@ -168,30 +170,28 @@ public class Event {
 	 * Ends the current race event and moves it to the list of finished races
 	 */
 	public void endrun() {
-		if (!RaceData.isPower()) return;
-		Race cur_race = RaceData.getCurrentRace();
-		cur_race.end();
-		log.export(cur_race.getFinishedRacers(), RaceData.getRaceNum());
-		ArrayList<Race> finished = RaceData.getFinishedRaces();
-		finished.add(cur_race);
-		cur_race = null;
+		if (!raceData.isPower()) return;
+		raceData.getCurrentRace().end();
+		log.export(raceData.getCurrentRace().getFinishedRacers(), raceData.getRaceNum());
+		raceData.addFinishedRace(raceData.getCurrentRace());
+		raceData.setCurrentRace(new Individual());
 		System.out.println("(log) Race ended");
 	}
 	/**
 	 * Ends the current race event and moves it to the list of finished races
 	 */
 	public void export(int num) {
-		if (!RaceData.isPower()) return;
+		if (!raceData.isPower()) return;
 
-		if (RaceData.getCurrentRace() != null) {
-			Race cur_race = RaceData.getCurrentRace();
+		if (raceData.getCurrentRace() != null) {
+			Race cur_race = raceData.getCurrentRace();
 			log.export(cur_race.getFinishedRacers(), num);
 			System.out.println("(log) Export Occurred");
 		}
 
 		else {
-			ArrayList<Race> finished = RaceData.getFinishedRaces();
-			Race ret = finished.get(RaceData.getRaceNum());
+			ArrayList<Race> finished = raceData.getFinishedRaces();
+			Race ret = finished.get(raceData.getRaceNum());
 			if (ret != null) {
 				log.export(ret.getFinishedRacers(), num);
 				System.out.println("(log) Export Occurred");
