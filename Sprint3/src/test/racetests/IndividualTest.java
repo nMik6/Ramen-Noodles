@@ -65,6 +65,7 @@ class IndividualTest {
 		indRace.addReady(racer1);
 		assertEquals(indRace.getReadyRacers().size(), 1);
 		assertEquals(indRace.getCurrentRacers().size(), 0);
+		assertEquals(indRace.getFinishedRacers().size(), 0);
 		
 		indRace.start(1, new Time());
 		assertEquals(indRace.getReadyRacers().size(), 0);
@@ -88,12 +89,18 @@ class IndividualTest {
 	@Test
 	void test2() {
 		indRace.addReady(racer1);
+		assertEquals(indRace.getReadyRacers().size(), 1);
+		assertEquals(indRace.getCurrentRacers().size(), 0);
+		assertEquals(indRace.getFinishedRacers().size(), 0);
 		
 		indRace.addReady(racer2);
+		assertEquals(indRace.getReadyRacers().size(), 2);
+		assertEquals(indRace.getCurrentRacers().size(), 0);
+		assertEquals(indRace.getFinishedRacers().size(), 0);
 		
 		indRace.start(1, new Time());
 		
-		indRace.dnf(racer1);
+		indRace.dnf();
 		
 		indRace.start(1, new Time());
 		

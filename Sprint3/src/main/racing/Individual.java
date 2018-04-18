@@ -61,12 +61,17 @@ public class Individual implements Race {
 	
 	
 	/**
-	 * Assigns the DNF flag to the racer
+	 * Assigns the DNF flag to the next racer to finish
 	 * @param racer
-	 * @return 1 if the assignment is successful, and -1 otherwise
 	 */
-	public int dnf(Racer racer) {
-		return racer.dnf() == 1 ? 1 : -1;
+	public void dnf() {
+		Racer dnfRacer = running.poll();
+		
+		if(dnfRacer == null) return; //if no racers in running to dnf just return
+		
+		dnfRacer.dnf();
+		
+		finished.add(dnfRacer);
 	}
 	
 	/**

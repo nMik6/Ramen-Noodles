@@ -18,53 +18,42 @@ import java.util.HashMap;
 */
 public class Group implements Race{
 	private Time groupStart;
-	private Queue<Racer> ready;
-	private HashMap<Integer, Racer> running; //Map bib number to racer object
 	private List<Racer> finished;
 	private int autoNum;
+	private boolean raceEnded;
 	
 	public Group() {
-		this.ready = new LinkedList<Racer>();
-		this.running = new HashMap<Integer,Racer>();
 		this.finished = new LinkedList<Racer>();
 		autoNum = 0;
+		raceEnded = false;
 	}
 	
 	/**
-	 * Adds Racer r to the queue of ready racers
+	 * Does not add Racer r to the queue of ready racers because all racers have same start time 
+	 * Racers are determined after they are finished by assigning them bib numbers through setBib() method
 	 * @param r
-	 * @return true if successfully added, else false
+	 * @return false
 	 */
 	public boolean addReady(Racer r) {
-		if( r == null || this.containsBib(r.getName())) return false;
-		r.start(groupStart); //all references to 
-		ready.add(r);
-		return true;
+		return false;
 	}
 	
 
 	/**
-	 * Returns a queue containing all racers that are ready to begin a race.
-	 * @return queue of ready racers
+	 * No queue of ready racers used in Group race. Method vestige of Race interface.
+	 * @return null
 	 */
 	public Queue<Racer> getReadyRacers() {
-		return ready;
+		return null;
 	}
 	
 	
 	/**
-	 * Returns a queue containing all racers who are currently running a race.
-	 * @return queue of current racers
+	 * No running queue is used in Group as the racers are created dynamically when finish() is called
+	 * @return null
 	 */
 	public Queue<Racer> getCurrentRacers() {
-		Queue<Racer> runningQueue = new LinkedList<Racer>();
-		Collection<Racer> run_set = running.values();
-		
-		for(Racer r: run_set) {
-			runningQueue.add(r);
-		}
-		
-		return runningQueue;
+		return null;
 	}
 	
 	/**
@@ -77,12 +66,13 @@ public class Group implements Race{
 	
 	
 	/**
-	 * Assigns the DNF flag to the racer
+	 * Assigns the DNF flag to the next racer to finish
 	 * @param racer
-	 * @return 1 if the assignment is successful, and -1 otherwise
 	 */
-	public int dnf(Racer racer) {
-		return racer.dnf() == 1 ? 1 : -1;
+	public void dnf() {
+		Racer dnfRacer = new Racer(-1);
+		dnfRacer.dnf();
+		finished.add(dnfRacer);
 	}
 	
 	/**
@@ -91,17 +81,7 @@ public class Group implements Race{
 	 * @return true if racer was removed from ready position, else false
 	 */
 	public boolean cancel(Racer racer) {
-		Queue<Racer> newReady = new LinkedList<Racer>();
-		//newReady.add(racer);
-		boolean canceled = false;
-		while(!ready.isEmpty()) {
-			Racer tmp = ready.poll();
-			if(!tmp.equals(racer)) {
-				newReady.add(tmp);
-			}else canceled = true;
-		}
-		ready = newReady;
-		return canceled;
+		return false;
 	}
 	
 	/**
@@ -119,10 +99,6 @@ public class Group implements Race{
 	 */
 	public void start(int channel, Time time) {
 		groupStart = time;
-		
-		for(Racer r: ready) {
-			running.put(r.getName(), r);
-		}
 	}
 	
 
@@ -132,7 +108,8 @@ public class Group implements Race{
 	 * @param time that the racer finishes at
 	 */
 	public boolean finish(int channel, Time time) {
-		
+		if(raceEnded) 
+			return false;
 		
 		Racer ending = new Racer(-1);	//default set anonymous racer bib number to -1
 		ending.start(groupStart);
@@ -145,18 +122,10 @@ public class Group implements Race{
 	}
 	
 	/**
-	 * removes all running racers, marking them dnf and moving them to the finished list.
-	 * @param time that the racer finishes at
+	 * End race by setting boolean flag 
 	 */
 	public void end() {
-		Collection<Racer> run_set = running.values();
-		
-		for(Racer r: run_set) {
-			r.dnf();
-			System.out.printf("Racer: %d,\tStart: %s,\tDid not finish! ",
-					r.getName(), r.getStart().printTime());
-			finished.add(r);
-		}
+		raceEnded = true;
 	}
 	
 	/**
@@ -173,21 +142,14 @@ public class Group implements Race{
 			}
 		}
 	}
-
+	
+	/**
+	 * Return true if finished contains racer with same bib (racer already finished)
+	 * @param bib 
+	 */
 	public boolean containsBib(int bib) {
 		Iterator<Racer> it;
 		Racer r;
-		for(it = ready.iterator();it.hasNext();) {
-			r = it.next();
-			if(r.getName() == bib)return true;
-		}
-		
-		Collection<Racer> run_set = running.values();
-		 
-		for(it = run_set.iterator();it.hasNext();) {
-			r = it.next();
-			if(r.getName() == bib)return true;
-		}
 
 		for(it = finished.iterator();it.hasNext();) {
 			r = it.next();
@@ -195,7 +157,5 @@ public class Group implements Race{
 		}
 		return false;
 	}
-	
-	//Using HashMap, MUST HAVE EQUALS AND HASHCODE METHOD
 	
 }

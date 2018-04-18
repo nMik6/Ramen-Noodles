@@ -31,7 +31,6 @@ public class GroupTest {
 	*/
 	public void test1() {
 		groupRace.start(new Time());
-		assertEquals(groupRace.getCurrentRacers().size(), 0);
 		
 		try {
 		    Thread.sleep(1000);
@@ -51,13 +50,13 @@ public class GroupTest {
 		
 		groupRace.finish(finishChannel, new Time());
 		
-		assertEquals(groupRace.getFinishedRacers().size(), 1);
+		assertEquals(groupRace.getFinishedRacers().size(), 2);
 		
 		groupRace.finish(finishChannel, new Time());
 		groupRace.finish(finishChannel, new Time());
 		groupRace.finish(finishChannel, new Time());
 		
-		assertEquals(groupRace.getFinishedRacers().size(), 4);
+		assertEquals(groupRace.getFinishedRacers().size(), 5);
 		
 		groupRace.setBib(123);
 		groupRace.setBib(345);
@@ -68,40 +67,22 @@ public class GroupTest {
 		assertTrue(groupRace.getFinishedRacers().contains(new Racer(345)));
 		assertTrue(groupRace.getFinishedRacers().contains(new Racer(567)));
 		
+		groupRace.setBib(246);
+		groupRace.setBib(468);
+		
 		assertFalse(groupRace.getFinishedRacers().contains(new Racer(-1)));
 	}
 
-//	@Test
-//	/**
-//	* Test Usecase: Race Numbers are entered
-//	*/
-//	public void test2() {
-//		groupRace.addReady(racer1);
-//		groupRace.addReady(racer2);
-//		groupRace.addReady(racer3);
-//		groupRace.addReady(racer4);
-//		
-//		assertEquals(groupRace.getReadyRacers().size(), 4);
-//		
-//		
-//	}
-	
-//	
-//	@Test
-//	/**
-//	* Test Usecase: add null racer object to addready
-//	*/
-//	public void test3() {
-//		
-//	} 
-//	
-//	@Test 
-//	/**
-//	* Test Usecase: End race with racers still running
-//	*/
-//	public void test4() {
-//		group
-//	}
+	@Test
+	/**
+	* Test Usecase: End race, try to call finish
+	*/
+	public void test2() {
+		
+		
+		
+	}
+
 }
 
 
