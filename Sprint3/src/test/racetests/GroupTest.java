@@ -78,9 +78,15 @@ public class GroupTest {
 	* Test Usecase: End race, try to call finish
 	*/
 	public void test2() {
+		groupRace.start(new Time());
 		
+		assertEquals(groupRace.getFinishedRacers().size(), 0);
 		
+		groupRace.end();
 		
+		assertEquals(groupRace.getFinishedRacers().size(), 0);
+		assertFalse(groupRace.finish(finishChannel, new Time()));
+		assertEquals(groupRace.getFinishedRacers().size(), 0);
 	}
 
 }
