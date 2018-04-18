@@ -41,7 +41,10 @@ class DataTest {
 	public void testCurrentRace() {
 		assertTrue(raceData.getCurrentRace() == null);
 		raceData.setCurrentRace(indRace);
-		assertEquals(raceData.getCurrentRace(), indRace);
+		new Event(raceData).newrun();
+		assertEquals(indRace, raceData.getCurrentRace());
+		assertEquals(1, raceData.getRaceNum());
+		
 	}
 	
 	@Test
@@ -58,10 +61,12 @@ class DataTest {
 		assertTrue(raceData.getCurrentRace() == null);
 		raceData.setCurrentRace(indRace);
 		assertEquals(raceData.getCurrentRace(), indRace);
-		indRace.end();
-		assertTrue(indRace.getCurrentRacers().size() == 0);
+		new Event(raceData).endrun();
+		assertTrue(raceData.getCurrentRace().getCurrentRacers().size() == 0);
 		raceData.addFinishedRace(indRace);
 		assertTrue(raceData.getFinishedRaces().size() == 1);
+		raceData.setCurrentRace(null);
+		assertTrue(raceData.getCurrentRace() == null);
 	}
-
+	
 }
