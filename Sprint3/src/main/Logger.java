@@ -37,6 +37,14 @@ public class Logger {
 	}
 	
 	/**
+	 * Simple function to print a line of text to the console for logging
+	 * @param msg The message to print
+	 */
+	public void msg(String msg) {
+		System.out.println("Log: " + msg);
+	}
+	
+	/**
 	 * Prints a list of racers to the console
 	 * @param racers to print
 	 */
