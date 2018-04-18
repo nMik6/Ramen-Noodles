@@ -82,6 +82,10 @@ public class Event {
 	}
 	
 	public void num(String str) {
+		if (raceData.getCurrentRace() == null) {
+			raceData.getLog().msg("No race to add to. Create a new race event first.");
+			return;
+		}
 		if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str)))
 			raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
 	}
