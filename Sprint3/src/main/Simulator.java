@@ -31,6 +31,7 @@ public class Simulator {
 	String debugfile = "debugfile.txt";
 	String racerfile = "racerfile.txt";
 	int raceNum;
+	private EventHandler eventHandler;
 
 	/**
 	 * Constructor for Simulator
@@ -46,6 +47,7 @@ public class Simulator {
 			channels[i] = new Channel();
 		log = new Logger();
 		raceNum = 0;
+		
 	}
 
 	/**
@@ -75,7 +77,7 @@ public class Simulator {
 			System.out.print("Enter command: ");
 			command = stdin.nextLine();
 			cmds = command.split(" ");
-			parse(cmds);
+			
 		} while (!(command.equals("exit")));
 	}
 
