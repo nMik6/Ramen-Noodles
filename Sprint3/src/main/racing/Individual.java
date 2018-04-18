@@ -28,7 +28,7 @@ public class Individual implements Race {
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if( r == null || this.containsBib(r.getName())) return false;
+		if( r == null || this.containsBib(r.getName()) || r.didNotFinish()) return false;
 		ready.add(r);
 		return true;
 	}

@@ -100,18 +100,55 @@ class IndividualTest {
 		
 		indRace.start(1, new Time());
 		
+		assertEquals(indRace.getReadyRacers().size(), 1);
+		assertEquals(indRace.getCurrentRacers().size(), 1);
+		assertEquals(indRace.getFinishedRacers().size(), 0);
+		
 		indRace.dnf();
+		
+		assertEquals(indRace.getReadyRacers().size(), 1);
+		assertEquals(indRace.getCurrentRacers().size(), 0);
+		assertEquals(indRace.getFinishedRacers().size(), 1);
+		
+		List<Racer> finished = indRace.getFinishedRacers();
+		for(Racer r: finished) {
+			assertTrue(r.didNotFinish());
+		}
 		
 		indRace.start(1, new Time());
 		
+		assertEquals(indRace.getReadyRacers().size(),0);
+		assertEquals(indRace.getCurrentRacers().size(), 1);
+		assertEquals(indRace.getFinishedRacers().size(), 1);
+		
 		indRace.finish(2, new Time());
+		
+		assertEquals(indRace.getReadyRacers().size(), 0);
+		assertEquals(indRace.getCurrentRacers().size(), 0);
+		assertEquals(indRace.getFinishedRacers().size(), 2);
+		
 	}
 	
 	/** 
-	 * Testing Use Case: Add multiple racers to ready queue
+	 * Testing Use Case: Try adding dnf racer to ready queue
 	 */
 	@Test
 	void test3() {
+		racer1.dnf();
+		assertTrue(racer1.didNotFinish());
 		
+		assertFalse(indRace.addReady(racer1));
+	}
+	
+	/**
+	 * Testing Use Case: Cancel Racers
+	 */
+	@Test
+	void test4() {
+		indRace.addReady(racer1);
+		indRace.addReady(racer2);
+		
+		assertTrue(indRace.cancel(racer1));
+		assertFalse(indRace.cancel(racer3));
 	}
 }

@@ -38,7 +38,6 @@ public class Group implements Race{
 		return false;
 	}
 	
-
 	/**
 	 * No queue of ready racers used in Group race. Method vestige of Race interface.
 	 * @return null
