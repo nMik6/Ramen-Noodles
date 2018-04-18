@@ -10,6 +10,12 @@ import main.Time;
 import java.util.Collection;
 import java.util.HashMap;
 
+
+/**
+* NOTE: can't assign a bib number to the currently finishing racer
+* unless the racers that have finished already have bib numbers
+* "NUM" command can assign bib numbers to the already finished racers
+*/
 public class Group implements Race{
 	private Time groupStart;
 	private Queue<Racer> ready;
@@ -125,10 +131,10 @@ public class Group implements Race{
 	 * current racers and adds them to finishers.
 	 * @param time that the racer finishes at
 	 */
-	public boolean finish(int bib, Time time) {
-		Racer ending = running.get(bib);
+	public boolean finish(int channel, Time time) {
 		
-		if (ending == null) return false;
+		
+		Racer ending = new Racer(-1);	//default set anonymous racer bib number to -1
 		ending.start(groupStart);
 		ending.finish(time);
 		finished.add(ending);
@@ -153,6 +159,21 @@ public class Group implements Race{
 		}
 	}
 	
+	/**
+	 * Called by Events for the 'NUM' command to change the bib numbers of the finished racers 
+	 * @param bib
+	 */
+	public void setBib(int bib){
+		if(finished.isEmpty()) 
+			return;
+		for(Racer r: finished) {
+			if(r.getName() == -1) {
+				r.setName(bib);
+				return;
+			}
+		}
+	}
+
 	public boolean containsBib(int bib) {
 		Iterator<Racer> it;
 		Racer r;

@@ -108,6 +108,13 @@ public class Racer implements Comparable<Racer>{
 		return this.total;
 	}
 	
+	/**
+	 * Sets the name (bib number) of the current racer
+	 */
+	public void setName(int bibNum) {
+		this.bib = bibNum;
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Racer) {
