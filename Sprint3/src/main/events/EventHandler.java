@@ -13,13 +13,14 @@ public class EventHandler {
 	private Event event;
 	Time timeOffset;
 	boolean offsetPos;
+	private RaceData raceData;
 	
-	public EventHandler(Time time, String[] command) {
+	public EventHandler(RaceData race, Time time, String[] command) {
 		this.time = time;
 		this.command = command;
-		this.event = new Event();
+		this.event = new Event(race);
 		offsetPos =  false;
-		
+		raceData = race;
 		
 	}
 	
@@ -148,7 +149,7 @@ public class EventHandler {
 	}
 	
 	public void error() {
-		if (RaceData.isPower()) System.out.println("Invalid command");
+		if (raceData.isPower()) System.out.println("Invalid command");
 	}
 	
 

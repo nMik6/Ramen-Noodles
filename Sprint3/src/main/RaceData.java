@@ -4,105 +4,103 @@ import java.util.ArrayList;
 
 import main.racing.Race;
 
-public class RaceData {
+public final class RaceData {
 	
-	private static String command = "none";
+	private String command = "none";
 	
-	private static boolean power = false;
+	private boolean power = false;
 	
-	private static Race currentRace = null;
+	private Race currentRace = null;
 	
-	private static Channel[] channels = new Channel[8];
+	private Channel[] channels = new Channel[8];
 	
-	private static ArrayList<Race> finishedRaces = new ArrayList<Race>();
+	private ArrayList<Race> finishedRaces = new ArrayList<Race>();
 	
-	private static int raceNum = -1;
+	private int raceNum = -1;
 	
-	private static Time timeOffset = null;
+	private Time timeOffset = null;
 	
-	private static boolean offsetPos = false;
+	private boolean offsetPos = false;
 	
-	private static Logger log = new Logger();
+	private final Logger log = new Logger();
 	
-	private static String debugFile = "data/debugfile.txt";
+	private final String debugFile = "data/debugfile.txt";
 	
-	private static String racerFile = "data/racerfile.txt";
+	private final String racerFile = "data/racerfile.txt";
 	
-	public static void setCommand(String cmd) {
+	public void setCommand(String cmd) {
 		command = cmd;
 	}
 	
-	public static void switchPower() {
+	public void switchPower() {
 		power = !power;
 	}
 	
-	public static void setCurrentRace(Race race) {
+	public void setCurrentRace(Race race) {
 		currentRace = race;
 	}
 	
-	public static void setChannel(int loc, Channel channel) {
+	public void setChannel(int loc, Channel channel) {
 		channels[loc] = channel;
 	}
 	
-	public static void addFinishedRace(Race race) {
+	public void addFinishedRace(Race race) {
 		finishedRaces.add(race);
 	}
 	
-	public static void setRaceNum(int num) {
+	public void setRaceNum(int num) {
 		raceNum = num;
 	}
 	
-	public static void setTimeOffset(Time off) {
+	public void setTimeOffset(Time off) {
 		timeOffset = off;
 	}
 	
-	public static void setOffset(boolean off) {
+	public void setOffset(boolean off) {
 		offsetPos = off;
 	}
 	
-	public static String getDebugFile() {
+	public String getDebugFile() {
 		return debugFile;
 	}
 	
-	public static String getRacerFile() {
+	public String getRacerFile() {
 		return racerFile;
 	}
 	
-	public static String getCommand() {
+	public String getCommand() {
 		return command;
 	}
 
-	public static boolean isPower() {
+	public boolean isPower() {
 		return power;
 	}
 
-	public static Race getCurrentRace() {
+	public Race getCurrentRace() {
 		return currentRace;
 	}
-	
 
-
-	public static Channel[] getChannels() {
+	public Channel[] getChannels() {
 		return channels;
 	}
 
-	public static ArrayList<Race> getFinishedRaces() {
+	public ArrayList<Race> getFinishedRaces() {
 		return finishedRaces;
 	}
 
-	public static int getRaceNum() {
+	public int getRaceNum() {
 		return raceNum;
 	}
 
-	public static Time getTimeOffset() {
+	public Time getTimeOffset() {
 		return timeOffset;
 	}
 
-	public static boolean isOffsetPos() {
+	public boolean isOffsetPos() {
 		return offsetPos;
 	}
 
-	public static Logger getLog() {
+	public Logger getLog() {
 		return log;
 	}
 
