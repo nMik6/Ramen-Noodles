@@ -8,65 +8,95 @@ import org.junit.jupiter.api.Test;
 import main.RaceData;
 import main.Time;
 import main.events.Event;
-import main.racing.Individual;
-import main.racing.Race;
-import main.racing.Racer;
 
 class DataTest {
 
-
-	Race indRace;
-	Racer racer1, racer2, racer3, racer4, racer5;
 	Time time;
+	Event event;
 	RaceData raceData;
 
 	@BeforeEach
 	public void setup() {
-		indRace = new Individual();
-		time = new Time();
-		racer1 = new Racer(1);
-		racer2 = new Racer(2);
-		racer3 = new Racer(4);
-		racer4 = new Racer(4);
-		racer5 = new Racer(5);
-		indRace.addReady(racer1);
-		indRace.addReady(racer2);
-		indRace.addReady(racer3);
-		indRace.addReady(racer4);
-		indRace.addReady(racer5);
+		time = new Time("12:00:00.0");
 		raceData = new RaceData();
+		event = new Event(raceData);
 	}
 	
 	@Test
 	public void testCurrentRace() {
+		assertTrue(!raceData.isPower());
+		event.power();
 		assertTrue(raceData.getCurrentRace() == null);
-		raceData.setCurrentRace(indRace);
-		new Event(raceData).newrun();
-		assertEquals(indRace, raceData.getCurrentRace());
-		assertEquals(1, raceData.getRaceNum());
-		
+		event.event("PARA");
+		event.newrun();
+		event.tog("1");
+		event.tog("2");
+		event.tog("3");
+		event.tog("4");
+		event.num("1");
+		event.num("1");
+		assertEquals("That bib number already exists", raceData.getLog().getLastMsg());
+		event.num("2");
+		event.num("3");
+		event.num("4");
+		event.trig("1", time);
+		event.trig("3", time);
+		event.trig("2", time);
+		event.trig("2", new Time());
+		event.trig("4", time);
+		event.trig("1", new Time());
+		event.trig("3", new Time());
+		event.trig("4", new Time());
+		event.print();
+		event.endrun();
+		assertTrue(raceData.getCurrentRace() == null);
+		assertTrue(raceData.getFinishedRaces().size() == 1);	
+		assertEquals(0, raceData.getRaceNum());
 	}
 	
 	@Test
 	public void testPower() {
 		assertTrue(!raceData.isPower());
-		new Event(raceData).power();
+		event.power();
 		assertTrue(raceData.isPower());
-		new Event(raceData).reset();
-		assertTrue(!raceData.isPower());
+		event.reset();
+		assertTrue(raceData.isPower());
 	}
 	
 	@Test
-	public void testFinishedRace() {
-		assertTrue(raceData.getCurrentRace() == null);
-		raceData.setCurrentRace(indRace);
-		assertEquals(raceData.getCurrentRace(), indRace);
-		new Event(raceData).endrun();
-		assertTrue(raceData.getCurrentRace().getCurrentRacers().size() == 0);
-		raceData.addFinishedRace(indRace);
-		assertTrue(raceData.getFinishedRaces().size() == 1);
-		raceData.setCurrentRace(null);
-		assertTrue(raceData.getCurrentRace() == null);
+	public void testFinishedRaces() {
+		assertEquals(0, raceData.getFinishedRaces().size());
+		event.power();
+		event.event("IND");
+		event.newrun();
+		event.tog("1");
+		event.tog("2");
+		event.num("1");
+		event.num("2");
+		event.trig("1", time);
+		event.trig("3", time);
+		event.trig("2", new Time());
+		event.trig("4", new Time());
+		event.endrun();
+		assertEquals(1, raceData.getFinishedRaces().size());
+		assertTrue(raceData.getFinishedRaces().get(0).containsBib(2));
+		event.event("IND");
+		event.newrun();
+		event.endrun();
+		assertEquals(2, raceData.getFinishedRaces().size());
+		event.event("IND");
+		event.newrun();
+		event.endrun();
+		assertEquals(2, raceData.getRaceNum());
+		event.event("IND");
+		event.newrun();
+		event.endrun();
+		event.event("IND");
+		event.newrun();
+		event.endrun();
+		assertEquals(5, raceData.getFinishedRaces().size());
+		raceData.getFinishedRaces().remove(0);
+		assertEquals(4, raceData.getFinishedRaces().size());
 	}
 	
 }
