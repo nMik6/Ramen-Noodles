@@ -17,7 +17,7 @@ class SimulatorTest {
 	public void setup(){
 		testSim = new Simulator();
 	}
-
+/*
 	@Test
 	void powerOn() {
 		assertFalse(testSim.getPower());
@@ -34,5 +34,5 @@ class SimulatorTest {
 		testSim.time(time1.printTime());
 		assertEquals(time2.difference(time1).printTime(),testSim.getOffset().printTime());
 	}
-
+*/
 }
