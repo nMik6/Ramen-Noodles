@@ -40,6 +40,13 @@ public interface Race {
 	 * @return list of finished racer
 	 */
 	public List<Racer> getFinishedRacers();
+
+	
+	/**
+	 * Returns a list of all racers who did not finish the race.
+	 * @return list of dnf racers
+	 */
+	public List<Racer> getDNFRacers();
 	
 	
 	/**
