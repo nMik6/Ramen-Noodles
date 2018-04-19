@@ -150,10 +150,13 @@ public class ClientPanel extends JFrame implements ActionListener{
 
 
 	public ClientPanel() {
-		createFrame();
-		frame.setVisible(true);
 		raceData = new RaceData();
 		eventHandler = new EventHandler(raceData, new Time());
+	}
+	
+	public void load() {
+		createFrame();
+		frame.setVisible(true);
 	}
 
 	private void createFrame() {
