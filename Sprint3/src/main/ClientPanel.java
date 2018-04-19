@@ -43,7 +43,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	/**
 	 * The data used if the user selects to perform operations with the GUI
 	 */
-	protected static RaceData raceData = new RaceData();
+	protected static RaceData raceData;
 	protected EventHandler eventHandler;
 	
 	
@@ -149,10 +149,11 @@ public class ClientPanel extends JFrame implements ActionListener{
 	
 
 
-	public ClientPanel(EventHandler e) {
+	public ClientPanel() {
 		createFrame();
 		frame.setVisible(true);
-		eventHandler = e;
+		raceData = new RaceData();
+		eventHandler = new EventHandler(raceData, new Time());
 	}
 
 	private void createFrame() {
@@ -584,7 +585,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		//creating and showing this application's GUI.
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new ClientPanel(new EventHandler(raceData, new Time()));
+				new ClientPanel();
 			}
 		});
 	}
