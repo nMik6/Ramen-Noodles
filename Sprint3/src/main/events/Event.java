@@ -26,15 +26,12 @@ public class Event {
 	Logger log;
 	Time timeOffset;
 	boolean offsetPos;
-	private RaceData raceData;
+	protected RaceData raceData;
 	
 	public Event(RaceData data) {
 		time = new Time();
-		log = new Logger();
-		timeOffset = new Time();
-		offsetPos = false;
 		raceData = data;
-		
+		raceData.setTimeOffset(new Time());	
 	}
 	
 	
@@ -43,23 +40,23 @@ public class Event {
 		if (raceData.isPower())
 			for (int i = 0; i < 8; i++)
 				raceData.setChannel(i, new Channel());
+		raceData.getLog().msg("The power is " + (raceData.isPower() ? "ON" : "OFF"));
 	}
 	
 	public void exit() {
-		System.out.println("Exiting...Goodbye!");
-		System.exit(0);
-		
+		raceData.getLog().msg("Exiting...Goodbye!");
+		System.exit(0);	
 	}
 	
 	public void reset() {
 		if (!raceData.isPower()) return;
-		raceData.switchPower();
 		raceData.setCurrentRace(null);
 		raceData.setCommand("none");
 		raceData.setOffset(false);
 		for (int i = 0; i < 7; i++) {
 			raceData.setChannel(i, new Channel());
 		}
+		raceData.getLog().msg("System has been reset");
 	}
 	
 	public void print() {
@@ -84,8 +81,14 @@ public class Event {
 	}
 	
 	public void num(String str) {
+		if (raceData.getCurrentRace() == null) {
+			raceData.getLog().msg("No race to add to. Create a new race event first.");
+			return;
+		}
 		if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str)))
 			raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
+		else
+			raceData.getLog().msg("That bib number already exists");
 	}
 	
 	/**
@@ -100,13 +103,13 @@ public class Event {
 			Channel[] temp = raceData.getChannels();
 
 			if (temp[channelInt].getState()) {
-				System.out.println("(log) Trigger on channel #" + channel);
+				raceData.getLog().msg("Trigger on channel #" + channel);
 				Race cur_race = raceData.getCurrentRace();
 				if (channelInt % 2 != 0) cur_race.start(channelInt, t);
 				else cur_race.finish(channelInt, t);
 			}
 		}catch(Exception e) {
-			System.out.println("No Current race! Cannot trigger a start!");
+			raceData.getLog().msg("No Current race! Cannot trigger a start!");
 		}
 	}
 	
@@ -131,11 +134,11 @@ public class Event {
 		}
 		else
 		{
-			System.out.println("Event type not found!");
+			raceData.getLog().msg("Event type not found!");
 			return;
 		}
 		raceData.setCurrentRace(cur_race);
-		System.out.println("(log) Race type set to: " + type);
+		raceData.getLog().msg("Race type set to: " + type);
 	}
 	
 	/**
@@ -149,7 +152,7 @@ public class Event {
 				int intchan = Integer.parseInt(channel);
 				Channel[] channels = raceData.getChannels();
 				channels[intchan].toggle();
-				System.out.println("(log) Channel #" + channel + " toggled");
+				raceData.getLog().msg("Channel #" + channel + " toggled " + (channels[intchan].getState() ? "ON" : "OFF"));
 				return intchan;
 			} catch(Exception e) {}
 		return -1;
@@ -159,10 +162,13 @@ public class Event {
 	 * Starts a new race event
 	 */
 	public void newrun() {
-		if (!raceData.isPower())	return;
-		if (raceData.getCurrentRace() == null) return;
+		if (!raceData.isPower()) return;
+		if (raceData.getCurrentRace() == null) {
+			raceData.getLog().msg("No race to start.");
+			return;
+		}
 		raceData.setRaceNum(raceData.getRaceNum() + 1);
-		System.out.println("(log) New race created");
+		raceData.getLog().msg("New race created");
 	}
 	
 	/**
@@ -170,11 +176,17 @@ public class Event {
 	 */
 	public void endrun() {
 		if (!raceData.isPower()) return;
-		raceData.getCurrentRace().end();
-		log.export(raceData.getCurrentRace().getFinishedRacers(), raceData.getRaceNum());
-		raceData.addFinishedRace(raceData.getCurrentRace());
-		raceData.setCurrentRace(new Individual());
-		System.out.println("(log) Race ended");
+		Race race = raceData.getCurrentRace();
+		if (race == null) {
+			raceData.getLog().msg("No race to end.");
+			return;
+		}
+		race.end();
+		raceData.getLog().export(race.getFinishedRacers(), raceData.getRaceNum());
+		raceData.addFinishedRace(race);
+		race = null;
+		raceData.setCurrentRace(race);
+		raceData.getLog().msg("Race ended");
 	}
 	/**
 	 * Ends the current race event and moves it to the list of finished races
@@ -184,16 +196,16 @@ public class Event {
 
 		if (raceData.getCurrentRace() != null) {
 			Race cur_race = raceData.getCurrentRace();
-			log.export(cur_race.getFinishedRacers(), num);
-			System.out.println("(log) Export Occurred");
+			raceData.getLog().export(cur_race.getFinishedRacers(), num);
+			raceData.getLog().msg("Race information exported to /data/RUN"+num+".txt");
 		}
 
 		else {
 			ArrayList<Race> finished = raceData.getFinishedRaces();
 			Race ret = finished.get(raceData.getRaceNum());
 			if (ret != null) {
-				log.export(ret.getFinishedRacers(), num);
-				System.out.println("(log) Export Occurred");
+				raceData.getLog().export(ret.getFinishedRacers(), num);
+				raceData.getLog().msg("Race information exported to /data/RUN"+num+".txt");
 			}
 		}
 	}
@@ -211,10 +223,10 @@ public class Event {
 
 		if (toCheck!= null) {
 			passedTime = new Time(toCheck);
-			System.out.println("(log) Time set to " + passedTime.printTime());
+			raceData.getLog().msg("Time set to " + passedTime.printTime());
 			//the passed time is after the current system time
-			offsetPos = sysTime.isBefore(passedTime);
-			timeOffset = passedTime.difference(sysTime);
+			raceData.setOffset(sysTime.isBefore(passedTime));
+			raceData.setTimeOffset(passedTime.difference(sysTime));
 		}
 	}
 

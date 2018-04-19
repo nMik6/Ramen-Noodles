@@ -21,6 +21,8 @@ import java.awt.ComponentOrientation;
 
 import javax.swing.*;
 
+import main.events.EventHandler;
+
 public class ClientPanel extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;	
@@ -38,6 +40,13 @@ public class ClientPanel extends JFrame implements ActionListener{
 	String finishLabel = "Finish";
 	String outformatLabel = "Queue / Running / Final Time";
 
+	/**
+	 * The data used if the user selects to perform operations with the GUI
+	 */
+	protected RaceData raceData = new RaceData();
+	protected EventHandler eventHandler = new EventHandler(raceData, new Time());
+	
+	
 	/**
 	 * The text area that displays the information that the client
 	 * has previously entered.
@@ -449,7 +458,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 		//The main buttons can be checked against their names first and the default case can hand the letter/number combo names
 		//e.g. if(e.getName()
 		switch (e.getActionCommand()) {
-		
+		//Use the following format to send commands - variables for RaceData and handler already created
+		//eventHandler.handle(String[] command);
 		}
 	}
 	

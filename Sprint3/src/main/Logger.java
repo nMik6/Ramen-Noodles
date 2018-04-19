@@ -37,6 +37,14 @@ public class Logger {
 	}
 	
 	/**
+	 * Simple function to print a line of text to the console for logging
+	 * @param msg The message to print
+	 */
+	public void msg(String msg) {
+		System.out.println("Log: " + msg);
+	}
+	
+	/**
 	 * Prints a list of racers to the console
 	 * @param racers to print
 	 */
@@ -55,7 +63,7 @@ public class Logger {
 	 * @param num the race number
 	 */
 	public void export(List<Racer> racers, int raceNum) {
-		String currentUsersHomeDir = System.getProperty("user.dir");
+		String currentUsersHomeDir = "data/";
 		String raceFile = currentUsersHomeDir + File.separator + "RUN" + raceNum + ".txt";
 		//System.out.println(raceFile);
 		File file = new File(raceFile);
