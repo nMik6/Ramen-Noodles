@@ -84,10 +84,13 @@ class LoggerTest {
 	 */
 	private File fileFound(int raceNum) {
 		String curUserDir = System.getProperty("user.dir");
-		String filename = curUserDir + File.separator + "RUN" + raceNum + ".txt";
+		String curUserDirData = System.getProperty("user.dir") + File.separator + "data";
+		String filename = curUserDir + File.separator + "data" + File.separator + "RUN" + raceNum + ".txt";
 		
+		System.out.println(filename);
+		System.out.println(curUserDirData);
 		
-		File[] files = new File(curUserDir).listFiles();
+		File[] files = new File(curUserDirData).listFiles();
 		
 		for(File file: files) {
 			if(file.isFile()) {	
