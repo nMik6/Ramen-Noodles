@@ -19,16 +19,12 @@ public class EventHandler {
 		
 	}
 	
-	public void handle(String[] command) {		
-		parse(command);
-	}
-	
 	
 	/**
 	 * Parses the commands that are entered and executes them
 	 * @param commandLine the commands entered
 	 */
-	public void parse(String[] commandLine) {
+	public void handle(String[] commandLine) {
 		int length = commandLine.length;
 		Time passedTime = null;
 		LocalTime toCheck;
