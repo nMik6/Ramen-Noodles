@@ -59,6 +59,19 @@ public class Individual implements Race {
 		return finished;
 	}
 	
+	/**
+	 * Returns a list of all racers who did not finish the race.
+	 * @return list of dnf racers
+	 */
+	public List<Racer> getDNFRacers() {
+		List<Racer> out = new ArrayList<Racer>();
+		for(Iterator<Racer> it = finished.iterator();it.hasNext();) {
+			Racer r = it.next();
+			if(r.didNotFinish())out.add(r);
+		}
+		return out;
+	}
+	
 	
 	/**
 	 * Assigns the DNF flag to the next racer to finish
