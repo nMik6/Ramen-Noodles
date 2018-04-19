@@ -104,11 +104,22 @@ public class ParallelIndividual implements Race {
 	
 	/**
 	 * Assigns the DNF flag to the racer
-	 * @param racer
-	 * @return 1 if the assignment is successful, and -1 otherwise
+	 * 
 	 */
-	public int dnf(Racer racer) {
-		return racer.dnf() == 1 ? 1 : -1;
+	public void dnf(Racer racer) {
+		if(running1.contains(racer))
+			running1.remove(racer);
+		if(running3.contains(racer))
+			running3.remove(racer);
+		if(ready1.contains(racer))
+			ready1.remove(racer);
+		if(ready3.contains(racer))
+			ready3.remove(racer);
+		
+		
+		racer.dnf();
+		
+		finished.add(racer);
 	}
 	
 	@Override
