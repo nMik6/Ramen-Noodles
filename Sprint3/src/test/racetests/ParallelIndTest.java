@@ -28,27 +28,33 @@ class ParallelIndTest {
 	@Test
 	void test0() {
 		assertEquals(paraIndRace.getReadyRacers().size(), 0);
+		assertTrue(paraIndRace.getReadyRacersCh1().size() == 0);
+		assertTrue(paraIndRace.getReadyRacersCh3().size() == 0);
 		assertEquals(paraIndRace.getCurrentRacers().size(), 0);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 0);
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 0);
 		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
 
+		assertFalse(paraIndRace.containsBib(1));
 		assertFalse(paraIndRace.addReady(null));
 		assertTrue(paraIndRace.addReady(racer1));
 		assertFalse(paraIndRace.addReady(racer1));
 		assertFalse(paraIndRace.addReady(new Racer (1)));
+		assertTrue(paraIndRace.containsBib(1));
 
 		assertEquals(paraIndRace.getReadyRacers().size(), 1);
+		assertTrue(paraIndRace.getReadyRacers().peek().equals(racer1));
 		assertTrue(paraIndRace.getReadyRacersCh1().size() == 1);
 		assertTrue(paraIndRace.getReadyRacersCh3().size() == 0);
 		assertEquals(paraIndRace.getCurrentRacers().size(), 0);
 		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
-		assertTrue(paraIndRace.getReadyRacers().peek().equals(racer1));
 		
 		assertTrue(paraIndRace.addReady(racer2));
 
-		assertTrue(paraIndRace.getReadyRacersCh1().peek().equals(racer1));
 		assertTrue(paraIndRace.getReadyRacersCh1().size() == 1);
-		assertTrue(paraIndRace.getReadyRacersCh3().peek().equals(racer2));
+		assertTrue(paraIndRace.getReadyRacersCh1().peek().equals(racer1));
 		assertTrue(paraIndRace.getReadyRacersCh3().size() == 1);
+		assertTrue(paraIndRace.getReadyRacersCh3().peek().equals(racer2));
 		assertEquals(paraIndRace.getReadyRacers().size(), 2);
 		assertEquals(paraIndRace.getCurrentRacers().size(), 0);
 		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
@@ -71,22 +77,54 @@ class ParallelIndTest {
 		
 		paraIndRace.start(1, new Time());
 
-		assertTrue(paraIndRace.getCurrentRacers().peek().equals(racer1));
 		assertEquals(paraIndRace.getReadyRacers().size(), 3);
+		assertTrue(paraIndRace.getReadyRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getReadyRacersCh1().peek().equals(racer3));
+		assertTrue(paraIndRace.getReadyRacersCh3().size() == 2);
+		assertTrue(paraIndRace.getReadyRacersCh3().peek().equals(racer2));
 		assertEquals(paraIndRace.getCurrentRacers().size(), 1);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getCurrentRacersCh1().peek().equals(racer1));
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 0);
 		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
 		
 		paraIndRace.start(3, new Time());
-		
+
 		assertEquals(paraIndRace.getReadyRacers().size(), 2);
+		assertTrue(paraIndRace.getReadyRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getReadyRacersCh1().peek().equals(racer3));
+		assertTrue(paraIndRace.getReadyRacersCh3().size() == 1);
+		assertTrue(paraIndRace.getReadyRacersCh3().peek().equals(racer4));
 		assertEquals(paraIndRace.getCurrentRacers().size(), 2);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getCurrentRacersCh1().peek().equals(racer1));
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 1);
+		assertTrue(paraIndRace.getCurrentRacersCh3().peek().equals(racer2));
+		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
+
+		paraIndRace.start(3, new Time());
+		
+		assertEquals(paraIndRace.getReadyRacers().size(), 1);
+		assertTrue(paraIndRace.getReadyRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getReadyRacersCh1().peek().equals(racer3));
+		assertTrue(paraIndRace.getReadyRacersCh3().size() == 0);
+		assertEquals(paraIndRace.getCurrentRacers().size(), 3);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getCurrentRacersCh1().peek().equals(racer1));
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 2);
+		assertTrue(paraIndRace.getCurrentRacersCh3().peek().equals(racer2));
 		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
 		
 		paraIndRace.start(1, new Time());
-		paraIndRace.start(3, new Time());
 		
 		assertEquals(paraIndRace.getReadyRacers().size(), 0);
+		assertTrue(paraIndRace.getReadyRacersCh1().size() == 0);
+		assertTrue(paraIndRace.getReadyRacersCh3().size() == 0);
 		assertEquals(paraIndRace.getCurrentRacers().size(), 4);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 2);
+		assertTrue(paraIndRace.getCurrentRacersCh1().peek().equals(racer1));
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 2);
+		assertTrue(paraIndRace.getCurrentRacersCh3().peek().equals(racer2));
 		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
 		
 		paraIndRace.finish(2, new Time());

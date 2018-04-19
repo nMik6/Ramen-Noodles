@@ -158,13 +158,18 @@ public class ParallelIndividual implements Race {
 	/**
 	 * Assigns the start time to the racer and adds them to the 
 	 * current racers.
-	 * If paraInd, will check the size of the queue before picking which queue to pull the starting racer from.
+	 * If paraInd, will use the channel variable to determine which queue to pull the starting racer from.
 	 * @param time at which the racer starts
 	 * @return true if race successfully started, else false
 	 */
 	public void start(int channel, Time time) {
 		Racer starting;
-		if(ready1.size() < ready3.size()) {
+		/*if(ready1.size() < ready3.size()) {
+			starting = ready3.poll();
+		} else {
+			starting = ready1.poll();
+		}/**/
+		if(channel == 3) {
 			starting = ready3.poll();
 		} else {
 			starting = ready1.poll();
