@@ -43,12 +43,6 @@ public interface Race {
 	
 	
 	/**
-	 * Assigns the DNF flag to the next racer to finish
-	 * @param racer
-	 */
-	public void dnf();
-	
-	/**
 	 * Removes a racer from the ready position
 	 * @param racer to remove
 	 * @return true if racer was removed from ready position, else false

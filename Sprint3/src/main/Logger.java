@@ -28,6 +28,11 @@ public class Logger {
 	
 	private Gson gson;
 	private File racerf;
+	
+	/**
+	 * last message for testing in {@link DataEventTest}
+	 */
+	private String lastMsg;
 
 	/**
 	 * Logger constructor, sets gson
@@ -42,6 +47,15 @@ public class Logger {
 	 */
 	public void msg(String msg) {
 		System.out.println("Log: " + msg);
+		lastMsg = msg;
+	}
+	
+	/**
+	 * Used to test the order of commands in {@link DataEventTest}
+	 * @return
+	 */
+	public String getLastMsg() {
+		return lastMsg;
 	}
 	
 	/**

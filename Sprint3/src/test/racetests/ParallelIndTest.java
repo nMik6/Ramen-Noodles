@@ -40,7 +40,38 @@ class ParallelIndTest {
 		assertEquals(paraIndRace.getCurrentRacers().size(), 0);
 		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
 		
+		paraIndRace.start(1, new Time());
 		
+		assertEquals(paraIndRace.getReadyRacers().size(), 3);
+		assertEquals(paraIndRace.getCurrentRacers().size(), 1);
+		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
+		
+		paraIndRace.start(3, new Time());
+		
+		assertEquals(paraIndRace.getReadyRacers().size(), 2);
+		assertEquals(paraIndRace.getCurrentRacers().size(), 2);
+		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
+		
+		paraIndRace.start(1, new Time());
+		paraIndRace.start(3, new Time());
+		
+		assertEquals(paraIndRace.getReadyRacers().size(), 0);
+		assertEquals(paraIndRace.getCurrentRacers().size(), 4);
+		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
+		
+		paraIndRace.finish(2, new Time());
+		paraIndRace.finish(4, new Time());
+		
+		assertEquals(paraIndRace.getReadyRacers().size(), 0);
+		assertEquals(paraIndRace.getCurrentRacers().size(), 2);
+		assertEquals(paraIndRace.getFinishedRacers().size(), 2);
+		
+		paraIndRace.finish(2, new Time());
+		paraIndRace.finish(4, new Time());
+		
+		assertEquals(paraIndRace.getReadyRacers().size(), 0);
+		assertEquals(paraIndRace.getCurrentRacers().size(), 0);
+		assertEquals(paraIndRace.getFinishedRacers().size(), 4);
 	}
 	
 	/**
