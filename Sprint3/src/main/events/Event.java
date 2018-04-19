@@ -26,7 +26,7 @@ public class Event {
 	Logger log;
 	Time timeOffset;
 	boolean offsetPos;
-	private RaceData raceData;
+	protected RaceData raceData;
 	
 	public Event(RaceData data) {
 		time = new Time();
@@ -50,7 +50,6 @@ public class Event {
 	
 	public void reset() {
 		if (!raceData.isPower()) return;
-		raceData.switchPower();
 		raceData.setCurrentRace(null);
 		raceData.setCommand("none");
 		raceData.setOffset(false);
@@ -88,6 +87,8 @@ public class Event {
 		}
 		if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str)))
 			raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
+		else
+			raceData.getLog().msg("That bib number already exists");
 	}
 	
 	/**
@@ -151,7 +152,7 @@ public class Event {
 				int intchan = Integer.parseInt(channel);
 				Channel[] channels = raceData.getChannels();
 				channels[intchan].toggle();
-				raceData.getLog().msg("Channel #" + channel + " toggled");
+				raceData.getLog().msg("Channel #" + channel + " toggled " + (channels[intchan].getState() ? "ON" : "OFF"));
 				return intchan;
 			} catch(Exception e) {}
 		return -1;
@@ -196,7 +197,7 @@ public class Event {
 		if (raceData.getCurrentRace() != null) {
 			Race cur_race = raceData.getCurrentRace();
 			raceData.getLog().export(cur_race.getFinishedRacers(), num);
-			raceData.getLog().msg("Export Occurred");
+			raceData.getLog().msg("Race information exported to /data/RUN"+num+".txt");
 		}
 
 		else {
@@ -204,7 +205,7 @@ public class Event {
 			Race ret = finished.get(raceData.getRaceNum());
 			if (ret != null) {
 				raceData.getLog().export(ret.getFinishedRacers(), num);
-				raceData.getLog().msg("Export Occurred");
+				raceData.getLog().msg("Race information exported to /data/RUN"+num+".txt");
 			}
 		}
 	}
