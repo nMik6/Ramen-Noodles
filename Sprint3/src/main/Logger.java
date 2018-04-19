@@ -30,7 +30,7 @@ public class Logger {
 	private File racerf;
 	
 	/**
-	 * last message for testing in {@link DataTest}
+	 * last message for testing in {@link DataEventTest}
 	 */
 	private String lastMsg;
 
@@ -51,7 +51,7 @@ public class Logger {
 	}
 	
 	/**
-	 * Used to test the order of commands in {@link DataTest}
+	 * Used to test the order of commands in {@link DataEventTest}
 	 * @return
 	 */
 	public String getLastMsg() {
