@@ -128,18 +128,51 @@ class ParallelIndTest {
 		assertEquals(paraIndRace.getFinishedRacers().size(), 0);
 		
 		paraIndRace.finish(2, new Time());
+		
+		assertEquals(paraIndRace.getReadyRacers().size(), 0);
+		assertEquals(paraIndRace.getCurrentRacers().size(), 3);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getCurrentRacersCh1().peek().equals(racer3));
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 2);
+		assertTrue(paraIndRace.getCurrentRacersCh3().peek().equals(racer2));
+		assertEquals(paraIndRace.getFinishedRacers().size(), 1);
+		assertTrue(paraIndRace.getFinishedRacers().get(0).equals(racer1));
+		
 		paraIndRace.finish(4, new Time());
 		
 		assertEquals(paraIndRace.getReadyRacers().size(), 0);
 		assertEquals(paraIndRace.getCurrentRacers().size(), 2);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getCurrentRacersCh1().peek().equals(racer3));
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 1);
+		assertTrue(paraIndRace.getCurrentRacersCh3().peek().equals(racer4));
 		assertEquals(paraIndRace.getFinishedRacers().size(), 2);
-		
-		paraIndRace.finish(2, new Time());
+		assertTrue(paraIndRace.getFinishedRacers().get(0).equals(racer1));
+		assertTrue(paraIndRace.getFinishedRacers().get(1).equals(racer2));
+
 		paraIndRace.finish(4, new Time());
 		
 		assertEquals(paraIndRace.getReadyRacers().size(), 0);
+		assertEquals(paraIndRace.getCurrentRacers().size(), 1);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 1);
+		assertTrue(paraIndRace.getCurrentRacersCh1().peek().equals(racer3));
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 0);
+		assertEquals(paraIndRace.getFinishedRacers().size(), 3);
+		assertTrue(paraIndRace.getFinishedRacers().get(0).equals(racer1));
+		assertTrue(paraIndRace.getFinishedRacers().get(1).equals(racer2));
+		assertTrue(paraIndRace.getFinishedRacers().get(2).equals(racer4));
+
+		paraIndRace.finish(2, new Time());
+		
+		assertEquals(paraIndRace.getReadyRacers().size(), 0);
 		assertEquals(paraIndRace.getCurrentRacers().size(), 0);
+		assertTrue(paraIndRace.getCurrentRacersCh1().size() == 0);
+		assertTrue(paraIndRace.getCurrentRacersCh3().size() == 0);
 		assertEquals(paraIndRace.getFinishedRacers().size(), 4);
+		assertTrue(paraIndRace.getFinishedRacers().get(0).equals(racer1));
+		assertTrue(paraIndRace.getFinishedRacers().get(1).equals(racer2));
+		assertTrue(paraIndRace.getFinishedRacers().get(2).equals(racer4));
+		assertTrue(paraIndRace.getFinishedRacers().get(3).equals(racer3));
 	}
 	
 	/**
