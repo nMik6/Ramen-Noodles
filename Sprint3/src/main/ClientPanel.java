@@ -43,8 +43,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 	/**
 	 * The data used if the user selects to perform operations with the GUI
 	 */
-	protected RaceData raceData = new RaceData();
-	protected EventHandler eventHandler = new EventHandler(raceData, new Time());
+	protected static RaceData raceData = new RaceData();
+	protected EventHandler eventHandler;
 	
 	
 	/**
@@ -76,18 +76,10 @@ public class ClientPanel extends JFrame implements ActionListener{
 	JCheckBox[] channelToggles = {t1, t2, t3, t4, t5, t6, t7, t8};
 	JCheckBox[] channelConnections = {c1, c2, c3, c4, c5, c6, c7, c8};
 	
-	protected JButton n1 = new JButton ("1");
-	protected JButton n2 = new JButton ("2");
-	protected JButton n3 = new JButton ("3");
-	protected JButton n4 = new JButton ("4");
-	protected JButton n5 = new JButton ("5");
-	protected JButton n6 = new JButton ("6");
-	protected JButton n7 = new JButton ("7");
-	protected JButton n8 = new JButton ("8");
-	protected JButton n9 = new JButton ("9");
-	protected JButton nA = new JButton ("*");
-	protected JButton n0 = new JButton ("0");
-	protected JButton nP = new JButton ("#");
+	JButton n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, nA, nP;
+	JButton[] numPad = {n1, n2, n3, n4, n5, n6, n7, n8, n9, nA, n0, nP};
+	
+	String numEntered = "";
 
 	//class used to create triangle shaped buttons. Should be replaced with icons
 	class TriangleButton extends JButton {
@@ -157,9 +149,10 @@ public class ClientPanel extends JFrame implements ActionListener{
 	
 
 
-	public ClientPanel() {
+	public ClientPanel(EventHandler e) {
 		createFrame();
 		frame.setVisible(true);
+		eventHandler = e;
 	}
 
 	private void createFrame() {
@@ -198,6 +191,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	//sets up the power panel and returns it
 	private JPanel getPowerPanel() {
 		power.addActionListener(this);
+		power.setActionCommand("power");
 		power.setMaximumSize(new Dimension(100,30));
 		
 		JPanel powerPanel= new JPanel();
@@ -254,7 +248,6 @@ public class ClientPanel extends JFrame implements ActionListener{
 		return timer;
 	}
 	
-	//sets up the printerPanel and returns it
 	
 	//sets up printer panel and returns it
 	private JPanel getPrinterPanel() {
@@ -277,9 +270,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 		return printer;
 	}
 	
-	//sets up function panel and returns it
 	
-	//sets up the functionPanel and returns it
+	//sets up the function panel and returns it
 	private JPanel getFunctionPanel() {
 		JPanel functionPanel = new JPanel();
 		functionPanel.setLayout(new BorderLayout());
@@ -290,6 +282,13 @@ public class ClientPanel extends JFrame implements ActionListener{
 		sub1.setLayout(new FlowLayout());
 		sub2.setLayout(new FlowLayout());
 		sub3.setLayout(new FlowLayout());
+		
+		function.setActionCommand("function");
+		triUp.setActionCommand("up");
+		triDown.setActionCommand("down");
+		triLeft.setActionCommand("left");
+		triRight.setActionCommand("right");
+		swap.setActionCommand("swap");
 		
 		sub1.add(function);
 		sub2.add(triLeft);
@@ -306,8 +305,6 @@ public class ClientPanel extends JFrame implements ActionListener{
 	}
 	
 	//sets up display panel and returns it
-	
-	//sets up the displayPanel and returns it
 	private JPanel getDisplayPanel() {
 		textArea.setEditable(false);
 		JScrollPane scroll = new JScrollPane(textArea);
@@ -326,25 +323,34 @@ public class ClientPanel extends JFrame implements ActionListener{
 		return display;
 	}
 	
-	
 	//sets up number panel and returns it
 	private JPanel getNumberPanel() {
 		JPanel number = new JPanel();
 		number.setLayout(new GridLayout(4,3));
 		number.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		
-		number.add(n1);
-		number.add(n2);
-		number.add(n3);
-		number.add(n4);
-		number.add(n5);
-		number.add(n6);
-		number.add(n7);
-		number.add(n8);
-		number.add(n9);
-		number.add(nA);
-		number.add(n0);
-		number.add(nP);
+		for(int i = 0; i <12; ++i) {
+			numPad[i]= new JButton();
+			
+			switch (i){
+			case 9:
+				numPad[i].setText("*");
+				break;
+			case 10:
+				numPad[i].setText("0");
+				break;
+			case 11:
+				numPad[i].setText("#");
+				break;
+			default:
+				numPad[i].setText("" + (i+1));
+				break;
+			}
+			
+			numPad[i].addActionListener(this);
+			numPad[i].setActionCommand(numPad[i].getText());
+			number.add(numPad[i]);
+		}
 		
 		return number;
 	}
@@ -399,7 +405,9 @@ public class ClientPanel extends JFrame implements ActionListener{
 		sub2.setLayout(new FlowLayout());
 		
 		JCheckBox usbPort = new JCheckBox();
-		usbPort.setPreferredSize(new Dimension(30,7));
+		usbPort.setPreferredSize(new Dimension(35,10));
+		usbPort.setBackground(Color.GRAY);
+		usbPort.setActionCommand("usb");
 		
 		sub1.add(usbPort);
 		sub2.add(makeLabel("USB PORT"));
@@ -427,24 +435,29 @@ public class ClientPanel extends JFrame implements ActionListener{
 	
 	private JButton makeButton() {
 		JButton ret = new JButton();
-		ret.setActionCommand(getName());
+		ret.setActionCommand("trigger");
 		ret.setPreferredSize(new Dimension(10,10));
+		ret.addActionListener(this);
 		return ret;
 	}
 	private JCheckBox makeCheckBox() {
 		JCheckBox ret = new JCheckBox();
-		ret.setActionCommand(getName());
 		ret.setPreferredSize(new Dimension(10,10));
 		ret.setHorizontalAlignment(JCheckBox.CENTER);
+		ret.addActionListener(this);
 		return ret;
 	}
 	
 	private void channelSetup() {
 		for(int i= 0; i<8; i++) {
 			channelButtons[i] = makeButton();
+			
 			channelToggles[i] = makeCheckBox();
 			channelToggles[i].setEnabled(false);
+			channelToggles[i].setActionCommand("toggle");
+			
 			channelConnections[i] = makeCheckBox();
+			channelConnections[i].setActionCommand("connect");
 		}
 	}
 	
@@ -454,15 +467,103 @@ public class ClientPanel extends JFrame implements ActionListener{
 	*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
-			//for all jButtons, getname() will describe what they do and should be sufficient to create cases, same for checkboxes
-		//The main buttons can be checked against their names first and the default case can hand the letter/number combo names
-		//e.g. if(e.getName()
 		switch (e.getActionCommand()) {
-		//Use the following format to send commands - variables for RaceData and handler already created
-		//eventHandler.handle(String[] command);
+		case "trigger":
+			String name = "";
+			for(int i = 0; i < 8; i++) { 
+				if (e.getSource() == (channelButtons[i]) && channelToggles[i].isSelected()) {
+					name = "" + (i+1);
+					i = 8;
+					String[] trig = {"trig", name};
+					eventHandler.handle(trig);
+				}
+				//TODO get back a string for starting/ending a racer?
+			}
+			break;
+		
+		case "toggle":
+			String togName = "";
+			for(int i = 0; i < 8; i++) { 
+				if (e.getSource() == (channelToggles[i])) {
+					togName = "" + (i+1);
+					i = 8;
+					String[] tog = {"tog", togName};
+					eventHandler.handle(tog);
+				}
+			}
+			break;
+		
+		case "connect":
+			String connName = "";
+			for(int i = 0; i < 8; i++) { 
+				if (e.getSource() == (channelConnections[i])) {
+					System.out.println("here");
+					if(channelConnections[i].isSelected()) channelToggles[i].setEnabled(true);
+					else {
+						channelToggles[i].setSelected(false);
+						channelToggles[i].setEnabled(false);
+					}
+					connName = "" + (i+1);
+					i = 8;
+				}
+			}
+			String[] conn = {"conn", connName};
+			eventHandler.handle(conn);
+			break;
+		case "power":
+			System.out.println("power");
+			String[] pow = {"power"};
+			eventHandler.handle(pow);
+			break;
+		case "print power":
+			printArea.setText(null);
+			printArea.setVisible(!printArea.isVisible());
+			break;
+		//TODO get the correct race data?
+		case "function":
+			break;
+		case "up":
+			break;
+		case "down":
+			break;
+		case "left":
+			break;
+		case "right":
+			break;
+		case "swap":
+			break;
+		
+		case "1":
+		case "2":
+		case "3":
+		case "4":
+		case "5":
+		case "6":
+		case "7":
+		case "8":
+		case "9":
+		case "0":
+			numEntered += e.getActionCommand();
+			break;
+		case "*":
+			numEntered = "";
+			break;
+		
+		case "#":
+			//TODO replace bib# with Integer.parseInt(numEntered) if non-null
+			System.out.println(numEntered);
+			numEntered = "";
+			break;
+			
+		case "usb":
+			String[] usb = {"export"};
+			eventHandler.handle(usb);
+			break;
 		}
 	}
 	
+	
+	//just for testing
 	public static void main(String[] args) {
 		/* Use an appropriate Look and Feel */
 		try {
@@ -479,11 +580,11 @@ public class ClientPanel extends JFrame implements ActionListener{
 		}
 		/* Turn off metal's use of bold fonts */
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
-		//Schedule a job for the event dispatchi thread:
+		//Schedule a job for the event dispatching thread:
 		//creating and showing this application's GUI.
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new ClientPanel();
+				new ClientPanel(new EventHandler(raceData, new Time()));
 			}
 		});
 	}
