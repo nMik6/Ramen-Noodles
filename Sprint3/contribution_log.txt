@@ -13,3 +13,8 @@ Hart
 	Wrote tests for Race classes
 	State Diagram
 
+Nathan
+	Split Simulator into Event and EventHandler
+	RaceData class
+	DataEventTest class
+	New Driver
