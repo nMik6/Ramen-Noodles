@@ -482,6 +482,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 					eventHandler.handle(trig);
 				}
 				//TODO get back a string for starting/ending a racer?
+				String msg = raceData.getLog().getLastMsg();
 			}
 			break;
 		
