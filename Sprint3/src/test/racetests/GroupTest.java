@@ -52,6 +52,9 @@ public class GroupTest {
 		
 		assertEquals(groupRace.getFinishedRacers().size(), 2);
 		
+		assertTrue(groupRace.getFinishedRacers().contains(new Racer(1))); //Tests to ensure the initial numbering system is working.
+		assertTrue(groupRace.getFinishedRacers().contains(new Racer(2)));
+		
 		groupRace.finish(finishChannel, new Time());
 		groupRace.finish(finishChannel, new Time());
 		groupRace.finish(finishChannel, new Time());

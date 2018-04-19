@@ -20,12 +20,15 @@ public class Group implements Race{
 	private Time groupStart;
 	private List<Racer> finished;
 	private int autoNum;
+	private int tmpBib;
 	private boolean raceEnded;
+	
 	
 	public Group() {
 		this.finished = new LinkedList<Racer>();
 		autoNum = 0;
 		raceEnded = false;
+		tmpBib = 0;
 	}
 	
 	/**
@@ -110,7 +113,8 @@ public class Group implements Race{
 		if(raceEnded) 
 			return false;
 		
-		Racer ending = new Racer(-1);	//default set anonymous racer bib number to -1
+		Racer ending = new Racer(autoNum+1);	//default set anonymous racer bib number to -1
+		++autoNum;
 		ending.start(groupStart);
 		ending.finish(time);
 		finished.add(ending);
@@ -134,12 +138,12 @@ public class Group implements Race{
 	public void setBib(int bib){
 		if(finished.isEmpty()) 
 			return;
-		for(Racer r: finished) {
-			if(r.getName() == -1) {
-				r.setName(bib);
-				return;
-			}
+		if (finished.get(tmpBib) != null)
+		{
+			finished.get(tmpBib).setName(bib);
+			++tmpBib;
 		}
+		
 	}
 	
 	/**
