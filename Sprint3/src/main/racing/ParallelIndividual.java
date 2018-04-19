@@ -94,11 +94,24 @@ public class ParallelIndividual implements Race {
 	}
 	
 	/**
-	 * Returns a list of all racers who have finished a race.
-	 * @return list of finished racer
+	 * Returns a list of all racers who have finished a race. Includes DNF racers.
+	 * @return list of finished racers
 	 */
 	public List<Racer> getFinishedRacers() {
 		return finished;
+	}
+	
+	/**
+	 * Returns a list of all racers who did not finish the race.
+	 * @return list of dnf racers
+	 */
+	public List<Racer> getDNFRacers() {
+		List<Racer> out = new ArrayList<Racer>();
+		for(Iterator<Racer> it = finished.iterator();it.hasNext();) {
+			Racer r = it.next();
+			if(r.didNotFinish())out.add(r);
+		}
+		return out;
 	}
 	
 	/**
@@ -139,19 +152,26 @@ public class ParallelIndividual implements Race {
 	 * 
 	 */
 	public void dnf(Racer racer) {
-		if(running1.contains(racer))
+		if(running1.contains(racer)) {
 			running1.remove(racer);
-		if(running3.contains(racer))
+			racer.dnf();
+			finished.add(racer);
+		}
+		if(running3.contains(racer)) {
 			running3.remove(racer);
-		if(ready1.contains(racer))
+			racer.dnf();
+			finished.add(racer);
+		}
+		if(ready1.contains(racer)) {
 			ready1.remove(racer);
-		if(ready3.contains(racer))
+			racer.dnf();
+			finished.add(racer);
+		}
+		if(ready3.contains(racer)) {
 			ready3.remove(racer);
-		
-		
-		racer.dnf();
-		
-		finished.add(racer);
+			racer.dnf();
+			finished.add(racer);
+		}
 	}
 	
 	@Override
