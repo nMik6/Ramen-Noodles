@@ -21,14 +21,13 @@ import java.time.format.DateTimeFormatter;
 public class Simulator {
 	private Scanner stdin = new Scanner(System.in);
 	private EventHandler eventHandler;
-	private RaceData raceData = new RaceData();
 	private String command;
 
 	/**
 	 * Constructor for Simulator
 	 */
 	public Simulator() {
-		eventHandler = new EventHandler(raceData, new Time());
+		eventHandler = new EventHandler(new RaceData(), new Time());
 	}
 
 	/**
