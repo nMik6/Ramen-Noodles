@@ -49,6 +49,22 @@ public class ParallelIndividual implements Race {
 		out.addAll(ready3);
 		return out;
 	}
+
+	/**
+	 * Returns a queue containing all racers that are ready to begin a race from channel 1.
+	 * @return queue of ready racers queued for channel 1
+	 */
+	public Queue<Racer> getReadyRacersCh1() {
+		return ready1;
+	}
+
+	/**
+	 * Returns a queue containing all racers that are ready to begin a race from channel 3.
+	 * @return queue of ready racers queued for channel 3
+	 */
+	public Queue<Racer> getReadyRacersCh3() {
+		return ready3;
+	}
 	
 	/**
 	 * Returns a queue containing all racers who are currently running a race.
@@ -59,6 +75,22 @@ public class ParallelIndividual implements Race {
 		out.addAll(running1);
 		out.addAll(running3);
 		return out;
+	}
+	
+	/**
+	 * Returns a queue containing all racers who are currently running a race from channel 1.
+	 * @return queue of current racers queued for channel 1
+	 */
+	public Queue<Racer> getCurrentRacersCh1() {
+		return running1;
+	}
+	
+	/**
+	 * Returns a queue containing all racers who are currently running a race from channel 3.
+	 * @return queue of current racers queued for channel 3
+	 */
+	public Queue<Racer> getCurrentRacersCh3() {
+		return running3;
 	}
 	
 	/**
