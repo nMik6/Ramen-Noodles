@@ -1,0 +1,15 @@
+Documentation for contributions
+	Format: 
+		Name
+			Task1 description
+			Task2 ....
+			.....
+
+
+Hart
+	UML Diagram
+	Split Race Class into Inidividual, ParaInd
+	Implemented Group Class
+	Wrote tests for Race classes
+	State Diagram
+
