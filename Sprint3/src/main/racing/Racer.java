@@ -36,6 +36,7 @@ public class Racer implements Comparable<Racer>{
 	public int finish(Time t) {
 	
 		finish = t;
+		total = finish.difference(start);
 		return 1;
 		
 	}
@@ -122,6 +123,13 @@ public class Racer implements Comparable<Racer>{
 			return this.bib == r.bib;
 		}
 		return false;
+	}
+	
+	public String toString(Time t) {
+		String ret = "  " +bib;
+		if(total != null) ret += "  " + total.printTime() + "  F";
+		else if(start != null) ret += "  " +t.difference(start).printTime() + "  R";
+		return ret;
 	}
 	
 	public int compareTo(Racer r) {

@@ -179,9 +179,9 @@ public class Individual implements Race {
 		Queue<Racer> tmp = new LinkedList<Racer>();
 		Racer toBeSwapped = running.poll();
 		Racer toBeFirst = running.poll();
-		tmp.add(toBeFirst);
-		tmp.add(toBeSwapped);
-		for (Racer r : tmp)
+		if(toBeFirst != null )tmp.add(toBeFirst);
+		if(toBeSwapped != null )tmp.add(toBeSwapped);
+		for (Racer r : running)
 		{
 			tmp.add(r);
 		}
@@ -189,21 +189,39 @@ public class Individual implements Race {
 	}
 
 	@Override
-	public String getReadyDisplay() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getCurrentDisplay() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getFinishedDisplay() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getDisplay() {
+		String ret = "";
+		//adds ready portion
+		Queue<Racer> tmp = new LinkedList<Racer>();
+		Racer first = ready.poll();
+		Racer second = ready.poll();
+		Racer third = ready.poll();
+		Time t = new Time();
+		if(first != null ){
+			tmp.add(first);
+			ret += first.toString(t) + "\n";
+		}
+		if(second != null ){
+			tmp.add(second);
+			ret += second.toString(t)+ "\n";
+		}
+		if(third != null ){
+			tmp.add(third);
+			ret += third.toString(t)+ "\n";
+		}
+		
+		for (Racer r : running)
+		{
+			tmp.add(r);
+		}
+		running = tmp;
+		ret += "\n";
+		
+		//adds current portion
+		for (Racer r : running)	ret += r.toString(t) + "\n";
+		
+		if(finished.size()!= 0)ret += finished.get(finished.size()-1).toString(t);
+		return ret;
 	}
 
 }
