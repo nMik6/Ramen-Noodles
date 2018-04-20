@@ -162,4 +162,38 @@ class IndividualTest {
 		assertTrue(indRace.cancel(racer1));
 		assertFalse(indRace.cancel(racer3));
 	}
+	
+	/**
+	 * Tests the end method.
+	 */
+	void testEnd() {
+		indRace.addReady(racer1);
+		indRace.addReady(racer2);
+		indRace.addReady(racer3);
+		indRace.addReady(racer4);
+
+		indRace.start(1, new Time());
+		indRace.start(1, new Time());
+		indRace.start(1, new Time());
+		indRace.start(1, new Time());
+
+		indRace.finish(1, new Time());
+		assertEquals(indRace.getFinishedRacers().size(), 1);
+		assertEquals(indRace.getDNFRacers().size(), 0);
+		assertTrue(indRace.getFinishedRacers().get(0).equals(racer1));
+
+		indRace.dnf();
+		assertEquals(indRace.getFinishedRacers().size(), 2);
+		assertEquals(indRace.getDNFRacers().size(), 1);
+		assertTrue(indRace.getFinishedRacers().get(0).equals(racer1));
+		assertTrue(indRace.getFinishedRacers().get(1).equals(racer2));
+		assertTrue(indRace.getDNFRacers().get(0).equals(racer2));
+		
+		indRace.end();
+		assertEquals(indRace.getFinishedRacers().size(), 4);
+		assertEquals(indRace.getDNFRacers().size(), 3);
+		assertTrue(indRace.getDNFRacers().get(0).equals(racer2));
+		assertTrue(indRace.getDNFRacers().get(1).equals(racer3));
+		assertTrue(indRace.getDNFRacers().get(2).equals(racer4));
+	}
 }
