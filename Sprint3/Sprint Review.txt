@@ -18,3 +18,8 @@ Nathan
   What worked: Meeting early and spending a good period of time discussing the things that were to be done.
   What didn't work: Not discussing how things would fully work, but rather the big picture.
   What should we change?: More break down of what we are trying to accomplish
+
+Hart
+  What worked: Handing it in on time and frequent check ins via discord
+  What didn't work: Disparate knowledge of separate components of the system led to incompatibililitities between interfaces
+  What should we change: Finish determining interfaces earlier
