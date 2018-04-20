@@ -174,4 +174,12 @@ public class Group implements Race{
 		return false;
 	}
 	
+	public boolean getFinish() {
+		return this.raceEnded;
+	}
+	
+	public void setFinished(boolean raceEnded) {
+		this.raceEnded = raceEnded;
+	}
+	
 }

@@ -14,6 +14,7 @@ public class Individual implements Race {
 	private Queue<Racer> running;
 	private List<Racer> finished;
 	private int autoNum;
+
 	
 	public Individual() {
 		this.ready = new LinkedList<Racer>();
@@ -172,6 +173,19 @@ public class Individual implements Race {
 			if(r.getName() == bib)return true;
 		}
 		return false;
+	}
+	
+	public void swap( ) {
+		Queue<Racer> tmp = new LinkedList<Racer>();
+		Racer toBeSwapped = running.poll();
+		Racer toBeFirst = running.poll();
+		tmp.add(toBeFirst);
+		tmp.add(toBeSwapped);
+		for (Racer r : tmp)
+		{
+			tmp.add(r);
+		}
+		running = tmp;
 	}
 
 }

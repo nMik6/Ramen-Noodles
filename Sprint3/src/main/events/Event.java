@@ -89,6 +89,16 @@ public class Event {
 			raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
 		else
 			raceData.getLog().msg("That bib number already exists");
+		
+		if (raceData.getFinishedRaces().get(raceData.getFinishedRaces().size()-1) instanceof Group) //if most recent race instance of group
+		{
+			int previousRaceSize = raceData.getFinishedRaces().size();
+			Group previousRace = (Group) raceData.getFinishedRaces().get(previousRaceSize-1);
+			previousRace.setBib(Integer.parseInt(str));
+		}
+	
+		
+		
 	}
 	
 	/**
@@ -228,6 +238,19 @@ public class Event {
 			raceData.setOffset(sysTime.isBefore(passedTime));
 			raceData.setTimeOffset(passedTime.difference(sysTime));
 		}
+	}
+	
+	public void swap() {
+		if (raceData.getCurrentRace() instanceof Individual) {
+			Individual cur_race = (Individual) raceData.getCurrentRace();
+			cur_race.swap();
+			return;
+		}
+		else
+		{
+			System.out.println("Not an individual race. Cannot swap!");
+		}
+		
 	}
 
 }
