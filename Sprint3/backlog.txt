@@ -1,8 +1,8 @@
 Tenative Backlog:
 
-	Add GRP (group) race type
+	Add GRP (group) race type - complete
 
-	Create GUI
+	Create GUI - complete
 		-Event handlers for GUI 
 		-Power button
 		-Channel Buttons and trigger functionality
@@ -18,18 +18,18 @@ Tenative Backlog:
 
 	Work in Pairs 
 
-	Model Functionallity before hand with ER/UML Modeling
+	Model Functionality before hand with ER/UML Modeling - Complete
 
-	Testing:
+	Testing: - Complete
 		Work in pairs as well but test other pairs code
 
-	Refactor Sprint1 & Sprint2 based on TA input 
+	Refactor Sprint1 & Sprint2 based on TA input -Complete
 		Create comprehensive UML modeling for Previous sprints to catch up on scope of componenents
 
-	Partition the work for Sprint3
+	Partition the work for Sprint3 - Complete
 
 
-	Previous Sprints Issues: 
+	Previous Sprints Issues: - Fixed, Complete
 
 		Change Racer class dnf() to setDnf() to indicate it as a setter
 
