@@ -13,3 +13,8 @@ Skyler
   What worked: Pulling together as a team to create and polish many of the items responsible. 
   What didn't work: Initial divison of the tasks fell apart quickly, with lots of functionality not being complete until the final week.
   Change: All functionality / non-polish code needs to be complete at least one week before the due date. Code that is not complete must be resplit the following week.
+
+Nathan
+  What worked: Meeting early and spending a good period of time discussing the things that were to be done.
+  What didn't work: Not discussing how things would fully work, but rather the big picture.
+  What should we change?: More break down of what we are trying to accomplish
