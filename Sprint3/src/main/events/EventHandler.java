@@ -8,17 +8,13 @@ import main.Time;
 
 public class EventHandler {
 	
-	private Time time;
 	private Event event;
 	private RaceData raceData;
 	
 	public EventHandler(RaceData race, Time time) {
-		this.time = time;
 		this.event = new Event(race);
-		raceData = race;
-		
-	}
-	
+		raceData = race;	
+	}	
 	
 	/**
 	 * Parses the commands that are entered and executes them

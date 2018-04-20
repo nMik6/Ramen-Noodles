@@ -20,21 +20,16 @@ import main.Time;
 
 public class Event {
 	
-	private Time time;
-	private DateTimeFormatter format;
-	private FormatStyle SHORT;
-	Logger log;
-	Time timeOffset;
-	boolean offsetPos;
 	protected RaceData raceData;
 	
 	public Event(RaceData data) {
-		time = new Time();
 		raceData = data;
 		raceData.setTimeOffset(new Time());	
 	}
 	
-	
+	/**
+	 * Powers on and off the system
+	 */
 	public void power() {
 		raceData.switchPower();
 		if (raceData.isPower())
@@ -43,15 +38,20 @@ public class Event {
 		raceData.getLog().msg("The power is " + (raceData.isPower() ? "ON" : "OFF"));
 	}
 	
+	/**
+	 * Leaves the system
+	 */
 	public void exit() {
 		raceData.getLog().msg("Exiting...Goodbye!");
 		System.exit(0);	
 	}
 	
+	/**
+	 * Resets the system
+	 */
 	public void reset() {
 		if (!raceData.isPower()) return;
 		raceData.setCurrentRace(null);
-		raceData.setCommand("none");
 		raceData.setOffset(false);
 		for (int i = 0; i < 7; i++) {
 			raceData.setChannel(i, new Channel());
@@ -59,6 +59,9 @@ public class Event {
 		raceData.getLog().msg("System has been reset");
 	}
 	
+	/**
+	 * Prints the racers information
+	 */
 	public void print() {
 		if (!raceData.isPower() || raceData.getCurrentRace() == null)
 			return;
@@ -75,33 +78,37 @@ public class Event {
 		}
 	}
 	
-	public void conn (String one, String two) {
+	/**
+	 * Connects a channel to a sensor
+	 * @param sensor
+	 * @param channel
+	 */
+	public void conn (String sensor, String channel) {
 		if (!raceData.isPower()) return;
-		
+		raceData.getChannels()[Integer.parseInt(channel)].conn(sensor);
+		raceData.getLog().msg("Sensor connected Type: " + sensor +" Num: " + channel);
 	}
 	
+	/**
+	 * Assigns the num of a racer, if a group race has finished then assigns their nums
+	 * @param str number
+	 */
 	public void num(String str) {
 		if (raceData.getCurrentRace() == null) {
-			raceData.getLog().msg("No race to add to. Create a new race event first.");
-			return;
+			if (raceData.getFinishedRaces().get(raceData.getFinishedRaces().size()-1) instanceof Group) {//if most recent race instance of group
+				int previousRaceSize = raceData.getFinishedRaces().size();
+				Group previousRace = (Group) raceData.getFinishedRaces().get(previousRaceSize-1);
+				previousRace.setBib(Integer.parseInt(str));
+				raceData.getLog().export(previousRace.getFinishedRacers(), raceData.getRaceNum());		
+			} else {	
+				raceData.getLog().msg("No race to add to. Create a new race event first.");
+				return;
+			}
 		}
 		if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str)))
 			raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
 		else
 			raceData.getLog().msg("That bib number already exists");
-		
-		if (raceData.getCurrentRace() == null && raceData.getFinishedRaces().get(raceData.getFinishedRaces().size()-1) instanceof Group) //if most recent race instance of group
-		{
-			int previousRaceSize = raceData.getFinishedRaces().size();
-			Group previousRace = (Group) raceData.getFinishedRaces().get(previousRaceSize-1);
-			previousRace.setBib(Integer.parseInt(str));
-			raceData.getLog().export(previousRace.getFinishedRacers(), raceData.getRaceNum());
-			
-			
-		}
-	
-		
-		
 	}
 	
 	/**
@@ -133,20 +140,13 @@ public class Event {
 	public void event(String type) {
 		if (!raceData.isPower()) return;
 		Race cur_race;
-		if (type.equals("IND"))
-		{
+		if (type.equals("IND")) {
 			cur_race = new Individual();
-		}
-		else if (type.equals("PARA")) 
-		{
+		} else if (type.equals("PARA")) {
 			cur_race = new ParallelIndividual();
-		}
-		else if (type.equals("GRP"))
-		{
+		} else if (type.equals("GRP")) {
 			cur_race = new Group();
-		}
-		else
-		{
+		} else {
 			raceData.getLog().msg("Event type not found!");
 			return;
 		}
@@ -201,6 +201,7 @@ public class Event {
 		raceData.setCurrentRace(race);
 		raceData.getLog().msg("Race ended");
 	}
+	
 	/**
 	 * Ends the current race event and moves it to the list of finished races
 	 */
@@ -223,6 +224,10 @@ public class Event {
 		}
 	}
 	
+	/**
+	 * Assign a time
+	 * @param t time
+	 */
 	public void time(String t) {
 		Time sysTime = new Time();
 		Time passedTime;
@@ -243,17 +248,16 @@ public class Event {
 		}
 	}
 	
+	/**
+	 * Swaps the first and second racer of an {@link Individual} race
+	 */
 	public void swap() {
 		if (raceData.getCurrentRace() instanceof Individual) {
 			Individual cur_race = (Individual) raceData.getCurrentRace();
 			cur_race.swap();
-			return;
-		}
-		else
-		{
-			System.out.println("Not an individual race. Cannot swap!");
-		}
-		
+		} else {
+			raceData.getLog().msg("Not an individual race. Cannot swap!");
+		}	
 	}
 
 }
