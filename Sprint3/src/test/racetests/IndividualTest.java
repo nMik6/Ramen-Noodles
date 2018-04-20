@@ -24,6 +24,7 @@ class IndividualTest {
 		racer1 = new Racer(1);
 		racer2 = new Racer(2);
 		racer3 = new Racer(3);
+		racer3 = new Racer(4);
 
 		indRace = new Individual();
 	}
