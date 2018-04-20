@@ -18,3 +18,12 @@ Nathan
 	RaceData class
 	DataEventTest class
 	New Driver
+
+Skyler
+	Helped Nathan split simulator into Event, Event handler
+	Moved functionality into Event, wrote additional event functionality
+	Implemented Group and event functionality, created setBib solution
+	Tested Group, Individual, PARAIND, Event
+	Fixed Logger Test
+	
+	
