@@ -527,7 +527,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 								eventType = "IND";
 								break;
 							case 1:
-								eventType = "PARA";
+								eventType = "PARIND";
 								break;
 							case 2:
 								eventType = "GRP";
