@@ -631,7 +631,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		}
 
 		printerPower.setEnabled(true);
-		printArea.setVisible(true);
+		function.doClick();
 	}
 
 
