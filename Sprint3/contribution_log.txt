@@ -31,3 +31,6 @@ Thomas
 	Added additional functionality to Race classes
 	Fixed race class bugs
 	
+Stephen
+	Wrote the GUI
+	made small changes to race/the 3 races to facilitate getting data
