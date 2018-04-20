@@ -1,0 +1,15 @@
+List of what worked, what didn't work.
+
+Thomas
+  What worked: Assigning multiple people to a job. That way, each task has better coverage to make sure it gets done and any bugs are more likely to be found and corrected.
+  Didn't work: Issues with planning. Some of us who were assigned to the same job had different design philosophies that didn't mesh well. But this was a pretty minor issue.
+  Change: More specific and more rapid deadline setting. Simply put, we need to get more stuff done sooner.
+
+Stephen
+  What worked: early detailed planning gave us a more structured program.
+  What  didn’t work: a lot of coding was left for the last week or two of the sprint
+  What we should do in the future: Have code completed the week prior and do review/tweaking
+Skyler
+  What worked: Pulling together as a team to create and polish many of the items responsible. 
+  What didn't work: Initial divison of the tasks fell apart quickly, with lots of functionality not being complete until the final week.
+  Change: All functionality / non-polish code needs to be complete at least one week before the due date. Code that is not complete must be resplit the following week.
