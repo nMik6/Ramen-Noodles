@@ -499,7 +499,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 			//will be used to select the function based of off the button pressed and the set of function options available?
 			if(pow) {
 				for(int i = 0; i< 4; ++i){
-					
+				
 				}
 			}
 			break;
