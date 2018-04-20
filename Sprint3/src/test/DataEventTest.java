@@ -30,7 +30,7 @@ class DataEventTest {
 		assertTrue(!raceData.isPower());
 		event.power();
 		assertTrue(raceData.getCurrentRace() == null);
-		event.event("PARA");
+		event.event("PARIND");
 		event.newrun();
 		event.tog("1");
 		event.tog("2");
@@ -107,7 +107,7 @@ class DataEventTest {
 		assertTrue(!raceData.isPower());
 		evHan.handle(new String[]{"power"});
 		assertTrue(raceData.getCurrentRace() == null);
-		evHan.handle(new String[]{"event", "PARA"});
+		evHan.handle(new String[]{"event", "PARIND"});
 		evHan.handle(new String[]{"newrun"});
 		evHan.handle(new String[]{"tog","1"});
 		evHan.handle(new String[]{"tog","2"});
