@@ -92,6 +92,14 @@ class IndividualTest {
 		assertEquals(indRace.getReadyRacers().size(), 1);
 		assertEquals(indRace.getCurrentRacers().size(), 0);
 		assertEquals(indRace.getFinishedRacers().size(), 0);
+		assertTrue(indRace.getReadyRacers().peek().equals(racer1));
+
+		indRace.dnf();
+		
+		assertEquals(indRace.getReadyRacers().size(), 1);
+		assertEquals(indRace.getCurrentRacers().size(), 0);
+		assertEquals(indRace.getFinishedRacers().size(), 0);
+		assertTrue(indRace.getReadyRacers().peek().equals(racer1));
 		
 		indRace.addReady(racer2);
 		assertEquals(indRace.getReadyRacers().size(), 2);
@@ -109,6 +117,7 @@ class IndividualTest {
 		assertEquals(indRace.getReadyRacers().size(), 1);
 		assertEquals(indRace.getCurrentRacers().size(), 0);
 		assertEquals(indRace.getFinishedRacers().size(), 1);
+		assertEquals(indRace.getDNFRacers().size(), 1);
 		
 		List<Racer> finished = indRace.getFinishedRacers();
 		for(Racer r: finished) {
@@ -120,12 +129,14 @@ class IndividualTest {
 		assertEquals(indRace.getReadyRacers().size(),0);
 		assertEquals(indRace.getCurrentRacers().size(), 1);
 		assertEquals(indRace.getFinishedRacers().size(), 1);
+		assertEquals(indRace.getDNFRacers().size(), 1);
 		
 		indRace.finish(2, new Time());
 		
 		assertEquals(indRace.getReadyRacers().size(), 0);
 		assertEquals(indRace.getCurrentRacers().size(), 0);
 		assertEquals(indRace.getFinishedRacers().size(), 2);
+		assertEquals(indRace.getDNFRacers().size(), 1);
 		
 	}
 	
