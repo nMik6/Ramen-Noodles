@@ -142,7 +142,7 @@ public class Event {
 		Race cur_race;
 		if (type.equals("IND")) {
 			cur_race = new Individual();
-		} else if (type.equals("PARA")) {
+		} else if (type.equals("PARIND")) {
 			cur_race = new ParallelIndividual();
 		} else if (type.equals("GRP")) {
 			cur_race = new Group();
