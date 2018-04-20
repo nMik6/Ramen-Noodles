@@ -188,4 +188,22 @@ public class Individual implements Race {
 		running = tmp;
 	}
 
+	@Override
+	public String getReadyDisplay() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getCurrentDisplay() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getFinishedDisplay() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
