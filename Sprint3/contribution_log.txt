@@ -11,7 +11,6 @@ Hart
 	Split Race Class into Inidividual, ParaInd
 	Implemented Group Class
 	Wrote tests for Race classes
-	State Diagram
 
 Nathan
 	Split Simulator into Event and EventHandler
