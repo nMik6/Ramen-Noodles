@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.ComponentOrientation;
 
 import javax.swing.*;
@@ -69,18 +70,19 @@ public class ClientPanel extends JFrame implements ActionListener{
 
 	//beware the offset!
 	JButton b1, b2, b3, b4, b5, b6, b7, b8;
-	JCheckBox t1, t2, t3, t4, t5, t6, t7, t8;
-	JCheckBox c1, c2, c3, c4, c5, c6, c7, c8;
+	JToggleButton t1, t2, t3, t4, t5, t6, t7, t8;
+	JToggleButton c1, c2, c3, c4, c5, c6, c7, c8;
 	JButton[] channelButtons = {b1, b2, b3, b4, b5, b6, b7, b8};
-	JCheckBox[] channelToggles = {t1, t2, t3, t4, t5, t6, t7, t8};
-	JCheckBox[] channelConnections = {c1, c2, c3, c4, c5, c6, c7, c8};
+	JToggleButton[] channelToggles = {t1, t2, t3, t4, t5, t6, t7, t8};
+	JToggleButton[] channelConnections = {c1, c2, c3, c4, c5, c6, c7, c8};
 
 	JButton n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, nA, nP;
 	JButton[] numPad = {n1, n2, n3, n4, n5, n6, n7, n8, n9, nA, n0, nP};
 
 	String numEntered = "";
 	Boolean pow = false;
-
+	Boolean raceSelected = false;
+	Boolean numEntry = false;
 
 	//Printout area
 	JScrollPane scroll = new JScrollPane(textArea);
@@ -100,7 +102,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	private void createFrame() {
 		channelSetup();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new GridLayout(2,1,5,5));
+		//frame.setLayout(new BoxKa(2,1,5,5));
 
 		JPanel front = new JPanel();
 		front.setLayout(new GridLayout(2,3,5,5));
@@ -122,7 +124,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		back.setBorder(BorderFactory.createLineBorder(Color.black));
 		//front.setPreferredSize(new Dimension(800, 400));
 		//back.setPreferredSize(new Dimension(800, 200));
-		
+
 		frame.add(front, BorderLayout.CENTER);
 		frame.add(back, BorderLayout.SOUTH);
 		frame.setTitle("Client Panel");
@@ -149,7 +151,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	//sets up timer panel and returns it
 	private JPanel getTimerPanel() {
 		JPanel timer = new JPanel();
-		timer.setLayout(new GridLayout(6,5));
+		timer.setLayout(new GridLayout(6,5, 4, 2));
 		timer.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		timer.add(new JLabel());
 		timer.add(makeLabel("1"));
@@ -164,10 +166,10 @@ public class ClientPanel extends JFrame implements ActionListener{
 		timer.add(channelButtons[6]);
 
 		timer.add(new JLabel(toggleLabel));
-		timer.add(channelToggles[0]);
-		timer.add(channelToggles[2]);
-		timer.add(channelToggles[4]);
-		timer.add(channelToggles[6]);
+		timer.add(centeredPanel(channelToggles[0], new Dimension(10, 10)));
+		timer.add(centeredPanel(channelToggles[2], new Dimension(10, 10)));
+		timer.add(centeredPanel(channelToggles[4], new Dimension(10, 10)));
+		timer.add(centeredPanel(channelToggles[6], new Dimension(10, 10)));
 
 		timer.add(new JLabel());
 		timer.add(makeLabel("2"));
@@ -182,10 +184,10 @@ public class ClientPanel extends JFrame implements ActionListener{
 		timer.add(channelButtons[7]);
 
 		timer.add(new JLabel(toggleLabel));
-		timer.add(channelToggles[1]);
-		timer.add(channelToggles[3]);
-		timer.add(channelToggles[5]);
-		timer.add(channelToggles[7]);
+		timer.add(centeredPanel(channelToggles[1], new Dimension(10, 10)));
+		timer.add(centeredPanel(channelToggles[3], new Dimension(10, 10)));
+		timer.add(centeredPanel(channelToggles[5], new Dimension(10, 10)));
+		timer.add(centeredPanel(channelToggles[7], new Dimension(10, 10)));
 
 		timer.setMinimumSize(new Dimension(300,200));
 		timer.setPreferredSize(new Dimension(400,200));
@@ -225,25 +227,29 @@ public class ClientPanel extends JFrame implements ActionListener{
 		JPanel sub3 = new JPanel();
 		JPanel sub4 = new JPanel();
 		sub1.setLayout(new FlowLayout());
-		sub2.setLayout(new BoxLayout(sub2, BoxLayout.Y_AXIS));
-		//sub3.setLayout(new FlowLayout());
+		sub2.setLayout(new GridLayout(6,1,3,3));
 		sub4.setLayout(new FlowLayout());
-		
-		for(int i = 0; i < 4; ++i) {
+
+		JButton blank = new JButton();
+		blank.setVisible(false);
+		sub2.add(blank, 0);
+		for(int i = 0; i < 3; ++i) {
 			functionButtons[i] = new JButton();
 			functionButtons[i].addActionListener(this);
 			functionButtons[i].setActionCommand("function select");
-			functionButtons[i].setBackground(Color.BLACK);
-		
-			sub2.add(functionButtons[i]);
+			functionButtons[i].setBackground(Color.GRAY);
+			sub2.add(functionButtons[i], i+1);
 		}
+		sub2.setAlignmentY(Component.RIGHT_ALIGNMENT);
 		
+		function.addActionListener(this);
 		function.setActionCommand("function");
+		swap.addActionListener(this);
 		swap.setActionCommand("swap");
 		functionArea.setPreferredSize(new Dimension(300,100));
 		functionArea.setEditable(false);
 		functionArea.setBorder(BorderFactory.createLineBorder(Color.black));
-		
+
 		sub1.add(function);
 		sub3.add(functionArea);
 		sub4.add(swap);
@@ -277,13 +283,15 @@ public class ClientPanel extends JFrame implements ActionListener{
 
 	//sets up number panel and returns it
 	private JPanel getNumberPanel() {
+		JPanel outer = new JPanel();
+		outer.setLayout(new FlowLayout());
 		JPanel number = new JPanel();
 		number.setLayout(new GridLayout(4,3));
 		number.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 		for(int i = 0; i <12; ++i) {
 			numPad[i]= new JButton();
-
+			//numPad[i].setPreferredSize(new Dimension(40,40));
 			switch (i){
 			case 9:
 				numPad[i].setText("*");
@@ -303,8 +311,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 			numPad[i].setActionCommand(numPad[i].getText());
 			number.add(numPad[i]);
 		}
-
-		return number;
+		outer.add(number);
+		return outer;
 	}
 
 	//sets up channel panel and returns it
@@ -324,19 +332,19 @@ public class ClientPanel extends JFrame implements ActionListener{
 		sub2.add(makeLabel("3"));
 		sub2.add(makeLabel("5"));
 		sub2.add(makeLabel("7"));
-		sub2.add(channelConnections[0]);
-		sub2.add(channelConnections[2]);
-		sub2.add(channelConnections[4]);
-		sub2.add(channelConnections[6]);
+		sub2.add(centeredPanel(channelConnections[0], new Dimension(10, 10)));
+		sub2.add(centeredPanel(channelConnections[2], new Dimension(10, 10)));
+		sub2.add(centeredPanel(channelConnections[4], new Dimension(10, 10)));
+		sub2.add(centeredPanel(channelConnections[6], new Dimension(10, 10)));
 
 		sub2.add(makeLabel("2"));
 		sub2.add(makeLabel("4"));
 		sub2.add(makeLabel("6"));
 		sub2.add(makeLabel("8"));
-		sub2.add(channelConnections[1]);
-		sub2.add(channelConnections[3]);
-		sub2.add(channelConnections[5]);
-		sub2.add(channelConnections[7]);
+		sub2.add(centeredPanel(channelConnections[1], new Dimension(10, 10)));
+		sub2.add(centeredPanel(channelConnections[3], new Dimension(10, 10)));
+		sub2.add(centeredPanel(channelConnections[5], new Dimension(10, 10)));
+		sub2.add(centeredPanel(channelConnections[7], new Dimension(10, 10)));
 
 		sub2.setMinimumSize(new Dimension(300,200));
 		sub2.setPreferredSize(new Dimension(400,200));
@@ -356,7 +364,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		sub1.setLayout(new FlowLayout());
 		sub2.setLayout(new FlowLayout());
 
-		JCheckBox usbPort = new JCheckBox();
+		JButton usbPort = new JButton();
 		usbPort.setPreferredSize(new Dimension(35,10));
 		usbPort.setBackground(Color.GRAY);
 		usbPort.setActionCommand("usb");
@@ -377,6 +385,15 @@ public class ClientPanel extends JFrame implements ActionListener{
 		ret.setMinimumSize(new Dimension(350,200));
 		return ret;
 	}
+	
+	//returns a panel with centered sized component
+	private JPanel centeredPanel(Component c, Dimension d) {
+		JPanel ret = new JPanel();
+		ret.setLayout(new FlowLayout());
+		c.setPreferredSize(d);
+		ret.add(c);
+		return ret;
+	}
 
 	private JLabel makeLabel(String s) {
 		JLabel ret = new JLabel(s);
@@ -392,9 +409,9 @@ public class ClientPanel extends JFrame implements ActionListener{
 		ret.addActionListener(this);
 		return ret;
 	}
-	private JCheckBox makeCheckBox() {
-		JCheckBox ret = new JCheckBox();
-		ret.setPreferredSize(new Dimension(10,10));
+	private JToggleButton makeToggleButton() {
+		JToggleButton ret = new JToggleButton();
+		ret.setMaximumSize(new Dimension(10,10));
 		ret.setHorizontalAlignment(JCheckBox.CENTER);
 		ret.addActionListener(this);
 		ret.setEnabled(false);
@@ -405,10 +422,10 @@ public class ClientPanel extends JFrame implements ActionListener{
 		for(int i= 0; i<8; i++) {
 			channelButtons[i] = makeButton();
 
-			channelToggles[i] = makeCheckBox();
+			channelToggles[i] = makeToggleButton();
 			channelToggles[i].setActionCommand("toggle");
 
-			channelConnections[i] = makeCheckBox();
+			channelConnections[i] = makeToggleButton();
 			channelConnections[i].setActionCommand("connect");
 		}
 	}
@@ -420,7 +437,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		//TODO these are the button presses and if they occur (check state of toggle) then an even should occur and print/display should update
+		//TODO these are the button presses and if they occur (check state of toggle) then an event should occur and print/display should update
 		case "trigger":
 			if(pow == true) {
 				String name = "";
@@ -429,8 +446,10 @@ public class ClientPanel extends JFrame implements ActionListener{
 						name = "" + (i+1);
 						i = 8;
 						String[] trig = {"trig", name};
+						//TODO print area should display whenever a button is pressed, the racer number affected and the time
+						//display area should have a set of race data present and constantly updated see PDF
 						printArea.setText(raceData.getLog().getLastMsg());
-						printArea.repaint(); //not sure if needed? can check after implementing function area
+						//textArea.setText(raceData.getCurrentRace());
 						eventHandler.handle(trig);
 					}
 				}
@@ -481,36 +500,81 @@ public class ClientPanel extends JFrame implements ActionListener{
 			String[] powSignal = {"power"};
 			eventHandler.handle(powSignal);
 			break;
-			
+
 		case "print power":
 			printArea.setText(null);
 			printArea.setVisible(!printArea.isVisible());
 			break;
-			//TODO get the correct race data to display (one event at a time, replacing previous event?)
+			
 		case "function":
-			//TODO will change the displayed options in the function text area (numbered?)
-			//use some boolean value to determine whether the options should be to select race type
-			//or other two-three options  racer entry, export?, endrun
 			if(pow) {
-				
-			}
-			break;
-		case "function select":
-			//will be used to select the function based of off the button pressed and the set of function options available?
-			if(pow) {
-				for(int i = 0; i< 4; ++i){
-				
+				if(!raceSelected) 
+					functionArea.setText("Select Race Type:\n 1. Individual\n 2. Parallel Individual\n 3. Group");
+				else {
+					numEntry = false;
+					functionArea.setText("Select Race Option:\n 1. Enter Racers\n 2. End Race");
 				}
 			}
 			break;
+		
+		//will be used to select the function based off the button pressed and the set of function options available
+		case "function select":
 			
-		case "swap":
-			String[] swap = {"swap"};
-			eventHandler.handle(swap);
+			if(pow) {
+				for(int i = 0; i< 4; ++i){
+					if (e.getSource() == (functionButtons[i])) {
+						if(!raceSelected) {
+							String eventType = "";
+							switch(i) {
+							case 0:
+								eventType = "IND";
+								break;
+							case 1:
+								eventType = "PARA";
+								break;
+							case 2:
+								eventType = "GRP";
+								break;
+							}
+							String[] event = {"EVENT", eventType};
+							eventHandler.handle(event);
+							raceSelected = true;
+							functionButtons[2].setEnabled(false);
+							function.doClick();
+						}
+						else {
+							if(numEntry) numEntry = !numEntry;
+							else{
+								switch(i) {
+								case 0:
+									functionArea.setText("Use Number Pad To Enter Racer Numbers\n Press # To Enter The Number\n Press * To Clear\n"
+											+ "Press Function To Return To Race Options");
+									numEntry = true;
+									break;
+								case 1:
+									String[] endRun = {"ENDRUN"};
+									eventHandler.handle(endRun);
+									raceSelected = false;
+									functionButtons[2].setEnabled(true);
+									function.doClick();
+									break;
+								}
+							}
+						}
+						i = 4;
+					}
+				}
+			}
 			break;
 
-			//uses fallthrough to give each # option same effect
-			//TODO for the numpad, may need to ensure it only passes num at appropriate times? to be determined
+		case "swap":
+			if(pow) {
+				String[] swap = {"swap"};
+				eventHandler.handle(swap);
+			}
+			break;
+
+		//uses fall-through to give each # option same effect. builds string of numbers. passed when # cleared when *
 		case "1":
 		case "2":
 		case "3":
@@ -528,11 +592,14 @@ public class ClientPanel extends JFrame implements ActionListener{
 			break;
 
 		case "#":
-			String[] bibNum = {"num", numEntered};
-			eventHandler.handle(bibNum);
+			if(pow && numEntry) {
+				String[] bibNum = {"num", numEntered};
+				eventHandler.handle(bibNum);
+			}
 			numEntered = "";
 			break;
 
+		//usage at improper time handled in back end?
 		case "usb":
 			String[] usb = {"export"};
 			eventHandler.handle(usb);
@@ -547,18 +614,23 @@ public class ClientPanel extends JFrame implements ActionListener{
 			channelToggles[i].setEnabled(false);
 			channelConnections[i].setEnabled(false);
 		}
-		
+
 		textArea.setText(null);
 		functionArea.setText(null);
 		printArea.setText(null);
 		printerPower.setEnabled(false);
+		
+		numEntered = "";
+		pow = false;
+		raceSelected = false;
+		numEntry = false;
 	}
-	
+
 	private void powerOn() {
-		for(JCheckBox c: channelConnections) {
+		for(JToggleButton c: channelConnections) {
 			c.setEnabled(true);
 		}
-		
+
 		printerPower.setEnabled(true);
 		printArea.setVisible(true);
 	}
