@@ -449,7 +449,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 						//TODO print area should display whenever a button is pressed, the racer number affected and the time
 						//display area should have a set of race data present and constantly updated see PDF
 						printArea.setText(raceData.getLog().getLastMsg());
-						//textArea.setText(raceData.getCurrentRace());
+						//textArea.setText();
 						eventHandler.handle(trig);
 					}
 				}
