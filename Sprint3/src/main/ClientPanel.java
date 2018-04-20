@@ -439,7 +439,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		switch (e.getActionCommand()) {
 		
 		case "trigger":
-			if(pow == true) {
+			if(pow) {
 				String name = "";
 				for(int i = 0; i < 8; i++) { 
 					if (e.getSource() == (channelButtons[i]) && channelToggles[i].isSelected()) {
@@ -457,7 +457,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 			break;
 
 		case "toggle":
-			if(pow == true) {
+			if(pow) {
 				String togName = "";
 				for(int i = 0; i < 8; i++) { 
 					if (e.getSource() == (channelToggles[i])) {
@@ -471,7 +471,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 			break;
 
 		case "connect":
-			if(pow == true) {
+			if(pow) {
 				String connName = "";
 				String state = "conn";
 				for(int i = 0; i < 8; i++) { 
@@ -495,8 +495,6 @@ public class ClientPanel extends JFrame implements ActionListener{
 		case "power":
 			if(pow) powerOff();
 			else powerOn();
-			pow = !pow;
-			System.out.println("power");
 			String[] powSignal = {"power"};
 			eventHandler.handle(powSignal);
 			break;
@@ -629,7 +627,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		for(JToggleButton c: channelConnections) {
 			c.setEnabled(true);
 		}
-
+		pow = true;
 		printerPower.setEnabled(true);
 		function.doClick();
 	}
