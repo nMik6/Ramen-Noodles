@@ -503,7 +503,6 @@ public class ClientPanel extends JFrame implements ActionListener{
 
 		case "print power":
 			printArea.setText(null);
-			printArea.setVisible(!printArea.isVisible());
 			break;
 			
 		case "function":

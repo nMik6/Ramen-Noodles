@@ -78,5 +78,20 @@ public interface Race {
 	public void end();
 	
 	public boolean containsBib(int bib);
+	
+	/**
+	 * returns the displayable ready racers(not the full arrays, see end of S3 PDF)
+	 **/
+	public String getReadyDisplay();
+	
+	/**
+	 * returns the displayable current racers(not the full arrays, see end of S3 PDF)
+	 **/
+	public String getCurrentDisplay();
+	
+	/**
+	 * returns the displayable finished racers(not the full arrays, see end of S3 PDF)
+	 **/
+	public String getFinishedDisplay();
 
 }

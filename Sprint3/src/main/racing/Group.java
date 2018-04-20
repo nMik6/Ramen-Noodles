@@ -181,5 +181,23 @@ public class Group implements Race{
 	public void setFinished(boolean raceEnded) {
 		this.raceEnded = raceEnded;
 	}
+
+	@Override
+	public String getReadyDisplay() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getCurrentDisplay() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getFinishedDisplay() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
