@@ -446,6 +446,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 						name = "" + (i+1);
 						i = 8;
 						String[] trig = {"trig", name};
+						
 						//TODO printArea not displaying correct info? formatting on textarea
 						printArea.setText(raceData.getLog().getLastMsg());
 						textArea.setText(raceData.getCurrentRace().getDisplay());
