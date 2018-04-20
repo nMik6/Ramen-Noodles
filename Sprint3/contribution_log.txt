@@ -26,4 +26,9 @@ Skyler
 	Tested Group, Individual, PARAIND, Event
 	Fixed Logger Test
 	
+Thomas
+	Created and partially implemented Individual and ParallelIndividual (alongside Hart)
+	Wrote tests for Race classes
+	Added additional functionality to Race classes
+	Fixed race class bugs
 	
