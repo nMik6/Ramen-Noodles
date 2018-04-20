@@ -437,7 +437,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		//TODO these are the button presses and if they occur (check state of toggle) then an event should occur and print/display should update
+		
 		case "trigger":
 			if(pow == true) {
 				String name = "";
@@ -446,8 +446,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 						name = "" + (i+1);
 						i = 8;
 						String[] trig = {"trig", name};
-						//TODO print area should display whenever a button is pressed, the racer number affected and the time
-						//display area should have a set of race data present and constantly updated see PDF
+						//TODO printArea not displaying correct info? formatting on textarea
 						printArea.setText(raceData.getLog().getLastMsg());
 						textArea.setText(raceData.getCurrentRace().getDisplay());
 						eventHandler.handle(trig);
