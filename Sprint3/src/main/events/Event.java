@@ -90,11 +90,14 @@ public class Event {
 		else
 			raceData.getLog().msg("That bib number already exists");
 		
-		if (raceData.getFinishedRaces().get(raceData.getFinishedRaces().size()-1) instanceof Group) //if most recent race instance of group
+		if (raceData.getCurrentRace() == null && raceData.getFinishedRaces().get(raceData.getFinishedRaces().size()-1) instanceof Group) //if most recent race instance of group
 		{
 			int previousRaceSize = raceData.getFinishedRaces().size();
 			Group previousRace = (Group) raceData.getFinishedRaces().get(previousRaceSize-1);
 			previousRace.setBib(Integer.parseInt(str));
+			raceData.getLog().export(previousRace.getFinishedRacers(), raceData.getRaceNum());
+			
+			
 		}
 	
 		
