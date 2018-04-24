@@ -77,12 +77,12 @@
 	    		sb.append("<body>");
 	    		sb.append("<table>");
 	    		sb.append("<tr>");
-	    		sb.append("<th>Title</th>");
-	    		sb.append("<th>First Name</th>");
-	    		sb.append("<th>Last Name</th>");
-	    		sb.append("<th>Department</th>");
-	    		sb.append("<th>Phone</th>");
-	    		sb.append("<th>Gender</th>");
+	    		sb.append("<th id=\"title\">Title</th>");
+	    		sb.append("<th id=\"first\">First Name</th>");
+	    		sb.append("<th id=\"last\">Last Name</th>");
+	    		sb.append("<th id=\"department\">Department</th>");
+	    		sb.append("<th id=\"phone\">Phone</th>");
+	    		sb.append("<th id=\"gender\">Gender</th>");
 	    		sb.append("</tr>");
 	    		for (Employee e : master) {
 	    			sb.append("<tr>");
