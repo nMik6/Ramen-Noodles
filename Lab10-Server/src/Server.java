@@ -77,21 +77,21 @@
 	    		sb.append("<body>");
 	    		sb.append("<table>");
 	    		sb.append("<tr>");
-	    		sb.append("<th id=\"title\">Title</th>");
-	    		sb.append("<th id=\"first\">First Name</th>");
-	    		sb.append("<th id=\"last\">Last Name</th>");
-	    		sb.append("<th id=\"department\">Department</th>");
-	    		sb.append("<th id=\"phone\">Phone</th>");
-	    		sb.append("<th id=\"gender\">Gender</th>");
+	    		sb.append("<th>Title</th>");
+	    		sb.append("<th>First Name</th>");
+	    		sb.append("<th>Last Name</th>");
+	    		sb.append("<th>Department</th>");
+	    		sb.append("<th>Phone</th>");
+	    		sb.append("<th>Gender</th>");
 	    		sb.append("</tr>");
 	    		for (Employee e : master) {
 	    			sb.append("<tr>");
-	    			sb.append("<td>" + e.getTitle() + "</td>");
-	    			sb.append("<td>" + e.getFirstName() + "</td>");
-	    			sb.append("<td>" + e.getLastName() + "</td>");
-	    			sb.append("<td>" + e.getDepartment() + "</td>");
-	    			sb.append("<td>" + e.getPhoneNumber() + "</td>");
-	    			sb.append("<td>" + e.isFemale() + "</td>");
+	    			sb.append("<td id=\\\"title\\\">" + e.getTitle() + "</td>");
+	    			sb.append("<td id=\\\"first\\\">" + e.getFirstName() + "</td>");
+	    			sb.append("<td id=\\\"last\\\">" + e.getLastName() + "</td>");
+	    			sb.append("<td id=\\\"department\\\">" + e.getDepartment() + "</td>");
+	    			sb.append("<td id=\\\"phone\\\">" + e.getPhoneNumber() + "</td>");
+	    			sb.append("<td id=\\\"gender\\>" + e.isFemale() + "</td>");
 	    			sb.append("</tr>");
 	    		}
 	    		sb.append("</table>");
