@@ -75,7 +75,7 @@
 	    		String cssfileloc = ".."+File.pathSeparator+"css"+File.pathSeparator+"theme.css";
 	    		sb.append("<!DOCTYPE html>");
 	    		sb.append("<html>");
-	    		sb.append("<head><link rel=\"stylesheet\" type=\""+cssfileloc+"\" href=\"theme.css\"></head>");
+	    		sb.append("<head><link rel=\"stylesheet\" type=\"text/css\" href=\""+ cssfileloc +"\"></head>");
 	    		sb.append("<body>");
 	    		sb.append("<table>");
 	    		sb.append("<tr>");
