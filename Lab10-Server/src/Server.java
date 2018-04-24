@@ -7,7 +7,8 @@
 	import java.io.InputStream;
 	import java.io.OutputStream;
 	import java.net.InetSocketAddress;
-	import java.util.ArrayList;
+import java.net.URL;
+import java.util.ArrayList;
 	import java.util.Collection;
 	import java.util.Collections;
 	import java.io.File;
@@ -72,10 +73,13 @@
 	    	
 	    	private String buildHtml() {
 	    		StringBuilder sb = new StringBuilder();
-	    		String cssfileloc = ".."+File.pathSeparator+"css"+File.pathSeparator+"theme.css";
+	    		//String cssfileloc = ".."+File.pathSeparator+"css"+File.pathSeparator+"theme.css";
+	    		//URL url = getClass().getResource("theme.css");
+	    		String cssfileloc = "theme.css";
 	    		sb.append("<!DOCTYPE html>");
 	    		sb.append("<html>");
-	    		sb.append("<head><link rel=\"stylesheet\" type=\"text/css\" href=\""+ cssfileloc +"\"></head>");
+	    		sb.append("<head><link rel=\"stylesheet\" href=\""+ cssfileloc +"\"></head>");
+	    		System.out.print("here:" + cssfileloc);
 	    		sb.append("<body>");
 	    		sb.append("<table>");
 	    		sb.append("<tr>");
