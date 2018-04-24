@@ -52,7 +52,24 @@
 	        server.start();
 	    }
 	    
-	    private String buildHtml() {
+	    
+	    static class HtmlHandler implements HttpHandler {
+	    	public void handle(HttpExchange transmission) throws IOException {
+	    		String response = buildHtml();
+	    		
+	    		// assume that stuff works all the time
+	            transmission.sendResponseHeaders(300, response.length());
+
+	            // set up a stream to write out the body of the response
+	            OutputStream outputStream = transmission.getResponseBody();
+
+	            // write it and return it
+	            outputStream.write(response.getBytes());
+
+	            outputStream.close();
+	    	}
+	    	
+	    	private String buildHtml() {
 	    		StringBuilder sb = new StringBuilder();
 	    		sb.append("<!DOCTYPE html>");
 	    		sb.append("<html>");
@@ -79,21 +96,6 @@
 	    		return sb.toString();
 	    }
 
-	    static class HtmlHandler implements HttpHandler {
-	    	public void handle(HttpExchange transmission) throws IOException {
-	    		String response = buildHtml();
-	    		
-	    		// assume that stuff works all the time
-	            transmission.sendResponseHeaders(300, postResponse.length());
-
-	            // set up a stream to write out the body of the response
-	            OutputStream outputStream = transmission.getResponseBody();
-
-	            // write it and return it
-	            outputStream.write(response.getBytes());
-
-	            outputStream.close();
-	    	}
 	    	
 	    }
 	    
