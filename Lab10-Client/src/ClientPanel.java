@@ -270,7 +270,7 @@ public class ClientPanel extends JFrame implements ActionListener {
 	
 	public String sendToServer(String s) {
 		try {
-			URL site = new URL("http://localhost:8000/sendresults");
+			URL site = new URL("http://localhost:8080/sendresults");
 			HttpURLConnection conn = (HttpURLConnection) site.openConnection();
 			
 			conn.setRequestMethod("POST");

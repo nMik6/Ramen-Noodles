@@ -10,7 +10,8 @@
 	import java.util.ArrayList;
 	import java.util.Collection;
 	import java.util.Collections;
-
+	import java.io.File;
+	
 	import com.google.gson.Gson;
 	import com.google.gson.JsonSyntaxException;
 	import com.google.gson.reflect.TypeToken;
@@ -33,7 +34,7 @@
 	    public static void main(String[] args) throws Exception {
 
 	        // set up a simple HTTP server on our local host
-	        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+	        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
 
 	        // create a context to get the request to display the results in HTML format
 	        server.createContext("/displayresults/directory", new HtmlHandler());
@@ -71,9 +72,10 @@
 	    	
 	    	private String buildHtml() {
 	    		StringBuilder sb = new StringBuilder();
+	    		String cssfileloc = ".."+File.pathSeparator+"css"+File.pathSeparator+"theme.css";
 	    		sb.append("<!DOCTYPE html>");
 	    		sb.append("<html>");
-	    		sb.append("<head><link rel=\"stylesheet\" type=\"text/css\" href=\"theme.css\"></head>");
+	    		sb.append("<head><link rel=\"stylesheet\" type=\""+cssfileloc+"\" href=\"theme.css\"></head>");
 	    		sb.append("<body>");
 	    		sb.append("<table>");
 	    		sb.append("<tr>");
@@ -98,7 +100,7 @@
 	    		sb.append("</body>");
 	    		sb.append("</html>");
 	    		return sb.toString();
-	    }
+	    	}
 
 	    	
 	    }
