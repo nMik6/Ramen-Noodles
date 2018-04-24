@@ -73,7 +73,7 @@
 	    		StringBuilder sb = new StringBuilder();
 	    		sb.append("<!DOCTYPE html>");
 	    		sb.append("<html>");
-	    		sb.append("<head></head>");
+	    		sb.append("<head><link rel=\"stylesheet\" type=\"text/css\" href=\"theme.css\"></head>");
 	    		sb.append("<body>");
 	    		sb.append("<table>");
 	    		sb.append("<tr>");
