@@ -1,0 +1,62 @@
+[
+  {
+    "bib": 123,
+    "start": {
+      "time": {
+        "hour": 21,
+        "minute": 35,
+        "second": 0,
+        "nano": 927000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 21,
+        "minute": 35,
+        "second": 0,
+        "nano": 930000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 133,
+    "start": {
+      "time": {
+        "hour": 21,
+        "minute": 35,
+        "second": 0,
+        "nano": 928000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 21,
+        "minute": 35,
+        "second": 0,
+        "nano": 930000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 143,
+    "start": {
+      "time": {
+        "hour": 21,
+        "minute": 35,
+        "second": 0,
+        "nano": 928000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 21,
+        "minute": 35,
+        "second": 0,
+        "nano": 930000000
+      }
+    },
+    "dnf": false
+  }
+]
