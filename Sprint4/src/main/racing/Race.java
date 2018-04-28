@@ -3,7 +3,7 @@ package main.racing;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Queue;
-
+import java.util.Collection;
 import main.Time;
 
 import java.util.LinkedList;
@@ -26,14 +26,14 @@ public interface Race {
 	 * Returns a queue containing all racers that are ready to begin a race.
 	 * @return queue of ready racers
 	 */
-	public Queue<Racer> getReadyRacers();
+	public Collection<Racer> getReadyRacers();
 	
 	
 	/**
 	 * Returns a queue containing all racers who are currently running a race.
 	 * @return queue of current racers
 	 */
-	public Queue<Racer> getCurrentRacers();
+	public Collection<Racer> getCurrentRacers();
 	
 	/**
 	 * Returns a list of all racers who have finished a race.

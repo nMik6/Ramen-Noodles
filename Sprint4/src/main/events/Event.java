@@ -67,7 +67,7 @@ public class Event {
 			return;
 		
 		for (Racer r: raceData.getCurrentRace().getFinishedRacers()) {
-			if (!r.didNotFinish()) {
+			if (!r.getDnf()) {
 			System.out.printf("Racer: %d,\tStart: %s,\tFinish: %s,\tTotal: %s\n", 
 					r.getName(), r.getStart().printTime(), r.getFinish().printTime(), r.getTotal().printTime());
 			}

@@ -109,7 +109,7 @@ public class ParallelIndividual implements Race {
 		List<Racer> out = new ArrayList<Racer>();
 		for(Iterator<Racer> it = finished.iterator();it.hasNext();) {
 			Racer r = it.next();
-			if(r.didNotFinish())out.add(r);
+			if(r.getDnf())out.add(r);
 		}
 		return out;
 	}
@@ -154,22 +154,22 @@ public class ParallelIndividual implements Race {
 	public void dnf(Racer racer) {
 		if(running1.contains(racer)) {
 			running1.remove(racer);
-			racer.dnf();
+			racer.setDnf();
 			finished.add(racer);
 		}
 		if(running3.contains(racer)) {
 			running3.remove(racer);
-			racer.dnf();
+			racer.setDnf();
 			finished.add(racer);
 		}
 		if(ready1.contains(racer)) {
 			ready1.remove(racer);
-			racer.dnf();
+			racer.setDnf();
 			finished.add(racer);
 		}
 		if(ready3.contains(racer)) {
 			ready3.remove(racer);
-			racer.dnf();
+			racer.setDnf();
 			finished.add(racer);
 		}
 	}
@@ -240,7 +240,7 @@ public class ParallelIndividual implements Race {
 	public void end() {
 		while(!running1.isEmpty()) {
 			Racer temp = running1.poll();
-			temp.dnf();
+			temp.setDnf();
 			System.out.printf("Racer: %d,\tStart: %s,\tDid not finish! ",
 					temp.getName(), temp.getStart().printTime());
 			finished.add(temp);
@@ -248,7 +248,7 @@ public class ParallelIndividual implements Race {
 		
 		while(!running3.isEmpty()) {
 			Racer temp = running3.poll();
-			temp.dnf();
+			temp.setDnf();
 			System.out.printf("Racer: %d,\tStart: %s,\tDid not finish! ",
 					temp.getName(), temp.getStart().printTime());
 			finished.add(temp);

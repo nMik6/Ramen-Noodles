@@ -29,7 +29,7 @@ public class Individual implements Race {
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if( r == null || this.containsBib(r.getName()) || r.didNotFinish()) return false;
+		if( r == null || this.containsBib(r.getName()) || r.getDnf()) return false;
 		ready.add(r);
 		return true;
 	}
@@ -68,7 +68,7 @@ public class Individual implements Race {
 		List<Racer> out = new ArrayList<Racer>();
 		for(Iterator<Racer> it = finished.iterator();it.hasNext();) {
 			Racer r = it.next();
-			if(r.didNotFinish())out.add(r);
+			if(r.getDnf())out.add(r);
 		}
 		return out;
 	}
@@ -83,7 +83,7 @@ public class Individual implements Race {
 		
 		if(dnfRacer == null) return; //if no racers in running to dnf just return
 		
-		dnfRacer.dnf();
+		dnfRacer.setDnf();
 		
 		finished.add(dnfRacer);
 	}
@@ -148,7 +148,7 @@ public class Individual implements Race {
 	public void end() {
 		while(!running.isEmpty()) {
 			Racer temp = running.poll();
-			temp.dnf();
+			temp.setDnf();
 			System.out.printf("Racer: %d,\tStart: %s,\tDid not finish! ",
 					temp.getName(), temp.getStart().printTime());
 			finished.add(temp);

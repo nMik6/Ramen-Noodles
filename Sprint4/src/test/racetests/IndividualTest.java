@@ -80,7 +80,7 @@ class IndividualTest {
 		List<Racer> finished = indRace.getFinishedRacers();
 		
 		for(Racer r: finished) {
-			assertTrue(r.didNotFinish());
+			assertTrue(r.getDnf());
 		}
 	}
 	
@@ -122,7 +122,7 @@ class IndividualTest {
 		
 		List<Racer> finished = indRace.getFinishedRacers();
 		for(Racer r: finished) {
-			assertTrue(r.didNotFinish());
+			assertTrue(r.getDnf());
 		}
 		
 		indRace.start(1, new Time());
@@ -146,8 +146,8 @@ class IndividualTest {
 	 */
 	@Test
 	void test3() {
-		racer1.dnf();
-		assertTrue(racer1.didNotFinish());
+		racer1.setDnf();
+		assertTrue(racer1.getDnf());
 		
 		assertFalse(indRace.addReady(racer1));
 	}

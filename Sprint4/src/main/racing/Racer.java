@@ -55,7 +55,7 @@ public class Racer implements Comparable<Racer>{
 	 * Sets the racer as having not finished the race.
 	 * @return 1
 	 */
-	public int dnf() {
+	public int setDnf() {
 		
 		dnf = true;
 		return 1;
@@ -66,7 +66,7 @@ public class Racer implements Comparable<Racer>{
 	 * Returns whether the racer has finished or not.
 	 * @return true if racer did not finish, else false
 	 */
-	public boolean didNotFinish() {
+	public boolean getDnf() {
 		return dnf;
 	}
 	
@@ -99,7 +99,7 @@ public class Racer implements Comparable<Racer>{
 	 */
 	public Time getTotal() {
 	
-		if (this.start == null || this.finish == null || didNotFinish()) {
+		if (this.start == null || this.finish == null || getDnf()) {
 			System.out.println("Racer did not start or did not finish! Cannot get total time!");
 			return null;
 		}

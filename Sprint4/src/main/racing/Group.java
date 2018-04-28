@@ -75,7 +75,7 @@ public class Group implements Race{
 		List<Racer> out = new ArrayList<Racer>();
 		for(Iterator<Racer> it = finished.iterator();it.hasNext();) {
 			Racer r = it.next();
-			if(r.didNotFinish())out.add(r);
+			if(r.getDnf())out.add(r);
 		}
 		return out;
 	}
@@ -86,7 +86,7 @@ public class Group implements Race{
 	 */
 	public void dnf() {
 		Racer dnfRacer = new Racer(-1);
-		dnfRacer.dnf();
+		dnfRacer.setDnf();
 		finished.add(dnfRacer);
 	}
 	

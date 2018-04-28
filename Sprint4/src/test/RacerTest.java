@@ -44,8 +44,8 @@ class RacerTest {
 		assertFalse(testRacer.isRacing(), "Racing without start");
 		assertEquals(1, testRacer.start(testTime),"Racer has started");
 		assertTrue(testRacer.isRacing(), "Racer should be racing");
-		assertEquals(1, testRacer.dnf(), "Racer did not finish");
-		assertTrue(testRacer.didNotFinish(), "Racer should not have finished");
+		assertEquals(1, testRacer.setDnf(), "Racer did not finish");
+		assertTrue(testRacer.getDnf(), "Racer should not have finished");
 		assertEquals(null, testRacer.getTotal(), "Cannot get total time because Racer did not finish");
 		
 	}
