@@ -25,7 +25,7 @@ import main.Time;
  * entered will be recorded (if there is a trigger on a channel with no racer, it is ignored)
  */
 
-public class ParrallelGroup implements Race{
+public class ParallelGroup implements Race{
 	private Time groupStart;
 	private List<Racer> finished;
 	private int place;
@@ -33,7 +33,7 @@ public class ParrallelGroup implements Race{
 	private ArrayList<Racer> ready;
 	private ArrayList<Racer> running;
 	
-	public ParrallelGroup() {
+	public ParallelGroup() {
 		this.place = 0;
 		raceEnded = false;
 		this.ready = new ArrayList<Racer>();
@@ -140,6 +140,7 @@ public class ParrallelGroup implements Race{
 	
 	/**
 	 * removes all running racers, marking them dnf and moving them to the finished list.
+	 * Sends results in tabular format to local host http server
 	 * @param time that the racer finishes at
 	 */
 	public void end() {

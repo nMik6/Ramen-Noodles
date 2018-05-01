@@ -10,6 +10,7 @@ import main.RaceData;
 import main.racing.Group;
 import main.racing.Individual;
 import main.racing.ParallelIndividual;
+import main.racing.ParallelGroup;
 import main.racing.Race;
 import main.racing.Racer;
 
@@ -146,6 +147,8 @@ public class Event {
 			cur_race = new ParallelIndividual();
 		} else if (type.equals("GRP")) {
 			cur_race = new Group();
+		} else if (type.equals("PARGRP")) {
+			cur_race = new ParallelGroup();
 		} else {
 			raceData.getLog().msg("Event type not found!");
 			return;
