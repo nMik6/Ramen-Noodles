@@ -1,8 +1,36 @@
-Create formal Html page for the website presentation
+Create formal pdf/markup page for the website presentation
 	upload to gitHub
 
 Clean up github
-Add thread managed sensors 
+	Labs and project iterations segregated
+
+Add thread managed sensors/races 
+	90% done by Thursday
+
 Add more tests
+	Reference and add test documentation to Test Plan of Lab13
+
 Clean up documentation
+	UML & Create Use case models
+	Make sure that classes are properly javadoc'ed 
+
 Practice Presentation as a Group
+	Use Skyler's computer on Thursday in Kulwicki Center for meeting
+
+HTML and CSS display of Racers
+	Reference Lab10
+
+	
+Plan Presenation: (10 minutes total)
+	Overview 3-5 minutes:
+		Requirements:
+			Domain Model/UML 
+			Non functional requirements 
+
+	Demo 5-7 minutes:
+
+		What it can't and can handle
+		Make sure to discuss what we are doing with the gui while we demonstrate the functionaility
+		Go through the natural progression of the sprints
+		Demo user number entry in Individual and Group
+			What is can't do: Renumber racers
