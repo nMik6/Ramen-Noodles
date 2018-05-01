@@ -1,0 +1,8 @@
+Create formal Html page for the website presentation
+	upload to gitHub
+
+Clean up github
+Add thread managed sensors 
+Add more tests
+Clean up documentation
+Practice Presentation as a Group
