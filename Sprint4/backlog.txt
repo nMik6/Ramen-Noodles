@@ -20,6 +20,18 @@ Practice Presentation as a Group
 HTML and CSS display of Racers
 	Reference Lab10
 
+Parallel Group
+
+Change from Sprint3
+	power and printer power seperate
+	connect does not have to be toggled before the channel (seperate)
+	Good: can't change the race during on going race type
+	Log and Print command should be able to be selected at any time
+	Group racer output on finish should be new line for each racer not overwritten
+	Use the console and gui simultaneously
+	Gui console should display the current running time
+	
+
 	
 Plan Presenation: (10 minutes total)
 	Overview 3-5 minutes:
