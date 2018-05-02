@@ -139,7 +139,7 @@ public class ParallelGroup implements Race{
 	 * @param time that the racer finishes at
 	 */
 	public boolean finish(int channel, Time time) {
-		Racer temp = running.get(channel+1);
+		Racer temp = running.get(channel-1);
 		if(temp == null || temp.getDnf() || temp.getFinish() != null) {
 			return false;
 		}
@@ -155,8 +155,10 @@ public class ParallelGroup implements Race{
 	 */
 	public void end() {
 		for(Racer r: running) {
-			r.setDnf();
-			finished.add(r);
+			if(r.isRacing()) {
+				r.setDnf();
+				finished.add(r);
+			}
 		}
 		// set up a simple HTTP server on our local host
         try {
@@ -207,13 +209,9 @@ public class ParallelGroup implements Race{
 	        
 	        private String buildHtml() {
 	        	StringBuilder sb = new StringBuilder();
-	    		//String cssfileloc = ".."+File.pathSeparator+"css"+File.pathSeparator+"theme.css";
-	    		//URL url = getClass().getResource("theme.css");
-	    		String cssfileloc = "theme.css";
 	    		sb.append("<!DOCTYPE html>");
 	    		sb.append("<html>");
-	    		sb.append("<head><link rel=\"stylesheet\" href=\""+ cssfileloc +"\"></head>");
-	    		System.out.print("here:" + cssfileloc);
+	    		sb.append("<head></head>");
 	    		sb.append("<body>");
 	    		sb.append("<table>");
 	    		sb.append("<tr>");
@@ -226,7 +224,7 @@ public class ParallelGroup implements Race{
 	    			sb.append("<tr>");
 	    			sb.append("<td id=\\\"place\\\">" + place++ + "</td>");
 	    			sb.append("<td id=\\\"number\\\">" + r.getName() + "</td>");
-	    			sb.append("<td id=\\\"time\\\">" + r.getTotal()+ "</td>");
+	    			sb.append("<td id=\\\"time\\\">" + r.getTotal().printTime()+ "</td>");
 	    			sb.append("</tr>");
 	    		}
 	    		sb.append("</table>");
