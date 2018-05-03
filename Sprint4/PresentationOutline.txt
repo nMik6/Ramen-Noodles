@@ -17,9 +17,21 @@
 (10) Participation
 
 (50) Working code: Live example with explanation of how each button works and what its doing while giving an example of the races
-
-            (15) Commenting
-
+      
+      1. Code presentation (tenatively Stephen will click through the GUI).
+      2. Go over power on, off, printer, channels (connections, toggles, buttons, function area for selecting race type/performing                  operations within that race.
+      
+      For Each: show web results generated?
+      
+      3. Begin with IND race (SOMEONE)and talk about what specifics the IND race has. How the channel buttons work during this race 
+            (are all active channels useable? odds are start trigs evens act as end trigs? need confirmation)
+      4. Move to PARIND (SOMEONE). describe how it differes from IND. demonstrate differences in display area given two running queues?  
+      5. Move on to GRP (SOMEONE). Detail how it works. Single trigger to start entire race, Racers generated as end trigger is pressed. 
+            (able to use any even/odd trigger that is active/connected?) show difference in display.
+      6. Move to PARGRP (SOMEONE). Detail differences from GRP like #4
+      
+           (15) Commenting
+            All code methods are commented with what operations they perform, inputs needed, and outputs. Beyond that, we commented                 places in the code where an operation is occuring where we believed (while writing or reviewing) that what was occuring                 wasn't obvious/trivial
+            
             (15) Design
-
             (20) Correctness
