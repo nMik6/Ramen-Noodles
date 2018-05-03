@@ -36,8 +36,16 @@ Change from Sprint3
 Plan Presenation: (10 minutes total)
 	Overview 3-5 minutes:
 		Requirements:
-			Domain Model/UML 
-			Non functional requirements 
+			Formal Introductions
+			Functional Requirements
+			Non-Functional Requirements
+			Domain Model/UML
+			Test Plan
+			Overview Tests
+				what is can't and can handle
+				preconditions & postconditions
+			Sprint iterations
+			Participation
 
 	Demo 5-7 minutes:
 
