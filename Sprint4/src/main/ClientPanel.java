@@ -66,7 +66,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	JButton[] functionButtons = {f1, f2, f3, f4};
 
 	protected JButton swap = new JButton("Swap");
-	protected JButton printerPower = new JButton("Printer Pwr");
+	protected JToggleButton printerPower = new JToggleButton("Printer Pwr");
 
 	//beware the offset!
 	JButton b1, b2, b3, b4, b5, b6, b7, b8;
@@ -200,6 +200,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		printerPower.addActionListener(this);
 		printerPower.setActionCommand("print power");
 		printerPower.setMaximumSize(new Dimension(100,30));
+		printerPower.setSelected(false);
 		printArea.setEditable(false);
 		printArea.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -448,8 +449,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 						String[] trig = {"trig", name};
 						
 						//TODO printArea not displaying correct info? formatting on textarea
-						printArea.setText(raceData.getLog().getLastMsg());
-						textArea.setText(raceData.getCurrentRace().getDisplay());
+						printArea.setText(printArea.getText() + raceData.getLog().getLastMsg() + "\n");
+						textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
 						eventHandler.handle(trig);
 					}
 				}
@@ -476,18 +477,13 @@ public class ClientPanel extends JFrame implements ActionListener{
 				String state = "conn";
 				for(int i = 0; i < 8; i++) { 
 					if (e.getSource() == (channelConnections[i])) {
-						System.out.println("here");
-						if(channelConnections[i].isSelected()) channelToggles[i].setEnabled(true);
-						else {
-							channelToggles[i].setSelected(false);
-							channelToggles[i].setEnabled(false);
-							state = "disc";
-						}
+						if(!channelConnections[i].isSelected()) state = "disc";
 						connName = "" + (i+1);
 						i = 8;
 					}
 				}
 				String[] conn = {state, connName};
+				System.out.println(state + " " + connName);
 				eventHandler.handle(conn);
 			}
 			break;
@@ -500,7 +496,12 @@ public class ClientPanel extends JFrame implements ActionListener{
 			break;
 
 		case "print power":
-			printArea.setText(null);
+			if (!printerPower.isSelected())
+				printerPower.setSelected(false);
+			else
+				printerPower.setSelected(true);
+			System.out.println(printerPower.isSelected());
+			printArea.setText("Printer power: " + (printerPower.isSelected() ? "ON" : "OFF"));
 			break;
 			
 		case "function":
@@ -607,15 +608,15 @@ public class ClientPanel extends JFrame implements ActionListener{
 	private void powerOff() {
 		for(int i = 0; i<8; ++i) {
 			channelToggles[i].setSelected(false);
-			channelConnections[i].setSelected(false);
+			//channelConnections[i].setSelected(false);
 			channelToggles[i].setEnabled(false);
-			channelConnections[i].setEnabled(false);
+			//channelConnections[i].setEnabled(false);
 		}
 
 		textArea.setText(null);
 		functionArea.setText(null);
 		printArea.setText(null);
-		printerPower.setEnabled(false);
+		//printerPower.setEnabled(false);
 		
 		numEntered = "";
 		pow = false;
@@ -627,8 +628,11 @@ public class ClientPanel extends JFrame implements ActionListener{
 		for(JToggleButton c: channelConnections) {
 			c.setEnabled(true);
 		}
+		for(JToggleButton c: channelToggles) {
+			c.setEnabled(true);
+		}
 		pow = true;
-		printerPower.setEnabled(true);
+		//printerPower.setEnabled(true);
 		function.doClick();
 	}
 
