@@ -32,6 +32,7 @@ Change from Sprint3
 	Group racer output on finish should be new line for each racer not overwritten
 	Use the console and gui simultaneously
 	Gui console should display the current running time
+	HTML server to display Place, Number, Name, Time
 	
 
 	
