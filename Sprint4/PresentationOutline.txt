@@ -1,3 +1,5 @@
+GoogleSlides Link: https://docs.google.com/presentation/d/1EMVnKjGfqRPa5XytBbPVQOg-lp37Qn5s2wdTSf2cEyw/edit#slide=id.g3946cb0838_0_20
+
 (10) Requirements
 
 - Use case model: Display diagram and explain how each use case works
