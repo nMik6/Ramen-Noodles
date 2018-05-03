@@ -26,6 +26,7 @@ Change from Sprint3
 	power and printer power seperate
 	connect does not have to be toggled before the channel (seperate)
 	conn needs to handle GATE and EYE
+	need DISC command
 	Good: can't change the race during on going race type
 	Log and Print command should be able to be selected at any time
 	Group racer output on finish should be new line for each racer not overwritten
