@@ -13,6 +13,7 @@ import main.racing.ParallelIndividual;
 import main.racing.ParallelGroup;
 import main.racing.Race;
 import main.racing.Racer;
+import main.Server;
 
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import main.Time;
 public class Event {
 	
 	protected RaceData raceData;
+	private Server server;
 	
 	public Event(RaceData data) {
 		raceData = data;
@@ -185,6 +187,8 @@ public class Event {
 		}
 		raceData.setRaceNum(raceData.getRaceNum() + 1);
 		raceData.getLog().msg("New race created");
+		
+		this.stopServer();
 	}
 	
 	/**
@@ -203,6 +207,8 @@ public class Event {
 		race = null;
 		raceData.setCurrentRace(race);
 		raceData.getLog().msg("Race ended");
+		
+		this.startServer();
 	}
 	
 	/**
@@ -262,5 +268,20 @@ public class Event {
 			raceData.getLog().msg("Not an individual race. Cannot swap!");
 		}	
 	}
-
+	
+	/**
+	 *Starts the server for the current running race in raceData 
+	 */
+	private void startServer() {
+		if(raceData.getCurrentRace().isFinished()) {
+			server = raceData.getServer();
+			server.run();
+		}
+	}
+	
+	private void stopServer() {
+		if(server != null) {
+			server.stop();
+		}
+	}
 }

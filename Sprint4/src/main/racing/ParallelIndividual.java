@@ -15,6 +15,7 @@ public class ParallelIndividual implements Race {
 	private Queue<Racer> running3;
 	private List<Racer> finished;
 	private int autoNum;
+	private boolean raceEnded;
 	
 	
 	public ParallelIndividual() {
@@ -24,6 +25,21 @@ public class ParallelIndividual implements Race {
 		this.running3 = new LinkedList<Racer>();
 		this.finished = new ArrayList<Racer>();
 		autoNum = 0;
+	}
+	
+	/**
+	 * 
+	 * @return type of current race in string format
+	 */
+	public String getType() {
+		return "parallelindividual";
+	}
+	
+	/**
+	 * @return true if race finished / End() called 
+	 */
+	public boolean isFinished() {
+		return raceEnded;
 	}
 	
 	/**
@@ -253,6 +269,8 @@ public class ParallelIndividual implements Race {
 					temp.getName(), temp.getStart().printTime());
 			finished.add(temp);
 		}
+		
+		raceEnded = true;
 	}
 	
 	public boolean containsBib(int bib) {

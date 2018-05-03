@@ -33,6 +33,21 @@ public class Group implements Race{
 	}
 	
 	/**
+	 * 
+	 * @return type of current race in string format
+	 */
+	public String getType() {
+		return "group";
+	}
+	
+	/**
+	 * @return true if race ended set to true
+	 */
+	public boolean isFinished() {
+		return raceEnded;
+	}
+	
+	/**
 	 * Does not add Racer r to the queue of ready racers because all racers have same start time 
 	 * Racers are determined after they are finished by assigning them bib numbers through setBib() method
 	 * @param r

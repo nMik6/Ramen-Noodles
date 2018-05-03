@@ -11,10 +11,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
-
 
 import main.Time;
 
@@ -37,7 +33,7 @@ import main.Time;
 
 public class ParallelGroup implements Race{
 	private Time groupStart;
-	static List<Racer> finished;
+	private List<Racer> finished;
 	private int place;
 	private boolean raceEnded;
 	private ArrayList<Racer> ready;
@@ -51,6 +47,20 @@ public class ParallelGroup implements Race{
 		this.finished = new LinkedList<Racer>();
 	}
 	
+	/**
+	 * 
+	 * @return type of current race in string format
+	 */
+	public String getType() {
+		return "parallelgroup";
+	}
+	
+	/**
+	 * @return true if race is finished (end() is called)
+	 */
+	public boolean isFinished() {
+		return raceEnded;
+	}
 	/**
 	 * Adds Racer r to the queue of ready racers. Only eight racers are recorded. 
 	 * @param r
@@ -160,22 +170,7 @@ public class ParallelGroup implements Race{
 				finished.add(r);
 			}
 		}
-		// set up a simple HTTP server on our local host
-        try {
-			HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-	
-	        // create a context to get the request to display the results
-	        server.createContext("/displayresults", new DisplayHandler());
-	
-	        server.setExecutor(null); // creates a default executor
-	
-	        // get it going
-	        System.out.println("Starting Server...");
-	        server.start();
-        } catch (IOException e) {
-        	System.out.println("Failed to start server");
-        }
-        
+		raceEnded = true;
 	}
 	
 	public boolean containsBib(int bib) {
@@ -191,48 +186,7 @@ public class ParallelGroup implements Race{
 		return false;
 	}
 	
-	 static class DisplayHandler implements HttpHandler {
-	        public void handle(HttpExchange transmission) throws IOException {
-	        	String response = buildHtml();
-	    		
-	    		// assume that stuff works all the time
-	            transmission.sendResponseHeaders(300, response.length());
-
-	            // set up a stream to write out the body of the response
-	            OutputStream outputStream = transmission.getResponseBody();
-
-	            // write it and return it
-	            outputStream.write(response.getBytes());
-
-	            outputStream.close();
-	        }
-	        
-	        private String buildHtml() {
-	        	StringBuilder sb = new StringBuilder();
-	    		sb.append("<!DOCTYPE html>");
-	    		sb.append("<html>");
-	    		sb.append("<head></head>");
-	    		sb.append("<body>");
-	    		sb.append("<table>");
-	    		sb.append("<tr>");
-	    		sb.append("<th>Place</th>");
-	    		sb.append("<th>Number</th>");
-	    		sb.append("<th>Time</th>");
-	    		sb.append("</tr>");
-	    		int place = 1;
-	    		for (Racer r : finished) {
-	    			sb.append("<tr>");
-	    			sb.append("<td id=\\\"place\\\">" + place++ + "</td>");
-	    			sb.append("<td id=\\\"number\\\">" + r.getName() + "</td>");
-	    			sb.append("<td id=\\\"time\\\">" + r.getTotal().printTime()+ "</td>");
-	    			sb.append("</tr>");
-	    		}
-	    		sb.append("</table>");
-	    		sb.append("</body>");
-	    		sb.append("</html>");
-	    		return sb.toString();
-	        }
-	    }
+	 
 	
 	/**
 	 * returns the displayable ready, current, finished racers(not the full arrays, see end of S3 PDF)

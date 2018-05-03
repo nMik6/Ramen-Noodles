@@ -14,13 +14,28 @@ public class Individual implements Race {
 	private Queue<Racer> running;
 	private List<Racer> finished;
 	private int autoNum;
-
+	private boolean raceEnded;
 	
 	public Individual() {
 		this.ready = new LinkedList<Racer>();
 		this.running = new LinkedList<Racer>();
 		this.finished = new ArrayList<Racer>();
 		autoNum = 0;
+	}
+	
+	/**
+	 * 
+	 * @return type of current race in string format
+	 */
+	public String getType() {
+		return "individual";
+	}
+	
+	/**
+	 * @return true if race is ended
+	 */
+	public boolean isFinished() {
+		return raceEnded;
 	}
 	
 	/**
@@ -153,6 +168,7 @@ public class Individual implements Race {
 					temp.getName(), temp.getStart().printTime());
 			finished.add(temp);
 		}
+		raceEnded = true;
 	}
 	
 	public boolean containsBib(int bib) {

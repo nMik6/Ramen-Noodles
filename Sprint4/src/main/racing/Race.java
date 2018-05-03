@@ -12,7 +12,16 @@ import java.util.List;
 
 public interface Race {
 	
-
+	/**
+	 * 
+	 * @return type of current race in string format
+	 */
+	public String getType();
+	
+	/**
+	 * @return true if current race is finished
+	 */
+	public boolean isFinished();
 
 	/**
 	 * Adds Racer r to the queue of ready racers

@@ -56,6 +56,12 @@ public final class RaceData {
 	 */
 	private final String racerFile = "data/racerfile.txt";
 	
+	
+	/**
+	 * localhost web server for displaying finished race data
+	 */
+	private Server server;
+	
 	/**
 	 * Switches the power to the opposite of what its current state is
 	 */
@@ -190,6 +196,15 @@ public final class RaceData {
 	 */
 	public Logger getLog() {
 		return log;
+	}
+	
+	/**
+	 * 
+	 * @return the server running for end results after race complete
+	 */
+	public Server getServer() {
+		server = new Server(this.getCurrentRace().getFinishedRacers(), this.getCurrentRace().getType());
+		return server;
 	}
 
 }
