@@ -8,15 +8,15 @@
 
 - UML model of domain concepts and relationships: Display UML diagram, discuss relationships between classes
 
-(5) Test Plan
+(5) Test Plan: Talk about the major things that needed to be tested
 
 (10) Test cases - show that the system works
 
-(10) Iteration plans (sprint backlogs for each sprint)
+(10) Iteration plans (sprint backlogs for each sprint): Talk about how our program has developed over the course of the sprints, how the classes evolved
 
 (10) Participation
 
-(50) Working code
+(50) Working code: Live example with explanation of how each button works and what its doing while giving an example of the races
 
             (15) Commenting
 
