@@ -204,11 +204,10 @@ public class Event {
 		race.end();
 		raceData.getLog().export(race.getFinishedRacers(), raceData.getRaceNum());
 		raceData.addFinishedRace(race);
+		this.startServer();
 		race = null;
 		raceData.setCurrentRace(race);
 		raceData.getLog().msg("Race ended");
-		
-		this.startServer();
 	}
 	
 	/**

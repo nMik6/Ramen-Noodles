@@ -77,8 +77,8 @@ public class Logger {
 	 * @param num the race number
 	 */
 	public void export(List<Racer> racers, int raceNum) {
-		String currentUsersHomeDir = "./data";
-		String raceFile = currentUsersHomeDir + File.separator + "RUN" + raceNum + ".txt";
+		String currentUsersHomeDir = "data";
+		String raceFile = currentUsersHomeDir + File.separator + "RUN" + raceNum + ".json";
 		System.out.println(raceFile);
 		File file = new File(raceFile);
 		

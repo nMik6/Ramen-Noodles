@@ -1,0 +1,86 @@
+[
+  {
+    "bib": 1,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 11,
+        "nano": 896000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 14,
+        "nano": 331000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 2,
+        "nano": 435000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 2,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 11,
+        "nano": 896000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 16,
+        "nano": 58000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 4,
+        "nano": 162000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 3,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 11,
+        "nano": 896000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 17,
+        "nano": 307000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 5,
+        "nano": 411000000
+      }
+    },
+    "dnf": false
+  }
+]
