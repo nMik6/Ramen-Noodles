@@ -58,7 +58,10 @@ public class Simulator {
 			command = stdin.nextLine();
 			cmds = command.split(" ");
 			eventHandler.handle(cmds);
-		} while (!(command.equals("exit")));
+		} while (!(command.equalsIgnoreCase("exit")));
+		
+		System.out.print("Terminating Program...");
+		System.exit(0);
 	}
 
 	/**

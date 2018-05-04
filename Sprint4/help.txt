@@ -1,0 +1,44 @@
+help
+
+Commands:
+
+POWER			
+				(if off) Turn system on, enter quiescent state
+POWER			
+				(if on) Turn system off(but stay in simulator)
+EXIT			
+				Exit the simulator
+RESET			
+				Resets the System toinitial state
+TIME  <hour>:<min>:<sec>	
+				Set the current time.  Default time is the host system time
+TOG<channel>	
+				Toggle the state of the channel <CHANNEL>
+CONN<sensor><NUM>	
+				Connect a type of sensorto channel <NUM><sensor> = {EYE, GATE, PAD}
+DISC <NUM>	
+				Disconnect a sensorfromchannel <NUM>
+EVENT <TYPE>	
+				IND | PARIND | GRP | PARGRP
+NEWRUN	
+				Create a new Run(must end a run first)
+ENDRUN	
+				Done with a Run
+PRINT <RUN>
+				Print the run on stdout
+EXPORT <RUN>	
+				Export run in XMLto file “RUN<RUN>”
+NUM <NUMBER>	
+				Set <NUMBER> as the next competitor to start.
+CLR <NUMBER>	
+				Clear <NUMBER> thecompetitorfrom queue
+SWAP	
+				Exchange next two competitors to finishin 
+INDDNF	
+				The next competitor to finish will not finish
+TRIG <NUM>	
+				Trigger channel <NUM>
+START 		
+				Start trigger channel 1(shorthandfor TRIG 1)
+FINISH 		
+				Finish trigger channel 2(shorthandfor TRIG 2)

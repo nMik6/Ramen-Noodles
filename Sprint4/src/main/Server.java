@@ -16,7 +16,7 @@ public class Server implements Runnable{
 	
 	static List<Racer> finished;
 	static String raceType;
-	HttpServer server;
+	static HttpServer server;
 	
 	public Server(List<Racer> f, String rt) {
 		finished = f;
