@@ -59,9 +59,6 @@ public class Simulator {
 			cmds = command.split(" ");
 			eventHandler.handle(cmds);
 		} while (!(command.equalsIgnoreCase("exit")));
-		
-		System.out.print("Terminating Program...");
-		System.exit(0);
 	}
 
 	/**

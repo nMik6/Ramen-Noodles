@@ -94,24 +94,7 @@ public class Logger {
 		} catch(IOException e) {e.printStackTrace();}
 	}
 
-	public static void main(String[] args) {
-		ArrayList<Racer> list = new ArrayList<>();
-		Racer r1 = new Racer(123);
-		Racer r2 = new Racer(124);
-		Logger log = new Logger();
-		
-		r1.start(new Time(LocalTime.now()));
-		r2.start(new Time(LocalTime.now()));
-		
-		r1.finish(new Time(LocalTime.now()));
-		r2.finish(new Time(LocalTime.now()));
-		
-		list.add(r1);
-		list.add(r2);
-		
-		log.print(list);
-		log.export(list, 111);
-	}
+
 }
 
 

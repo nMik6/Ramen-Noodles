@@ -501,7 +501,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 			else
 				printerPower.setSelected(true);
 			System.out.println(printerPower.isSelected());
-			printArea.setText("Printer power: " + (printerPower.isSelected() ? "ON" : "OFF"));
+			printArea.setText("Printer power: " + (printerPower.isSelected() ? "ON\n" : "OFF\n"));
 			break;
 			
 		case "function":
