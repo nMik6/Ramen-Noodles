@@ -60,6 +60,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	 * JButtons for front/back
 	 */
 	protected JButton power = new JButton("Power");
+	protected JButton reset = new JButton("Reset");
 	protected JButton function = new JButton("Function");
 
 	JButton f1, f2, f3, f4;
@@ -139,10 +140,16 @@ public class ClientPanel extends JFrame implements ActionListener{
 		power.addActionListener(this);
 		power.setActionCommand("power");
 		power.setMaximumSize(new Dimension(100,30));
+		
+		reset.addActionListener(this);
+		reset.setActionCommand("reset");
+		reset.setMaximumSize(new Dimension(100,30));
+		
 
 		JPanel powerPanel= new JPanel();
 		powerPanel.setLayout(new FlowLayout());
 		powerPanel.add(power);
+		powerPanel.add(reset);
 		powerPanel.setMinimumSize(new Dimension(100,30));
 		powerPanel.setPreferredSize(new Dimension(200,30));
 		return powerPanel;
@@ -494,6 +501,10 @@ public class ClientPanel extends JFrame implements ActionListener{
 			String[] powSignal = {"power"};
 			eventHandler.handle(powSignal);
 			break;
+			
+		case "reset":
+			String[] resetSignal = {"reset"};
+			eventHandler.handle(resetSignal);
 
 		case "print power":
 			if (!printerPower.isSelected())
