@@ -4,17 +4,45 @@
     "start": {
       "time": {
         "hour": 0,
-        "minute": 2,
-        "second": 52,
-        "nano": 871000000
+        "minute": 10,
+        "second": 36,
+        "nano": 753000000
       }
     },
     "finish": {
       "time": {
         "hour": 0,
-        "minute": 2,
-        "second": 57,
-        "nano": 765000000
+        "minute": 10,
+        "second": 55,
+        "nano": 969000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 19,
+        "nano": 216000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 111,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 11,
+        "second": 1,
+        "nano": 614000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 11,
+        "second": 5,
+        "nano": 744000000
       }
     },
     "total": {
@@ -22,119 +50,35 @@
         "hour": 0,
         "minute": 0,
         "second": 4,
-        "nano": 894000000
+        "nano": 130000000
       }
     },
     "dnf": false
   },
   {
-    "bib": 1,
+    "bib": 222,
     "start": {
       "time": {
         "hour": 0,
-        "minute": 3,
-        "second": 2,
-        "nano": 326000000
+        "minute": 11,
+        "second": 15,
+        "nano": 151000000
       }
     },
     "finish": {
       "time": {
         "hour": 0,
-        "minute": 3,
-        "second": 5,
-        "nano": 624000000
-      }
-    },
-    "total": {
-      "time": {
-        "hour": 0,
-        "minute": 0,
-        "second": 3,
-        "nano": 298000000
-      }
-    },
-    "dnf": false
-  },
-  {
-    "bib": 2,
-    "start": {
-      "time": {
-        "hour": 0,
-        "minute": 3,
-        "second": 10,
-        "nano": 122000000
-      }
-    },
-    "finish": {
-      "time": {
-        "hour": 0,
-        "minute": 3,
-        "second": 18,
-        "nano": 104000000
-      }
-    },
-    "total": {
-      "time": {
-        "hour": 0,
-        "minute": 0,
-        "second": 7,
-        "nano": 982000000
-      }
-    },
-    "dnf": false
-  },
-  {
-    "bib": 3,
-    "start": {
-      "time": {
-        "hour": 0,
-        "minute": 3,
-        "second": 13,
-        "nano": 367000000
-      }
-    },
-    "finish": {
-      "time": {
-        "hour": 0,
-        "minute": 3,
-        "second": 23,
-        "nano": 79000000
-      }
-    },
-    "total": {
-      "time": {
-        "hour": 0,
-        "minute": 0,
-        "second": 9,
-        "nano": 712000000
-      }
-    },
-    "dnf": false
-  },
-  {
-    "bib": 4,
-    "start": {
-      "time": {
-        "hour": 0,
-        "minute": 3,
+        "minute": 11,
         "second": 16,
-        "nano": 152000000
-      }
-    },
-    "finish": {
-      "time": {
-        "hour": 0,
-        "minute": 3,
-        "second": 25,
-        "nano": 657000000
+        "nano": 750000000
       }
     },
     "total": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 9,
-        "nano": 505000000
+        "second": 1,
+        "nano": 599000000
       }
     },
     "dnf": false
