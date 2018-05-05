@@ -68,18 +68,24 @@ public class Server implements Runnable{
 	        	StringBuilder sb = new StringBuilder();
 	    		sb.append("<!DOCTYPE html>");
 	    		sb.append("<html>");
-	    		sb.append("<head></head>");
+	    		sb.append("<head><style>#odd{background-color:silver;}</style></head>");
 	    		sb.append("<body>");
 	    		sb.append("<table>");
-	    		sb.append("<tr><b>"+ raceType.toUpperCase() +"</b></tr>");
+	    		sb.append("<tr style=\"background-color:grey\"><b>"+ raceType.toUpperCase() +"</b></tr>");
 	    		sb.append("<tr>");
 	    		sb.append("<th>Place</th>");
 	    		sb.append("<th>Number</th>");
 	    		sb.append("<th>Time</th>");
 	    		sb.append("</tr>");
 	    		int place = 1;
+	    		String id;
 	    		for (Racer r : finished) {
-	    			sb.append("<tr>");
+	    			if(place % 2 != 0) {
+	    				id = "odd";
+	    			} else {
+	    				id = "even";
+	    			}
+	    			sb.append("<tr id=\""+id+"\">");
 	    			sb.append("<td id=\\\"place\\\">" + place++ + "</td>");
 	    			sb.append("<td id=\\\"number\\\">" + r.getName() + "</td>");
 	    			sb.append("<td id=\\\"time\\\">" + r.getTotal().printTime()+ "</td>");
