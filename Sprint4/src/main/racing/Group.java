@@ -166,7 +166,7 @@ public class Group implements Race{
 	public void setBib(int bib){
 		if(finished.isEmpty()) 
 			return;
-		if (finished.get(tmpBib) != null)
+		if (tmpBib < finished.size() && finished.get(tmpBib) != null && !this.containsBib(bib))
 		{
 			finished.get(tmpBib).setName(bib);
 			++tmpBib;

@@ -1,20 +1,76 @@
 [
   {
-    "bib": 1,
+    "bib": 111,
     "start": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 35,
-        "nano": 649000000
+        "second": 26,
+        "nano": 549000000
       }
     },
     "finish": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 39,
-        "nano": 441000000
+        "second": 27,
+        "nano": 958000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 1,
+        "nano": 409000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 222,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 26,
+        "nano": 549000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 28,
+        "nano": 821000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 2,
+        "nano": 272000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 333,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 26,
+        "nano": 549000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 29,
+        "nano": 731000000
       }
     },
     "total": {
@@ -22,27 +78,55 @@
         "hour": 0,
         "minute": 0,
         "second": 3,
-        "nano": 792000000
+        "nano": 182000000
       }
     },
     "dnf": false
   },
   {
-    "bib": 2,
+    "bib": 444,
     "start": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 35,
-        "nano": 649000000
+        "second": 26,
+        "nano": 549000000
       }
     },
     "finish": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 41,
-        "nano": 425000000
+        "second": 31,
+        "nano": 79000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 4,
+        "nano": 530000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 555,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 26,
+        "nano": 549000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 32,
+        "nano": 70000000
       }
     },
     "total": {
@@ -50,55 +134,27 @@
         "hour": 0,
         "minute": 0,
         "second": 5,
-        "nano": 776000000
+        "nano": 521000000
       }
     },
     "dnf": false
   },
   {
-    "bib": 3,
+    "bib": 666,
     "start": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 35,
-        "nano": 649000000
+        "second": 26,
+        "nano": 549000000
       }
     },
     "finish": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 42,
-        "nano": 705000000
-      }
-    },
-    "total": {
-      "time": {
-        "hour": 0,
-        "minute": 0,
-        "second": 7,
-        "nano": 56000000
-      }
-    },
-    "dnf": false
-  },
-  {
-    "bib": 4,
-    "start": {
-      "time": {
-        "hour": 0,
-        "minute": 0,
-        "second": 35,
-        "nano": 649000000
-      }
-    },
-    "finish": {
-      "time": {
-        "hour": 0,
-        "minute": 0,
-        "second": 44,
-        "nano": 225000000
+        "second": 34,
+        "nano": 662000000
       }
     },
     "total": {
@@ -106,27 +162,55 @@
         "hour": 0,
         "minute": 0,
         "second": 8,
-        "nano": 576000000
+        "nano": 113000000
       }
     },
     "dnf": false
   },
   {
-    "bib": 5,
+    "bib": 777,
     "start": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 35,
-        "nano": 649000000
+        "second": 26,
+        "nano": 549000000
       }
     },
     "finish": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 45,
-        "nano": 666000000
+        "second": 35,
+        "nano": 670000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 9,
+        "nano": 121000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 888,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 26,
+        "nano": 549000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 36,
+        "nano": 651000000
       }
     },
     "total": {
@@ -134,35 +218,91 @@
         "hour": 0,
         "minute": 0,
         "second": 10,
-        "nano": 17000000
+        "nano": 102000000
       }
     },
     "dnf": false
   },
   {
-    "bib": 6,
+    "bib": 999,
     "start": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 35,
-        "nano": 649000000
+        "second": 26,
+        "nano": 549000000
       }
     },
     "finish": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 47,
-        "nano": 474000000
+        "second": 41,
+        "nano": 383000000
       }
     },
     "total": {
       "time": {
         "hour": 0,
         "minute": 0,
-        "second": 11,
-        "nano": 825000000
+        "second": 14,
+        "nano": 834000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 1010,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 26,
+        "nano": 549000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 43,
+        "nano": 799000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 17,
+        "nano": 250000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 2020,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 26,
+        "nano": 549000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 45,
+        "nano": 254000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 18,
+        "nano": 705000000
       }
     },
     "dnf": false

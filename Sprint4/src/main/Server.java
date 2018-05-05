@@ -71,7 +71,7 @@ public class Server implements Runnable{
 	    		sb.append("<head><style>#odd{background-color:silver;}</style></head>");
 	    		sb.append("<body>");
 	    		sb.append("<table>");
-	    		sb.append("<tr style=\"background-color:grey\"><b>"+ raceType.toUpperCase() +"</b></tr>");
+	    		sb.append("<tr style=\"background-color:gray\"><b>"+ raceType.toUpperCase() +"</b></tr>");
 	    		sb.append("<tr>");
 	    		sb.append("<th>Place</th>");
 	    		sb.append("<th>Number</th>");

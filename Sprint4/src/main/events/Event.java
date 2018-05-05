@@ -108,10 +108,12 @@ public class Event {
 				return;
 			}
 		}
-		if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str)))
-			raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
-		else
-			raceData.getLog().msg("That bib number already exists");
+		else { 
+			if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str)))
+				raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
+			else
+				raceData.getLog().msg("That bib number already exists");
+		}
 	}
 	
 	/**

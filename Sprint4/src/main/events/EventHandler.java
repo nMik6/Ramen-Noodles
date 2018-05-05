@@ -66,7 +66,7 @@ public class EventHandler {
 					else event.trig("1", new Time().difference(raceData.getTimeOffset()));
 				}
 				break;
-			case "end":
+			case "finish":
 				if (passedTime != null) event.trig("2", passedTime);
 				else {
 					if (raceData.getTimeOffset() == null)event.trig("2", new Time());
