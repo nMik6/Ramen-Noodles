@@ -62,6 +62,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	protected JButton power = new JButton("Power");
 	protected JButton reset = new JButton("Reset");
 	protected JButton function = new JButton("Function");
+	protected JButton server = new JButton("Server");
 
 	JButton f1, f2, f3, f4;
 	JButton[] functionButtons = {f1, f2, f3, f4};
