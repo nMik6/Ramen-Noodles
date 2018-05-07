@@ -93,6 +93,15 @@ public class Event {
 	}
 	
 	/**
+	*Disconnects the channel
+	*/
+	public void disc(String channel) {
+		if (!raceData.isPower()) return;
+		raceData.getChannels()[Integer.parseInt(channel)].conn("NONE");
+		raceData.getLog().msg("Sensor disconnected.");
+	}
+	
+	/**
 	 * Assigns the num of a racer, if a group race has finished then assigns their nums
 	 * @param str number
 	 */
