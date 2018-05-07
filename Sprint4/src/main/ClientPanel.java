@@ -509,7 +509,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		case "reset":
 			String[] resetSignal = {"reset"};
 			eventHandler.handle(resetSignal);
-
+			break;
 		case "print power":
 			if (!printerPower.isSelected())
 				printerPower.setSelected(false);
