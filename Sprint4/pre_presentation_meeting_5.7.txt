@@ -1,0 +1,29 @@
+
+Last minute todos
+	Finish and refine the test case file under Sprint4
+		Once above is complete add any missing tests to the project
+		Add test plan to the chronotimer presentation
+			Show the outputs of tests during the presentation (screenshots or actual junit runs?)
+		Use case model (not imperative)
+		Non-functional requirements
+			permissions, etc
+
+	CODE:
+		Add parallel group to gui
+		Printer needs to print the current command action not the previous
+			Thread the gui displays
+		Server button on the gui
+		Disk and Conn method are irrelevant to the console
+		Time issue with the gui
+		
+
+	Presentation Flow:
+		System init
+		User interface (how to)
+			display areas, buttons functionality 
+		Demo each type of race 
+		Logger output to text file and server
+
+		Bring wireless mouse
+
+		Meet up last minute 
