@@ -199,9 +199,9 @@ public class Group implements Race{
 	
 	@Override
 	public String getDisplay() {
-		
-		String ret = "";
-		
+		String ret = "Current Race Time:\n";
+		//some calculation of time
+		ret += "\nLast Finish:\n";
 		if(finished.size()!= 0)ret += finished.get(finished.size()-1).toString(new Time());
 		return ret;
 	}

@@ -71,7 +71,7 @@ public class Racer implements Comparable<Racer>{
 	}
 	
 	/**
-	 * Retruns when the racer started their race.
+	 * Returns when the racer started their race.
 	 * @return the time at which the racer started the race, null if the racer has not yet started their race.
 	 */
 	public Time getStart() {
@@ -79,7 +79,7 @@ public class Racer implements Comparable<Racer>{
 	}
 
 	/**
-	 * Retruns when the racer finished their race.
+	 * Returns when the racer finished their race.
 	 * @return the time at which the racer finished the race, null if the racer has not yet finished their race.
 	 */
 	public Time getFinish() {

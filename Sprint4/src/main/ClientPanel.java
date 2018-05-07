@@ -87,7 +87,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	Boolean numEntry = false;
 
 	//Printout area
-	JScrollPane scroll = new JScrollPane(textArea);
+	//JScrollPane scroll = new JScrollPane(textArea);
 
 
 
@@ -274,8 +274,9 @@ public class ClientPanel extends JFrame implements ActionListener{
 	//sets up display panel and returns it
 	private JPanel getDisplayPanel() {
 		textArea.setEditable(false);
-		scroll = new JScrollPane(textArea);
-		scroll.setPreferredSize(new Dimension(200,100));
+		textArea.setBorder(BorderFactory.createLineBorder(Color.black));
+		//scroll = new JScrollPane(textArea);
+		//scroll.setPreferredSize(new Dimension(200,100));
 
 		JPanel sub = new JPanel();
 		sub.setLayout(new FlowLayout());
@@ -283,7 +284,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 
 		JPanel display= new JPanel();
 		display.setLayout(new BorderLayout());
-		display.add(scroll, BorderLayout.CENTER);
+		display.add(textArea, BorderLayout.CENTER);
 		display.add(sub, BorderLayout.SOUTH);
 		display.setMinimumSize(new Dimension(100,30));
 		display.setPreferredSize(new Dimension(200,30));
@@ -458,6 +459,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 						
 						//TODO printArea not displaying correct info? formatting on textarea
 						printArea.setText(printArea.getText() + raceData.getLog().getLastMsg() + "\n");
+						textArea.setText(null);
 						textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
 						eventHandler.handle(trig);
 					}
@@ -483,15 +485,16 @@ public class ClientPanel extends JFrame implements ActionListener{
 			if(pow) {
 				String connName = "";
 				String state = "conn";
+				String type = "GATE";
 				for(int i = 0; i < 8; i++) { 
 					if (e.getSource() == (channelConnections[i])) {
 						if(!channelConnections[i].isSelected()) state = "disc";
+						if(i % 2 != 0) type = "EYE";
 						connName = "" + (i+1);
 						i = 8;
 					}
 				}
-				String[] conn = {state, connName};
-				System.out.println(state + " " + connName);
+				String[] conn = {state, type, connName};
 				eventHandler.handle(conn);
 			}
 			break;
@@ -512,7 +515,6 @@ public class ClientPanel extends JFrame implements ActionListener{
 				printerPower.setSelected(false);
 			else
 				printerPower.setSelected(true);
-			System.out.println(printerPower.isSelected());
 			printArea.setText("Printer power: " + (printerPower.isSelected() ? "ON\n" : "OFF\n"));
 			break;
 			
@@ -545,6 +547,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 							case 2:
 								eventType = "GRP";
 								break;
+							case 3:
+								eventType = "PARGRP";
 							}
 							String[] event = {"EVENT", eventType};
 							eventHandler.handle(event);
@@ -627,7 +631,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 
 		textArea.setText(null);
 		functionArea.setText(null);
-		printArea.setText(null);
+		//printArea.setText(null);
 		//printerPower.setEnabled(false);
 		
 		numEntered = "";
@@ -648,6 +652,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		function.doClick();
 	}
 
+	
 
 	//just for testing
 	public static void main(String[] args) {

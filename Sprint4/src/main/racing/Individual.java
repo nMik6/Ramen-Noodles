@@ -206,13 +206,13 @@ public class Individual implements Race {
 
 	@Override
 	public String getDisplay() {
-		String ret = "";
+		String ret = "Ready Racers: \n";
 		//adds ready portion
 		Queue<Racer> tmp = new LinkedList<Racer>();
 		Racer first = ready.poll();
 		Racer second = ready.poll();
 		Racer third = ready.poll();
-		Time t = new Time();
+		Time t = new Time();			//fix?
 		if(first != null ){
 			tmp.add(first);
 			ret += first.toString(t) + "\n";
@@ -226,16 +226,14 @@ public class Individual implements Race {
 			ret += third.toString(t)+ "\n";
 		}
 		
-		for (Racer r : running)
-		{
-			tmp.add(r);
-		}
-		running = tmp;
-		ret += "\n";
+		for (Racer r : ready) tmp.add(r);
+		ready = tmp;
 		
 		//adds current portion
+		ret += "\nCurrently Running:\n";
 		for (Racer r : running)	ret += r.toString(t) + "\n";
 		
+		ret += "\nLast Finish:\n";
 		if(finished.size()!= 0)ret += finished.get(finished.size()-1).toString(t);
 		return ret;
 	}

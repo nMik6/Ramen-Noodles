@@ -306,20 +306,20 @@ public class ParallelIndividual implements Race {
 
 	@Override
 	public String getDisplay() {
-		String ret = "";
 		//adds ready portion
-		Queue<Racer> tmp = new LinkedList<Racer>();
+		String ret = "Ready Racers: \n";
 		Racer first = ready1.peek();
 		Racer second = ready3.peek();
-		Time t = new Time();
+		Time t = new Time();			//time issue?
 		if(first != null) ret += first.toString(t) + "\n";
-		if(ready3 != null) ret += second.toString(t)+ "\n";
-		ret += "\n";
+		if(second != null) ret += second.toString(t)+ "\n";
 		
 		//adds current portion
+		ret += "\nCurrently Running:\n";
 		for (Racer r : running1)	ret += r.toString(t) + "\n";
 		for (Racer r : running3)	ret += r.toString(t) + "\n";
 		
+		ret += "\nLast Finish:\n";
 		if(finished.size()!= 0)ret += finished.get(finished.size()-1).toString(t);
 		return ret;
 	}
