@@ -27,7 +27,7 @@ public class Event {
 	
 	public Event(RaceData data) {
 		raceData = data;
-		raceData.setTimeOffset(new Time());	
+		//raceData.setTimeOffset(new Time());	
 	}
 	
 	/**
