@@ -87,6 +87,10 @@ public class EventHandler {
 
 		else if (length == 2) {
 			switch (commandLine[0].toLowerCase()) {
+					
+			case "disc":
+				event.disc(commandLine[1]);
+				break;
 
 			case "event":
 				event.event(commandLine[1]);
