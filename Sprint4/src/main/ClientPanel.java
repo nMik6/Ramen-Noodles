@@ -15,6 +15,9 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -64,8 +67,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 	protected JButton function = new JButton("Function");
 	protected JButton server = new JButton("Server");
 
-	JButton f1, f2, f3, f4;
-	JButton[] functionButtons = {f1, f2, f3, f4};
+	JButton f1, f2, f3, f4, f5;
+	JButton[] functionButtons = {f1, f2, f3, f4, f5};
 
 	protected JButton swap = new JButton("Swap");
 	protected JToggleButton printerPower = new JToggleButton("Printer Pwr");
@@ -87,7 +90,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	Boolean numEntry = false;
 
 	//Printout area
-	//JScrollPane scroll = new JScrollPane(textArea);
+	JScrollPane scroll = new JScrollPane(printArea);
 
 
 
@@ -211,7 +214,9 @@ public class ClientPanel extends JFrame implements ActionListener{
 		printerPower.setSelected(false);
 		printArea.setEditable(false);
 		printArea.setBorder(BorderFactory.createLineBorder(Color.black));
-
+		scroll = new JScrollPane(printArea);
+		scroll.setPreferredSize(new Dimension(200,100));
+		
 		JPanel sub = new JPanel();
 		sub.setLayout(new FlowLayout());
 		sub.add(printerPower);
@@ -219,7 +224,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		JPanel printer= new JPanel();
 		printer.setLayout(new BorderLayout());
 		printer.add(sub, BorderLayout.NORTH);
-		printer.add(printArea, BorderLayout.CENTER);
+		printer.add(scroll, BorderLayout.CENTER);
 		printer.setMinimumSize(new Dimension(100,30));
 		printer.setPreferredSize(new Dimension(200,30));
 		return printer;
@@ -242,11 +247,12 @@ public class ClientPanel extends JFrame implements ActionListener{
 		JButton blank = new JButton();
 		blank.setVisible(false);
 		sub2.add(blank, 0);
-		for(int i = 0; i < 3; ++i) {
-			functionButtons[i] = new JButton();
+		for(int i = 0; i < 4; ++i) {
+			functionButtons[i] = new JButton("" + i);
 			functionButtons[i].addActionListener(this);
 			functionButtons[i].setActionCommand("function select");
 			functionButtons[i].setBackground(Color.GRAY);
+			functionButtons[i].setPreferredSize(new Dimension(25,15));
 			sub2.add(functionButtons[i], i+1);
 		}
 		sub2.setAlignmentY(Component.RIGHT_ALIGNMENT);
@@ -275,8 +281,18 @@ public class ClientPanel extends JFrame implements ActionListener{
 	private JPanel getDisplayPanel() {
 		textArea.setEditable(false);
 		textArea.setBorder(BorderFactory.createLineBorder(Color.black));
-		//scroll = new JScrollPane(textArea);
-		//scroll.setPreferredSize(new Dimension(200,100));
+		
+		 ScheduledExecutorService worker = Executors.newScheduledThreadPool(3);
+         worker.scheduleAtFixedRate( new Runnable(){
+            public void run(){
+                if(pow && raceSelected) {
+                	textArea.setText(null);
+                	textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
+                	//currentSecond++;
+                }
+                
+            }
+        }, 0, 100 ,TimeUnit.MILLISECONDS );
 
 		JPanel sub = new JPanel();
 		sub.setLayout(new FlowLayout());
@@ -458,9 +474,9 @@ public class ClientPanel extends JFrame implements ActionListener{
 						String[] trig = {"trig", name};
 						
 						//TODO printArea not displaying correct info? formatting on textarea
-						printArea.setText(printArea.getText() + raceData.getLog().getLastMsg() + "\n");
-						textArea.setText(null);
-						textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
+						if(printerPower.isSelected())printArea.setText(printArea.getText() + raceData.getLog().getLastMsg() + "\n");
+						//textArea.setText(null);
+						//textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
 						eventHandler.handle(trig);
 					}
 				}
@@ -509,7 +525,11 @@ public class ClientPanel extends JFrame implements ActionListener{
 		case "reset":
 			String[] resetSignal = {"reset"};
 			eventHandler.handle(resetSignal);
-
+			if (pow) {
+				powerOff();
+				powerOn();
+			}
+			break;
 		case "print power":
 			if (!printerPower.isSelected())
 				printerPower.setSelected(false);
@@ -649,6 +669,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		}
 		pow = true;
 		//printerPower.setEnabled(true);
+		functionButtons[2].setEnabled(true);
 		function.doClick();
 	}
 

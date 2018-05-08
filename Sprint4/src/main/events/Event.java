@@ -27,7 +27,7 @@ public class Event {
 	
 	public Event(RaceData data) {
 		raceData = data;
-		raceData.setTimeOffset(new Time());	
+		//raceData.setTimeOffset(new Time());	
 	}
 	
 	/**
@@ -90,6 +90,15 @@ public class Event {
 		if (!raceData.isPower()) return;
 		raceData.getChannels()[Integer.parseInt(channel)].conn(sensor);
 		raceData.getLog().msg("Sensor connected Type: " + sensor +" Num: " + channel);
+	}
+	
+	/**
+	*Disconnects the channel
+	*/
+	public void disc(String channel) {
+		if (!raceData.isPower()) return;
+		raceData.getChannels()[Integer.parseInt(channel)].conn("NONE");
+		raceData.getLog().msg("Sensor disconnected.");
 	}
 	
 	/**
