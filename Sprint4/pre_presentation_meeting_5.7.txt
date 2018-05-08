@@ -13,7 +13,7 @@ Last minute todos
 		Done - Printer needs to print the current command action not the previous
 			Thread the gui displays
 		Server button on the gui
-		Disk and Conn method are irrelevant to the console
+		Work as intended according to Sprint 0 - Disk and Conn method are irrelevant to the console
 		Done? - Time issue with the gui
 		
 
