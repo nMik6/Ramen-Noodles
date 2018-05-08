@@ -15,6 +15,9 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -64,8 +67,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 	protected JButton function = new JButton("Function");
 	protected JButton server = new JButton("Server");
 
-	JButton f1, f2, f3, f4;
-	JButton[] functionButtons = {f1, f2, f3, f4};
+	JButton f1, f2, f3, f4, f5;
+	JButton[] functionButtons = {f1, f2, f3, f4, f5};
 
 	protected JButton swap = new JButton("Swap");
 	protected JToggleButton printerPower = new JToggleButton("Printer Pwr");
@@ -244,11 +247,12 @@ public class ClientPanel extends JFrame implements ActionListener{
 		JButton blank = new JButton();
 		blank.setVisible(false);
 		sub2.add(blank, 0);
-		for(int i = 0; i < 3; ++i) {
-			functionButtons[i] = new JButton();
+		for(int i = 0; i < 4; ++i) {
+			functionButtons[i] = new JButton("" + i);
 			functionButtons[i].addActionListener(this);
 			functionButtons[i].setActionCommand("function select");
 			functionButtons[i].setBackground(Color.GRAY);
+			functionButtons[i].setPreferredSize(new Dimension(25,15));
 			sub2.add(functionButtons[i], i+1);
 		}
 		sub2.setAlignmentY(Component.RIGHT_ALIGNMENT);
@@ -278,6 +282,17 @@ public class ClientPanel extends JFrame implements ActionListener{
 		textArea.setEditable(false);
 		textArea.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+		 ScheduledExecutorService worker = Executors.newScheduledThreadPool(3);
+         worker.scheduleAtFixedRate( new Runnable(){
+            public void run(){
+                if(pow && raceSelected) {
+                	textArea.setText(null);
+                	textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
+                	//currentSecond++;
+                }
+                
+            }
+        }, 0, 100 ,TimeUnit.MILLISECONDS );
 
 		JPanel sub = new JPanel();
 		sub.setLayout(new FlowLayout());
@@ -460,8 +475,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 						
 						//TODO printArea not displaying correct info? formatting on textarea
 						if(printerPower.isSelected())printArea.setText(printArea.getText() + raceData.getLog().getLastMsg() + "\n");
-						textArea.setText(null);
-						textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
+						//textArea.setText(null);
+						//textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
 						eventHandler.handle(trig);
 					}
 				}

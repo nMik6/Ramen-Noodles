@@ -202,7 +202,7 @@ public class Group implements Race{
 	public String getDisplay() {
 		String ret = "Current Race Time:\n";
 		if(groupStart != null ) ret += groupStart.difference(new Time()).printTime() + "\n";
-		//some calculation of time
+		
 		ret += "\nLast Finish:\n";
 		if(finished.size()!= 0)ret += finished.get(finished.size()-1).toString(new Time());
 		return ret;

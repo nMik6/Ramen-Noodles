@@ -192,8 +192,9 @@ public class ParallelGroup implements Race{
 	 * returns the displayable ready, current, finished racers(not the full arrays, see end of S3 PDF)
 	 **/
 	public String getDisplay() {
-		String ret = "Current Race Time:\n" + groupStart.difference(new Time());
-		//some calculation of time
+		String ret = "Current Race Time:\n";
+		if(groupStart != null ) ret += groupStart.difference(new Time()).printTime() + "\n";
+		
 		ret += "\nLast Finish:\n";
 		if(finished.size() != 0) 
 			ret += finished.get(finished.size()-1).toString(new Time());
