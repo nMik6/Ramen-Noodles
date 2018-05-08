@@ -38,7 +38,7 @@ class DataEventTest {
 		event.tog("4");
 		event.num("1");
 		event.num("1");
-		assertEquals("That bib number already exists", raceData.getLog().getLastMsg());
+		assertEquals("That bib number already exists", raceData.getLog().getMsgs().get(raceData.getLog().getMsgs().size()-1));
 		event.num("2");
 		event.num("3");
 		event.num("4");
@@ -115,7 +115,7 @@ class DataEventTest {
 		evHan.handle(new String[]{"tog","4"});
 		evHan.handle(new String[]{"num","1"});
 		evHan.handle(new String[]{"num","1"});
-		assertEquals("That bib number already exists", raceData.getLog().getLastMsg());
+		assertEquals("That bib number already exists", raceData.getLog().getMsgs().get(raceData.getLog().getMsgs().size()-1));
 		evHan.handle(new String[]{"num","2"});
 		evHan.handle(new String[]{"num","3"});
 		evHan.handle(new String[]{"num","4"});

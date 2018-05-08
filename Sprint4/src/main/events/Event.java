@@ -111,17 +111,22 @@ public class Event {
 				int previousRaceSize = raceData.getFinishedRaces().size();
 				Group previousRace = (Group) raceData.getFinishedRaces().get(previousRaceSize-1);
 				previousRace.setBib(Integer.parseInt(str));
+				raceData.getLog().msg("Group racer assigned " + str);
 				raceData.getLog().export(previousRace.getFinishedRacers(), raceData.getRaceNum());		
 			} else {	
 				raceData.getLog().msg("No race to add to. Create a new race event first.");
 				return;
 			}
-		}
-		else { 
-			if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str)))
-				raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
-			else
-				raceData.getLog().msg("That bib number already exists");
+		} else { 
+			try {
+				if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str))) {
+					raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
+					raceData.getLog().msg("Racer assigned " + str);
+				} else
+					raceData.getLog().msg("That bib number already exists");
+			} catch (NumberFormatException e) {
+				raceData.getLog().msg("No input characters were detected.");
+			}
 		}
 	}
 	
@@ -274,6 +279,7 @@ public class Event {
 		if (raceData.getCurrentRace() instanceof Individual) {
 			Individual cur_race = (Individual) raceData.getCurrentRace();
 			cur_race.swap();
+			raceData.getLog().msg("Racers swapped");
 		} else {
 			raceData.getLog().msg("Not an individual race. Cannot swap!");
 		}	
