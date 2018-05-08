@@ -58,6 +58,9 @@ public class EventHandler {
 			case "print":
 				event.print();
 				break;
+			case "swap":
+				event.swap();
+				break;
 			case "start":
 				if (passedTime != null) event.trig("1", passedTime);
 				else {

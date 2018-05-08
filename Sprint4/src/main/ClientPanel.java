@@ -248,11 +248,11 @@ public class ClientPanel extends JFrame implements ActionListener{
 		blank.setVisible(false);
 		sub2.add(blank, 0);
 		for(int i = 0; i < 4; ++i) {
-			functionButtons[i] = new JButton("" + i);
+			functionButtons[i] = new JButton();
 			functionButtons[i].addActionListener(this);
 			functionButtons[i].setActionCommand("function select");
 			functionButtons[i].setBackground(Color.GRAY);
-			functionButtons[i].setPreferredSize(new Dimension(25,15));
+			functionButtons[i].setPreferredSize(new Dimension(20,10));
 			sub2.add(functionButtons[i], i+1);
 		}
 		sub2.setAlignmentY(Component.RIGHT_ALIGNMENT);
@@ -288,7 +288,6 @@ public class ClientPanel extends JFrame implements ActionListener{
                 if(pow && raceSelected) {
                 	textArea.setText(null);
                 	textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
-                	//currentSecond++;
                 }
                 
             }
@@ -317,7 +316,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 
 		for(int i = 0; i <12; ++i) {
 			numPad[i]= new JButton();
-			//numPad[i].setPreferredSize(new Dimension(40,40));
+			
 			switch (i){
 			case 9:
 				numPad[i].setText("*");
@@ -472,10 +471,6 @@ public class ClientPanel extends JFrame implements ActionListener{
 						name = "" + (i+1);
 						i = 8;
 						String[] trig = {"trig", name};
-						
-						//TODO printArea not displaying correct info? formatting on textarea
-						//textArea.setText(null);
-						//textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
 						eventHandler.handle(trig);
 					}
 				}
@@ -540,7 +535,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		case "function":
 			if(pow) {
 				if(!raceSelected) 
-					functionArea.setText("Select Race Type:\n 1. Individual\n 2. Parallel Individual\n 3. Group");
+					functionArea.setText("Select Race Type:\n 1. Individual\n 2. Parallel Individual\n 3. Group\n 4. Parallel Group");
 				else {
 					numEntry = false;
 					functionArea.setText("Select Race Option:\n 1. Enter Racers\n 2. End Race");
@@ -572,7 +567,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 							String[] event = {"EVENT", eventType};
 							eventHandler.handle(event);
 							raceSelected = true;
-							functionButtons[2].setEnabled(false);
+							functionButtons[3].setEnabled(false);
 							function.doClick();
 						}
 						else {
@@ -588,7 +583,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 									String[] endRun = {"ENDRUN"};
 									eventHandler.handle(endRun);
 									raceSelected = false;
-									functionButtons[2].setEnabled(true);
+									functionButtons[3].setEnabled(true);
 									function.doClick();
 									break;
 								}
@@ -649,15 +644,11 @@ public class ClientPanel extends JFrame implements ActionListener{
 	private void powerOff() {
 		for(int i = 0; i<8; ++i) {
 			channelToggles[i].setSelected(false);
-			//channelConnections[i].setSelected(false);
 			channelToggles[i].setEnabled(false);
-			//channelConnections[i].setEnabled(false);
 		}
 
 		textArea.setText(null);
 		functionArea.setText(null);
-		//printArea.setText(null);
-		//printerPower.setEnabled(false);
 		
 		numEntered = "";
 		pow = false;
@@ -673,8 +664,8 @@ public class ClientPanel extends JFrame implements ActionListener{
 			c.setEnabled(true);
 		}
 		pow = true;
-		//printerPower.setEnabled(true);
-		functionButtons[2].setEnabled(true);
+		
+		functionButtons[3].setEnabled(true);
 		function.doClick();
 	}
 
