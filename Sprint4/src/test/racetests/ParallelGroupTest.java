@@ -90,9 +90,9 @@ public class ParallelGroupTest {
 		pargroupRace.addReady(new Racer(123));
 		assertFalse(pargroupRace.containsBib(123));
 		
-		pargroupRace.cancel(new Racer(111));
+		pargroupRace.cancel(111);
 		assertFalse(pargroupRace.containsBib(111));
-		
+		//
 		pargroupRace.start(new Time());
 		sleep(.2);
 		pargroupRace.finish(1, new Time());
