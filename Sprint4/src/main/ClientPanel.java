@@ -474,7 +474,6 @@ public class ClientPanel extends JFrame implements ActionListener{
 						String[] trig = {"trig", name};
 						
 						//TODO printArea not displaying correct info? formatting on textarea
-						if(printerPower.isSelected())printArea.setText(printArea.getText() + raceData.getLog().getLastMsg() + "\n");
 						//textArea.setText(null);
 						//textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
 						eventHandler.handle(trig);
@@ -535,7 +534,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 				printerPower.setSelected(false);
 			else
 				printerPower.setSelected(true);
-			printArea.setText("Printer power: " + (printerPower.isSelected() ? "ON\n" : "OFF\n"));
+			printArea.setText(printArea.getText() + "Printer power: " + (printerPower.isSelected() ? "ON\n" : "OFF\n"));
 			break;
 			
 		case "function":
@@ -638,6 +637,12 @@ public class ClientPanel extends JFrame implements ActionListener{
 			String[] usb = {"export"};
 			eventHandler.handle(usb);
 			break;
+		}
+		
+		if(printerPower.isSelected()) {
+			StringBuilder sb = new StringBuilder();
+			raceData.getLog().getMsgs().forEach(n -> sb.append(n + "\n"));
+			printArea.setText(sb.toString());
 		}
 	}
 

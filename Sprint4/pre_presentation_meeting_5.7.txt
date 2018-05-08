@@ -10,11 +10,11 @@ Last minute todos
 
 	CODE:
 		Add parallel group to gui
-		Printer needs to print the current command action not the previous
+		Done - Printer needs to print the current command action not the previous
 			Thread the gui displays
 		Server button on the gui
 		Disk and Conn method are irrelevant to the console
-		Time issue with the gui
+		Done? - Time issue with the gui
 		
 
 	Presentation Flow:
