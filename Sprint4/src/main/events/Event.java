@@ -140,8 +140,7 @@ public class Event {
 		try {
 			int channelInt = Integer.parseInt(channel);
 			Channel[] temp = raceData.getChannels();
-
-			if (temp[channelInt].getState()) {
+			if (temp[channelInt -1].getState()) {
 				//bad workaround to fix trigger issues with parallel group
 				if(raceData.getCurrentRace() instanceof ParallelGroup) {
 					ParallelGroup cur_race = (ParallelGroup) raceData.getCurrentRace();
@@ -194,7 +193,7 @@ public class Event {
 				int intchan = Integer.parseInt(channel);
 				Channel[] channels = raceData.getChannels();
 				channels[intchan].toggle();
-				raceData.getLog().msg("Channel #" + channel + " toggled " + (channels[intchan].getState() ? "ON" : "OFF"));
+				raceData.getLog().msg("Channel #" + (intchan + 1) + " toggled " + (channels[intchan].getState() ? "ON" : "OFF"));
 				return intchan;
 			} catch(Exception e) {}
 		return -1;

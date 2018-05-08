@@ -482,7 +482,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 				String togName = "";
 				for(int i = 0; i < 8; i++) { 
 					if (e.getSource() == (channelToggles[i])) {
-						togName = "" + (i+1);
+						togName = "" + (i);
 						i = 8;
 						String[] tog = {"tog", togName};
 						eventHandler.handle(tog);

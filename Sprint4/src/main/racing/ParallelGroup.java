@@ -67,7 +67,7 @@ public class ParallelGroup implements Race{
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if(ready.size() >= 8)
+		if(ready.size() > 8)
 			return false;
 		ready.add(r);
 		return true;
@@ -197,7 +197,7 @@ public class ParallelGroup implements Race{
 	public String getDisplay() {
 		Time t = new Time();
 		String ret = "Current Race Time:\n";
-		if(groupStart != null ) ret += groupStart.difference(new Time()).printTime() + "\n";
+		if(groupStart != null) ret += groupStart.difference(new Time()).printTime() + "\n";
 		
 		ret += "\nFinished:\n";
 		for (Racer r : finished)	ret += r.toString(t) + "\n";

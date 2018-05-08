@@ -38,7 +38,7 @@ public class Server implements Runnable{
 	        System.out.println("Log: Starting Server...");
 	        server.start();
         } catch (IOException e) {
-        	System.out.println("Log: Failed to start server");
+        	//System.out.println("Log: Failed to start server");
         }
 	}	
 	
