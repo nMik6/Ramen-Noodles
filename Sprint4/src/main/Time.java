@@ -111,5 +111,15 @@ public class Time {
 				&& this.getTime().getSecond() == other.getTime().getSecond() 
 				&& this.getTime().getNano() == other.getTime().getNano();
 	}
+	
+	public int compareTo(Time t) {
+		if(this.isBefore(t)) {
+			return -1;
+		} else if (this.equals(t)) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
 
 }

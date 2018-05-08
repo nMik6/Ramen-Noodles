@@ -79,7 +79,7 @@ public class Logger {
 	public void export(List<Racer> racers, int raceNum) {
 		String currentUsersHomeDir = "data";
 		String raceFile = currentUsersHomeDir + File.separator + "RUN" + raceNum + ".json";
-		System.out.println(raceFile);
+		System.out.println("Log: Exporting race to "+ raceFile);
 		File file = new File(raceFile);
 		
 		try {
