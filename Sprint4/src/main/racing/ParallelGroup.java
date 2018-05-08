@@ -149,7 +149,11 @@ public class ParallelGroup implements Race{
 	 * @param time that the racer finishes at
 	 */
 	public boolean finish(int channel, Time time) {
-		Racer temp = running.get(channel-1);
+		Racer temp = null;
+		System.out.println(channel + "\t" + running.size());
+		if(channel <= running.size()) {
+			temp = running.get(channel-1);
+		}
 		if(temp == null || temp.getDnf() || temp.getFinish() != null) {
 			return false;
 		}
@@ -192,12 +196,12 @@ public class ParallelGroup implements Race{
 	 * returns the displayable ready, current, finished racers(not the full arrays, see end of S3 PDF)
 	 **/
 	public String getDisplay() {
+		Time t = new Time();
 		String ret = "Current Race Time:\n";
 		if(groupStart != null ) ret += groupStart.difference(new Time()).printTime() + "\n";
 		
-		ret += "\nLast Finish:\n";
-		if(finished.size() != 0) 
-			ret += finished.get(finished.size()-1).toString(new Time());
+		ret += "\nFinished:\n";
+		for (Racer r : running)	ret += r.toString(t) + "\n";
 		return ret;
 	}
 
