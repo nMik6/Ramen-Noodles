@@ -63,7 +63,13 @@ public interface Race {
 	 * @param racer to remove
 	 * @return true if racer was removed from ready position, else false
 	 */
-	public boolean cancel(Racer racer);
+	public boolean cancel(int bib);
+	
+	/**
+	 * Marks the next racer to finish as dnf
+	 * @return true if dnf assignment successful
+	 */
+	public boolean dnf();
 	
 	/**
 	 * Assigns the start time to the racer and adds them to the 
@@ -86,6 +92,9 @@ public interface Race {
 	 */
 	public void end();
 	
+	/**
+	 * returns whether the bib is in use during num entry
+	 **/
 	public boolean containsBib(int bib);
 	
 	/**

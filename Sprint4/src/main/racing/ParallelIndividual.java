@@ -135,59 +135,50 @@ public class ParallelIndividual implements Race {
 	 * @param racer to remove
 	 * @return true if racer was removed from ready position, else false
 	 */
-	public boolean cancel(Racer racer) {
+	public boolean cancel(int bib) {
 		Queue<Racer> newReady = new LinkedList<Racer>();
 		
 		boolean canceled = false;
 		
 		//check both ready queues
-		if(ready1.contains(racer)) { 
-			while(!ready1.isEmpty()) {
-				Racer tmp = ready1.poll();
-				if(!tmp.equals(racer)) {
-					newReady.add(tmp);
-				} else canceled = true;
-			}
-			ready1 = newReady;
-		} else if(ready3.contains(racer)) {
-			while(!ready3.isEmpty()) {
-				Racer tmp = ready3.poll();
-				if(!tmp.equals(racer)) {
-					newReady.add(tmp);
-				} else canceled = true;
-			}
-			ready3 = newReady;
+		while(!ready1.isEmpty()) {
+			Racer tmp = ready1.poll();
+			if(tmp.getName() != bib) {
+				newReady.add(tmp);
+			} else canceled = true;
 		}
-
+		ready1 = newReady;
+		
+		while(!ready3.isEmpty()) {
+			Racer tmp = ready3.poll();
+			if(tmp.getName() != bib) {
+				newReady.add(tmp);
+			} else canceled = true;
+		}
+		ready3 = newReady;
 		
 		return canceled;
 	}
 	
 	/**
-	 * Assigns the DNF flag to the racer
+	 * Assigns the DNF flag to the next racer
 	 * 
 	 */
-	public void dnf(Racer racer) {
-		if(running1.contains(racer)) {
-			running1.remove(racer);
-			racer.setDnf();
-			finished.add(racer);
+	public boolean dnf() {
+		Racer dnfRacer = null;
+		if(running1.peek() != null && running3.peek() != null) {
+			if(running1.peek().getStart().difference(new Time()).isBefore(running3.peek().getStart().difference(new Time()))) {
+				dnfRacer = running1.poll();
+			}
+			else dnfRacer = running3.poll();
 		}
-		if(running3.contains(racer)) {
-			running3.remove(racer);
-			racer.setDnf();
-			finished.add(racer);
-		}
-		if(ready1.contains(racer)) {
-			ready1.remove(racer);
-			racer.setDnf();
-			finished.add(racer);
-		}
-		if(ready3.contains(racer)) {
-			ready3.remove(racer);
-			racer.setDnf();
-			finished.add(racer);
-		}
+		else if(running1.peek() != null) dnfRacer = running1.poll();
+		else if(running3.peek() != null) dnfRacer = running1.poll();
+		
+		if(dnfRacer == null) return false;
+		dnfRacer.setDnf();
+		finished.add(dnfRacer);
+		return true;
 	}
 	
 	@Override

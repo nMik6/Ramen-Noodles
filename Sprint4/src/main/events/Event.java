@@ -133,6 +133,33 @@ public class Event {
 	}
 	
 	/**
+	 * Takes the num of a racer, if that racer exists in the ready queue, they are removed
+	 * @param str number
+	 */
+	public void clear(String str) {
+		if (raceData.getCurrentRace() != null) {
+			try {
+				raceData.getCurrentRace().cancel(Integer.parseInt(str));
+			}catch(Exception e) {
+				raceData.getLog().msg("Could not cancel racer");
+			}
+		}
+	}
+	
+	/**
+	 *The next racer to finish is marked DNF
+	 */
+	public void dnf() {
+		if (raceData.getCurrentRace() != null) {
+			try {
+				raceData.getCurrentRace().dnf();
+			}catch(Exception e) {
+				raceData.getLog().msg("Could not mark racer DNF");
+			}
+		}
+	}
+	
+	/**
 	 * Verifies a channels state and triggers is
 	 * @param channel the channel to check
 	 * @param t the time

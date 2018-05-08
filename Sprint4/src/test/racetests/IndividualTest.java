@@ -160,8 +160,8 @@ class IndividualTest {
 		indRace.addReady(racer1);
 		indRace.addReady(racer2);
 		
-		assertTrue(indRace.cancel(racer1));
-		assertFalse(indRace.cancel(racer3));
+		assertTrue(indRace.cancel(racer1.getName()));
+		assertFalse(indRace.cancel(racer3.getName()));
 	}
 	
 	/**

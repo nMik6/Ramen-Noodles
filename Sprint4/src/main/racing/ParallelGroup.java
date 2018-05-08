@@ -38,10 +38,12 @@ public class ParallelGroup implements Race{
 	private boolean raceEnded;
 	private ArrayList<Racer> ready;
 	private ArrayList<Racer> running;
+	private boolean dnfNext;
 	
 	public ParallelGroup() {
 		this.place = 0;
 		raceEnded = false;
+		dnfNext = false;
 		this.ready = new ArrayList<Racer>();
 		this.running = new ArrayList<Racer>();
 		this.finished = new LinkedList<Racer>();
@@ -119,8 +121,22 @@ public class ParallelGroup implements Race{
 	 * @param racer to remove
 	 * @return true if racer was removed from ready position, else false
 	 */
-	public boolean cancel(Racer racer) {
-		return ready.remove(racer);
+	public boolean cancel(int bib) {
+		Racer racer = null;
+		for(Racer r : ready) {
+			if(r.getName() == bib) racer = r;
+		}
+		if(racer != null)return ready.remove(racer);
+		else return false;
+	}
+	
+	/**
+	 * Sets next racer to finish as dnf
+	 * @return true as dnf param now set
+	 */
+	public boolean dnf() {
+		dnfNext = true;
+		return true;
 	}
 	
 	
@@ -157,7 +173,11 @@ public class ParallelGroup implements Race{
 			return false;
 		}
 		temp.start(groupStart);
-		temp.finish(time); 
+		if(dnfNext) {
+			 dnfNext = false;
+			 temp.setDnf();
+		}
+		else temp.finish(time);
 		return finished.add(temp); //should return true
 	}
 	

@@ -88,6 +88,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	Boolean pow = false;
 	Boolean raceSelected = false;
 	Boolean numEntry = false;
+	Boolean cancelNum = false;
 
 	//Printout area
 	JScrollPane scroll = new JScrollPane(printArea);
@@ -538,7 +539,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 					functionArea.setText("Select Race Type:\n 1. Individual\n 2. Parallel Individual\n 3. Group\n 4. Parallel Group");
 				else {
 					numEntry = false;
-					functionArea.setText("Select Race Option:\n 1. Enter Racers\n 2. End Race");
+					functionArea.setText("Select Race Option:\n 1. Enter Racers\n 2. Cancel (remove last entered)\n 3. DNF\n 4. End Race");
 				}
 			}
 			break;
@@ -563,11 +564,11 @@ public class ClientPanel extends JFrame implements ActionListener{
 								break;
 							case 3:
 								eventType = "PARGRP";
+								break;
 							}
 							String[] event = {"EVENT", eventType};
 							eventHandler.handle(event);
 							raceSelected = true;
-							functionButtons[3].setEnabled(false);
 							function.doClick();
 						}
 						else {
@@ -580,12 +581,21 @@ public class ClientPanel extends JFrame implements ActionListener{
 									numEntry = true;
 									break;
 								case 1:
+									functionArea.setText("Use Number Pad To Enter Racer Numbers\n Press # To Enter The Number\n Press * To Clear\n"
+											+ "Press Function To Return To Race Options");
+									cancelNum = true;
+									break;
+								case 2:
+									String[] dnf = {"dnf"};
+									eventHandler.handle(dnf);
+									break;
+								case 3:
 									String[] endRun = {"ENDRUN"};
 									eventHandler.handle(endRun);
 									raceSelected = false;
-									functionButtons[3].setEnabled(true);
 									function.doClick();
 									break;
+								
 								}
 							}
 						}
@@ -617,11 +627,17 @@ public class ClientPanel extends JFrame implements ActionListener{
 			break;
 		case "*":
 			numEntered = "";
+			numEntry = false;
+			cancelNum = false;
 			break;
 
 		case "#":
 			if(pow && numEntry) {
 				String[] bibNum = {"num", numEntered};
+				eventHandler.handle(bibNum);
+			}
+			else if(pow && cancelNum) {
+				String[] bibNum = {"clr", numEntered};
 				eventHandler.handle(bibNum);
 			}
 			numEntered = "";
@@ -654,6 +670,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		pow = false;
 		raceSelected = false;
 		numEntry = false;
+		cancelNum = false;
 	}
 
 	private void powerOn() {
@@ -664,8 +681,6 @@ public class ClientPanel extends JFrame implements ActionListener{
 			c.setEnabled(true);
 		}
 		pow = true;
-		
-		functionButtons[3].setEnabled(true);
 		function.doClick();
 	}
 

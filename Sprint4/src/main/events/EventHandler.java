@@ -77,6 +77,9 @@ public class EventHandler {
 					else event.trig("2", new Time().difference(raceData.getTimeOffset()));
 				}
 				break;
+			case "dnf":
+				event.dnf();
+				break;
 			case "newrun":
 				event.newrun();
 				break;
@@ -100,6 +103,9 @@ public class EventHandler {
 				break;
 			case "num":
 				event.num(commandLine[1]);
+				break;
+			case "clr":
+				event.clear(commandLine[1]);
 				break;
 			case "trig":
 				if (passedTime != null) event.trig(commandLine[1], passedTime);

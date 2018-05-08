@@ -93,14 +93,13 @@ public class Individual implements Race {
 	 * Assigns the DNF flag to the next racer to finish
 	 * @param racer
 	 */
-	public void dnf() {
+	public boolean dnf() {
 		Racer dnfRacer = running.poll();
-		
-		if(dnfRacer == null) return; //if no racers in running to dnf just return
+		if(dnfRacer == null) return false;
 		
 		dnfRacer.setDnf();
-		
 		finished.add(dnfRacer);
+		return true;
 	}
 	
 	/**
@@ -108,13 +107,13 @@ public class Individual implements Race {
 	 * @param racer to remove
 	 * @return true if racer was removed from ready position, else false
 	 */
-	public boolean cancel(Racer racer) {
+	public boolean cancel(int bib) {
 		Queue<Racer> newReady = new LinkedList<Racer>();
 		//newReady.add(racer);
 		boolean canceled = false;
 		while(!ready.isEmpty()) {
 			Racer tmp = ready.poll();
-			if(!tmp.equals(racer)) {
+			if(tmp.getName() != bib) {
 				newReady.add(tmp);
 			}else canceled = true;
 		}

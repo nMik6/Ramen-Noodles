@@ -99,10 +99,14 @@ public class Group implements Race{
 	 * Assigns the DNF flag to the next racer to finish
 	 * @param racer
 	 */
-	public void dnf() {
-		Racer dnfRacer = new Racer(-1);
+	public boolean dnf() {
+		Racer dnfRacer = new Racer(autoNum +1);
+		autoNum++;
+		System.out.printf("Racer: %d,\tDNF\n", 
+				dnfRacer.getName());
 		dnfRacer.setDnf();
 		finished.add(dnfRacer);
+		return true;
 	}
 	
 	/**
@@ -110,7 +114,7 @@ public class Group implements Race{
 	 * @param racer to remove
 	 * @return true if racer was removed from ready position, else false
 	 */
-	public boolean cancel(Racer racer) {
+	public boolean cancel(int i) {
 		return false;
 	}
 	
