@@ -539,7 +539,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 					functionArea.setText("Select Race Type:\n 1. Individual\n 2. Parallel Individual\n 3. Group\n 4. Parallel Group");
 				else {
 					numEntry = false;
-					functionArea.setText("Select Race Option:\n 1. Enter Racers\n 2. Cancel (remove last entered)\n 3. DNF\n 4. End Race");
+					functionArea.setText("Select Race Option:\n 1. Enter Racers\n 2. Cancel (Remove Racer)\n 3. DNF\n 4. End Race");
 				}
 			}
 			break;
