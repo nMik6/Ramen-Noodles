@@ -1,8 +1,12 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import main.racing.Race;
+import main.racing.Racer;
 
 public final class RaceData {
 	
@@ -203,8 +207,16 @@ public final class RaceData {
 	 * @return the server running for end results after race complete
 	 */
 	public Server getServer() {
-		server = new Server(this.getCurrentRace().getFinishedRacers(), this.getCurrentRace().getType());
+		List<Racer> finishedRacers = this.getCurrentRace().getFinishedRacers();
+		Collections.sort(finishedRacers, new SortByTotal());
+		server = new Server((List<Racer>) finishedRacers, this.getCurrentRace().getType());
 		return server;
+	}
+	
+	private class SortByTotal implements Comparator<Racer>{
+		public int compare(Racer a, Racer b) {
+			return a.getTotal().compareTo(b.getTotal());
+		}
 	}
 
 }

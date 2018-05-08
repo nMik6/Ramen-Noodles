@@ -35,10 +35,10 @@ public class Server implements Runnable{
 	        server.setExecutor(null); // creates a default executor
 	
 	        // get it going
-	        System.out.println("Starting Server...");
+	        System.out.println("Log: Starting Server...");
 	        server.start();
         } catch (IOException e) {
-        	System.out.println("Failed to start server");
+        	System.out.println("Log: Failed to start server");
         }
 	}	
 	
