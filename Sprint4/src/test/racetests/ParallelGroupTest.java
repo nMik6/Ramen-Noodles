@@ -54,6 +54,67 @@ public class ParallelGroupTest {
 		pargroupRace.end();
 	}
 	
+	@Test
+	/**
+	 * Test Usecase: Start and end race with no racers entered
+	 */
+	public void test2() {
+		pargroupRace.start(new Time());
+		sleep(.2);
+		pargroupRace.finish(1, new Time());
+		sleep(.2);
+		pargroupRace.finish(2, new Time());
+		sleep(.2);
+		pargroupRace.finish(3, new Time());
+		pargroupRace.end();
+		assertTrue(pargroupRace.getFinishedRacers().size() == 0);
+	}
+	
+	@Test
+	/**
+	 * Test Usecase: Add ready racers and cancel ready racers
+	 * @param seconds
+	 */
+	public void test3() {
+		pargroupRace.addReady(new Racer(111));
+		pargroupRace.addReady(new Racer(222));
+		pargroupRace.addReady(new Racer(333));
+		pargroupRace.addReady(new Racer(444));
+		pargroupRace.addReady(new Racer(555));
+		pargroupRace.addReady(new Racer(666));
+		pargroupRace.addReady(new Racer(777));
+		pargroupRace.addReady(new Racer(888));
+
+		assertFalse(pargroupRace.addReady(new Racer(111)));
+		
+		pargroupRace.addReady(new Racer(123));
+		assertFalse(pargroupRace.containsBib(123));
+		
+		pargroupRace.cancel(new Racer(111));
+		assertFalse(pargroupRace.containsBib(111));
+		
+		pargroupRace.start(new Time());
+		sleep(.2);
+		pargroupRace.finish(1, new Time());
+		sleep(.2);
+		pargroupRace.finish(2, new Time());
+		sleep(.2);
+		pargroupRace.finish(3, new Time());
+		sleep(.2);
+		pargroupRace.finish(4, new Time());
+		sleep(.2);
+		pargroupRace.finish(5, new Time());
+		sleep(.2);
+		pargroupRace.finish(6, new Time());
+		sleep(.2);
+		pargroupRace.finish(7, new Time());
+		sleep(.2);
+		pargroupRace.finish(8, new Time());
+		pargroupRace.end();
+		
+		assertTrue(pargroupRace.getFinishedRacers().size() == 7);
+	}
+	
 	public static void sleep(double seconds) {
 		try {
 		    Thread.sleep((int)(seconds * 1000));
