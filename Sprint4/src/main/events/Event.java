@@ -142,10 +142,18 @@ public class Event {
 			Channel[] temp = raceData.getChannels();
 
 			if (temp[channelInt].getState()) {
+				//bad workaround to fix trigger issues with parallel group
+				if(raceData.getCurrentRace() instanceof ParallelGroup) {
+					ParallelGroup cur_race = (ParallelGroup) raceData.getCurrentRace();
+					if(channelInt == 1 && cur_race.groupStart == null) cur_race.start(channelInt, t);
+					else cur_race.finish(channelInt, t);
+				}
+			else {
 				raceData.getLog().msg("Trigger on channel #" + channel);
 				Race cur_race = raceData.getCurrentRace();
 				if (channelInt % 2 != 0) cur_race.start(channelInt, t);
 				else cur_race.finish(channelInt, t);
+			}
 			}
 		}catch(Exception e) {
 			raceData.getLog().msg("No Current race! Cannot trigger a start!");

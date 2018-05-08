@@ -32,7 +32,7 @@ import main.Time;
  */
 
 public class ParallelGroup implements Race{
-	private Time groupStart;
+	public Time groupStart;
 	private List<Racer> finished;
 	private int place;
 	private boolean raceEnded;
@@ -150,7 +150,6 @@ public class ParallelGroup implements Race{
 	 */
 	public boolean finish(int channel, Time time) {
 		Racer temp = null;
-		System.out.println(channel + "\t" + running.size());
 		if(channel <= running.size()) {
 			temp = running.get(channel-1);
 		}
@@ -201,7 +200,7 @@ public class ParallelGroup implements Race{
 		if(groupStart != null ) ret += groupStart.difference(new Time()).printTime() + "\n";
 		
 		ret += "\nFinished:\n";
-		for (Racer r : running)	ret += r.toString(t) + "\n";
+		for (Racer r : finished)	ret += r.toString(t) + "\n";
 		return ret;
 	}
 
