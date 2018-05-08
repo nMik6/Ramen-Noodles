@@ -85,7 +85,7 @@ class LoggerTest {
 	private File fileFound(int raceNum) {
 		String curUserDir = System.getProperty("user.dir");
 		String curUserDirData = System.getProperty("user.dir") + File.separator + "data";
-		String filename = curUserDir + File.separator + "data" + File.separator + "RUN" + raceNum + ".txt";
+		String filename = curUserDir + File.separator + "data" + File.separator + "RUN" + raceNum + ".json";
 		
 		System.out.println(filename);
 		System.out.println(curUserDirData);
