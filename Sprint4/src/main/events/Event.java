@@ -120,9 +120,11 @@ public class Event {
 		} else { 
 			try {
 				if (!raceData.getCurrentRace().containsBib(Integer.parseInt(str))) {
-					raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)));
-					raceData.getLog().msg("Racer assigned " + str);
-				} else
+					if(raceData.getCurrentRace().addReady(new Racer(Integer.parseInt(str)))) {
+						raceData.getLog().msg("Racer assigned " + str);
+					}
+				}		
+				else
 					raceData.getLog().msg("That bib number already exists");
 			} catch (NumberFormatException e) {
 				raceData.getLog().msg("No input characters were detected.");

@@ -67,7 +67,7 @@ public class ParallelGroup implements Race{
 	 * @return true if successfully added, else false
 	 */
 	public boolean addReady(Racer r) {
-		if(ready.size() > 8)
+		if(ready.size() >= 8)
 			return false;
 		ready.add(r);
 		return true;
