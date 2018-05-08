@@ -87,7 +87,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	Boolean numEntry = false;
 
 	//Printout area
-	//JScrollPane scroll = new JScrollPane(textArea);
+	JScrollPane scroll = new JScrollPane(printArea);
 
 
 
@@ -211,7 +211,9 @@ public class ClientPanel extends JFrame implements ActionListener{
 		printerPower.setSelected(false);
 		printArea.setEditable(false);
 		printArea.setBorder(BorderFactory.createLineBorder(Color.black));
-
+		scroll = new JScrollPane(printArea);
+		scroll.setPreferredSize(new Dimension(200,100));
+		
 		JPanel sub = new JPanel();
 		sub.setLayout(new FlowLayout());
 		sub.add(printerPower);
@@ -219,7 +221,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		JPanel printer= new JPanel();
 		printer.setLayout(new BorderLayout());
 		printer.add(sub, BorderLayout.NORTH);
-		printer.add(printArea, BorderLayout.CENTER);
+		printer.add(scroll, BorderLayout.CENTER);
 		printer.setMinimumSize(new Dimension(100,30));
 		printer.setPreferredSize(new Dimension(200,30));
 		return printer;
@@ -275,8 +277,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	private JPanel getDisplayPanel() {
 		textArea.setEditable(false);
 		textArea.setBorder(BorderFactory.createLineBorder(Color.black));
-		//scroll = new JScrollPane(textArea);
-		//scroll.setPreferredSize(new Dimension(200,100));
+		
 
 		JPanel sub = new JPanel();
 		sub.setLayout(new FlowLayout());
@@ -458,7 +459,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 						String[] trig = {"trig", name};
 						
 						//TODO printArea not displaying correct info? formatting on textarea
-						printArea.setText(printArea.getText() + raceData.getLog().getLastMsg() + "\n");
+						if(printerPower.isSelected())printArea.setText(printArea.getText() + raceData.getLog().getLastMsg() + "\n");
 						textArea.setText(null);
 						textArea.setText(textArea.getText() + raceData.getCurrentRace().getDisplay() + "\n");
 						eventHandler.handle(trig);
@@ -653,6 +654,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 		}
 		pow = true;
 		//printerPower.setEnabled(true);
+		functionButtons[2].setEnabled(true);
 		function.doClick();
 	}
 

@@ -128,7 +128,8 @@ public class Group implements Race{
 	 * @param time at which the race starts
 	 */
 	public void start(int channel, Time time) {
-		groupStart = time;
+		if(time != null)groupStart = time;
+		else groupStart = new Time();
 	}
 	
 
@@ -200,6 +201,7 @@ public class Group implements Race{
 	@Override
 	public String getDisplay() {
 		String ret = "Current Race Time:\n";
+		if(groupStart != null ) ret += groupStart.difference(new Time()).printTime() + "\n";
 		//some calculation of time
 		ret += "\nLast Finish:\n";
 		if(finished.size()!= 0)ret += finished.get(finished.size()-1).toString(new Time());
