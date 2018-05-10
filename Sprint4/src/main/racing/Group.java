@@ -124,7 +124,8 @@ public class Group implements Race{
 	 * This time will be added to each racer as they finish 
 	 */
 	public void start(Time time) {
-		this.start(1, time);
+		if(groupStart == null)
+			this.start(1, time);
 	}
 	
 	/**
@@ -132,8 +133,9 @@ public class Group implements Race{
 	 * @param time at which the race starts
 	 */
 	public void start(int channel, Time time) {
-		if(time != null)groupStart = time;
-		else groupStart = new Time();
+		if(groupStart == null)
+			if(time != null)groupStart = time;
+			else groupStart = new Time();
 	}
 	
 
@@ -143,7 +145,7 @@ public class Group implements Race{
 	 * @param time that the racer finishes at
 	 */
 	public boolean finish(int channel, Time time) {
-		if(raceEnded) 
+		if(raceEnded || finished.size() == 9999) 
 			return false;
 		
 		Racer ending = new Racer(autoNum+1);	//default set anonymous racer bib number to -1

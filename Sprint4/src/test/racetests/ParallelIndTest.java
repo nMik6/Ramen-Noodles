@@ -183,6 +183,10 @@ class ParallelIndTest {
 		assertFalse(paraIndRace.addReady(null));
 		assertTrue(paraIndRace.addReady(racer1));
 		assertFalse(paraIndRace.addReady(racer1));
+		assertFalse(paraIndRace.dnf());
+		paraIndRace.start(1, new Time());
+		assertTrue(paraIndRace.dnf());
+		assertEquals(paraIndRace.getDNFRacers().size(), 1);
 	}
 	
 	//commented due to last minute change in dnf

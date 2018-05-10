@@ -91,7 +91,33 @@ public class GroupTest {
 		assertFalse(groupRace.finish(finishChannel, new Time()));
 		assertEquals(groupRace.getFinishedRacers().size(), 0);
 	}
-
+	
+	@Test
+	/**
+	 * Test Usecase: No more than 9999 places may be assigned. 
+	 */
+	public void test3() {
+		groupRace.start(new Time());
+		for(int i=0; i<9999; i++) {
+			groupRace.finish(finishChannel, new Time());
+		}
+		assertEquals(groupRace.getFinishedRacers().size(), 9999);
+		assertFalse(groupRace.finish(finishChannel, new Time()));
+		groupRace.end();
+	}
+	
+	@Test
+	/**
+	 * Test Usecase: dnf racers
+	 */
+	public void test4() {
+		groupRace.start(new Time());
+		
+		groupRace.dnf();
+		groupRace.dnf();
+		groupRace.end();
+		assertEquals(groupRace.getDNFRacers().size(), 2);
+	}
 }
 
 
