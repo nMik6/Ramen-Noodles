@@ -156,6 +156,7 @@ public class ParallelGroup implements Race{
 		groupStart = time;
 		running = ready;
 		ready = new ArrayList<Racer>();
+		for(int i = 0; i < running.size(); i++)running.get(i).start(time);
 	}
 	
 	/**
@@ -166,13 +167,13 @@ public class ParallelGroup implements Race{
 	 */
 	public boolean finish(int channel, Time time) {
 		Racer temp = null;
-		if(channel <= running.size()) {
+		if(channel <= running.size() && channel > 0) {
 			temp = running.get(channel-1);
 		}
 		if(temp == null || temp.getDnf() || temp.getFinish() != null) {
 			return false;
 		}
-		temp.start(groupStart);
+		//temp.start(groupStart);
 		if(dnfNext) {
 			 dnfNext = false;
 			 temp.setDnf();
