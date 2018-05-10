@@ -73,7 +73,6 @@ public class ParallelGroupTest {
 	@Test
 	/**
 	 * Test Usecase: Add ready racers and cancel ready racers
-	 * @param seconds
 	 */
 	public void test3() {
 		pargroupRace.addReady(new Racer(111));
@@ -113,6 +112,26 @@ public class ParallelGroupTest {
 		pargroupRace.end();
 		
 		assertTrue(pargroupRace.getFinishedRacers().size() == 7);
+	}
+	
+	@Test
+	/**
+	 * Tests DNF case.
+	 */
+	public void DNFtest() {
+		pargroupRace.dnf();
+		pargroupRace.finish(1, new Time());
+
+		assertTrue(pargroupRace.getFinishedRacers().size() == 0);
+
+		pargroupRace.addReady(new Racer(111));
+		pargroupRace.addReady(new Racer(222));
+		pargroupRace.addReady(new Racer(333));
+		pargroupRace.addReady(new Racer(444));
+		pargroupRace.addReady(new Racer(555));
+		pargroupRace.addReady(new Racer(666));
+		pargroupRace.addReady(new Racer(777));
+		pargroupRace.addReady(new Racer(888));
 	}
 	
 	public static void sleep(double seconds) {
