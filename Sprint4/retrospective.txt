@@ -12,3 +12,8 @@ Hartmut Sinterhauf:
 Worked: As Stephen states above, there were multiple person jobs taken on by individuals as the deadline came closer. We did take every initiative to test our presentation material before the demo which substantially increased our comfort level in front of the class. Most members made a concerted effort to explain and understand various componenets of the system before presenting. 
 Didn't Work: Rather than relying on the intrinsic interest and personal initiative to pick up tasks that need to be done, we should have had a stricter delegation of work loads. Members should've made a greater effort to make it to class and meetings (over the entire course of the semester) in person so that minor system incongruencies could be settled earlier. 
 Change: Create test plans and test thoroughly. Better systems for incentivising participation and communication. 
+
+Nathan Mikelonis:
+Worked: Although we had some errors in our job assignments, individuals managed to push through during the last hour to make sure that even though we fell behind a bit, we had a presentation that was going to meet expectations and accomplish all of the things that were needed for presenting.
+Didn't Work: People communicating with others that they needed help on something. Regardless of our mistake in not properly assigning the same workload of jobs, there was a lack of communcation asking for help early on which led to last minute rushes.
+Change: Have a compiled list of all the things that were requirements throughtout all of the sprints. After grading we had noticed that we did not have something implemented that we thought we had implemented. Need to keep better orginization of these tasks and their progress.
