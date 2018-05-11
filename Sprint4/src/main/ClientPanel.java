@@ -89,6 +89,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 	Boolean raceSelected = false;
 	Boolean numEntry = false;
 	Boolean cancelNum = false;
+	Boolean grpRaceRan = false;
 
 	//Printout area
 	JScrollPane scroll = new JScrollPane(printArea);
@@ -555,15 +556,19 @@ public class ClientPanel extends JFrame implements ActionListener{
 							switch(i) {
 							case 0:
 								eventType = "IND";
+								grpRaceRan = false;
 								break;
 							case 1:
 								eventType = "PARIND";
+								grpRaceRan = false;
 								break;
 							case 2:
 								eventType = "GRP";
+								grpRaceRan = true;
 								break;
 							case 3:
 								eventType = "PARGRP";
+								grpRaceRan = false;
 								break;
 							}
 							String[] event = {"EVENT", eventType};
@@ -632,7 +637,7 @@ public class ClientPanel extends JFrame implements ActionListener{
 			break;
 
 		case "#":
-			if(pow && numEntry) {
+			if((pow && numEntry) || (pow && grpRaceRan)) {
 				String[] bibNum = {"num", numEntered};
 				eventHandler.handle(bibNum);
 			}
