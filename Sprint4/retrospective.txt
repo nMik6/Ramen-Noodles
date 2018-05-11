@@ -3,3 +3,7 @@ Worked: Scheduling. By this sprint, we'd gotten fairly good at starting early an
 Didn't Work: Lopsided job assignment. Some of us wound up working on things that needed little work, and some of use wound up working on things that took significantly more.
 Change: I feel our communication dwindled somewhat near the end, and wish we could have been better at it.
 
+Stephen Staudt:
+Worked: Communication/"hero" efforts. Everyone stepped up near the deadline to ensure our project was as presentation ready as possible
+Didn't Work: Some people had more/less to do in the last sprint and we should've had more frequent or better communication to flexibly allocate work
+Change: Communication could be done every other day or something (like a standup) so everyone knows where other people are at with things
