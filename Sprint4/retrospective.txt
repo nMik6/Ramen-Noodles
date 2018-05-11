@@ -7,3 +7,8 @@ Stephen Staudt:
 Worked: Communication/"hero" efforts. Everyone stepped up near the deadline to ensure our project was as presentation ready as possible
 Didn't Work: Some people had more/less to do in the last sprint and we should've had more frequent or better communication to flexibly allocate work
 Change: Communication could be done every other day or something (like a standup) so everyone knows where other people are at with things
+
+Hartmut Sinterhauf:
+Worked: As Stephen states above, there were multiple person jobs taken on by individuals as the deadline came closer. We did take every initiative to test our presentation material before the demo which substantially increased our comfort level in front of the class. Most members made a concerted effort to explain and understand various componenets of the system before presenting. 
+Didn't Work: Rather than relying on the intrinsic interest and personal initiative to pick up tasks that need to be done, we should have had a stricter delegation of work loads. Members should've made a greater effort to make it to class and meetings (over the entire course of the semester) in person so that minor system incongruencies could be settled earlier. 
+Change: Create test plans and test thoroughly. Better systems for incentivising participation and communication. 
