@@ -1,0 +1,170 @@
+[
+  {
+    "bib": 1,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 31,
+        "nano": 17000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 36,
+        "nano": 344000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 5,
+        "nano": 327000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 2,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 31,
+        "nano": 17000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 38,
+        "nano": 259000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 7,
+        "nano": 242000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 3,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 31,
+        "nano": 17000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 40,
+        "nano": 797000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 9,
+        "nano": 780000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 4,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 31,
+        "nano": 17000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 43,
+        "nano": 88000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 12,
+        "nano": 71000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 5,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 31,
+        "nano": 17000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 47,
+        "nano": 852000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 16,
+        "nano": 835000000
+      }
+    },
+    "dnf": false
+  },
+  {
+    "bib": 6,
+    "start": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 31,
+        "nano": 17000000
+      }
+    },
+    "finish": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 50,
+        "nano": 614000000
+      }
+    },
+    "total": {
+      "time": {
+        "hour": 0,
+        "minute": 0,
+        "second": 19,
+        "nano": 597000000
+      }
+    },
+    "dnf": false
+  }
+]
