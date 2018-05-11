@@ -189,20 +189,6 @@ public class Event {
 	}
 	
 	/**
-	* Shorthand version for TRIG 1
-	*/
-	public void start(Time t) {
-		trig("1", t);
-	}
-	
-	/**
-	* Shorthand version for TRIG 2
-	*/
-	public void start(Time t) {
-		trig("2", t);
-	}
-	
-	/**
 	 * Sets the type of event running
 	 * @param type of the event
 	 */
