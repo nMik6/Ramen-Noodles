@@ -17,3 +17,8 @@ Nathan Mikelonis:
 Worked: Although we had some errors in our job assignments, individuals managed to push through during the last hour to make sure that even though we fell behind a bit, we had a presentation that was going to meet expectations and accomplish all of the things that were needed for presenting.
 Didn't Work: People communicating with others that they needed help on something. Regardless of our mistake in not properly assigning the same workload of jobs, there was a lack of communcation asking for help early on which led to last minute rushes.
 Change: Have a compiled list of all the things that were requirements throughtout all of the sprints. After grading we had noticed that we did not have something implemented that we thought we had implemented. Need to keep better orginization of these tasks and their progress.
+
+Skyler Keough:
+Worked: We came together to successfully add the features for Sprint 4 and present it well.
+Didn't work: Poor previous design choices came back to haunt us and a lack of load balancing meant that some people ended up working on the sprint more than others. Also, only getting the sprint 3 feedback on Tuesday did not give us much time to fix Sprint 3 issues. However, we believe we have fixed them.
+Change: Better load balancing, starting earlier, and making better design decisions earlier in the process.
